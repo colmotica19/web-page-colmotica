@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tekneo</title>
+        <link rel="icon" type="image/png" href="./../jpg/favicon.png">
+    <!-- Estilos css basicos home -->
+    <link rel="stylesheet" href="./socios.css" type="text/css">
+    <!-- Estilos css Globales -->
+    <link rel="stylesheet" href="./../main.css" type="text/css">
+
+    <!-- fuente DM -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+</head>
+
+<header>
+    <!-- header general -->
+    <section class="section-header">
+        <!-- Header secundario negro -->
+        <div class="pre-header">
+            <fieldset>
+                <input type="text" id="search-input" placeholder="BUSCAR" class="buscar-input" />
+                <button name="btnbuscar">
+                    <img src="./../jpg/icon-buscar.svg" alt="">
+                </button>
+                <i class="search-icon"></i>
+             </fieldset>
+
+             <button name="btnIdioma" class="btnIdioma">
+                <img src="./../jpg/icon-idioma.svg" alt="">
+            </button>
+
+            <div class="hamburger btnHamburgesa">
+                <div class="_layer -top"></div>
+                <div class="_layer -mid"></div>
+                <div class="_layer -bottom"></div>
+            </div>
+            <nav class="menuppal">
+                <ul>
+                <li><a href="./../index.html">Home</a></li>
+                <li><a href="./../Control de Accesso/Control-de-Accesso.html">TGate</a></li>
+                <li><a href="./../Productos/Productos.html">Tshow</a></li>
+                <li><a href="./../Nodemaker/Nodemaker.html">Nodemaker</a></li>
+                <li><a href="./../LDM/LDM.html">LDM</a></li>
+                <li><a href="./socios.html">Socios</a></li>
+                <li><a id="myBtn">Soporte</a></li>
+                <li><a id="myBtn">Soporte</a></li>
+
+                </ul>
+            </nav>
+        </div>
+
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Some text in the Modal..</p>
+            </div>
+        </div>
+
+        <div class="header-primario">
+            <img src="./../jpg/Loho tekneo horizontal.png" alt="Logo Tekneo" class="logo">
+            <nav class="btn-header" id="nav-menu">
+                <a name="btnHome" class="btn-header__btn" href="./../index.html">
+                    <p>Home</p> 
+                </a>
+                <div class="dropdown" id="dropdown-productos">
+                <a name="btnProductos" class="btn-header__btn">
+                    <p>Productos</p>
+                </a>
+                <div class="dropdown-content">
+                    <a href="./../Control de Accesso/Control-de-Accesso.html">TGate</a>
+                    <a href="./../Productos/Productos.html">Tshow</a>
+                    <a href="./../Nodemaker/Nodemaker.html">Nodemaker</a>
+                    <a href="./../LDM/LDM.html">LDM</a>
+                </div>
+                </div>
+                <a name="btnSoporte" class="btn-header__btn" id="myBtn">
+                    <p>Soporte</p>
+                </a>
+                <a name="btnSocios" class="btn-header__btn" href="./../Socios/socios.html">
+                    <p>Socios</p>
+                </a>
+            </nav>
+        </div>
+    </section>
+
+</header>
+
+<body>
+
+   <!-- seccion de socios -->
+    <section class="encabezado-frace">
+        <p>Socios del ecosistema Tekneo</p>
+        <p class="sub-title">Socios de alianza que complementan, integran o interoperan a tekneo</p>
+    </section>
+
+    <section class="group-partner">   
+        <p>El ecosistema Tekneo proporciona soluciones integradas para garantizar una seguridad completa de extremo a extremo. Tekneo reúne a una comunidad global de socios tecnológicos con experiencia específica, ofreciendo recursos y herramientas para facilitar la integración. Tekneo trabaja con los socios mencionados a continuación para ofrecer soluciones.</p>
+
+        <div class="socios">
+
+         <!-- Botones para abrir los modales -->
+        <button class="btn-movi" onclick="openModal('modal1')"> 
+            <img src="./../jpg/zennio logo.png" alt="ZENNIO">
+        </button>
+        <button class="btn-movi" onclick="openModal('modal2')">
+            <img src="./../jpg/logicmachie.png" alt="logicmachie">
+        </button>
+        <button class="btn-movi" onclick="openModal('modal3')">
+            <img src="./../jpg/knx.png" alt="KNX">
+        </button>
+        <button class="btn-movi" onclick="openModal('modal4')">
+            <img src="./../jpg/mobotix.png" alt="Mobotix">
+        </button>
+
+  <!-- Modales -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal1')">&times;</span>
+        <div class="modal-content-descipcion">
+            <img src="./../jpg/zennio logo.png" alt="ZENNIO">
+            <p class="desciption-txt">MOBOTIX ofrece sistemas de videovigilancia de alta calidad que aseguran una protección integral en un entorno moderno y conectado. Como parte de este compromiso, Tekneo se suma como socio estratégico, integrando soluciones innovadoras que optimizan la seguridad y la gestión de datos. Juntos, MOBOTIX y Tekneo crean un ecosistema robusto que permite a las organizaciones abordar los desafíos de seguridad contemporáneos de manera efectiva y eficiente.</p>
+
+            <p class="desciption-title mg-0"> <b>Funcionalidades</b></p>
+            <p class="desciption-txt mg-top-0">Sistemas de videovigilancia , operaciones de seguridad</p>
+
+            <p class="desciption-title mg-0"> <b>Versión</b></p>    
+            <p class="desciption-txt mg-top-0">Ultima Actualización 3,2</p>
+        </div>
+    </div>
+  </div>
+
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal2')">&times;</span>
+        <div class="modal-content-descipcion">
+            <img src="./../jpg/logicmachie.png" alt="logicmachie">
+            <p class="desciption-txt">MOBOTIX ofrece sistemas de videovigilancia de alta calidad que aseguran una protección integral en un entorno moderno y conectado. Como parte de este compromiso, Tekneo se suma como socio estratégico, integrando soluciones innovadoras que optimizan la seguridad y la gestión de datos. Juntos, MOBOTIX y Tekneo crean un ecosistema robusto que permite a las organizaciones abordar los desafíos de seguridad contemporáneos de manera efectiva y eficiente.</p>
+
+            <p class="desciption-title mg-0"> <b>Funcionalidades</b></p>
+            <p class="desciption-txt mg-top-0">Sistemas de videovigilancia , operaciones de seguridad</p>
+
+            <p class="desciption-title mg-0"> <b>Versión</b></p>    
+            <p class="desciption-txt mg-top-0">Ultima Actualización 3,2</p>
+        </div>
+    </div>
+  </div>
+
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal3')">&times;</span>
+        <div class="modal-content-descipcion">
+            <img src="./../jpg/knx.png" alt="KNX">
+            <p class="desciption-txt">MOBOTIX ofrece sistemas de videovigilancia de alta calidad que aseguran una protección integral en un entorno moderno y conectado. Como parte de este compromiso, Tekneo se suma como socio estratégico, integrando soluciones innovadoras que optimizan la seguridad y la gestión de datos. Juntos, MOBOTIX y Tekneo crean un ecosistema robusto que permite a las organizaciones abordar los desafíos de seguridad contemporáneos de manera efectiva y eficiente.</p>
+
+            <p class="desciption-title mg-0"> <b>Funcionalidades</b></p>
+            <p class="desciption-txt mg-top-0">Sistemas de videovigilancia , operaciones de seguridad</p>
+
+            <p class="desciption-title mg-0"> <b>Versión</b></p>    
+            <p class="desciption-txt mg-top-0">Ultima Actualización 3,2</p>
+        </div>
+    </div>
+  </div>
+
+  <div id="modal4" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modal4')">&times;</span>
+        <div class="modal-content-descipcion">
+            <img src="./../jpg/mobotix.png" alt="Mobotix">
+            <p class="desciption-txt">MOBOTIX ofrece sistemas de videovigilancia de alta calidad que aseguran una protección integral en un entorno moderno y conectado. Como parte de este compromiso, Tekneo se suma como socio estratégico, integrando soluciones innovadoras que optimizan la seguridad y la gestión de datos. Juntos, MOBOTIX y Tekneo crean un ecosistema robusto que permite a las organizaciones abordar los desafíos de seguridad contemporáneos de manera efectiva y eficiente.</p>
+
+            <p class="desciption-title mg-0"> <b>Funcionalidades</b></p>
+            <p class="desciption-txt mg-top-0">Sistemas de videovigilancia , operaciones de seguridad</p>
+
+            <p class="desciption-title mg-0"> <b>Versión</b></p>    
+            <p class="desciption-txt mg-top-0">Ultima Actualización 3,2</p>
+        </div>
+    </div>
+  </div>
+
+        </div>
+    </section>
+     
+        <!-- <footer class="">
+            <div class="containet-footer">
+                <p class="containet-footer-title">PRODUCTOS</p>
+                <p class="containet-footer-sbtitle"><a class="color-white" href="./Control de Accesso/Control-de-Accesso.html"></p>Control de Accesso</a></p>
+                <p class="containet-footer-sbtitle"><a class="color-white" href="./Productos/Productos.html"></p>Tshow</a></p>
+                <p class="containet-footer-sbtitle"><a class="color-white" href="./Nodemaker/Nodemaker.html"></p>Nodemaker</a></p>
+                <p class="containet-footer-sbtitle"><a class="color-white" href="./LDM/LDM.html"></p>LDM</a></p>
+
+            </div>
+
+
+            <div class="containet-footer">
+                <p class="containet-footer-title">SOFTWARE</p>
+                <p class="containet-footer-sbtitle"></p>>Producto 1</p>
+                <p class="containet-footer-sbtitle"></p>>Producto 1</p>
+                <p class="containet-footer-sbtitle"></p>>Producto 1</p>
+                <p class="containet-footer-sbtitle"></p>>Producto 1</p>
+            </div>
+
+            <div class="containet-footer">
+                <p class="containet-footer-title">SOCIOS</p>
+                <p class="containet-footer-sbtitle"></p>Zennio</p>
+                <p class="containet-footer-sbtitle"></p>Mobotix</p>
+                <p class="containet-footer-sbtitle"></p>Logimachine</p>
+            </div>
+
+            <div class="containet-footer">
+                <p class="containet-footer-title"><a class="color-white" href="./index.html"></p>HOME</a></p>
+                <p class="containet-footer-title"><a class="color-white" id="myBtn"></p>SOPORTE</a></p>
+                <p class="containet-footer-title"><a class="color-white" href="./Socios/socios.html"></p>SOCIOS</a></p>
+
+            </div>
+
+            <div class="containet-footer">
+                <p class="containet-footer-title">CONTACTO</p>
+                <p class="containet-footer-sbtitle"></p>Tekneo@gmail.com</p>
+                <p class="containet-footer-sbtitle"></p>#123456789 - 65</p>
+                <p class="containet-footer-sbtitle"></p>#123456789 - 65</p>
+                <p class="containet-footer-sbtitle"></p>Calle 123 # 123 - 123</p>
+            </div>
+
+            <div class="containet-footer">
+                <img src="./jpg/logo-tk-white.png" alt="logo tekneo" class="img-logo-footer">
+            </div>
+        </footer> -->
+
+        <div class="ftr-back">
+            <img src="./../jpg/Loho tekneo horizontal.png" alt="logo teckneo">
+            <p class="ftr-back-t1">Copyright © 2024 Tekneo Todos los derechos reservados.</p>
+            <p class="ftr-back-t2">Términos de servicio | Aviso de política de privacidad </p>
+        </div>
+
+</body>
+
+
+</html>
+<script>
+ function openModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    // Cierra el modal al hacer clic fuera del contenido
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    }
+</script>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function() {
+    modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+    modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+    if (event.target == modal) {
+    modal.style.display = "none";
+    }
+    }
+</script>
+
+<script>
+    var menu = document.querySelector('.hamburger');
+
+    // method
+    function toggleMenu (event) {
+    this.classList.toggle('is-active');
+    document.querySelector( ".menuppal" ).classList.toggle("is_active");
+    event.preventDefault();
+    }
+
+    // event
+    menu.addEventListener('click', toggleMenu, false);
+
+    //Solución con jQUery
+    /*$(document).ready(function(){
+        $('.hamburger').click(function() {
+            $('.hamburger').toggleClass('is-active');
+            $('.menuresponsive').toggleClass('is-active');
+            return false;
+        });
+    });*/
+</script>

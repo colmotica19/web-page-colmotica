@@ -1,0 +1,135 @@
+/* clases generales */
+
+/* clases generales */
+
+/* seccion header generales */
+/* header secudnario */
+
+
+/* primera seccion imagen con frace */
+.encabezado-frace{
+    background-image: url(./../jpg/imagen-ingeniero-computador.jpg);
+    background-color: var(--color-grey-primario);
+    background-size: cover;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 85px 600px 300px 200px;
+}
+
+.encabezado-frace p{
+    font-size: 33px;
+    font-weight: bold;
+    font-stretch: ultra-expanded;
+    initial-letter: 20px;
+    color: white;
+}
+
+/* segunda seccion que es tekneo */
+.about{
+    display: flex;
+    background-color: var(--color-white-primario);
+    padding: 150px 200px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.about__title{
+    width: 30%;
+}
+.about__title-quienes{
+    font-weight: bold;
+    color: var(--color-blue-primary);
+}
+.about__title-que-es{
+    font-weight: bold;
+    font-size: 40px;
+    color: var(--color-black-primario);
+}
+.about__contenido{
+    width: 60%;
+}
+.about__contenido p{
+    font-size: 16px;
+    line-height: 25px;
+}
+
+/* seccion funcion de tekneo */
+.funcion{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.img-people{
+    width: auto;
+    height: auto;
+    margin-right: 150px;
+}
+.txt-conten{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0px 200px 0px 0px;
+}
+.about__contenido__p{
+    font-size: 16px;
+    line-height: 25px;
+}
+
+/* seccion FUNCIONES INTEGRALES */
+.funcion-integral{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0px;
+    flex-direction: column;
+}
+.container-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.container-card__cards{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 15px;
+    background: #2875c7;
+    background: linear-gradient(355deg,rgb(48, 151, 236) 0%, rgba(0, 212, 255, 1) 68%);
+    max-width: 300px;
+    min-height: 300px;
+    margin: 10px 10px;
+
+    p{
+        color: white;
+    }
+    img{
+        width: 82px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+}
+.container-card__cards:hover{
+    animation: 500ms;
+
+}
+
+.title-app{
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.txt-contenido{
+    font-weight: 300;
+    font-size: 12px;
+    text-align: center;
+}
