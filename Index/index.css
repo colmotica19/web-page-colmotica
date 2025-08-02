@@ -11,9 +11,12 @@
     background-image: url(./../jpg/imagen-ingeniero-computador.jpg);
     background-color: var(--color-grey-primario);
     background-size: cover;
-    height: 150px;
+    height: 600px;
     background-repeat: no-repeat;
     background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 85px 600px 300px 200px;
 }
 
@@ -22,6 +25,7 @@
     font-weight: bold;
     font-stretch: ultra-expanded;
     initial-letter: 20px;
+    -webkit-initial-letter: 20px;
     color: white;
 }
 
