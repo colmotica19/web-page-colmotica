@@ -9,6 +9,10 @@
     --color-blue-primary: #314AFF;
     --color-blue-secundary: #0095FF;
     --color-txt-secundary: #7A7A7A;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
 }
 
 * {
@@ -82,19 +86,40 @@
     column-gap: 38px;
     position: absolute;
     background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     flex-direction: column;
     top: 100%;
     width: 100%;
     left: 0%;
     padding: 18px 0px;
+    opacity: 0;
+    transition: display 0.3s ease, opacity 0.3s ease;
+    transition-behavior: allow-discrete;
+    min-height: 410px;
+}
+
+.dropdown-content.show {
+    display: grid;
+    opacity: 1;
+    @starting-style {
+        opacity: 0;
+    }
 }
 
 .dropdown-content a {
     padding: 12px 16px;
     text-decoration: none;
     color: black;
+    animation: appearProductItem 0.3s ease normal;
+}
+
+@keyframes appearProductItem {
+    0% {
+        transform: scale(0.8);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Responsive */
@@ -404,6 +429,7 @@ body {
     align-items: center;
     position: relative;
     overflow: hidden;
+    min-width: 300px;
     transition: all 0.5s ease;
 }
 
@@ -422,6 +448,7 @@ body {
     transform: rotate(-45deg);
     transition: all 0.5s ease;
     opacity: 0;
+    background-color: hsla(0, 0%, 100%, 0.63)
 }
 
 .holographic-card:hover {
@@ -477,8 +504,11 @@ button:hover {
 
 .buscar-input {
     background-color: var(--color-black-primario);
-    border: none;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 3px;
     margin-right: 5px;
+    padding: 3px;
+    color: white;
 }
 
 fieldset {
@@ -501,16 +531,15 @@ fieldset:focus {
     position: relative;
     padding: 20px 200px 0px 200px;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-start;
     flex-direction: row;
     /* box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.146); */
-    filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.146));
+    filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.2));
 }
 
-.header-primario > a > img {
-    width: 120px;
-    height: auto;
-    margin-bottom: 20px;
+.header-primario > a > svg {
+    width: calc(108px * 1.2);
+    height: calc(17px * 1.2);
 }
 
 .btn-header {
@@ -548,69 +577,38 @@ body {
     z-index: 98;
 }
 
-/* footer */
-.img-logo-footer {
-    width: 100px;
-}
-
-footer {
-
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-direction: row;
-    flex-wrap: wrap;
-    background-color: var(--color-black-primario);
-    padding: 100px 200px;
-}
-
-.containet-footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: start;
-    text-align: start;
-    color: var(--color-white-primario);
-    margin: 10px;
-}
-
-.containet-footer-sbtitle {
-    font-size: 10px;
-    margin-bottom: 5px;
-}
-
-.containet-footer-title {
-    font-size: 15px;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
 .ftr-back {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: var(--color-grey-primario);
-
     padding: 30px;
+    gap: 38px;
+}
 
-    img {
-        width: 130px;
-        height: auto;
-        margin-bottom: 10px;
-    }
+.ftr-back svg {
+    width: calc(156px * 1.2);
+    height: calc(30px * 1.2);
 }
 
 .ftr-back-t1 {
-    font-size: 13px;
+    font-size: 14px;
     margin-bottom: 5px;
+    font-weight: 500;
 }
 
 .ftr-back-t2 {
-    font-size: 10px;
+    font-weight: 500;
+    font-size: 12px;
 }
 
-
+.ftr-back-container {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
 /* clases de los productos */
 .seccion-encabezado {
@@ -1047,3 +1045,43 @@ footer {
 
 /* @media Computador */
 @media only screen and (max-width: 1440px) {}
+
+header {
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.containerFooterItems {
+    background-color: black;
+    color: white;
+    min-height: 323px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 51px;
+}
+
+.columnFooterItem {
+    display: flex;
+    gap: 17px;
+    flex-direction: column;
+}
+
+.columnFooterItem .items {
+    display: flex;
+    flex-direction: column;
+    gap: 1lh;
+}
+
+.columnFooterItem a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
