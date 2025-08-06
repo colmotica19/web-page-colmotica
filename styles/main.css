@@ -16,11 +16,17 @@
 }
 
 * {
-    padding: 0px;
-    margin: 0px;
     font-family: "DM Sans", sans-serif;
     box-sizing: border-box;
 }
+
+/* a, button {
+    transition: transform 0.3s ease;
+}
+
+a:active, button:active {
+    transform: scale(0.8);
+} */
 
 /* variables de colores */
 .bg-f0 {
@@ -101,6 +107,7 @@
 .dropdown-content.show {
     display: grid;
     opacity: 1;
+
     @starting-style {
         opacity: 0;
     }
@@ -117,6 +124,7 @@
     0% {
         transform: scale(0.8);
     }
+
     100% {
         transform: scale(1);
     }
@@ -124,6 +132,12 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+
+    .header-primario > a > svg {
+        width: calc(108px * 1.5) !important;
+        height: calc(17px * 1.5) !important;
+    }
+
     .btn-header {
         display: none !important;
         flex-direction: column;
@@ -213,22 +227,10 @@ body {
     transform: translateY(-200%) rotate(135deg) !important;
 }
 
-.menuppal.is_active {
-    transform: translate3d(0px, 0px, 0px);
-}
-
 .menuppal {
-    background-color: rgba(0, 0, 0, 0.714);
-    bottom: 0;
-    height: 100%;
-    left: 0;
     overflow-y: scroll;
-    position: fixed;
-    top: 0;
-    transform: translate3d(0px, -100%, 0px);
-    transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98) 0s;
     width: 100%;
-    z-index: 98;
+    background-color: transparent;
 }
 
 .menuppal ul {
@@ -240,10 +242,15 @@ body {
     list-style: none;
     text-align: center;
     font-size: 1.5rem;
-    line-height: 3em;
+    min-height: 72px;
     color: var(--color-white-primario);
     text-transform: none;
     font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.menuppal ul li:active {
+    transform: scale(0.8);
 }
 
 .menuppal ul li a {
@@ -262,6 +269,10 @@ body {
     cursor: pointer;
     padding: 0;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .accordion-content {
@@ -269,10 +280,22 @@ body {
     flex-direction: column;
     background: transparent;
     padding: 0;
+    max-height: 0px;
+    opacity: 0;
+    transition: display 0.8s ease, max-height 0.8s ease, opacity 0.8s ease;
+    transition-behavior: allow-discrete;
+    margin-bottom: 60px !important;
 }
 
 .accordion.open .accordion-content {
     display: flex;
+    max-height: 2000px;
+    opacity: 1;
+
+    @starting-style {
+        max-height: 0px;
+        opacity: 0;
+    }
 }
 
 .accordion .productListItem a {
@@ -280,7 +303,10 @@ body {
     text-decoration: none;
     font-size: 1.2rem;
     padding: 0.5em 0;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .accordion .productListItem a:hover {
@@ -334,31 +360,6 @@ body {
     }
 }
 
-/* modal */
-.modal-content-descipcion {
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    flex-direction: column;
-}
-
-.modal-content-descipcion img {
-    margin: 0px 0px 30px 0px;
-}
-
-.modal {
-    display: none;
-    /* Oculto por defecto */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
 .desciption-txt {
     font-size: 15px;
     color: var(--color-txt-secundary);
@@ -372,17 +373,6 @@ body {
     margin: 0px;
     font-weight: 800 !important;
     text-align: start !important;
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 40px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 500px;
-    position: relative;
-    z-index: 99;
 }
 
 .close {
@@ -487,7 +477,6 @@ button:hover {
 
 .pre-header {
     background-color: var(--color-black-primario);
-    padding: 2px 200px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -495,11 +484,14 @@ button:hover {
 }
 
 .btnIdioma {
-    margin-left: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
 }
 
 .btnHamburgesa {
-    opacity: 0;
+    display: none;
 }
 
 .buscar-input {
@@ -529,10 +521,10 @@ fieldset:focus {
     background-color: var(--color-white-primario);
     display: flex;
     position: relative;
-    padding: 20px 200px 0px 200px;
     justify-content: space-between;
     align-items: flex-start;
     flex-direction: row;
+    padding: 15px;
     /* box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.146); */
     filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.2));
 }
@@ -778,16 +770,12 @@ body {
         font-size: 13px;
         line-height: 20px;
     }
-
-    footer {
-        padding: 10%;
-    }
 }
 
 /* @media Celular */
 @media only screen and (max-width: 600px) {
     .pre-header {
-        justify-content: center;
+        justify-content: flex-end;
         padding: 10px 10px;
     }
 
@@ -809,7 +797,8 @@ body {
         width: 100%;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
+        gap: 14px;
     }
 
     .about__title {
@@ -837,10 +826,6 @@ body {
         text-align: center;
     }
 
-    footer {
-        padding: 10%;
-    }
-
     .seccion-encabezado {
         justify-content: center;
         align-items: center;
@@ -852,10 +837,9 @@ body {
         text-align: center;
     }
 
-    .containet-btn, a {
+    .containet-btn a {
         justify-content: center;
         align-items: center;
-        width: 100%;
     }
 
     .img-logo-seccion {
@@ -883,11 +867,12 @@ body {
 /* @media Tablet */
 @media only screen and (max-width: 768px) {
     .btnHamburgesa {
-        opacity: 1;
+        display: block;
     }
 
     .header-primario {
-        padding: 20px 5% 0px 5%;
+        align-items: center;
+        justify-content: center;
     }
 
     .encabezado-frace {
@@ -910,7 +895,7 @@ body {
     }
 
     .about {
-        padding: 10% 10% !important;
+        padding: 30px !important;
     }
 
     .img-people {
@@ -923,11 +908,6 @@ body {
 
     .txt-conten-center {
         padding: 10% 10% !important;
-    }
-
-    footer {
-        padding: 10%;
-        flex-direction: column;
     }
 
     .seccion-encabezado {
@@ -1037,14 +1017,11 @@ body {
     }
 
     .header-primario {
-        padding: 20px 100px 0px 100px;
         justify-content: center;
+        align-items: center;
     }
 
 }
-
-/* @media Computador */
-@media only screen and (max-width: 1440px) {}
 
 header {
     position: sticky;
@@ -1066,6 +1043,7 @@ footer {
     flex-direction: row;
     justify-content: space-around;
     padding: 51px;
+    flex-wrap: wrap;
 }
 
 .columnFooterItem {
@@ -1084,4 +1062,101 @@ footer {
     color: white;
     text-decoration: none;
     font-size: 14px;
+}
+
+.langTag {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+
+svg {
+    width: 28px;
+    height: 28px;
+}
+
+.openModalInTelephone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.openModalInTelephone:active {
+    transform: scale(1.5);
+}
+
+.openModalInTelephone:active svg {
+    fill: white;
+}
+
+.openModalInTelephone svg {
+    color: white;
+    transition: fill 0.3s ease;
+}
+
+.modal:modal {
+    border: none;
+    border-radius: 10px;
+}
+
+.modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal .closeModal {
+    position: sticky;
+    top: 0px;
+    left: 100%;
+    transition: transform 0.3s ease;
+}
+
+.modal .closeModal:active {
+    transform: scale(0.8);
+}
+
+.modalOfNavInTelephone .closeModal svg {
+    color: white;
+    fill: white;
+}
+
+.modalOfNavInTelephone {
+    background: rgba(0, 0, 0, 0.8);
+    min-width: 90vw;
+}
+
+.modal {
+    transform: scale(0.7);
+    opacity: 0;
+    transition: display 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+    transition-behavior: allow-discrete;
+}
+
+:root:has(.modal[open]) {
+    overflow: hidden;
+}
+
+.modal[open] {
+    transform: scale(1);
+    opacity: 1;
+
+    @starting-style {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+}
+
+.accordion-toggle svg {
+    fill: white;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+    position: absolute;
+    left: 250px;
+}
+
+.accordion.open .accordion-toggle svg {
+    transform: rotate(180deg);
 }

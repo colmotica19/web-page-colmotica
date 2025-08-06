@@ -1,6 +1,9 @@
-const selectCategory = document.querySelector('.selectCategory');
-const categoryItems = document.querySelectorAll('.selectCategory > .category');
-const selectProduct = document.querySelector('.dropdown-content > .selectProduct');
+import { setLanguage } from "./lang";
+import { querySelector } from "./utils";
+
+const selectCategory = querySelector<HTMLElement>('.selectCategory');
+const categoryItems = document.querySelectorAll<HTMLSpanElement>('.selectCategory > .category');
+const selectProduct = querySelector('.dropdown-content > .selectProduct');
 const softwareLinks = selectProduct.querySelectorAll('a');
 
 // Constantes para URLs e info de productos hardware
@@ -27,15 +30,15 @@ function clearProducts() {
 }
 
 // Agrega productos al dropdown
-function appendProducts(products) {
-  products.forEach(product => {
+function appendProducts(products: typeof hardwareProducts) {
+  products.forEach((product) => {
     const element = createProduct(product.url, product.img, product.name, product.description);
     selectProduct.appendChild(element);
   });
 }
 
 // Crea un nodo <a> de producto
-function createProduct(anchorSrc, imgSrc, name, description = "Descripción") {
+function createProduct(anchorSrc: string, imgSrc: string, name: string, description = "Descripción") {
   if ([anchorSrc, imgSrc, name, description].some(arg => typeof arg !== "string")) {
     throw new TypeError("Todos los argumentos deben ser strings");
   }
@@ -69,7 +72,7 @@ function createProduct(anchorSrc, imgSrc, name, description = "Descripción") {
 }
 
 // Cambia la categoría seleccionada
-function handleCategorySelection(category) {
+function handleCategorySelection(category: HTMLSpanElement) {
   const current = selectCategory.dataset.currentCategory;
   const selected = category.textContent;
 
@@ -91,8 +94,8 @@ categoryItems.forEach(item =>
 );
 
 // Hover y toggle del dropdown
-const dropdown = document.querySelector(".dropdown");
-const dropdownContent = document.querySelector(".dropdown-content");
+const dropdown = querySelector(".dropdown");
+const dropdownContent = querySelector(".dropdown-content");
 // const headerButtons = document.querySelectorAll(".btn-header__btn:not(.dropdown)");
 
 // headerButtons.forEach(btn =>
@@ -116,6 +119,50 @@ dropdownContent.addEventListener("pointerleave", () => {
 // Acordeón menú lateral
 document.querySelectorAll('.accordion-toggle').forEach(btn => {
   btn.addEventListener('click', () => {
-    btn.parentElement.classList.toggle('open');
+    if (btn.parentElement) {
+      btn.parentElement.classList.toggle('open');
+    } else {
+      throw new Error("No se pudo encontrar el elemento padre");
+    }
   });
+});
+
+// Botón de idioma
+const btnLang = querySelector<HTMLButtonElement>('.btnIdioma')
+btnLang.addEventListener('click', () => {
+    const lang = document.documentElement.lang === "es" ? "en" : "es";
+  document.documentElement.lang = lang;
+  const langTag = querySelector<HTMLSpanElement>('.langTag', btnLang)
+  langTag.textContent = lang
+  setLanguage(lang);
+})
+
+
+// modal en telefonos
+const modalOfNavInTelephone = querySelector<HTMLDialogElement>('.modalOfNavInTelephone');
+const openModalInTelephone = querySelector<HTMLButtonElement>('.openModalInTelephone');
+const closeModal = querySelector('.closeModal', modalOfNavInTelephone);
+closeModal.addEventListener("click", () => {
+  setTimeout(() => modalOfNavInTelephone.close(), 300) // Es una espera para la animación
+})
+openModalInTelephone.addEventListener('click', () => {
+  setTimeout(() => modalOfNavInTelephone.showModal(), 300) // Es una espera para la animación
+})
+// Si hace click afuera el modal se cierra
+modalOfNavInTelephone.addEventListener('click', (event) => {
+  const rect = querySelector<HTMLDialogElement>('.modalContent', modalOfNavInTelephone).getBoundingClientRect();
+  if (!rect) return;
+
+  const clickX = event.clientX;
+  const clickY = event.clientY;
+
+  const clickedOutside =
+    clickX < rect.left ||
+    clickX > rect.right ||
+    clickY < rect.top ||
+    clickY > rect.bottom;
+
+  if (clickedOutside) {
+    modalOfNavInTelephone.close()
+  }
 });

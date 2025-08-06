@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <!-- Estilos css basicos home -->
     <link rel="stylesheet" href="./Index/index.css" type="text/css">
     <!-- Estilos css Globales -->
-    <link rel="stylesheet" href="./main.css" type="text/css">
+    <link rel="stylesheet" href="./styles/main.css" type="text/css">
 
     <!-- fuente DM -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,72 +31,127 @@
                 </button>
             </fieldset>
 
-            <button name="btnIdioma" class="btnIdioma">
+            <button title="Cambiar idioma" name="btnIdioma" class="btnIdioma">
                 <img src="./jpg/icon-idioma.svg" alt="">
+                <span class="langTag">es</span>
             </button>
-
-            <div class="hamburger btnHamburgesa">
-                <div class="_layer -top"></div>
-                <div class="_layer -mid"></div>
-                <div class="_layer -bottom"></div>
-            </div>
-            <nav class="menuppal">
-                <ul>
-                    <li><a href="./index.html">Home</a></li>
-                    <li>
-                        <div class="accordion">
-                            <button type="button" class="accordion-toggle">Productos</button>
-                            <ul class="productsList accordion-content">
-                                <li class="productListItem">
-                                    <a href="./Control de Accesso/Control-de-Accesso.html">
-                                        <div class="headerProductItem">
-                                            <img src="/jpg/logo Tgate-05.png" alt="Imagen del producto">
-                                        </div>
-                                        <div class="containerBodyAndFooterProduct">
-                                            <span class="bodyProductItem">TGate</span>
-                                            <span class="footerProductItem">Software especializado en gestión y control
-                                                de accesos,
-                                                ideal para fortalecer la seguridad en instalaciones de cualquier tamaño.
-                                            </span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="productListItem">
-                                    <a href="./Productos/Productos.html">
-                                        <div class="headerProductItem">
-                                            <img src="/jpg/LOGO TSHOW.png" alt="Imagen del producto">
-                                        </div>
-                                        <div class="containerBodyAndFooterProduct">
-                                            <span class="bodyProductItem">Tshow</span>
-                                            <span class="footerProductItem">Es una solución tecnológica avanzada para la
-                                                administración
-                                                centralizada de archivos multimedia, diseñada para operar en entornos de
-                                                red privados.
-                                            </span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="productListItem"><a href="./Nodemaker/Nodemaker.html">Nodemaker</a></li>
-                                <li class="productListItem"><a href="./LDM/LDM.html">LDM</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a href="./Socios/socios.html">Socios</a></li>
-                    <li><a id="myBtn">Soporte</a></li>
-                </ul>
-            </nav>
-        </div>
-
-        <div id="myModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <p>Sección Restringida, para poder acceder debes iniciar sección</p>
-            </div>
+            <button type="button" title="Abrir Menu" class="openModalInTelephone">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 0 25 25" fill="none">
+                    <path
+                        d="M6.5 10.32C8.433 10.32 10 8.753 10 6.82001C10 4.88701 8.433 3.32001 6.5 3.32001C4.567 3.32001 3 4.88701 3 6.82001C3 8.753 4.567 10.32 6.5 10.32Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M17.5 10.32C19.433 10.32 21 8.753 21 6.82001C21 4.88701 19.433 3.32001 17.5 3.32001C15.567 3.32001 14 4.88701 14 6.82001C14 8.753 15.567 10.32 17.5 10.32Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M6.5 21.32C8.433 21.32 10 19.753 10 17.82C10 15.887 8.433 14.32 6.5 14.32C4.567 14.32 3 15.887 3 17.82C3 19.753 4.567 21.32 6.5 21.32Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M17.5 21.32C19.433 21.32 21 19.753 21 17.82C21 15.887 19.433 14.32 17.5 14.32C15.567 14.32 14 15.887 14 17.82C14 19.753 15.567 21.32 17.5 21.32Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+            <dialog class="modal modalOfNavInTelephone">
+                <div class="modalContent">
+                    <button type="button" title="Cerrar ventana" class="closeModal">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="inherit"
+                            version="1.1" id="Layer_1" viewBox="0 0 70 70" enable-background="new 0 0 70 70"
+                            xml:space="preserve">
+                            <g>
+                                <path
+                                    d="M62.666,32.316L57.758,21.53c-0.457-1.007-1.646-1.449-2.648-0.992c-1.006,0.457-1.45,1.644-0.992,2.648l3.365,7.397   H44.481c-1.104,0-2,0.896-2,2s0.896,2,2,2h13.69l-4.055,8.912c-0.458,1.004-0.014,2.191,0.992,2.648   c0.269,0.121,0.55,0.18,0.827,0.18c0.76,0,1.486-0.436,1.821-1.172l4.939-10.855c0.104-0.196,0.172-0.407,0.206-0.625   C62.988,33.207,62.901,32.726,62.666,32.316z" />
+                                <path
+                                    d="M51.583,47.577c-1.104,0-2,0.895-2,2v8.006h-11V15.269c0-1.722-0.81-3.25-2.445-3.795L24.536,7.583h25.047v9.994   c0,1.104,0.896,2,2,2s2-0.896,2-2v-12c0-1.104,0.003-1.994-1.102-1.994H12.609l-0.325-0.109c-0.413-0.138-0.694-0.205-1.119-0.205   c-0.829,0-1.94,0.258-2.63,0.755C7.492,4.776,6.583,5.983,6.583,7.269v47.572c0,1.721,1.393,3.25,3.026,3.795l24.146,8   c0.413,0.137,0.913,0.205,1.337,0.205c0.83,0,1.395-0.258,2.084-0.756c1.043-0.752,1.407-1.959,1.407-3.244v-1.258h13.898   c1.104,0,1.102-0.902,1.102-2.006v-10C53.583,48.472,52.688,47.577,51.583,47.577z M34.583,62.841l-24-8V7.583V7.504L10.8,7.345   l23.783,7.924V62.841z" />
+                                <path
+                                    d="M30.583,47.577c0.553,0,1-0.447,1-1v-6c0-0.553-0.447-1-1-1s-1,0.447-1,1v6C29.583,47.13,30.03,47.577,30.583,47.577z" />
+                            </g>
+                        </svg>
+                    </button>
+                    <nav class="menuppal">
+                        <ul>
+                            <li><a data-i18n="nav-inicio" href="./index.html">Inicio</a></li>
+                            <li>
+                                <div class="accordion">
+                                    <button type="button" class="accordion-toggle" data-i18n="nav_productos">
+                                        <span class="text">Productos</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M5.70711 9.71069C5.31658 10.1012 5.31658 10.7344 5.70711 11.1249L10.5993 16.0123C11.3805 16.7927 12.6463 16.7924 13.4271 16.0117L18.3174 11.1213C18.708 10.7308 18.708 10.0976 18.3174 9.70708C17.9269 9.31655 17.2937 9.31655 16.9032 9.70708L12.7176 13.8927C12.3271 14.2833 11.6939 14.2832 11.3034 13.8927L7.12132 9.71069C6.7308 9.32016 6.09763 9.32016 5.70711 9.71069Z"
+                                                fill="inherit" />
+                                        </svg>
+                                    </button>
+                                    <ul class="productsList accordion-content">
+                                        <li class="productListItem">
+                                            <a href="./Control de Accesso/Control-de-Accesso.html">
+                                                <div class="headerProductItem">
+                                                    <img src="/jpg/logo Tgate-05.png" alt="Imagen del producto">
+                                                </div>
+                                                <div class="containerBodyAndFooterProduct">
+                                                    <span data-i18n="descripción_tgate" class="footerProductItem">Software
+                                                        especializado en gestión y control
+                                                        de accesos,
+                                                        ideal para fortalecer la seguridad en instalaciones de cualquier
+                                                        tamaño.
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="productListItem">
+                                            <a href="./Productos/Productos.html">
+                                                <div class="headerProductItem">
+                                                    <img src="/jpg/LOGO TSHOW.png" alt="Imagen del producto">
+                                                </div>
+                                                <div class="containerBodyAndFooterProduct">
+                                                    <span data-i18n="descripción_tshow" class="footerProductItem">Es una
+                                                        solución tecnológica avanzada para la
+                                                        administración
+                                                        centralizada de archivos multimedia, diseñada para operar en
+                                                        entornos de
+                                                        red privados.
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="productListItem">
+                                            <a href="./Nodemaker/Nodemaker.html">
+                                                <div class="headerProductItem">
+                                                    <img src="/jpg/NODEMAKER.png" alt="Imagen del producto">
+                                                </div>
+                                                <div class="containerBodyAndFooterProduct">
+                                                    <span data-i18n="descripción_nodemaker"
+                                                        class="footerProductItem">Herramienta de integración diseñada para
+                                                        interconectar
+                                                        dispositivos y sistemas que utilizan distintos protocolos de
+                                                        comunicación, como KNX,
+                                                        Modbus, MQTT y HTTP</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="productListItem">
+                                            <a href="./LDM/LDM.html">
+                                                <div class="headerProductItem">
+                                                    <img src="" alt="Imagen del producto">
+                                                </div>
+                                                <div class="containerBodyAndFooterProduct">
+                                                    <span class="bodyProductItem">LDM</span>
+                                                    <span data-i18n="descripción_ldm"
+                                                        class="footerProductItem">Descripción</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="./Socios/socios.html">Socios</a></li>
+                            <li><a id="myBtn">Soporte</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </dialog>
         </div>
 
         <div class="header-primario">
-            <a href="./COL/index.html">
+            <a title="Pagina de Colmotica" href="./COL/index.html">
                 <svg width="109" height="17" viewBox="0 0 109 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15.6522 0.00845337V3.61925H4.05343V16.8325H0V3.61925V0.00845337H15.6522Z" fill="black" />
                     <path
@@ -120,7 +175,7 @@
             </a>
             <nav class="btn-header" id="nav-menu">
                 <a name="btnHome" class="btn-header__btn" href="./index.html">
-                    <p>Home</p>
+                    <p data-i18n="nav_inicio">Inicio</p>
                 </a>
                 <a name="btnProductos" class="btn-header__btn dropdown">
                     <p>Productos</p>
@@ -145,7 +200,8 @@
                         </div>
                         <div class="containerBodyAndFooterProduct">
                             <span class="bodyProductItem">TGate</span>
-                            <span class="footerProductItem">Software especializado en gestión y control de accesos,
+                            <span data-i18n="descripción_tgate" class="footerProductItem">Software especializado en
+                                gestión y control de accesos,
                                 ideal para fortalecer la seguridad en instalaciones de cualquier tamaño. </span>
                         </div>
                     </a>
@@ -155,7 +211,8 @@
                         </div>
                         <div class="containerBodyAndFooterProduct">
                             <span class="bodyProductItem">Tshow</span>
-                            <span class="footerProductItem">Es una solución tecnológica avanzada para la administración
+                            <span data-i18n="descripción_tshow" class="footerProductItem">Es una solución tecnológica
+                                avanzada para la administración
                                 centralizada de archivos multimedia, diseñada para operar en entornos de red privados.
                             </span>
                         </div>
@@ -166,7 +223,8 @@
                         </div>
                         <div class="containerBodyAndFooterProduct">
                             <span class="bodyProductItem">Nodemaker</span>
-                            <span class="footerProductItem">Herramienta de integración diseñada para interconectar
+                            <span data-i18n="descripción_nodemaker" class="footerProductItem">Herramienta de integración
+                                diseñada para interconectar
                                 dispositivos y sistemas que utilizan distintos protocolos de comunicación, como KNX,
                                 Modbus, MQTT y HTTP</span>
                         </div>
@@ -177,7 +235,7 @@
                         </div>
                         <div class="containerBodyAndFooterProduct">
                             <span class="bodyProductItem">LDM</span>
-                            <span class="footerProductItem">Descripción</span>
+                            <span data-i18n="descripción_ldm" class="footerProductItem">Descripción</span>
                         </div>
                     </a>
                 </section>
@@ -248,7 +306,8 @@
 
         <div class="container-card">
             <div class="container-card__cards holographic-card">
-                <svg width="82" height="81" viewBox="0 0 82 81" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: calc(82px * 1.2); height: calc(81px * 1.2);">
+                <svg width="82" height="81" viewBox="0 0 82 81" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    style="width: calc(82px * 1.2); height: calc(81px * 1.2);">
                     <path
                         d="M64.0625 0H17.9375C8.02063 0 0 7.88393 0 17.6318V62.9707C0 72.7185 8.02063 80.6024 17.9375 80.6024H64.0625C73.9794 80.6024 82 72.7185 82 62.9707V17.6318C82 7.88393 73.9794 0 64.0625 0ZM76.875 62.9707C76.875 69.9226 71.135 75.5648 64.0625 75.5648H17.9375C10.865 75.5648 5.125 69.9226 5.125 62.9707V17.6318C5.125 10.6798 10.865 5.03765 17.9375 5.03765H64.0625C71.135 5.03765 76.875 10.6798 76.875 17.6318V62.9707Z"
                         fill="white" />
@@ -263,7 +322,8 @@
             </div>
 
             <div class="container-card__cards holographic-card">
-                <svg width="68" height="83" viewBox="0 0 68 83" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: calc(68px * 1.2); height: calc(83px * 1.2);">
+                <svg width="68" height="83" viewBox="0 0 68 83" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    style="width: calc(68px * 1.2); height: calc(83px * 1.2);">
                     <path
                         d="M67.2415 16.2298L51.5492 0.748276C51.0523 0.258026 50.3985 0 49.6923 0H7.84615C3.50462 0 0 3.45755 0 7.74078V74.8276C0 79.1108 3.50462 82.5684 7.84615 82.5684H60.1538C64.4954 82.5684 68 79.1108 68 74.8276V18.0618C68 17.3652 67.7385 16.7201 67.2415 16.2298ZM62.7692 74.8276C62.7692 76.2467 61.5923 77.4078 60.1538 77.4078H7.84615C6.40769 77.4078 5.23077 76.2467 5.23077 74.8276V7.74078C5.23077 6.32164 6.40769 5.16052 7.84615 5.16052H47.0769V15.4816C47.0769 18.3199 49.4308 20.6421 52.3077 20.6421H62.7692V74.8276Z"
                         fill="white" />
@@ -275,7 +335,8 @@
             </div>
 
             <div class="container-card__cards holographic-card">
-                <svg width="85" height="59" viewBox="0 0 85 59" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: calc(85px * 1.2); height: calc(59px * 1.2);">
+                <svg width="85" height="59" viewBox="0 0 85 59" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    style="width: calc(85px * 1.2); height: calc(59px * 1.2);">
                     <path
                         d="M84.1054 17.2841C84.1054 8.53631 77.1887 1.26997 68.2786 0.658561C51.0829 -0.211519 33.6229 -0.211518 16.5473 0.61153C8.14156 0.588014 0.648443 8.51279 0.648443 17.2841C-0.216148 25.7263 -0.216148 34.2624 0.648443 42.7281C0.648443 51.2643 7.66123 58.2249 16.3792 58.2719C25.0251 58.7422 33.695 58.9774 42.3649 58.9774C51.0348 58.9774 59.6567 58.7422 68.2065 58.2954C76.9005 58.2954 83.9613 51.4524 84.0814 42.9397C85.3062 34.427 85.3062 25.7733 84.0814 17.2606L84.1054 17.2841ZM78.1493 42.4694C78.1493 42.4694 78.1493 42.7046 78.1493 42.8221C78.1253 48.2307 73.6102 52.6047 68.0865 52.5811C68.0865 52.5811 68.0865 52.5811 68.0624 52.5811C50.9147 53.4512 33.719 53.4512 16.5713 52.5811C11.0475 52.5341 6.60451 48.1132 6.65254 42.681C6.65254 42.634 6.65254 42.587 6.65254 42.54C5.81197 34.333 5.81197 26.032 6.65254 17.825C6.65254 17.7074 6.65254 17.6134 6.65254 17.4958C6.60451 11.8285 10.9515 7.0313 16.7154 6.44341C25.2412 6.06716 33.8151 5.87904 42.4129 5.87904C51.0108 5.87904 59.5847 6.04365 68.1105 6.44341H68.2546C73.3461 6.44341 78.1733 11.805 78.1733 17.4958C78.1733 17.6369 78.1733 17.778 78.1733 17.9426C79.3502 26.0555 79.2781 34.3095 78.1733 42.4224V42.4694H78.1493Z"
                         fill="white" />
@@ -290,139 +351,77 @@
 
     <!-- Seccion de footer -->
 
-<footer>
-    <section class="containerFooterItems">
-        <div class="columnFooterItemContainer">
-        <h3>PRODUCTOS</h3>
-        <div class="items">
-            <div class="section">
-                <h4>Software</h4>
-                <a href="./Control de Accesso/Control-de-Accesso.html">TGate</a>
-                <a href="./Productos/Productos.html">TShow</a>
-                <a href="./Nodemaker/Nodemaker.html">Nodemaker</a>
-                <a href="./LDM/LDM.html">LDM</a>
+    <footer>
+        <section class="containerFooterItems">
+            <div class="columnFooterItemContainer">
+                <h3>PRODUCTOS</h3>
+                <div class="items">
+                    <div class="section">
+                        <h4>Software</h4>
+                        <a href="./Control de Accesso/Control-de-Accesso.html">TGate</a>
+                        <a href="./Productos/Productos.html">TShow</a>
+                        <a href="./Nodemaker/Nodemaker.html">Nodemaker</a>
+                        <a href="./LDM/LDM.html">LDM</a>
+                    </div>
+                    <div class="section"></div>
+                </div>
             </div>
-            <div class="section"></div>
-        </div>
-        </div>
-        <div class="columnFooterItem">
-        <h3>Software</h3>
-        <div class="items">
-            <a href="./Control de Accesso/Control-de-Accesso.html">TGate</a>
-        </div>
-        </div>
-        <div class="columnFooterItem">
-        <h3>Productos</h3>
-        <div class="items">
-            <a href="./Control de Accesso/Control-de-Accesso.html">TGate</a>
-        </div>
-        </div>
-        <div class="columnFooterItem">
-        <h3>Productos</h3>
-        <div class="items">
-            <a href="./Control de Accesso/Control-de-Accesso.html">TGate</a>
-        </div>
-        </div>
-        <div class="columnFooterItem">
-        <h3>Productos</h3>
-        <div class="items">
-            <a href="./Control de Accesso/Control-de-Accesso.html">TGate</a>
-        </div>
-        </div>
-    </section>
-    <section class="ftr-back">
-        <svg width="156" height="30" viewBox="0 0 156 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M55.9844 11.356V15.1764H43.5571V29.1362H39.2141V15.1764V11.356H55.9844Z" fill="black" />
-            <path
-                d="M59.348 11.3516H75.7538V15.1676H63.6866V18.3337H69.7905V22.1497H63.6866V25.3114L75.7538 25.3158V29.1362L59.348 29.1318V11.3516Z"
-                fill="black" />
-            <path
-                d="M118.455 11.3516H134.865V15.1676H122.798V18.3337H128.901V22.1497H122.798V25.3114L134.865 25.3158V29.1362L118.455 29.1318V11.3516Z"
-                fill="black" />
-            <path
-                d="M96.0415 29.1362H91.0838L87.2722 23.4715L83.4561 29.1362H79.1176V11.356H83.4561V21.7633L84.7911 19.7872L87.2678 16.1029L90.4646 11.356H95.4224L89.7488 19.7872L96.0415 29.1362Z"
-                fill="black" />
-            <path
-                d="M115.095 15.6989V29.1362H110.748L107.555 24.3893L105.079 20.705L103.744 18.7289V29.1362H99.4009V11.356H103.744L107.56 17.0207L110.037 20.705L110.752 21.7721V15.6989H115.095Z"
-                fill="black" />
-            <path d="M115.091 11.356H110.752V15.6945H115.091V11.356Z" fill="#314AFF" />
-            <path d="M138.224 11.3601V29.136H156V11.3601H138.224ZM151.661 24.7974H142.567V15.7031H151.661V24.7974Z"
-                fill="black" />
-            <path d="M149.281 20.248V11.3601H144.943V20.248H149.281Z" fill="#314AFF" />
-            <path d="M0 0V29.1361H29.1361V0H0ZM22.0266 22.0266H7.11386V7.11386H22.0222V22.0222L22.0266 22.0266Z"
-                fill="black" />
-            <path d="M18.1228 14.5659V0L11.0089 0V14.5659H18.1228Z" fill="#314AFF" />
-        </svg>
-        <div class="ftr-back-container">
-            <p class="ftr-back-t1">Copyright © 2024 Tekneo Todos los derechos reservados.</p>
-            <p class="ftr-back-t2">Términos de servicio | Aviso de política de privacidad </p>
-        </div>
-    </section>
-</footer>
+            <div class="columnFooterItem">
+                <h3>Software</h3>
+                <div class="items">
+                    <a href="./Control de Accesso/Control-de-Accesso.html">TGate</a>
+                </div>
+            </div>
+            <div class="columnFooterItem">
+                <h3>Productos</h3>
+                <div class="items">
+                    <a href="./Control de Accesso/Control-de-Accesso.html">TGate</a>
+                </div>
+            </div>
+            <div class="columnFooterItem">
+                <h3>Productos</h3>
+                <div class="items">
+                    <a href="./Control de Accesso/Control-de-Accesso.html">TGate</a>
+                </div>
+            </div>
+            <div class="columnFooterItem">
+                <h3>Productos</h3>
+                <div class="items">
+                    <a href="./Control de Accesso/Control-de-Accesso.html">TGate</a>
+                </div>
+            </div>
+        </section>
+        <section class="ftr-back">
+            <svg width="156" height="30" viewBox="0 0 156 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M55.9844 11.356V15.1764H43.5571V29.1362H39.2141V15.1764V11.356H55.9844Z" fill="black" />
+                <path
+                    d="M59.348 11.3516H75.7538V15.1676H63.6866V18.3337H69.7905V22.1497H63.6866V25.3114L75.7538 25.3158V29.1362L59.348 29.1318V11.3516Z"
+                    fill="black" />
+                <path
+                    d="M118.455 11.3516H134.865V15.1676H122.798V18.3337H128.901V22.1497H122.798V25.3114L134.865 25.3158V29.1362L118.455 29.1318V11.3516Z"
+                    fill="black" />
+                <path
+                    d="M96.0415 29.1362H91.0838L87.2722 23.4715L83.4561 29.1362H79.1176V11.356H83.4561V21.7633L84.7911 19.7872L87.2678 16.1029L90.4646 11.356H95.4224L89.7488 19.7872L96.0415 29.1362Z"
+                    fill="black" />
+                <path
+                    d="M115.095 15.6989V29.1362H110.748L107.555 24.3893L105.079 20.705L103.744 18.7289V29.1362H99.4009V11.356H103.744L107.56 17.0207L110.037 20.705L110.752 21.7721V15.6989H115.095Z"
+                    fill="black" />
+                <path d="M115.091 11.356H110.752V15.6945H115.091V11.356Z" fill="#314AFF" />
+                <path d="M138.224 11.3601V29.136H156V11.3601H138.224ZM151.661 24.7974H142.567V15.7031H151.661V24.7974Z"
+                    fill="black" />
+                <path d="M149.281 20.248V11.3601H144.943V20.248H149.281Z" fill="#314AFF" />
+                <path d="M0 0V29.1361H29.1361V0H0ZM22.0266 22.0266H7.11386V7.11386H22.0222V22.0222L22.0266 22.0266Z"
+                    fill="black" />
+                <path d="M18.1228 14.5659V0L11.0089 0V14.5659H18.1228Z" fill="#314AFF" />
+            </svg>
+            <div class="ftr-back-container">
+                <p class="ftr-back-t1">Copyright © 2024 Tekneo Todos los derechos reservados.</p>
+                <p class="ftr-back-t2">Términos de servicio | Aviso de política de privacidad </p>
+            </div>
+        </section>
+    </footer>
 
 </body>
-<script src="index.js"></script>
+<script type="module" src="/src/index.ts"></script>
 
 </html>
-
-<script>
-    function openModal(id) {
-        document.getElementById(id).style.display = 'block';
-    }
-
-    function closeModal(id) {
-        document.getElementById(id).style.display = 'none';
-    }
-
-    // Cierra el modal al hacer clic fuera del contenido
-    window.onclick = function (event) {
-        const modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-    }
-</script>
-
-<script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
-
-<script>
-    var menu = document.querySelector('.hamburger');
-
-    // method
-    function toggleMenu(event) {
-        this.classList.toggle('is-active');
-        document.querySelector(".menuppal").classList.toggle("is_active");
-        event.preventDefault();
-    }
-
-    // event
-    menu.addEventListener('click', toggleMenu, false);
-</script>

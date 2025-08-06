@@ -100,3 +100,37 @@
 .footerProductItem {
   max-width: 200px;
 }
+
+.productListItem {
+  color: white;
+}
+
+.productListItem .headerProductItem img {
+  filter: none;
+  max-width: 250px;
+}
+
+.productListItem .containerBodyAndFooterProduct {
+  font-size: 24px;
+  width: max-content;
+}
+
+.productListItem .footerProductItem {
+  max-width: 350px;
+  line-height: normal;
+  font-size: 16px;
+}
+
+.productListItem .bodyProductItem::before {
+  display: none;
+}
+
+/* 
+.productListItem .bodyProductItem {
+  min-width: 250px;
+} */
+
+.productListItem a {
+  border-bottom: 1px solid rgb(77, 77, 77);
+  padding: 25px 0px !important;
+}
