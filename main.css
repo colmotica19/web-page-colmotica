@@ -609,6 +609,9 @@ footer {
 .footer-column {
     flex: 1 1 200px;
     margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .footer-column h4 {
@@ -621,8 +624,7 @@ footer {
     display: block;
     color: #ccc;
     text-decoration: none;
-    margin-bottom: 10px;
-    transition: color 0.3s;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .footer-column a:hover {
