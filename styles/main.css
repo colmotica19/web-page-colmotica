@@ -20,13 +20,13 @@
     box-sizing: border-box;
 }
 
-/* a, button {
+a, button {
     transition: transform 0.3s ease;
 }
 
 a:active, button:active {
     transform: scale(0.8);
-} */
+}
 
 /* variables de colores */
 .bg-f0 {
@@ -246,11 +246,6 @@ body {
     color: var(--color-white-primario);
     text-transform: none;
     font-weight: bold;
-    transition: transform 0.3s ease;
-}
-
-.menuppal ul li:active {
-    transform: scale(0.8);
 }
 
 .menuppal ul li a {
