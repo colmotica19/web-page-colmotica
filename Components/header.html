@@ -1,0 +1,156 @@
+<!-- header general -->
+<section class="section-header">
+  <!-- Header secundario negro -->
+  <div class="pre-header">
+    <fieldset>
+      <input type="text" id="search-input" placeholder="BUSCAR" class="buscar-input" />
+      <button type="button" title="Buscar" name="btnbuscar">
+        <img src="/jpg/icon-buscar.svg" alt="" />
+      </button>
+      <i class="search-icon"></i>
+    </fieldset>
+
+    <button title="Cambiar idioma" name="btnIdioma" class="btnIdioma">
+      <img src="/jpg/icon-idioma.svg" alt="">
+      <span class="langTag">es</span>
+    </button>
+
+    <div class="hamburger btnHamburgesa">
+      <div class="_layer -top"></div>
+      <div class="_layer -mid"></div>
+      <div class="_layer -bottom"></div>
+    </div>
+    <nav class="menuppal">
+      <ul>
+        <li><a data-i18n="nav_inicio" href="/index.html">Inicio</a></li>
+        <li>
+          <div class="accordion">
+            <button type="button" class="accordion-toggle">
+              Productos
+            </button>
+            <ul class="productsList accordion-content">
+              <li class="productListItem">
+                <a href="/Control de Accesso/Control-de-Accesso.html">
+                  <div class="headerProductItem">
+                    <img src="/jpg/logo Tgate-05.png" alt="Imagen del producto" />
+                  </div>
+                  <div class="containerBodyAndFooterProduct">
+                    <span class="bodyProductItem">TGate</span>
+                    <span class="footerProductItem">Software especializado en gestión y control
+                      de
+                      accesos, ideal para fortalecer la seguridad en
+                      instalaciones de cualquier tamaño.
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li class="productListItem">
+                <a href="/Productos/Productos.html">
+                  <div class="headerProductItem">
+                    <img src="/jpg/LOGO TSHOW.png" alt="Imagen del producto" />
+                  </div>
+                  <div class="containerBodyAndFooterProduct">
+                    <span class="bodyProductItem">Tshow</span>
+                    <span class="footerProductItem">Es una solución tecnológica avanzada para la
+                      administración centralizada de archivos multimedia,
+                      diseñada para operar en entornos de red privados.
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li class="productListItem">
+                <a href="./Nodemaker/Nodemaker.html">Nodemaker</a>
+              </li>
+              <li class="productListItem">
+                <a href="./LDM/LDM.html">LDM</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="/Socios/socios.html">Socios</a></li>
+        <li><a id="myBtn">Soporte</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Sección Restringida, para poder acceder debes iniciar sección</p>
+    </div>
+  </div>
+
+  <div class="header-primario">
+    <a href="/COL/index.html">
+      <img src="/jpg/Loho tekneo horizontal.png" alt="Logo Tekneo" class="logo" />
+    </a>
+    <nav class="btn-header" id="nav-menu">
+      <a name="btnHome" class="btn-header__btn" href="/index.html">
+        <p data-i18n="">Inicio</p>
+      </a>
+      <a name="btnProductos" class="btn-header__btn dropdown">
+        <p>Productos</p>
+      </a>
+      <a id="myBtn" class="btn-header__btn">
+        <p>Soporte</p>
+      </a>
+
+      <a name="btnSocios" class="btn-header__btn" href="./Socios/socios.html">
+        <p>Socios</p>
+      </a>
+    </nav>
+    <div class="dropdown-content">
+      <section class="selectCategory" data-current-category="Software">
+        <span class="category" data-value="Software">Software</span>
+        <span class="category" data-value="Hardware">Hardware</span>
+      </section>
+      <section class="selectProduct">
+        <a href="/Control de Accesso/Control-de-Accesso.html">
+          <div class="headerProductItem">
+            <img src="/jpg/logo Tgate-05.png" alt="Imagen del producto">
+          </div>
+          <div class="containerBodyAndFooterProduct">
+            <span class="bodyProductItem">TGate</span>
+            <span data-i18n="descripción_tgate" class="footerProductItem">Software especializado en
+              gestión y control de accesos,
+              ideal para fortalecer la seguridad en instalaciones de cualquier tamaño. </span>
+          </div>
+        </a>
+        <a href="/Productos/Productos.html">
+          <div class="headerProductItem">
+            <img src="/jpg/LOGO TSHOW.png" alt="Imagen del producto">
+          </div>
+          <div class="containerBodyAndFooterProduct">
+            <span class="bodyProductItem">Tshow</span>
+            <span data-i18n="descripción_tshow" class="footerProductItem">Es una solución tecnológica
+              avanzada para la administración
+              centralizada de archivos multimedia, diseñada para operar en entornos de red privados.
+            </span>
+          </div>
+        </a>
+        <a href="/Nodemaker/Nodemaker.html">
+          <div class="headerProductItem">
+            <img src="/jpg/NODEMAKER.png" alt="Imagen del producto">
+          </div>
+          <div class="containerBodyAndFooterProduct">
+            <span class="bodyProductItem">Nodemaker</span>
+            <span data-i18n="descripción_nodemaker" class="footerProductItem">Herramienta de integración
+              diseñada para interconectar
+              dispositivos y sistemas que utilizan distintos protocolos de comunicación, como KNX,
+              Modbus, MQTT y HTTP</span>
+          </div>
+        </a>
+        <a href="/LDM/LDM.html">
+          <div class="headerProductItem">
+            <img src="" alt="Imagen del producto">
+          </div>
+          <div class="containerBodyAndFooterProduct">
+            <span class="bodyProductItem">LDM</span>
+            <span data-i18n="descripción_ldm" class="footerProductItem">Descripción</span>
+          </div>
+        </a>
+      </section>
+    </div>
+  </div>
+</section>
