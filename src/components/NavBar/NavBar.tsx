@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import "./NavBar.css";
 
 export function NavBarComponent() {
@@ -84,13 +85,13 @@ export function NavBarComponent() {
         </div>
 
         <div className="header-primario">
-          <a href="/COL/index.html">
+          <NavLink to="colmotica">
             <img src="/img/Loho tekneo horizontal.png" alt="Logo Tekneo" className="logo" />
-          </a>
+          </NavLink>
           <nav className="btn-header" id="nav-menu">
-            <a className="btn-header__btn" href="/">
+            <NavLink className="btn-header__btn" to="/">
               <p data-i18n="">Inicio</p>
-            </a>
+            </NavLink>
             <a className="btn-header__btn dropdown">
               <p>Productos</p>
             </a>
@@ -108,7 +109,7 @@ export function NavBarComponent() {
               <span className="category" data-value="Hardware">Hardware</span>
             </section>
             <section className="selectProduct">
-              <a href="./Control de Accesso/Control-de-Accesso.html">
+              <NavLink to="/Control de Accesso/Control-de-Accesso.html">
                 <div className="headerProductItem">
                   <img src="/jpg/logo Tgate-05.png" alt="Imagen del producto" />
                 </div>
@@ -118,7 +119,7 @@ export function NavBarComponent() {
                     gestión y control de accesos,
                     ideal para fortalecer la seguridad en instalaciones de cualquier tamaño. </span>
                 </div>
-              </a>
+              </NavLink>
               <a href="./Productos/Productos.html">
                 <div className="headerProductItem">
                   <img src="/jpg/LOGO TSHOW.png" alt="Imagen del producto" />

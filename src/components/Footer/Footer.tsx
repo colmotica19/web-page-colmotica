@@ -2,6 +2,7 @@ import "./Footer.css";
 
 export function FooterComponent() {
   return (
+    <>
     <footer>
       <div className="footer-container">
         <div className="footer-column">
@@ -37,6 +38,7 @@ export function FooterComponent() {
           <a href="#">Twitter</a>
         </div>
       </div>
+    </footer>
       <div className="ftr-back">
         <img src="/img/Loho tekneo horizontal.png" alt="logo teckneo" />
         <p className="ftr-back-t1">
@@ -46,6 +48,6 @@ export function FooterComponent() {
           Términos de servicio | Aviso de política de privacidad
         </p>
       </div>
-    </footer>
+    </>
   );
 }

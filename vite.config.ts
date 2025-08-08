@@ -9,8 +9,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        tekneo: resolve(__dirname, 'public/index.html'),
-        colmotica: resolve(__dirname, 'public/colmotica.html'),
+        tekneo: resolve(__dirname, 'index.html'),
+        colmotica: resolve(__dirname, 'colmotica.html'),
       },
     },
   },

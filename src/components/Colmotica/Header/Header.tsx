@@ -3,7 +3,7 @@ export default function Header() {
     <header>
       <section className="section-header">
         <div className="header-primario">
-          <img src="/img/COLMOTICA.png" alt="" />
+          <img src="/img/colmotica/COLMOTICA.png" alt="" />
           <nav className="btn-header" id="nav-menu">
             <a className="btn-header__btn" href="./index.html">
               <p>Home</p>
