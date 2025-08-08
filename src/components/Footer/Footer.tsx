@@ -37,6 +37,15 @@ export function FooterComponent() {
           <a href="#">Twitter</a>
         </div>
       </div>
+      <div className="ftr-back">
+        <img src="/img/Loho tekneo horizontal.png" alt="logo teckneo" />
+        <p className="ftr-back-t1">
+          Copyright © 2024 Tekneo Todos los derechos reservados.
+        </p>
+        <p className="ftr-back-t2">
+          Términos de servicio | Aviso de política de privacidad
+        </p>
+      </div>
     </footer>
   );
 }

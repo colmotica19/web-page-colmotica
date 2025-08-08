@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router";
-import { HomePage } from "../pages/home";
-import { Producs } from "../pages/products";
-import { Support } from "../pages/support";
-import { Partners } from "../pages/partners";
+import { HomePage } from "../pages/Tekneo/home";
+import { Producs } from "../pages/Tekneo/products";
+import { Support } from "../pages/Tekneo/support";
+import { Partners } from "../pages/Tekneo/partners";
 
-export const routerPage = createBrowserRouter([
+export const routerTekneo = createBrowserRouter([
   {
     path: "/",
     Component: HomePage,
