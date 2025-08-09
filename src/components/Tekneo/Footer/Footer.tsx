@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import "./Footer.css";
+import { GlobalContext } from "../../../singleton/globalContext";
 
 export function FooterComponent() {
+  const { } = useContext(GlobalContext);
   return (
     <>
     <footer>
@@ -14,12 +17,9 @@ export function FooterComponent() {
           <a href="#">Contacto</a>
         </div>
         <div className="footer-column">
-          <h4>Servicios</h4>
-          <a href="#">Consultoría</a>
-          <a href="#">Desarrollo Web</a>
-          <a href="#">Marketing Digital</a>
-          <a href="#">Branding</a>
-          <a href="#">Analítica</a>
+          <h4>Productos</h4>
+          <button type="button">Software</button>
+          <button type="button">Hardware</button>
         </div>
         <div className="footer-column">
           <h4>Soporte</h4>
@@ -27,15 +27,13 @@ export function FooterComponent() {
           <a href="#">FAQs</a>
           <a href="#">Política de privacidad</a>
           <a href="#">Términos y condiciones</a>
-          <a href="#">Reportar problema</a>
         </div>
         <div className="footer-column">
-          <h4>Redes Sociales</h4>
-          <a href="#">Facebook</a>
-          <a href="#">Instagram</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">YouTube</a>
-          <a href="#">Twitter</a>
+          <h4>Contacto</h4>
+          <a href="#">Carrera 53, Calle 68B #125, local 225</a>
+          <a href="#">Barranquilla, Atlantico</a>
+          <a href="#">+57 3015678899</a>
+          <a href="#">info@tekeno.es</a>
         </div>
       </div>
     </footer>

@@ -16,8 +16,16 @@ export function HomePage() {
                 </div>
 
                 <div className="about__contenido">
-                    <p data-i18n="quienes_somos_parrafo" className="text-[24px]">
-                        <b>Tekneo</b> es una marca dedicada al desarrollo de software especializado para proyectos de automatización, seguridad y control inteligente en edificios e instalaciones técnicas. Nuestra propuesta se centra en ofrecer herramientas robustas, escalables y fáciles de usar, diseñadas para facilitar la integración entre tecnologías y protocolos de distintos fabricantes.
+                    <p data-i18n="quienes_somos_parrafo">
+                        <b>En Tekneo diseñamos soluciones de software para la automatización,
+                            seguridad y control inteligente de instalaciones.</b>
+                        <br />
+                        Nos especializamos en conectar tecnologías mediante herramientas
+                        potentes y accesibles, que permiten a los integradores construir
+                        sistemas eficientes, seguros y completamente adaptados a las
+                        necesidades del cliente. Nuestra misión es simplificar la
+                        interoperabilidad y elevar el nivel de automatización en cada
+                        proyecto.
                     </p>
                 </div>
             </section>
@@ -32,7 +40,9 @@ export function HomePage() {
                     <p className="about__contenido__p">
                         <b>Tekneo es una marca dedicada al desarrollo de software
                             especializado para proyectos de automatización, seguridad y control
-                            inteligente en edificios e instalaciones técnicas. Nuestra propuesta
+                            inteligente en edificios e instalaciones técnicas.
+                            <br />
+                            Nuestra propuesta
                             se centra en ofrecer herramientas robustas, escalables y fáciles de
                             usar, diseñadas para facilitar la integración entre tecnologías y
                             protocolos de distintos fabricantes.</b>
@@ -48,9 +58,9 @@ export function HomePage() {
 
             <section className="funcion-integral txt-conten-center">
                 <div>
-                    <p className="about__title-quienes txt-center">FUNCIONES INTEGRALES</p>
+                    {/* <p className="about__title-quienes txt-center">FUNCIONES INTEGRALES</p> */}
                     <h1 className="about__title-que-es mg-botton-20 txt-center">
-                        Aprende, Crece y Desarrolla
+                        Recursos
                     </h1>
                 </div>
 
