@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
-import "./NavBar.css";
+import "./Header.css";
 
-export function NavBarComponent() {
+export function Header() {
   return (
     <header>
       <section className="section-header">

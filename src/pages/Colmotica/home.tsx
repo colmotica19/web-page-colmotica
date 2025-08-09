@@ -1,22 +1,8 @@
 import { Fragment } from "react/jsx-runtime";
-import Footer from "../../components/Colmotica/Footer/Footer";
-import Header from "../../components/Colmotica/Header/Header";
-import { Helmet } from "react-helmet-async";
 // import './../../Styles/mainColmotica.css'
 export default function Home() {
   return (
     <Fragment>
-      <Helmet>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Colmotica</title>
-        <link rel="icon" type="image/png" href="/img/Favicon.png" />
-        <link rel="stylesheet" href="/src/Styles/mainColmotica.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet"></link>
-      </Helmet>
-      <Header></Header>
       <div className="flex justify-center items-center flex-col">
         <section className="pd-g dflex encabezado-frace">
           <div className="dflex flex-initial">
@@ -88,7 +74,6 @@ export default function Home() {
           <button type="button" className="btn-general">SABER MAS</button>
         </section>
       </div>
-      <Footer></Footer>
     </Fragment>
   )
 }

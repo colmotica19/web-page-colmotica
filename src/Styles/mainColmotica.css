@@ -8,6 +8,10 @@
     transition: all 500ms;
 }
 
+img {
+    max-width: none;
+}
+
 .btn-general {
     border: 2px solid black;
     margin: 20px;

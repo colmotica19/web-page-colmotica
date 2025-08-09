@@ -1,10 +1,10 @@
-import { FooterComponent } from "../../components/Footer/Footer";
-import { NavBarComponent } from "../../components/NavBar/NavBar";
+import { FooterComponent } from "../../components/Tekneo/Footer/Footer";
+import { Header } from "../../components/Tekneo/Header/NavBar";
 
 export function Support() {
   return (
     <div>
-      <NavBarComponent />
+      <Header />
       <h1>Support</h1>
       <FooterComponent />
     </div>
