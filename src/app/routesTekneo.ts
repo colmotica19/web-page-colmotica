@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router";
-import { Support } from "../pages/Tekneo/support";
 import { Partners } from "../pages/Tekneo/partners";
 import { routesColmotica } from "./routesColmotica";
 import LayoutColmotica from "../components/Colmotica/LayoutColmotica";
 import LayoutTekneo from "../components/Tekneo/LayoutTekneo";
+import { HomePage } from "../pages/Tekneo/home";
 
 export const routerTekneo = createBrowserRouter([
   {
@@ -11,11 +11,15 @@ export const routerTekneo = createBrowserRouter([
     Component: LayoutTekneo,
     children: [
       {
-        path: "/support",
-        Component: Support,
+        index: true,
+        Component: HomePage,
       },
+      // {
+      //   path: "/support",
+      //   Component: Support,
+      // },
       {
-        path: "/partners",
+        path: "socios",
         Component: Partners,
       },
     ]

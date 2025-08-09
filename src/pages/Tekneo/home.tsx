@@ -1,5 +1,4 @@
 import { Fragment } from "react/jsx-runtime";
-import { FooterComponent } from "../../components/Tekneo/Footer/Footer";
 // import './../../Styles/index.css'
 // import './../../Styles/tekneo.css'
 export function HomePage() {
@@ -7,8 +6,7 @@ export function HomePage() {
         <Fragment>
             <section className="encabezado-frace">
                 <p data-i18n="frase_principal">
-                    Aplicaciones para Building Automation coherentes, adaptables y avanzadas
-                    para satisfacer las necesidades de cualquier Proyecto.
+                    Soluciones inteligentes en Building Automation, adaptables y avanzadas para satisfacer las necesidades de cualquier proyecto.
                 </p>
             </section>
 
@@ -18,15 +16,8 @@ export function HomePage() {
                 </div>
 
                 <div className="about__contenido">
-                    <p data-i18n="quienes_somos_parrafo">
-                        <b>En Tekneo diseñamos soluciones de software para la automatización,
-                            seguridad y control inteligente de instalaciones.</b>
-                        Nos especializamos en conectar tecnologías mediante herramientas
-                        potentes y accesibles, que permiten a los integradores construir
-                        sistemas eficientes, seguros y completamente adaptados a las
-                        necesidades del cliente. Nuestra misión es simplificar la
-                        interoperabilidad y elevar el nivel de automatización en cada
-                        proyecto.
+                    <p data-i18n="quienes_somos_parrafo" className="text-[24px]">
+                        <b>Tekneo</b> es una marca dedicada al desarrollo de software especializado para proyectos de automatización, seguridad y control inteligente en edificios e instalaciones técnicas. Nuestra propuesta se centra en ofrecer herramientas robustas, escalables y fáciles de usar, diseñadas para facilitar la integración entre tecnologías y protocolos de distintos fabricantes.
                     </p>
                 </div>
             </section>
@@ -80,8 +71,6 @@ export function HomePage() {
                     </div>
                 </div>
             </section>
-
-            <FooterComponent />
         </Fragment>
     );
 }

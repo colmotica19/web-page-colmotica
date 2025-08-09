@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
-import Footer from "../Colmotica/Footer";
-import Header from "../Colmotica/Header";
 import { Helmet } from "react-helmet-async";
+import { Header } from "./Header/Header";
+import { FooterComponent } from "./Footer/Footer";
 
 export default function LayoutTekneo() {
   return (
@@ -21,7 +21,7 @@ export default function LayoutTekneo() {
       </Helmet>
       <Header />
       <Outlet></Outlet>
-      <Footer></Footer>
+      <FooterComponent></FooterComponent>
     </>
   )
 }

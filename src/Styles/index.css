@@ -1053,14 +1053,6 @@ fieldset:focus {
 @media only screen and (max-width: 1440px) {
 }
 
-.langTag {
-  text-transform: uppercase;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  color: white;
-}
-
 .Img-perona-celular {
   max-width: none;
   max-height: none;
