@@ -1,3 +1,10 @@
-import { createContext } from "react";
+import { createContext, type Dispatch, type SetStateAction } from "react";
 
-export const GlobalContext = createContext({});
+interface GlobalContext {
+  focusSoftware: boolean;
+  setFocusSoftware: Dispatch<SetStateAction<boolean>>;
+  focusHardware: boolean;
+  setFocusHardware: Dispatch<SetStateAction<boolean>>;
+}
+
+export const GlobalContext = createContext({} as GlobalContext);

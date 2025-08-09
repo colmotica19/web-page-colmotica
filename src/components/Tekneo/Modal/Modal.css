@@ -1,0 +1,53 @@
+.Modal {
+  border: none;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  padding: 16px;
+  padding-top: 24px;
+  transition: transform 0.5s ease, display 0.5s ease, opacity 0.5s ease;
+  transition-behavior: allow-discrete;
+  transform: translateY(-100px);
+  opacity: 0;
+  margin: auto;
+}
+
+.Modal::backdrop {
+  animation: appearBackdrop 0.3s ease reverse forwards;
+}
+
+.Modal[open]::backdrop {
+  animation: appearBackdrop 0.3s ease forwards;
+}
+
+@keyframes appearBackdrop {
+  0% {
+    background-color: transparent;
+  }
+
+  100% {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.Modal[open] {
+  transform: translateY(0px);
+  opacity: 1;
+
+  @starting-style {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+
+/* body:has(:modal[open]) {
+  overflow: hidden;
+} */
+
+.closeModal:hover svg {
+  fill: var(--color-gray-400);
+}
+
+.closeModal svg {
+  transition: fill 0.3s ease;
+}

@@ -6,7 +6,6 @@
     height: 150px;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 85px 600px 85px 200px;
 }
 
 .encabezado-frace p{
@@ -30,6 +29,7 @@
     flex-wrap: wrap;
     background-color: var(--color-grey-primario);
     padding: 100px 200px;
+    gap: 30px;
 }
 
 .group-partner p{
@@ -41,7 +41,6 @@
 .group-partner img{
     width: 150px;
     height: auto;
-    margin: 20px;
 }
 
 .socios{
@@ -52,6 +51,7 @@
     margin-top: 50px;
     flex-wrap: wrap;
 }
+
 .btn-movi:hover{
-    transform: scale(1.3);
+    transform: scale(1.2);
 }

@@ -1,8 +1,10 @@
 import { NavLink } from "react-router";
 import "./Header.css";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { GlobalContext } from "../../../singleton/globalContext";
 
 export function Header() {
+  const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware } = useContext(GlobalContext);
   useEffect(() => {
     const selectCategory = document.querySelector<HTMLElement>('.selectCategory');
     const categoryItems = document.querySelectorAll<HTMLSpanElement>('.selectCategory > .category');
@@ -14,14 +16,14 @@ export function Header() {
       {
         url: "https://es.aliexpress.com/item/4000232174472.html?...",
         img: "/img/Lector QR.png",
-        name: "Lectora QR",
-        description: "Lee codigo QR",
+        name: "TK-Lector",
+        description: "Lee codigo QR o tarjeta EM para el funcionamiento del software 'TGate'",
       },
       {
         url: "https://es.aliexpress.com/item/4000999069820.html?...",
         img: "/img/Modulo DT-R004.png",
-        name: "Modulo DT-R004",
-        description: "Descripción",
+        name: "Modulo TK-IO44W",
+        description: "Modulo de relés programables, sirve para el funcionamiento del software 'TGate'",
       }
     ];
     // Limpia los productos actuales del dropdown
@@ -48,6 +50,7 @@ export function Header() {
       if (!mapProducts.has(anchorSrc)) {
         const anchor = document.createElement('a');
         anchor.href = anchorSrc;
+        anchor.target = "_blank"
         const header = document.createElement('div');
         header.className = 'headerProductItem';
         const img = new Image();
@@ -116,8 +119,35 @@ export function Header() {
     });
   }, [])
 
+  useEffect(() => {
+    // Si se activa el foco desde el footer
+    if (focusSoftware || focusHardware) {
+      const dropdown = document.querySelector(".dropdown") as HTMLElement;
+      const dropdownContent = document.querySelector(".dropdown-content") as HTMLElement;
+      const selectCategory = document.querySelector<HTMLElement>('.selectCategory');
+      if (dropdown && dropdownContent && selectCategory) {
+        // Scroll al dropdown
+        dropdown.scrollIntoView({ behavior: "smooth", block: "center" });
+        // Abrir el dropdown
+        dropdownContent.classList.add('show');
+        // Seleccionar la categoría
+        const category = selectCategory.querySelector<HTMLElement>(
+          `[data-value="${focusSoftware ? "Software" : "Hardware"}"]`
+        );
+        if (category) {
+          category.click();
+        }
+      }
+      // Resetear el foco para evitar loops
+      setTimeout(() => {
+        setFocusSoftware(false);
+        setFocusHardware(false);
+      }, 500);
+    }
+  }, [focusSoftware, focusHardware, setFocusSoftware, setFocusHardware]);
+
   return (
-    <header>
+    <header className="relative z-10">
       <section className="section-header">
         <div className="pre-header">
           <fieldset>
@@ -165,7 +195,7 @@ export function Header() {
                   </button>
                   <ul className="productsList accordion-content">
                     <li className="productListItem">
-                      <a href="./Control de Accesso/Control-de-Accesso.html">
+                      <NavLink to="controlDeAcceso">
                         <div className="headerProductItem">
                           <img src="/img/logo Tgate-05.png" alt="Imagen del producto" />
                         </div>
@@ -177,10 +207,10 @@ export function Header() {
                             instalaciones de cualquier tamaño.
                           </span>
                         </div>
-                      </a>
+                      </NavLink>
                     </li>
                     <li className="productListItem">
-                      <a href="./Productos/Productos.html">
+                      <NavLink to="tshow">
                         <div className="headerProductItem">
                           <img src="/img/LOGO TSHOW.png" alt="Imagen del producto" />
                         </div>
@@ -191,13 +221,33 @@ export function Header() {
                             diseñada para operar en entornos de red privados.
                           </span>
                         </div>
-                      </a>
+                      </NavLink>
                     </li>
                     <li className="productListItem">
-                      <a href="/Nodemaker/Nodemaker.html">Nodemaker</a>
+                      <NavLink to="nodemaker">
+                        <div className="headerProductItem">
+                          <img src="/img/NODEMAKER.png
+                  " alt="Imagen del producto" />
+                        </div>
+                        <div className="containerBodyAndFooterProduct">
+                          <span className="bodyProductItem">Nodemaker</span>
+                          <span data-i18n="descripción_nodemaker" className="footerProductItem">Herramienta de integración
+                            diseñada para interconectar
+                            dispositivos y sistemas que utilizan distintos protocolos de comunicación, como KNX,
+                            Modbus, MQTT y HTTP</span>
+                        </div>
+                      </NavLink>
                     </li>
                     <li className="productListItem">
-                      <a href="/LDM/LDM.html">LDM</a>
+                      <NavLink to="ldm" className="relative">
+                        <div className="headerProductItem w-[200px] flex justify-center">
+                          <img src="/img/Loho tekneo vertical.png" alt="Imagen del producto" className="filter-none! w-[95px]!" />
+                        </div>
+                        <div className="containerBodyAndFooterProduct">
+                          <span className="bodyProductItem">LDM</span>
+                          <span data-i18n="descripción_ldm" className="footerProductItem">Descripción</span>
+                        </div>
+                      </NavLink>
                     </li>
                   </ul>
                 </div>
@@ -240,7 +290,7 @@ export function Header() {
               <span className="category" data-value="Hardware">Hardware</span>
             </section>
             <section className="selectProduct">
-              <NavLink to="/Control de Accesso/Control-de-Accesso.html">
+              <NavLink to="controlDeAcceso">
                 <div className="headerProductItem">
                   <img src="/img/logo Tgate-05.png" alt="Imagen del producto" />
                 </div>
@@ -251,7 +301,7 @@ export function Header() {
                     ideal para fortalecer la seguridad en instalaciones de cualquier tamaño. </span>
                 </div>
               </NavLink>
-              <a href="./Productos/Productos.html">
+              <NavLink to="tshow">
                 <div className="headerProductItem">
                   <img src="/img/LOGO TSHOW.png" alt="Imagen del producto" />
                 </div>
@@ -262,8 +312,8 @@ export function Header() {
                     centralizada de archivos multimedia, diseñada para operar en entornos de red privados.
                   </span>
                 </div>
-              </a>
-              <a href="./Nodemaker/Nodemaker.html">
+              </NavLink>
+              <NavLink to="nodemaker">
                 <div className="headerProductItem">
                   <img src="/img/NODEMAKER.png
                   " alt="Imagen del producto" />
@@ -275,16 +325,16 @@ export function Header() {
                     dispositivos y sistemas que utilizan distintos protocolos de comunicación, como KNX,
                     Modbus, MQTT y HTTP</span>
                 </div>
-              </a>
-              <a href="./LDM/LDM.html">
-                <div className="headerProductItem">
-                  <img src="" alt="Imagen del producto" />
+              </NavLink>
+              <NavLink to="ldm" className="relative">
+                <div className="headerProductItem w-[200px] flex justify-center">
+                  <img src="/img/Loho tekneo vertical.png" alt="Imagen del producto" className="filter-none! w-[95px]!" />
                 </div>
                 <div className="containerBodyAndFooterProduct">
                   <span className="bodyProductItem">LDM</span>
                   <span data-i18n="descripción_ldm" className="footerProductItem">Descripción</span>
                 </div>
-              </a>
+              </NavLink>
             </section>
           </div>
         </div>
