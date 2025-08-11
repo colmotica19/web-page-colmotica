@@ -4,10 +4,10 @@ import { routesColmotica } from "./routesColmotica";
 import LayoutColmotica from "../components/Colmotica/LayoutColmotica";
 import LayoutTekneo from "../components/Tekneo/LayoutTekneo";
 import { HomePage } from "../pages/Tekneo/home";
-import ControlDeAcceso from "../pages/Tekneo/controlDeAcceso";
-import Tshow from "../pages/Tekneo/tshow";
-import Nodemaker from "../pages/Tekneo/nodemaker";
-import Ldm from "../pages/Tekneo/ldm";
+import ControlDeAcceso from "../pages/Tekneo/TGate/TGate";
+import Tshow from "../pages/Tekneo/TShow/tshow";
+import Nodemaker from "../pages/Tekneo/Nodemaker/nodemaker";
+import Ldm from "../pages/Tekneo/LDM/ldm";
 import PreguntasFrecuentes from "../pages/Tekneo/preguntasFrecuentes";
 import PoliticaDePrivacidad from "../pages/Tekneo/politicaDePrivacidad";
 import TerminosYCondiciones from "../pages/Tekneo/terminosYCondiciones";
@@ -31,37 +31,37 @@ export const routerTekneo = createBrowserRouter([
       },
       {
         path: "controlDeAcceso",
-        Component: ControlDeAcceso
+        Component: ControlDeAcceso,
       },
       {
         path: "tshow",
-        Component: Tshow
+        Component: Tshow,
       },
       {
         path: "nodemaker",
-        Component: Nodemaker
+        Component: Nodemaker,
       },
       {
         path: "ldm",
-        Component: Ldm
+        Component: Ldm,
       },
       {
         path: "preguntasFrecuentes",
-        Component: PreguntasFrecuentes
+        Component: PreguntasFrecuentes,
       },
       {
         path: "politicaDePrivacidad",
-        Component: PoliticaDePrivacidad
+        Component: PoliticaDePrivacidad,
       },
       {
         path: "terminosYCondiciones",
-        Component: TerminosYCondiciones
-      }
-    ]
+        Component: TerminosYCondiciones,
+      },
+    ],
   },
   {
     path: "/colmotica",
     Component: LayoutColmotica,
-    children: routesColmotica
+    children: routesColmotica,
   },
 ]);
