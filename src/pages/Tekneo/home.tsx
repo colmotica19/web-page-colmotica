@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { Fragment } from "react/jsx-runtime";
+import { GlobalContext } from "../../singleton/globalContext";
 // import './../../Styles/index.css'
 // import './../../Styles/tekneo.css'
 export function HomePage() {
+    const {setFocusHardware, setFocusSoftware} = useContext(GlobalContext)
     return (
         <Fragment>
             <section className="encabezado-frace">
@@ -17,15 +20,20 @@ export function HomePage() {
 
                 <div className="about__contenido">
                     <p data-i18n="quienes_somos_parrafo">
-                        <b>En Tekneo diseñamos soluciones de software para la automatización,
-                            seguridad y control inteligente de instalaciones.</b>
+                        <b>Tekneo </b> es una marca dedicada al desarrollo de software
+                        especializado para proyectos de automatización, seguridad y control
+                        inteligente en edificios e instalaciones técnicas.
                         <br />
-                        Nos especializamos en conectar tecnologías mediante herramientas
-                        potentes y accesibles, que permiten a los integradores construir
-                        sistemas eficientes, seguros y completamente adaptados a las
-                        necesidades del cliente. Nuestra misión es simplificar la
-                        interoperabilidad y elevar el nivel de automatización en cada
-                        proyecto.
+                        Nuestra propuesta
+                        se centra en ofrecer herramientas robustas, escalables y fáciles de
+                        usar, diseñadas para facilitar la integración entre tecnologías y
+                        protocolos de distintos fabricantes.
+                        <br /><br />
+                        Creamos soluciones que simplifican procesos complejos, permiten una
+                        supervisión más eficiente y potencian la interoperabilidad en sistemas
+                        críticos. A través de nuestras plataformas, brindamos a los
+                        integradores el control total sobre sus instalaciones, permitiéndoles
+                        construir entornos más seguros, conectados y funcionales.
                     </p>
                 </div>
             </section>
@@ -37,21 +45,9 @@ export function HomePage() {
 
                 <div className="txt-conten">
                     <h1 className="about__title-que-es mg-botton-20">Sobre Tekneo</h1>
-                    <p className="about__contenido__p">
-                        <b>Tekneo es una marca dedicada al desarrollo de software
-                            especializado para proyectos de automatización, seguridad y control
-                            inteligente en edificios e instalaciones técnicas.
-                            <br />
-                            Nuestra propuesta
-                            se centra en ofrecer herramientas robustas, escalables y fáciles de
-                            usar, diseñadas para facilitar la integración entre tecnologías y
-                            protocolos de distintos fabricantes.</b>
-                        <br /><br />
-                        Creamos soluciones que simplifican procesos complejos, permiten una
-                        supervisión más eficiente y potencian la interoperabilidad en sistemas
-                        críticos. A través de nuestras plataformas, brindamos a los
-                        integradores el control total sobre sus instalaciones, permitiéndoles
-                        construir entornos más seguros, conectados y funcionales.
+                    <p className="about__contenido__p line-">
+                        En <b>Tekneo</b> diseñamos soluciones de software para la automatización, seguridad y control inteligente de instalaciones. <br /> <br />
+                        Nos especializamos en conectar tecnologías mediante herramientas potentes y accesibles, que permiten a los integradores construir sistemas eficientes, seguros y completamente adaptados a las necesidades del cliente. Nuestra misión es simplificar la interoperabilidad y elevar el nivel de automatización en cada proyecto.
                     </p>
                 </div>
             </section>
@@ -70,10 +66,13 @@ export function HomePage() {
                         <p className="title-app">Academy</p>
                     </div>
 
-                    <div className="container-card__cards holographic-card">
+                    <button type="button" className="container-card__cards holographic-card" onClick={() => {
+                        setFocusHardware(false)
+                        setFocusSoftware(true)
+                    }}>
                         <img src="/img/Manuales.png" alt="Manuales" />
                         <p className="title-app">Catálogo de productos</p>
-                    </div>
+                    </button>
 
                     <div className="container-card__cards holographic-card">
                         <img src="/img/Video.png" alt="Video" />

@@ -26,7 +26,7 @@ button {
 
 a:active,
 button:active {
-  transform: scale(0.8);
+  transform: scale(1.1);
 }
 
 /* variables de colores */
@@ -597,7 +597,7 @@ fieldset:focus {
   flex-direction: column;
   background-color: var(--color-grey-primario);
 
-  padding: 20px;
+  padding: 12px 0px;
 
   img {
     width: 130px;

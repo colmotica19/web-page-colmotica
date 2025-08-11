@@ -1,7 +1,8 @@
 import { NavLink } from "react-router";
 import "./Header.css";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { GlobalContext } from "../../../singleton/globalContext";
+import { url } from "inspector";
 
 export function Header() {
   const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware } = useContext(GlobalContext);
@@ -23,6 +24,18 @@ export function Header() {
         url: "https://es.aliexpress.com/item/4000999069820.html?...",
         img: "/img/Modulo DT-R004.png",
         name: "Modulo TK-IO44W",
+        description: "Modulo de relés programables, sirve para el funcionamiento del software 'TGate'",
+      },
+      {
+        url: "https://es.aliexpress.com/item/4000999069820.html?...",
+        img: "/img/Modulo TK-IO22W.webp",
+        name: "Modulo TK-IO22W",
+        description: "Modulo de relés programables, sirve para el funcionamiento del software 'TGate'",
+      },
+      {
+        url: "https://es.aliexpress.com/item/4000999069820.html?...",
+        img: "/img/Modulo TK-IO88W.webp",
+        name: "Modulo TK-IO88W",
         description: "Modulo de relés programables, sirve para el funcionamiento del software 'TGate'",
       }
     ];
@@ -47,7 +60,7 @@ export function Header() {
       if ([anchorSrc, imgSrc, name, description].some(arg => typeof arg !== "string")) {
         throw new TypeError("Todos los argumentos deben ser strings");
       }
-      if (!mapProducts.has(anchorSrc)) {
+      if (!mapProducts.has(imgSrc)) {
         const anchor = document.createElement('a');
         anchor.href = anchorSrc;
         anchor.target = "_blank"
@@ -67,10 +80,10 @@ export function Header() {
         footer.textContent = description;
         content.append(body, footer);
         anchor.append(header, content);
-        mapProducts.set(anchorSrc, anchor)
+        mapProducts.set(imgSrc, anchor)
         return anchor;
       } else {
-        return mapProducts.get(anchorSrc) as HTMLAnchorElement
+        return mapProducts.get(imgSrc) as HTMLAnchorElement
       }
     }
     // Cambia la categoría seleccionada
@@ -146,8 +159,10 @@ export function Header() {
     }
   }, [focusSoftware, focusHardware, setFocusSoftware, setFocusHardware]);
 
+  const dropdownContent = useRef<HTMLDivElement>(null)
+
   return (
-    <header className="relative z-10">
+    <header className="sticky top-0 z-10">
       <section className="section-header">
         <div className="pre-header">
           <fieldset>
@@ -284,13 +299,13 @@ export function Header() {
               <p>Socios</p>
             </NavLink>
           </nav>
-          <div className="dropdown-content">
+          <div className="dropdown-content" ref={dropdownContent}>
             <section className="selectCategory" data-current-category="Software">
               <span className="category" data-value="Software">Software</span>
               <span className="category" data-value="Hardware">Hardware</span>
             </section>
             <section className="selectProduct">
-              <NavLink to="controlDeAcceso">
+              <NavLink to="controlDeAcceso" onClick={() => dropdownContent.current?.classList.remove("show")}>
                 <div className="headerProductItem">
                   <img src="/img/logo Tgate-05.png" alt="Imagen del producto" />
                 </div>
@@ -301,7 +316,7 @@ export function Header() {
                     ideal para fortalecer la seguridad en instalaciones de cualquier tamaño. </span>
                 </div>
               </NavLink>
-              <NavLink to="tshow">
+              <NavLink to="tshow" onClick={() => dropdownContent.current?.classList.remove("show")}>
                 <div className="headerProductItem">
                   <img src="/img/LOGO TSHOW.png" alt="Imagen del producto" />
                 </div>
@@ -313,7 +328,7 @@ export function Header() {
                   </span>
                 </div>
               </NavLink>
-              <NavLink to="nodemaker">
+              <NavLink to="nodemaker" onClick={() => dropdownContent.current?.classList.remove("show")}>
                 <div className="headerProductItem">
                   <img src="/img/NODEMAKER.png
                   " alt="Imagen del producto" />
@@ -326,7 +341,7 @@ export function Header() {
                     Modbus, MQTT y HTTP</span>
                 </div>
               </NavLink>
-              <NavLink to="ldm" className="relative">
+              <NavLink to="ldm" className="relative" onClick={() => dropdownContent.current?.classList.remove("show")}>
                 <div className="headerProductItem w-[200px] flex justify-center">
                   <img src="/img/Loho tekneo vertical.png" alt="Imagen del producto" className="filter-none! w-[95px]!" />
                 </div>
