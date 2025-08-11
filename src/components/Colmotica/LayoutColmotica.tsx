@@ -1,11 +1,14 @@
 // LayoutColmotica.tsx
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Header from "../../components/Colmotica/Header";
 import Footer from "../../components/Colmotica/Footer";
 import { Outlet } from "react-router-dom";
-
+import './../../Styles/mainColmotica.css'
 export default function LayoutColmotica() {
+  useEffect(() => {
+    document.body.dataset.page = "colmotica"
+  })
   return (
     <Fragment>
       <Helmet>
@@ -13,7 +16,7 @@ export default function LayoutColmotica() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Colmotica</title>
         <link rel="icon" type="image/png" href="/img/Favicon.png" />
-        <link rel="stylesheet" href="/src/Styles/mainColmotica.css" />
+        {/* <link rel="stylesheet" href="/src/Styles/mainColmotica.css" /> */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link

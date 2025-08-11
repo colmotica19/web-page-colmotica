@@ -2,7 +2,6 @@ import { NavLink } from "react-router";
 import "./Header.css";
 import { useContext, useEffect, useRef } from "react";
 import { GlobalContext } from "../../../singleton/globalContext";
-import { url } from "inspector";
 
 export function Header() {
   const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware } = useContext(GlobalContext);
@@ -91,7 +90,7 @@ export function Header() {
       if (!selectCategory) throw new Error("No se encontró el elemento ''selectCategory");
       if (!selectProduct) throw new Error("No se encontró el elemento ''selectProduct");
       const current = selectCategory.dataset.currentCategory;
-      const selected = category.textContent;
+      const selected = category.textContent ?? "";
       if (selected === current)
         return;
       clearProducts();

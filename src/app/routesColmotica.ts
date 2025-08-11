@@ -1,6 +1,6 @@
 import Products from "../pages/Colmotica/products";
 import Academy from "../pages/Colmotica/academy";
-import Soluciones from "../pages/Colmotica/Soluciones";
+import Soluciones from "../pages/Colmotica/soluciones";
 import Consultorias from "../pages/Colmotica/consultorias";
 import Home from "../pages/Colmotica/home";
 import Edificios from "../pages/Colmotica/edificios";
