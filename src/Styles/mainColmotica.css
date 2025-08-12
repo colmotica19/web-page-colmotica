@@ -1,16 +1,39 @@
 @import "tailwindcss";
+
 /* variables de colores */
+:root {
+    --color-black-primario: #222222;
+    --color-white-primario: #fff;
+    --color-grey-primario: #f0f0f0;
+    --color-blue-primary: #314AFF;
+    --color-blue-secundary: #0095FF;
+    --color-txt-secundary: #7A7A7A;
+
+}
 
 body[data-page="colmotica"] {
+    > * {
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     * {
         padding: 0px;
         margin: 0px;
         font-family: "DM Sans", sans-serif;
         transition: all 500ms;
+        box-sizing: content-box;
     }
 
-    img {
-        max-width: none;
+    .center-txt {
+        text-align: center !important;
+    }
+
+    .align-center {
+        align-items: center !important;
+        text-align: center !important;
     }
 
     .btn-general {
@@ -29,16 +52,6 @@ body[data-page="colmotica"] {
         padding: 10px 35px;
         background-color: black;
         color: white;
-    }
-
-    :root {
-        --color-black-primario: #222222;
-        --color-white-primario: #fff;
-        --color-grey-primario: #f0f0f0;
-        --color-blue-primary: #314AFF;
-        --color-blue-secundary: #0095FF;
-        --color-txt-secundary: #7A7A7A;
-
     }
 
     /* variables de colores */
@@ -105,6 +118,10 @@ body[data-page="colmotica"] {
     }
 
     /* header primario */
+    header {
+        width: -webkit-fill-available;
+    }
+
     .header-primario {
         z-index: 99;
         background-color: transparent;
@@ -164,7 +181,6 @@ body[data-page="colmotica"] {
         font-weight: 300;
         font-stretch: ultra-expanded;
         initial-letter: 10px !important;
-        -webkit-initial-letter: 10px;
     }
 
     .encabezado-frace p.sub {
@@ -172,14 +188,13 @@ body[data-page="colmotica"] {
         font-weight: 300;
         font-stretch: ultra-expanded;
         initial-letter: 10px;
-        -webkit-initial-letter: 10px;
     }
 
     /* seccion que somos */
     .secone {
         flex-direction: column;
         align-items: flex-start;
-        width: 1000px;
+        width: 600px;
         margin-top: 100px;
         margin-bottom: 130px;
     }
@@ -206,7 +221,7 @@ body[data-page="colmotica"] {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 1000px;
+        width: 600px;
         text-align: center;
         margin-top: 100px;
     }
@@ -236,37 +251,71 @@ body[data-page="colmotica"] {
         margin-right: 20px;
     }
 
+    .w80 {
+        width: 80px !important;
+    }
+
+    .mw400 {
+        max-width: 400px !important;
+    }
+
+    .fall25 {
+        font-size: 25px !important;
+    }
+
+    .mb-50 {
+        margin-bottom: 50px !important;
+    }
+
+    .title-p {
+        font-size: 20px;
+        font-weight: 200;
+    }
+
     /* footer */
     footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-direction: row;
-        flex-wrap: wrap;
-        background-color: var(--color-black-primario);
-        padding: 100px 200px;
+        background-color: #1a1a1a;
+        color: white;
+        padding: 40px 20px;
         width: -webkit-fill-available;
     }
 
-    .containet-footer {
+    .footer-container {
         display: flex;
-        flex-direction: column;
-        justify-content: left;
-        align-items: start;
-        text-align: start;
-        color: var(--color-white-primario);
-        margin: 10px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: auto;
     }
 
-    .containet-footer-sbtitle {
-        font-size: 14px;
-        margin-bottom: 5px;
+    .footer-column {
+        flex: 1 1 200px;
+        margin: 20px;
     }
 
-    .containet-footer-title {
-        font-size: 20px;
+    .footer-column h4 {
+        margin-bottom: 15px;
+        font-size: 18px;
+        color: var(--color-blue-secundary);
+    }
+
+    .footer-column a {
+        display: block;
+        color: #ccc;
+        text-decoration: none;
         margin-bottom: 10px;
-        font-weight: 700;
+        transition: color 0.3s;
+    }
+
+    .footer-column a:hover {
+        color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+        .footer-column {
+            flex: 1 1 100%;
+            margin: 10px 0;
+        }
     }
 
     .ftr-back {
@@ -275,11 +324,13 @@ body[data-page="colmotica"] {
         align-items: center;
         flex-direction: column;
         background-color: var(--color-grey-primario);
+        width: -webkit-fill-available;
+
 
         padding: 30px;
 
         img {
-            width: 200px;
+            width: 130px;
             height: auto;
             margin-bottom: 10px;
         }
@@ -350,7 +401,6 @@ body[data-page="colmotica"] {
             font-weight: 300;
             font-stretch: ultra-expanded;
             initial-letter: 10px !important;
-            -webkit-initial-letter: 10px;
         }
 
         .encabezado-frace p.sub {
@@ -358,7 +408,6 @@ body[data-page="colmotica"] {
             font-weight: 300;
             font-stretch: ultra-expanded;
             initial-letter: 10px;
-            -webkit-initial-letter: 10px;
         }
 
         .title-all {

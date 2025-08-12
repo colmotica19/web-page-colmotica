@@ -5,12 +5,12 @@ import LayoutColmotica from "../components/Colmotica/LayoutColmotica";
 import LayoutTekneo from "../components/Tekneo/LayoutTekneo";
 import { HomePage } from "../pages/Tekneo/home";
 import ControlDeAcceso from "../pages/Tekneo/TGate/TGate";
-import Tshow from "../pages/Tekneo/TShow/tshow";
-import Nodemaker from "../pages/Tekneo/Nodemaker/nodemaker";
-import Ldm from "../pages/Tekneo/LDM/ldm";
 import PreguntasFrecuentes from "../pages/Tekneo/preguntasFrecuentes";
 import PoliticaDePrivacidad from "../pages/Tekneo/politicaDePrivacidad";
 import TerminosYCondiciones from "../pages/Tekneo/terminosYCondiciones";
+import Tshow from "../pages/Tekneo/TShow/TShow";
+import Ldm from "../pages/Tekneo/LDM/LDM";
+import Nodemaker from "../pages/Tekneo/Nodemaker/Nodemaker";
 
 export const routerTekneo = createBrowserRouter([
   {

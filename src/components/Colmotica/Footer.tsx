@@ -3,32 +3,48 @@ import { Fragment } from "react/jsx-runtime"
 export default function Footer() {
   return (
     <Fragment>
-      <footer className="">
-        <div className="containet-footer">
-          <p className="containet-footer-title">
-            <a className="color-white">Home</a>
-          </p>
-          <p className="containet-footer-title">
-            <a className="color-white" id="myBtn">Productos</a>
-          </p>
-          <p className="containet-footer-title">
-            <a className="color-white">Academy</a>
-          </p>
-          <p className="containet-footer-title">
-            <a className="color-white">Soluciones</a>
-          </p>
-          <p className="containet-footer-title">
-            <a className="color-white">Consultorias</a>
-          </p>
+    <footer>
+        <div className="footer-container">
+            <div className="footer-column">
+                <h4>Empresa</h4>
+                <a href="#">Quiénes somos</a>
+                <a href="#">Equipo</a>
+                <a href="#">Carreras</a>
+                <a href="#">Blog</a>
+                <a href="#">Contacto</a>
+            </div>
+            <div className="footer-column">
+                <h4>Servicios</h4>
+                <a href="#">Consultoría</a>
+                <a href="#">Desarrollo Web</a>
+                <a href="#">Marketing Digital</a>
+                <a href="#">Branding</a>
+                <a href="#">Analítica</a>
+            </div>
+            <div className="footer-column">
+                <h4>Soporte</h4>
+                <a href="#">Centro de ayuda</a>
+                <a href="#">FAQs</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Términos y condiciones</a>
+                <a href="#">Reportar problema</a>
+            </div>
+            <div className="footer-column">
+                <h4>Redes Sociales</h4>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">YouTube</a>
+                <a href="#">Twitter</a>
+            </div>
         </div>
-        <div className="containet-footer">
-          <p className="containet-footer-title">CONTACTO</p>
-          <p className="containet-footer-sbtitle">Tekneo@gmail.com</p>
-          <p className="containet-footer-sbtitle">#123456789 - 65</p>
-          <p className="containet-footer-sbtitle">#123456789 - 65</p>
-          <p className="containet-footer-sbtitle">Calle 123 # 123 - 123</p>
-        </div>
-      </footer>
+    </footer>
+
+    <div className="ftr-back">
+        <img src="/img/colmotica/Logo-colmotica.png" alt="logo teckneo"/>
+        <p className="ftr-back-t1">Copyright © { new Date().getFullYear().toString()} Colmotica Todos los derechos reservados.</p>
+        <p className="ftr-back-t2 font-medium">Términos de servicio | Aviso de política de privacidad </p>
+    </div>
     </Fragment>
   )
 }

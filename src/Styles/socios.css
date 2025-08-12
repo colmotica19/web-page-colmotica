@@ -1,57 +1,60 @@
 /* primera seccion imagen con frace */
-.encabezado-frace{
-    background-image: url(/img/Background.jpg);
-    background-color: var(--color-grey-primario);
-    background-size: cover;
-    height: 150px;
-    background-repeat: no-repeat;
-    background-position: center;
-}
+body[data-page="tekneo"] {
 
-.encabezado-frace p{
-    font-size: 40px;
-    font-weight: bold;
-    font-stretch: ultra-expanded;
-    initial-letter: 20px;
-    color: var(--color-white-primario);
-}
-
-.encabezado-frace p.sub-title{
-    font-size: 15px;
-    font-weight: 200;
-}
-
-.group-partner{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    background-color: var(--color-grey-primario);
-    padding: 100px 200px;
-    gap: 30px;
-}
-
-.group-partner p{
-    color: var(--color-txt-secundary);
-    font-size: 15px;
-    font-weight: 300;
-}
-
-.group-partner img{
-    width: 150px;
-    height: auto;
-}
-
-.socios{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-top: 50px;
-    flex-wrap: wrap;
-}
-
-.btn-movi:hover{
-    transform: scale(1.2);
+    .encabezado-frace{
+        background-image: url(/img/Background.jpg);
+        background-color: var(--color-grey-primario);
+        background-size: cover;
+        height: 150px;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    .encabezado-frace p{
+        font-size: 40px;
+        font-weight: bold;
+        font-stretch: ultra-expanded;
+        initial-letter: 20px;
+        color: var(--color-white-primario);
+    }
+    
+    .encabezado-frace p.sub-title{
+        font-size: 15px;
+        font-weight: 200;
+    }
+    
+    .group-partner{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: white;
+        padding: 100px 200px;
+        gap: 30px;
+    }
+    
+    .group-partner p{
+        color: var(--color-txt-secundary);
+        font-size: 15px;
+        font-weight: 300;
+    }
+    
+    .group-partner img{
+        width: 150px;
+        height: auto;
+    }
+    
+    .socios{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 50px;
+        flex-wrap: wrap;
+    }
+    
+    .btn-movi:hover{
+        transform: scale(1.2);
+    }
 }

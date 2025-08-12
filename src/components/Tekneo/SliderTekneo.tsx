@@ -22,14 +22,14 @@ function closeModal(id: string) {
 export default function SliderSwiper() {
   return (
     <Swiper
-      className="z-1 flex justify-center"
+      className="z-1 flex justify-center h-[150px]"
       slidesPerView={4}
       modules={[Autoplay, Pagination]}
       spaceBetween={3}
       loop={true}
       freeMode={true}
       autoplay={{
-        delay: 3000,
+        delay: 4000,
         disableOnInteraction: false,
       }}
       pagination={{
@@ -38,29 +38,29 @@ export default function SliderSwiper() {
       speed={1000}
       grabCursor={false}
     >
-      <SwiperSlide className="min-h-[100px] flex! justify-center">
+      <SwiperSlide className="flex! justify-center items-center m-auto">
         <button type="button" className="btn-movi" onClick={() => openModal("modal1")}>
-          <img src="/img/zennio logo.png" alt="Akuvox" />
+          <img className="max-h-[100px]" src="/img/zennio logo.png" alt="Akuvox" />
         </button>
       </SwiperSlide>
-      <SwiperSlide className="min-h-[100px] flex! justify-center">
+      <SwiperSlide className="flex! justify-center items-center m-auto">
         <button type="button" className="btn-movi" onClick={() => openModal("modal2")}>
-          <img src="/img/logicmachie.png" alt="logicmachie" />
+          <img className="max-h-[100px]" src="/img/logicmachie.png" alt="logicmachie" />
         </button>
       </SwiperSlide>
-      <SwiperSlide className="min-h-[100px] flex! justify-center">
+      <SwiperSlide className="flex! justify-center items-center m-auto">
         <button type="button" className="btn-movi" onClick={() => openModal("modal3")}>
-          <img src="/img/knx.png" alt="KNX" />
+          <img className="max-h-[100px]" src="/img/knx.png" alt="KNX" />
         </button>
       </SwiperSlide>
-      <SwiperSlide className="min-h-[100px] flex! justify-center">
+      <SwiperSlide className="flex! justify-center items-center m-auto">
         <button type="button" className="btn-movi" onClick={() => openModal("modal4")}>
-          <img src="/img/mobotix.png" alt="Mobotix" />
+          <img className="max-h-[100px]" src="/img/mobotix.png" alt="Mobotix" />
         </button>
       </SwiperSlide>
-      <SwiperSlide className="min-h-[100px] flex! justify-center">
+      <SwiperSlide className="flex! justify-center items-center m-auto">
         <button type="button" className="btn-movi" onClick={() => openModal("modal5")}>
-          <img src="/img/tis.png" alt="Mobotix" />
+          <img className="max-h-[100px]" src="/img/tis.png" alt="Mobotix" />
         </button>
       </SwiperSlide>
 

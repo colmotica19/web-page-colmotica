@@ -5,19 +5,19 @@ export default function Header() {
     <header>
       <section className="section-header">
         <div className="header-primario">
-          <img src="/img/colmotica/COLMOTICA.png" alt="" />
+          <img src="/img/colmotica/Logo-colmotica.png" alt="imagen" />
           <nav className="btn-header" id="nav-menu">
             <NavLink className="btn-header__btn" to="/colmotica">
               <p>Home</p>
             </NavLink>
-            <NavLink className="btn-header__btn" to="products">
+            {/* <NavLink className="btn-header__btn" to="products">
               <p>Productos</p>
-            </NavLink>
-            <NavLink className="btn-header__btn" to="academy">
-              <p>Academy</p>
-            </NavLink>
+            </NavLink> */}
             <NavLink className="btn-header__btn" to="soluciones">
               <p>Soluciones</p>
+            </NavLink>
+            <NavLink className="btn-header__btn" to="academy">
+              <p>Academia</p>
             </NavLink>
             <NavLink className="btn-header__btn" to="consultorias">
               <p>Consultorias</p>
