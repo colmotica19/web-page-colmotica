@@ -499,6 +499,8 @@ body{
       background-color: #1a1a1a;
       color: white;
       padding: 40px 20px;
+      width: -webkit-fill-available;
+
     }
 
     .footer-container {
@@ -545,6 +547,7 @@ body{
     align-items: center;
     flex-direction: column;
     background-color: var(--color-grey-primario);
+      width: -webkit-fill-available;
 
     padding: 30px;
 

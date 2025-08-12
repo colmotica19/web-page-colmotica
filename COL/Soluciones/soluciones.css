@@ -15,7 +15,7 @@
     initial-letter: 10px !important;
 }
 .encabezado-frace-2 p.sub{
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 300;
     font-stretch: ultra-expanded;
     initial-letter: 10px;
@@ -23,8 +23,8 @@
 
 /* seccion de productos */
 .productos-sec{
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 0px;
+    padding-bottom: 10px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
