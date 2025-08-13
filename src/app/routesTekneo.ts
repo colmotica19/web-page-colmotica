@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createHashRouter } from "react-router";
 import { Partners } from "../pages/Tekneo/partners";
 import { routesColmotica } from "./routesColmotica";
 import LayoutColmotica from "../components/Colmotica/LayoutColmotica";
@@ -12,7 +12,7 @@ import Tshow from "../pages/Tekneo/TShow/TShow";
 import Ldm from "../pages/Tekneo/LDM/LDM";
 import Nodemaker from "../pages/Tekneo/Nodemaker/Nodemaker";
 
-export const routerTekneo = createBrowserRouter([
+export const routerTekneo = createHashRouter([
   {
     path: "/",
     Component: LayoutTekneo,
