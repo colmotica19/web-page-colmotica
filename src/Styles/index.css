@@ -511,15 +511,6 @@ body[data-page="tekneo"] {
     justify-content: flex-end;
   }
 
-  .btnIdioma {
-    margin-left: 20px;
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-  }
-
   .btnHamburgesa {
     opacity: 0;
   }

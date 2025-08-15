@@ -33,8 +33,8 @@ export function HomePage() {
 
                 <div className="txt-conten">
                     <h1 className="about__title-que-es mg-botton-20">{t("sobre_tekneo") }</h1>
-                    <p className="about__contenido__p line-">
-                        {t("home_tekneo") }
+                    <p className="about__contenido__p line-" dangerouslySetInnerHTML={{__html: t("home_tekneo") }}>
+                        
                     </p>
                 </div>
             </section>

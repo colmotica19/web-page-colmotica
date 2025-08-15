@@ -133,11 +133,11 @@ body[data-page="colmotica"] {
         flex-direction: row;
     }
 
-    .header-primario img {
+    /* .header-primario img {
         width: 120px;
         height: auto;
         margin-bottom: 20px;
-    }
+    } */
 
     .btn-header {
         display: flex;
@@ -149,11 +149,12 @@ body[data-page="colmotica"] {
     .btn-header a {
         text-decoration: none;
         color: var(--color-black-primario);
+        width: max-content;
     }
 
     .btn-header p {
         margin-bottom: 20px;
-        padding: 0 40px;
+        padding: 0 32px;
         font-size: 16px;
         font-weight: 500;
     }
@@ -498,4 +499,18 @@ body[data-page="colmotica"] {
         }
 
     }
+}
+
+.btnIdioma {
+    margin-left: 0px !important;
+    align-self: flex-start;
+    cursor: pointer;
+}
+
+.btnIdioma svg {
+    fill: var(--color-gray-400);
+}
+
+.btnIdioma span {
+    color: var(--color-gray-400);
 }

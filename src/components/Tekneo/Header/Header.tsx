@@ -3,15 +3,11 @@ import "./Header.css";
 import { useContext, useEffect, useRef } from "react";
 import { GlobalContext } from "../../../singleton/globalContext";
 import { useTranslation } from "react-i18next";
+import BtnChangeLang from "../../global/btnChangeLang";
 
 export function Header() {
-<<<<<<< HEAD
-  const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware, lang, setLang } = useContext(GlobalContext);
+  const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware } = useContext(GlobalContext);
   const { t } = useTranslation()
-=======
-  const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware } =
-    useContext(GlobalContext);
->>>>>>> 4c0f3316e9f18ac668b647f19067f1b66c5591a8
   useEffect(() => {
     const selectCategory =
       document.querySelector<HTMLElement>(".selectCategory");
@@ -220,33 +216,7 @@ export function Header() {
             <i className="search-icon"></i>
           </fieldset>
 
-          <button type="button" title="Cambiar idioma" name="btnIdioma" className="btnIdioma" onClick={() => setLang(lang === "es" ? "en" : "es")}>
-            <svg
-              className="fill-gray-200 size-[20px]"
-              viewBox="0 0 600 600"
-              version="1.1"
-              id="svg9724"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs id="defs9728" />
-              <g
-                id="g1082"
-                transform="matrix(0.86666667,0,0,0.85677845,39.999999,42.966064)"
-                style={{ strokeWidth: 1.16048 }}
-              >
-                <path
-                  id="path241"
-                  style={{
-                    color: "inherit",
-                    fill: "inherit",
-                    strokeLinecap: "round" as const,
-                  }}
-                  d="M 169.23678 -49.88168 A 46.419449 46.419449 0 0 0 122.81475 -3.4618798 L 122.81475 55.162979 L 0.26592663 55.162979 A 46.419399 46.419399 0 0 0 -46.153845 101.58278 A 46.419399 46.419399 0 0 0 0.26592663 148.00258 L 116.47311 148.00258 C 109.84235 231.66594 84.892611 296.90624 9.8820624 349.53878 A 46.419399 46.419399 0 0 0 -1.4558282 414.20006 A 46.419399 46.419399 0 0 0 63.206882 425.53431 C 117.86118 387.18509 154.12427 339.35301 177.04552 287.17079 C 199.33296 323.41323 229.4691 356.59924 269.49745 384.68589 A 46.419399 46.419399 0 0 0 334.1579 373.34936 A 46.419399 46.419399 0 0 0 322.82227 308.69036 C 260.47406 264.94257 232.70979 212.49731 221.29282 148.00258 L 338.13101 148.00258 A 46.419399 46.419399 0 0 0 384.54853 101.58278 A 46.419399 46.419399 0 0 0 338.13101 55.162979 L 215.65655 55.162979 L 215.65655 -3.4618798 A 46.419449 46.419449 0 0 0 169.23678 -49.88168 z M 449.2518 206.90099 A 46.419399 46.419399 0 0 0 406.83443 236.2442 L 268.37064 586.39306 A 46.419399 46.419399 0 0 0 294.46965 646.62961 A 46.419399 46.419399 0 0 0 354.70403 620.53257 L 380.02103 556.50959 L 531.51743 556.50959 L 556.83443 620.53257 A 46.419399 46.419399 0 0 0 617.07106 646.62961 A 46.419399 46.419399 0 0 0 643.16556 586.39306 L 504.70403 236.2442 A 46.419399 46.419399 0 0 0 462.28666 206.90099 A 46.419399 46.419399 0 0 0 455.76923 207.4367 A 46.419399 46.419399 0 0 0 449.2518 206.90099 z M 455.76923 364.95582 L 494.80394 463.66999 L 416.73452 463.66999 L 455.76923 364.95582 z "
-                />
-              </g>
-            </svg>
-            <span className="uppercase text-gray-200 text-[16px] font-bold">{ lang }</span>
-          </button>
+          <BtnChangeLang></BtnChangeLang>
 
           <div className="hamburger btnHamburgesa">
             <div className="_layer -top"></div>
