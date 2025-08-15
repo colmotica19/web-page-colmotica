@@ -116,7 +116,7 @@ header{
     flex-direction: row;
 }
 .header-primario img{
-    width: 120px;
+    width: 180px;
     height: auto;
     margin-bottom: 20px;
 }
@@ -156,6 +156,10 @@ header{
     width: -webkit-fill-available;
     align-items: flex-end;
 }
+.c-produc:hover{
+  transform: scale(1.05);
+  box-shadow: #1a1a1a3f 0px 0px 10px;
+}
 
 .encabezado-frace p{
     font-size: 50px;
@@ -180,8 +184,7 @@ header{
 }
 
 /* seccion productos */
-.setwo{
-}
+
 .c-produc{
     background-color: #F6F6F6;
     border-left: 4px solid black;

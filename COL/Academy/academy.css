@@ -35,6 +35,73 @@
     margin-right: 30px;
 }
 
+.sec-fondo{
+    background-image: url(./../jpg/bg\ aca.png);
+    background-color: var(--color-grey-primario);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-direction: column;
+    width: -webkit-fill-available;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding-bottom: 60px;
+}
+.title-fondo{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+.sbtitle-fondo{
+    font-size: 16px;
+    font-weight: 200;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.w30{
+    width: 30%;
+}
+.w30:hover {
+  transform: scale(1.05);
+}
+.w100{
+    width: 100%;
+}
+.mg-card{
+    margin: 15px;
+}
+
+/* secion img card */
+.container-card{
+    justify-content: space-around;
+}
+.card-img{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
+    text-align: center;
+    margin-bottom: 60px;
+}
+.card-img:hover {
+  transform: scale(1.05);
+}
+.card-img p{
+    font-size: 16px;
+    font-weight: 200;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+.card-img img{
+    max-width: 240px;
+    margin-top: 15px;
+}
+
+
 /* @media Celular */
 @media only screen and (max-width: 425px) {
 
@@ -48,6 +115,10 @@
 
 /* @media Tablet */
 @media only screen and (max-width: 768px) {
+
+    .w30{
+        width: 100%;
+    }
 
     .secone-acad{
         justify-content: center;
