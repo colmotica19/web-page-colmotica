@@ -1,39 +1,27 @@
 import { useContext } from "react";
 import { Fragment } from "react/jsx-runtime";
 import { GlobalContext } from "../../singleton/globalContext";
+import { useTranslation } from "react-i18next";
 // import './../../Styles/index.css'
 // import './../../Styles/tekneo.css'
 export function HomePage() {
-    const {setFocusHardware, setFocusSoftware} = useContext(GlobalContext)
+    const { setFocusHardware, setFocusSoftware } = useContext(GlobalContext)
+    const {t} = useTranslation()
     return (
         <Fragment>
             <section className="encabezado-frace">
                 <p data-i18n="frase_principal">
-                    Soluciones inteligentes en Building Automation, adaptables y avanzadas para satisfacer las necesidades de cualquier proyecto.
+                    {t("frase_principal")}
                 </p>
             </section>
 
             <section className="about">
                 <div className="about__title">
-                    <p data-i18n="section_quienes_somos" className="about__title-que-es">Quiénes Somos</p>
+                    <p className="about__title-que-es" >{t("section_quienes_somos") }</p>
                 </div>
 
                 <div className="about__contenido">
-                    <p data-i18n="quienes_somos_parrafo">
-                        <b>Tekneo </b> es una marca dedicada al desarrollo de software
-                        especializado para proyectos de automatización, seguridad y control
-                        inteligente en edificios e instalaciones técnicas.
-                        <br />
-                        Nuestra propuesta
-                        se centra en ofrecer herramientas robustas, escalables y fáciles de
-                        usar, diseñadas para facilitar la integración entre tecnologías y
-                        protocolos de distintos fabricantes.
-                        <br /><br />
-                        Creamos soluciones que simplifican procesos complejos, permiten una
-                        supervisión más eficiente y potencian la interoperabilidad en sistemas
-                        críticos. A través de nuestras plataformas, brindamos a los
-                        integradores el control total sobre sus instalaciones, permitiéndoles
-                        construir entornos más seguros, conectados y funcionales.
+                    <p dangerouslySetInnerHTML={{__html: t("quienes_somos_parrafo") }}>
                     </p>
                 </div>
             </section>
@@ -44,10 +32,9 @@ export function HomePage() {
                 </div>
 
                 <div className="txt-conten">
-                    <h1 className="about__title-que-es mg-botton-20">Sobre Tekneo</h1>
+                    <h1 className="about__title-que-es mg-botton-20">{t("sobre_tekneo") }</h1>
                     <p className="about__contenido__p line-">
-                        En <b>Tekneo</b> diseñamos soluciones de software para la automatización, seguridad y control inteligente de instalaciones. <br /> <br />
-                        Nos especializamos en conectar tecnologías mediante herramientas potentes y accesibles, que permiten a los integradores construir sistemas eficientes, seguros y completamente adaptados a las necesidades del cliente. Nuestra misión es simplificar la interoperabilidad y elevar el nivel de automatización en cada proyecto.
+                        {t("home_tekneo") }
                     </p>
                 </div>
             </section>
@@ -56,14 +43,14 @@ export function HomePage() {
                 <div>
                     {/* <p className="about__title-quienes txt-center">FUNCIONES INTEGRALES</p> */}
                     <h1 className="about__title-que-es mg-botton-20 txt-center">
-                        Recursos
+                        {t("recursos") }
                     </h1>
                 </div>
 
                 <div className="container-card">
                     <div className="container-card__cards holographic-card">
                         <img src="/img/Dowload App.png" alt="Dowload" />
-                        <p className="title-app">Academy</p>
+                        <p className="title-app">{t("home_academia") }</p>
                     </div>
 
                     <button type="button" className="container-card__cards holographic-card" onClick={() => {
@@ -71,12 +58,12 @@ export function HomePage() {
                         setFocusSoftware(true)
                     }}>
                         <img src="/img/Manuales.png" alt="Manuales" />
-                        <p className="title-app">Catálogo de productos</p>
+                        <p className="title-app">{t("home_productos") }</p>
                     </button>
 
                     <div className="container-card__cards holographic-card">
                         <img src="/img/Video.png" alt="Video" />
-                        <p className="title-app">Soporte</p>
+                        <p className="title-app">{t("nav_soporte") }</p>
                     </div>
                 </div>
             </section>

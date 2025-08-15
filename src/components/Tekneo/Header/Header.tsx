@@ -2,9 +2,11 @@ import { NavLink } from "react-router";
 import "./Header.css";
 import { useContext, useEffect, useRef } from "react";
 import { GlobalContext } from "../../../singleton/globalContext";
+import { useTranslation } from "react-i18next";
 
 export function Header() {
-  const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware } = useContext(GlobalContext);
+  const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware, lang, setLang } = useContext(GlobalContext);
+  const { t } = useTranslation()
   useEffect(() => {
     const selectCategory = document.querySelector<HTMLElement>('.selectCategory');
     const categoryItems = document.querySelectorAll<HTMLSpanElement>('.selectCategory > .category');
@@ -160,6 +162,7 @@ export function Header() {
 
   const dropdownContent = useRef<HTMLDivElement>(null)
 
+
   return (
     <header className="sticky top-0 z-10">
       <section className="section-header">
@@ -172,7 +175,7 @@ export function Header() {
             <i className="search-icon"></i>
           </fieldset>
 
-          <button title="Cambiar idioma" name="btnIdioma" className="btnIdioma">
+          <button type="button" title="Cambiar idioma" name="btnIdioma" className="btnIdioma" onClick={() => setLang(lang === "es" ? "en" : "es")}>
             <svg
               className="fill-gray-200 size-[20px]"
               viewBox="0 0 600 600"
@@ -191,7 +194,7 @@ export function Header() {
                   d="M 169.23678 -49.88168 A 46.419449 46.419449 0 0 0 122.81475 -3.4618798 L 122.81475 55.162979 L 0.26592663 55.162979 A 46.419399 46.419399 0 0 0 -46.153845 101.58278 A 46.419399 46.419399 0 0 0 0.26592663 148.00258 L 116.47311 148.00258 C 109.84235 231.66594 84.892611 296.90624 9.8820624 349.53878 A 46.419399 46.419399 0 0 0 -1.4558282 414.20006 A 46.419399 46.419399 0 0 0 63.206882 425.53431 C 117.86118 387.18509 154.12427 339.35301 177.04552 287.17079 C 199.33296 323.41323 229.4691 356.59924 269.49745 384.68589 A 46.419399 46.419399 0 0 0 334.1579 373.34936 A 46.419399 46.419399 0 0 0 322.82227 308.69036 C 260.47406 264.94257 232.70979 212.49731 221.29282 148.00258 L 338.13101 148.00258 A 46.419399 46.419399 0 0 0 384.54853 101.58278 A 46.419399 46.419399 0 0 0 338.13101 55.162979 L 215.65655 55.162979 L 215.65655 -3.4618798 A 46.419449 46.419449 0 0 0 169.23678 -49.88168 z M 449.2518 206.90099 A 46.419399 46.419399 0 0 0 406.83443 236.2442 L 268.37064 586.39306 A 46.419399 46.419399 0 0 0 294.46965 646.62961 A 46.419399 46.419399 0 0 0 354.70403 620.53257 L 380.02103 556.50959 L 531.51743 556.50959 L 556.83443 620.53257 A 46.419399 46.419399 0 0 0 617.07106 646.62961 A 46.419399 46.419399 0 0 0 643.16556 586.39306 L 504.70403 236.2442 A 46.419399 46.419399 0 0 0 462.28666 206.90099 A 46.419399 46.419399 0 0 0 455.76923 207.4367 A 46.419399 46.419399 0 0 0 449.2518 206.90099 z M 455.76923 364.95582 L 494.80394 463.66999 L 416.73452 463.66999 L 455.76923 364.95582 z " />
               </g>
             </svg>
-            <span className="uppercase text-gray-200 text-[16px] font-bold">es</span>
+            <span className="uppercase text-gray-200 text-[16px] font-bold">{ lang }</span>
           </button>
 
           <div className="hamburger btnHamburgesa">
@@ -215,10 +218,7 @@ export function Header() {
                         </div>
                         <div className="containerBodyAndFooterProduct">
                           <span className="bodyProductItem">TGate</span>
-                          <span className="footerProductItem">Software especializado en gestión y control
-                            de
-                            accesos, ideal para fortalecer la seguridad en
-                            instalaciones de cualquier tamaño.
+                          <span className="footerProductItem">{t("descripción_tgate") }
                           </span>
                         </div>
                       </NavLink>
@@ -230,9 +230,7 @@ export function Header() {
                         </div>
                         <div className="containerBodyAndFooterProduct">
                           <span className="bodyProductItem">Tshow</span>
-                          <span className="footerProductItem">Es una solución tecnológica avanzada para la
-                            administración centralizada de archivos multimedia,
-                            diseñada para operar en entornos de red privados.
+                          <span className="footerProductItem">{t("descripción_tshow") }
                           </span>
                         </div>
                       </NavLink>
@@ -245,10 +243,7 @@ export function Header() {
                         </div>
                         <div className="containerBodyAndFooterProduct">
                           <span className="bodyProductItem">Nodemaker</span>
-                          <span data-i18n="descripción_nodemaker" className="footerProductItem">Herramienta de integración
-                            diseñada para interconectar
-                            dispositivos y sistemas que utilizan distintos protocolos de comunicación, como KNX,
-                            Modbus, MQTT y HTTP</span>
+                          <span className="footerProductItem">{t("descripción_nodemaker") }</span>
                         </div>
                       </NavLink>
                     </li>
@@ -259,25 +254,25 @@ export function Header() {
                         </div>
                         <div className="containerBodyAndFooterProduct">
                           <span className="bodyProductItem">LDM</span>
-                          <span data-i18n="descripción_ldm" className="footerProductItem">Descripción</span>
+                          <span className="footerProductItem">{t("descripción_ldm") }</span>
                         </div>
                       </NavLink>
                     </li>
                   </ul>
                 </div>
               </li>
-              <li><a href="/Socios/socios.html">Socios</a></li>
-              <li><a id="myBtn">Soporte</a></li>
+              <li><NavLink to="socios">{t("nav_socios") }</NavLink></li>
+              <li><NavLink to={""} id="myBtn">{t("nav_soporte") }</NavLink></li>
             </ul>
           </nav>
         </div>
 
-        <div id="myModal" className="modal">
+        {/* <div id="myModal" className="modal">
           <div className="modal-content">
             <span className="close">&times;</span>
             <p>Sección Restringida, para poder acceder debes iniciar sección</p>
           </div>
-        </div>
+        </div> */}
 
         <div className="header-primario">
           <NavLink to="colmotica">
@@ -285,17 +280,17 @@ export function Header() {
           </NavLink>
           <nav className="btn-header" id="nav-menu">
             <NavLink className="btn-header__btn" to="/">
-              <p data-i18n="">Inicio</p>
+              <p>{t("nav_inicio") }</p>
             </NavLink>
             <a className="btn-header__btn dropdown">
-              <p>Productos</p>
+              <p>{t("nav_productos") }</p>
             </a>
             <a id="myBtn" className="btn-header__btn">
-              <p>Soporte</p>
+              <p>{t("nav_soporte") }</p>
             </a>
 
             <NavLink className="btn-header__btn" to="socios">
-              <p>Socios</p>
+              <p>{t("nav_socios") }</p>
             </NavLink>
           </nav>
           <div className="dropdown-content" ref={dropdownContent}>
@@ -310,9 +305,7 @@ export function Header() {
                 </div>
                 <div className="containerBodyAndFooterProduct">
                   <span className="bodyProductItem">TGate</span>
-                  <span data-i18n="descripción_tgate" className="footerProductItem">Software especializado en
-                    gestión y control de accesos,
-                    ideal para fortalecer la seguridad en instalaciones de cualquier tamaño. </span>
+                  <span className="footerProductItem">{t("descripción_tgate") } </span>
                 </div>
               </NavLink>
               <NavLink to="tshow" onClick={() => dropdownContent.current?.classList.remove("show")}>
@@ -321,9 +314,7 @@ export function Header() {
                 </div>
                 <div className="containerBodyAndFooterProduct">
                   <span className="bodyProductItem">Tshow</span>
-                  <span data-i18n="descripción_tshow" className="footerProductItem">Es una solución tecnológica
-                    avanzada para la administración
-                    centralizada de archivos multimedia, diseñada para operar en entornos de red privados.
+                  <span className="footerProductItem">{t("descripción_tshow") }
                   </span>
                 </div>
               </NavLink>
@@ -334,10 +325,7 @@ export function Header() {
                 </div>
                 <div className="containerBodyAndFooterProduct">
                   <span className="bodyProductItem">Nodemaker</span>
-                  <span data-i18n="descripción_nodemaker" className="footerProductItem">Herramienta de integración
-                    diseñada para interconectar
-                    dispositivos y sistemas que utilizan distintos protocolos de comunicación, como KNX,
-                    Modbus, MQTT y HTTP</span>
+                  <span className="footerProductItem">{t("descripción_nodemaker") }</span>
                 </div>
               </NavLink>
               <NavLink to="ldm" className="relative" onClick={() => dropdownContent.current?.classList.remove("show")}>
@@ -346,7 +334,7 @@ export function Header() {
                 </div>
                 <div className="containerBodyAndFooterProduct">
                   <span className="bodyProductItem">LDM</span>
-                  <span data-i18n="descripción_ldm" className="footerProductItem">Descripción</span>
+                  <span className="footerProductItem">{t("descripción_ldm") }</span>
                 </div>
               </NavLink>
             </section>

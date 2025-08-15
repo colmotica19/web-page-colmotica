@@ -5,6 +5,8 @@ interface GlobalContext {
   setFocusSoftware: Dispatch<SetStateAction<boolean>>;
   focusHardware: boolean;
   setFocusHardware: Dispatch<SetStateAction<boolean>>;
+  lang: string,
+  setLang: Dispatch<SetStateAction<string>>
 }
 
 export const GlobalContext = createContext({} as GlobalContext);
