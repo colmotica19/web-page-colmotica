@@ -1,13 +1,54 @@
 import { NavLink } from "react-router";
 import "./Header.css";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useMemo, useRef } from "react";
 import { GlobalContext } from "../../../singleton/globalContext";
 import { useTranslation } from "react-i18next";
 import BtnChangeLang from "../../global/btnChangeLang";
 
 export function Header() {
-  const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware } = useContext(GlobalContext);
+  const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware, lang } = useContext(GlobalContext);
   const { t } = useTranslation()
+  const mapProducts = useRef(new Map<string, HTMLAnchorElement>());
+  const hardwareProducts = useMemo(() => [
+    {
+      url: "https://es.aliexpress.com/item/4000232174472.html?...",
+      img: "/img/Lector QR.png",
+      name: "TK-Lector",
+      description:
+        t("products_lee"),
+    },
+    {
+      url: "https://es.aliexpress.com/item/4000999069820.html?...",
+      img: "/img/Modulo DT-R004.png",
+      name: "Modulo TK-IO44W",
+      description:
+        t("products_reles"),
+    },
+    {
+      url: "https://es.aliexpress.com/item/4000999069820.html?...",
+      img: "/img/Modulo TK-IO22W.webp",
+      name: "Modulo TK-IO22W",
+      description:
+        t("products_reles"),
+    },
+    {
+      url: "https://es.aliexpress.com/item/4000999069820.html?...",
+      img: "/img/Modulo TK-IO88W.webp",
+      name: "Modulo TK-IO88W",
+      description:
+        t("products_reles"),
+    },
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  ], [t, lang]);
+  useEffect(() => {
+    mapProducts.current.forEach((value, key) => {
+      const footerText = value.querySelector(".footerProductItem")
+      if (footerText) {
+        footerText.textContent = hardwareProducts.find((item) => item.img === key)?.description ?? ""
+      }
+    })
+   
+  }, [hardwareProducts])
   useEffect(() => {
     const selectCategory =
       document.querySelector<HTMLElement>(".selectCategory");
@@ -21,36 +62,7 @@ export function Header() {
       throw new Error("No se encontró el elemento ''selectProduct");
     const softwareLinks = selectProduct.querySelectorAll("a");
     // Constantes para URLs e info de productos hardware
-    const hardwareProducts = [
-      {
-        url: "https://es.aliexpress.com/item/4000232174472.html?...",
-        img: "/img/Lector QR.png",
-        name: "TK-Lector",
-        description:
-          "Lee codigo QR o tarjeta EM para el funcionamiento del software 'TGate'",
-      },
-      {
-        url: "https://es.aliexpress.com/item/4000999069820.html?...",
-        img: "/img/Modulo DT-R004.png",
-        name: "Modulo TK-IO44W",
-        description:
-          "Modulo de relés programables, sirve para el funcionamiento del software 'TGate'",
-      },
-      {
-        url: "https://es.aliexpress.com/item/4000999069820.html?...",
-        img: "/img/Modulo TK-IO22W.webp",
-        name: "Modulo TK-IO22W",
-        description:
-          "Modulo de relés programables, sirve para el funcionamiento del software 'TGate'",
-      },
-      {
-        url: "https://es.aliexpress.com/item/4000999069820.html?...",
-        img: "/img/Modulo TK-IO88W.webp",
-        name: "Modulo TK-IO88W",
-        description:
-          "Modulo de relés programables, sirve para el funcionamiento del software 'TGate'",
-      },
-    ];
+
     // Limpia los productos actuales del dropdown
     function clearProducts() {
       if (!selectProduct)
@@ -73,7 +85,8 @@ export function Header() {
         selectProduct.appendChild(element);
       });
     }
-    const mapProducts = new Map<string, HTMLAnchorElement>();
+
+
     // Crea un nodo <a> de producto
     function createProduct(
       anchorSrc: string,
@@ -88,7 +101,7 @@ export function Header() {
       ) {
         throw new TypeError("Todos los argumentos deben ser strings");
       }
-      if (!mapProducts.has(imgSrc)) {
+      if (!mapProducts.current.has(imgSrc)) {
         const anchor = document.createElement("a");
         anchor.href = anchorSrc;
         anchor.target = "_blank";
@@ -108,10 +121,11 @@ export function Header() {
         footer.textContent = description;
         content.append(body, footer);
         anchor.append(header, content);
-        mapProducts.set(imgSrc, anchor);
+        mapProducts.current.set(imgSrc, anchor);
         return anchor;
       } else {
-        return mapProducts.get(imgSrc) as HTMLAnchorElement;
+        console.log(mapProducts)
+        return mapProducts.current.get(imgSrc) as HTMLAnchorElement;
       }
     }
     // Cambia la categoría seleccionada
@@ -246,7 +260,7 @@ export function Header() {
                         </div>
                         <div className="containerBodyAndFooterProduct">
                           <span className="bodyProductItem">TGate</span>
-                          <span className="footerProductItem">{t("descripción_tgate") }
+                          <span className="footerProductItem">{t("descripción_tgate")}
                           </span>
                         </div>
                       </NavLink>
@@ -261,7 +275,7 @@ export function Header() {
                         </div>
                         <div className="containerBodyAndFooterProduct">
                           <span className="bodyProductItem">Tshow</span>
-                          <span className="footerProductItem">{t("descripción_tshow") }
+                          <span className="footerProductItem">{t("descripción_tshow")}
                           </span>
                         </div>
                       </NavLink>
@@ -277,7 +291,7 @@ export function Header() {
                         </div>
                         <div className="containerBodyAndFooterProduct">
                           <span className="bodyProductItem">Nodemaker</span>
-                          <span className="footerProductItem">{t("descripción_nodemaker") }</span>
+                          <span className="footerProductItem">{t("descripción_nodemaker")}</span>
                         </div>
                       </NavLink>
                     </li>
@@ -292,15 +306,15 @@ export function Header() {
                         </div>
                         <div className="containerBodyAndFooterProduct">
                           <span className="bodyProductItem">LDM</span>
-                          <span className="footerProductItem">{t("descripción_ldm") }</span>
+                          <span className="footerProductItem">{t("descripción_ldm")}</span>
                         </div>
                       </NavLink>
                     </li>
                   </ul>
                 </div>
               </li>
-              <li><NavLink to="socios">{t("nav_socios") }</NavLink></li>
-              <li><NavLink to={""} id="myBtn">{t("nav_soporte") }</NavLink></li>
+              <li><NavLink to="socios">{t("nav_socios")}</NavLink></li>
+              <li><NavLink to={""} id="myBtn">{t("nav_soporte")}</NavLink></li>
             </ul>
           </nav>
         </div>
@@ -322,17 +336,17 @@ export function Header() {
           </NavLink>
           <nav className="btn-header" id="nav-menu">
             <NavLink className="btn-header__btn" to="/">
-              <p>{t("nav_inicio") }</p>
+              <p>{t("nav_inicio")}</p>
             </NavLink>
             <a className="btn-header__btn dropdown">
-              <p>{t("nav_productos") }</p>
+              <p>{t("nav_productos")}</p>
             </a>
             <a id="myBtn" className="btn-header__btn">
-              <p>{t("nav_soporte") }</p>
+              <p>{t("nav_soporte")}</p>
             </a>
 
             <NavLink className="btn-header__btn" to="socios">
-              <p>{t("nav_socios") }</p>
+              <p>{t("nav_socios")}</p>
             </NavLink>
           </nav>
           <div className="dropdown-content" ref={dropdownContent}>
@@ -359,7 +373,7 @@ export function Header() {
                 </div>
                 <div className="containerBodyAndFooterProduct">
                   <span className="bodyProductItem">TGate</span>
-                  <span className="footerProductItem">{t("descripción_tgate") } </span>
+                  <span className="footerProductItem">{t("descripción_tgate")} </span>
                 </div>
               </NavLink>
               <NavLink
@@ -373,7 +387,7 @@ export function Header() {
                 </div>
                 <div className="containerBodyAndFooterProduct">
                   <span className="bodyProductItem">Tshow</span>
-                  <span className="footerProductItem">{t("descripción_tshow") }
+                  <span className="footerProductItem">{t("descripción_tshow")}
                   </span>
                 </div>
               </NavLink>
@@ -392,7 +406,7 @@ export function Header() {
                 </div>
                 <div className="containerBodyAndFooterProduct">
                   <span className="bodyProductItem">Nodemaker</span>
-                  <span className="footerProductItem">{t("descripción_nodemaker") }</span>
+                  <span className="footerProductItem">{t("descripción_nodemaker")}</span>
                 </div>
               </NavLink>
               <NavLink
@@ -411,7 +425,7 @@ export function Header() {
                 </div>
                 <div className="containerBodyAndFooterProduct">
                   <span className="bodyProductItem">LDM</span>
-                  <span className="footerProductItem">{t("descripción_ldm") }</span>
+                  <span className="footerProductItem">{t("descripción_ldm")}</span>
                 </div>
               </NavLink>
             </section>

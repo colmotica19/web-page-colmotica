@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 export default function Header() {
   const {t } = useTranslation()
   return (
-    <header className="sticky top-0 bg-white drop-shadow-[0px_10px_10px_rgba(0,0,0,0.1)]">
+    <header className="sticky top-0 bg-white drop-shadow-[0px_10px_10px_rgba(0,0,0,0.1)] z-10">
       <section className="section-header">
         <div className="header-primario">
           <img src="/img/colmotica/Logo-colmotica.png" alt="imagen" width={"auto"} className="w-[180px] mb-[20px]!" />

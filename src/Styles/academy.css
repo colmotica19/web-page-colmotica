@@ -91,4 +91,55 @@ body[data-page="colmotica"] {
     /* @media Computador */
     @media only screen and (max-width: 1440px) {}
 
+    .sec-fondo {
+        background-image: url(/img/colmotica/bg\ aca.png);
+        background-color: var(--color-grey-primario);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        flex-direction: column;
+        width: -webkit-fill-available;
+        justify-content: start;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding-bottom: 60px;
+    }
+
+    .title-fondo {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .sbtitle-fondo {
+        font-size: 16px;
+        font-weight: 200;
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+
+    .card-img {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        width: 40%;
+        text-align: center;
+        margin-bottom: 60px;
+        transition: transform 0.3s ease;
+    }
+
+    .card-img:hover {
+        transform: scale(1.05);
+    }
+
+    .card-img p {
+        font-size: 16px;
+        font-weight: 200;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+
 }
