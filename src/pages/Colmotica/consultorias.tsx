@@ -25,7 +25,7 @@ export default function Consultorias() {
         </div>
 
         <div className="secone-acad">
-          <img className="img-acad" src="/img/colmotica/consull.png" alt="" />
+          <img className="img-acad max-w-none" src="/img/colmotica/consull.png" alt="" />
         </div>
       </div>
     </>

@@ -1,5 +1,5 @@
-import { Helmet } from "react-helmet-async";
 import SliderSwiper from "../../components/Tekneo/SliderTekneo";
+import './../../Styles/socios.css';
 
 export function Partners() {
   // Cierra el modal al hacer clic fuera del contenido
@@ -55,9 +55,6 @@ export function Partners() {
 
   return (
     <>
-      <Helmet>
-        <link rel="stylesheet" href="/src/Styles/socios.css" />
-      </Helmet>
       <section className="encabezado-frace">
         <p>Socios (Ecosistema Tecnológico)</p>
         <p className="sub-title">

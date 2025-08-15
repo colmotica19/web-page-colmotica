@@ -1,4 +1,4 @@
-import Products from "../pages/Colmotica/products";
+// import Products from "../pages/Colmotica/products";
 import Academy from "../pages/Colmotica/academy";
 import Soluciones from "../pages/Colmotica/soluciones";
 import Consultorias from "../pages/Colmotica/consultorias";
@@ -12,10 +12,10 @@ export const routesColmotica = [
     index: true,
     Component: Home
   },
-  {
-    path: "products",
-    Component: Products
-  },
+  // {
+  //   path: "products",
+  //   Component: Products
+  // },
   {
     path: 'academy',
     Component: Academy

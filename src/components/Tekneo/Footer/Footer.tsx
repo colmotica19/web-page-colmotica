@@ -1,4 +1,12 @@
-import { useContext, useRef, useState, type Dispatch, type FormEvent, type FormEventHandler, type SetStateAction } from "react";
+import {
+  useContext,
+  useRef,
+  useState,
+  type Dispatch,
+  type FormEvent,
+  type FormEventHandler,
+  type SetStateAction,
+} from "react";
 import "./Footer.css";
 import { GlobalContext } from "../../../singleton/globalContext";
 import { FaFacebookF } from "react-icons/fa";
@@ -11,12 +19,15 @@ export function FooterComponent() {
   const { setFocusHardware, setFocusSoftware } = useContext(GlobalContext);
   const modalRef = useRef<ModalHandle>(null);
   const formHandler: FormEventHandler = (event: FormEvent) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
   const [telephoneCopied, setTelephoneCopied] = useState(false);
   const [isEmailCopied, setIsEmailCopied] = useState(false);
 
-  const handleCopy = async (text: string, setValue: Dispatch<SetStateAction<boolean>>) => {
+  const handleCopy = async (
+    text: string,
+    setValue: Dispatch<SetStateAction<boolean>>
+  ) => {
     try {
       await navigator.clipboard.writeText(text);
       setValue(true);
@@ -34,8 +45,14 @@ export function FooterComponent() {
             <h1 className="text-3xl">Enviar Comentarios</h1>
             <form onSubmit={formHandler} className="flex flex-col gap-[16px]">
               <label htmlFor="comentarios">Opina sobre Tekneo:</label>
-              <textarea name="comentarios" id="comentarios" className="border-[1px] border-gray-300 rounded-[4px] p-[8px] focus:outline-gray-400"></textarea>
-              <button type="submit" title="Envia tus comentarios">Enviar</button>
+              <textarea
+                name="comentarios"
+                id="comentarios"
+                className="border-[1px] border-gray-300 rounded-[4px] p-[8px] focus:outline-gray-400"
+              ></textarea>
+              <button type="submit" title="Envia tus comentarios">
+                Enviar
+              </button>
             </form>
           </div>
         </Modal>
@@ -49,35 +66,98 @@ export function FooterComponent() {
           </div>
           <div className="footer-column flex flex-col gap-2.5 text-left justify-start">
             <h4>Productos</h4>
-            <button className="flex justify-start text-left" type="button" onClick={() => {
-              setFocusSoftware(true)
-              setFocusHardware(false)
-            }}>Software</button>
-            <button className="flex justify-start text-left" type="button" onClick={() => {
-              setFocusHardware(true)
-              setFocusSoftware(false)
-            }}>Hardware</button>
+            <button
+              className="flex justify-start text-left"
+              type="button"
+              onClick={() => {
+                setFocusSoftware(true);
+                setFocusHardware(false);
+              }}
+            >
+              Software
+            </button>
+            <button
+              className="flex justify-start text-left"
+              type="button"
+              onClick={() => {
+                setFocusHardware(true);
+                setFocusSoftware(false);
+              }}
+            >
+              Hardware
+            </button>
           </div>
           <div className="footer-column flex flex-col gap-2.5 text-left justify-start">
             <h4>Soporte</h4>
-            <button className="text-left flex justify-start" type="button" title="Puedes enviar comentarios sobre Tekneo" onClick={() => modalRef.current?.showModal()}>Centro de ayuda</button>
-            <NavLink to="preguntasFrecuentes" onClick={() => scroll({ top: 0, left: 0 })}>FAQs</NavLink>
-            <NavLink to="politicaDePrivacidad" onClick={() => scroll({ top: 0, left: 0 })}>Política de privacidad</NavLink>
+            <button
+              className="text-left flex justify-start"
+              type="button"
+              title="Puedes enviar comentarios sobre Tekneo"
+              onClick={() => modalRef.current?.showModal()}
+            >
+              Centro de ayuda
+            </button>
+            <NavLink
+              to="preguntasFrecuentes"
+              onClick={() => scroll({ top: 0, left: 0 })}
+            >
+              FAQs
+            </NavLink>
+            <NavLink
+              to="politicaDePrivacidad"
+              onClick={() => scroll({ top: 0, left: 0 })}
+            >
+              Política de privacidad
+            </NavLink>
             <NavLink to="terminosYCondiciones">Términos y condiciones</NavLink>
           </div>
           <div className="footer-column flex flex-col gap-2.5 text-left justify-start">
             <h4>Contacto</h4>
-            <a href="https://maps.app.goo.gl/LzEZQtpqqvK2yZY89" target="_blank">Cl. 70 #52-54, Local 225</a>
-            <a href="https://maps.app.goo.gl/LzEZQtpqqvK2yZY89" target="_blank">Nte. Centro Historico, Barranquilla, Atlántico</a>
-            <button type="button" onClick={() => handleCopy("+57 3015678899", setTelephoneCopied)} className="text-left">
+            <a href="https://maps.app.goo.gl/LzEZQtpqqvK2yZY89" target="_blank">
+              Cra 53 #68B-125, Local 225
+            </a>
+            <a href="https://maps.app.goo.gl/LzEZQtpqqvK2yZY89" target="_blank">
+              Nte. Centro Historico, Barranquilla, Atlántico
+            </a>
+            <button
+              type="button"
+              onClick={() => handleCopy("+57 3015678899", setTelephoneCopied)}
+              className="text-left"
+            >
               {telephoneCopied ? "Copiado" : "+57 3015678899"}
             </button>
-            <button type="button" className="text-left" onClick={() => handleCopy("info@tekeno.es", setIsEmailCopied)}>{isEmailCopied ? "Copiado" : "info@tekeno.es" }</button>
+            <button
+              type="button"
+              className="text-left"
+              onClick={() => handleCopy("info@tekeno.es", setIsEmailCopied)}
+            >
+              {isEmailCopied ? "Copiado" : "info@tekeno.es"}
+            </button>
             <div className="flex flex-row gap-[30px] justify-start mt-[10px]">
-              <a href="https://www.facebook.com/?locale=es_LA" title="Facebook" target="_blank"><FaFacebookF size={26} /></a>
-              <a href="https://web.whatsapp.com/" title="Whatsapp" target="_blank"><SiWhatsapp size={26} /></a>
-              <a href="https://x.com/" title="X" target="_blank"><BsTwitterX size={26} /></a>
-              <a href="https://www.instagram.com/" title="Instagram" target="_blank"><FaInstagram size={26} ></FaInstagram></a>
+              <a
+                href="https://www.facebook.com/?locale=es_LA"
+                title="Facebook"
+                target="_blank"
+              >
+                <FaFacebookF size={26} />
+              </a>
+              <a
+                href="https://web.whatsapp.com/"
+                title="Whatsapp"
+                target="_blank"
+              >
+                <SiWhatsapp size={26} />
+              </a>
+              <a href="https://x.com/" title="X" target="_blank">
+                <BsTwitterX size={26} />
+              </a>
+              <a
+                href="https://www.instagram.com/"
+                title="Instagram"
+                target="_blank"
+              >
+                <FaInstagram size={26}></FaInstagram>
+              </a>
             </div>
           </div>
         </div>
