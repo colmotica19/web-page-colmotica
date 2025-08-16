@@ -1,14 +1,5 @@
 /* primera seccion imagen con frace */
 body[data-page="tekneo"] {
-
-    .encabezado-frace{
-        background-image: url(/img/Background.jpg);
-        background-color: var(--color-grey-primario);
-        background-size: cover;
-        height: 150px;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
     
     .encabezado-frace p{
         font-size: 40px;

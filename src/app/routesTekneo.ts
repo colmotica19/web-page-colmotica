@@ -11,6 +11,7 @@ import TerminosYCondiciones from "../pages/Tekneo/terminosYCondiciones";
 import Tshow from "../pages/Tekneo/TShow/TShow";
 import Ldm from "../pages/Tekneo/LDM/LDM";
 import Nodemaker from "../pages/Tekneo/Nodemaker/Nodemaker";
+import Productos from "../pages/Tekneo/productos";
 
 export const routerTekneo = createHashRouter([
   {
@@ -57,6 +58,10 @@ export const routerTekneo = createHashRouter([
         path: "terminosYCondiciones",
         Component: TerminosYCondiciones,
       },
+      {
+        path: "productos",
+        Component: Productos
+      }
     ],
   },
   {

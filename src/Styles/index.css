@@ -15,15 +15,15 @@
   /* font-smooth: always; */
 }
 
-  @keyframes appearProductItem {
-    0% {
-      transform: scale(0.8);
-    }
-
-    100% {
-      transform: scale(1);
-    }
+@keyframes appearProductItem {
+  0% {
+    transform: scale(0.8);
   }
+
+  100% {
+    transform: scale(1);
+  }
+}
 
 body[data-page="tekneo"] {
   * {
@@ -509,6 +509,7 @@ body[data-page="tekneo"] {
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
+    gap: 15px;
   }
 
   .btnHamburgesa {
@@ -540,18 +541,20 @@ body[data-page="tekneo"] {
     background-color: var(--color-white-primario);
     display: flex;
     position: relative;
-    padding: 20px 200px 0px 200px;
-    justify-content: space-between;
-    align-items: flex-end;
+    justify-content: space-around;
+    align-items: center;
     flex-direction: row;
     /* box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.146); */
     filter: drop-shadow(0px 4px 17px rgba(0, 0, 0, 0.146));
+    padding: 15px;
+    padding-bottom: 0px;
+    height: 55px;
   }
 
   .header-primario > a > img {
     width: 120px;
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   .btn-header {
@@ -559,11 +562,15 @@ body[data-page="tekneo"] {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap: 40px;
+    height: 100%;
   }
 
   .btn-header a {
     text-decoration: none;
     color: var(--color-black-primario);
+    height: 100%;
+    padding: 0px 15px;
   }
 
   .btn-header__btn {
@@ -575,8 +582,8 @@ body[data-page="tekneo"] {
   }
 
   .btn-header p {
-    margin-bottom: 20px;
-    padding: 0 40px;
+    /* margin-bottom: 20px;
+    padding: 0 40px; */
     font-size: 16px;
     font-weight: 500;
   }
@@ -645,6 +652,8 @@ body[data-page="tekneo"] {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    height: max-content;
+    width: max-content;
   }
 
   .img-logo-seccion img {
@@ -786,7 +795,7 @@ body[data-page="tekneo"] {
   /* @media Celular */
   @media only screen and (max-width: 600px) {
     .pre-header {
-      justify-content: center;
+      justify-content: space-around;
       padding: 10px 10px;
     }
 
@@ -795,10 +804,7 @@ body[data-page="tekneo"] {
     }
 
     .encabezado-frace p {
-      font-size: 13px !important;
-    }
-
-    .encabezado-frace p {
+      font-size: 18px !important;
       max-width: 380px;
     }
 
@@ -855,11 +861,9 @@ body[data-page="tekneo"] {
       text-align: center;
     }
 
-    .containet-btn,
-    a {
+    .containet-btn, a {
       justify-content: center;
       align-items: center;
-      width: 100%;
     }
 
     .img-logo-seccion {
@@ -888,10 +892,6 @@ body[data-page="tekneo"] {
   @media only screen and (max-width: 768px) {
     .btnHamburgesa {
       opacity: 1;
-    }
-
-    .header-primario {
-      padding: 20px 5% 0px 5%;
     }
 
     .encabezado-frace {
@@ -1039,8 +1039,8 @@ body[data-page="tekneo"] {
     }
 
     .header-primario {
-      padding: 20px 100px 0px 100px;
       justify-content: center;
+      align-items: center;
     }
   }
 

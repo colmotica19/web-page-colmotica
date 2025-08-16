@@ -21,48 +21,36 @@ function closeModal(id: string) {
 
 export default function SliderSwiper() {
   return (
-    <Swiper
-      className="z-1 flex justify-center h-[150px]"
-      slidesPerView={4}
-      modules={[Autoplay, Pagination]}
-      spaceBetween={3}
-      loop={true}
-      freeMode={true}
-      autoplay={{
-        delay: 4000,
-        disableOnInteraction: false,
-      }}
-      pagination={{
-        clickable: true,
-      }}
-      speed={1000}
-      grabCursor={false}
-    >
-      <SwiperSlide className="flex! justify-center items-center m-auto">
-        <button type="button" className="btn-movi" onClick={() => openModal("modal1")}>
-          <img className="max-h-[100px]" src="/img/zennio logo.png" alt="Akuvox" />
-        </button>
-      </SwiperSlide>
-      <SwiperSlide className="flex! justify-center items-center m-auto">
-        <button type="button" className="btn-movi" onClick={() => openModal("modal2")}>
-          <img className="max-h-[100px]" src="/img/logicmachie.png" alt="logicmachie" />
-        </button>
-      </SwiperSlide>
-      <SwiperSlide className="flex! justify-center items-center m-auto">
-        <button type="button" className="btn-movi" onClick={() => openModal("modal3")}>
-          <img className="max-h-[100px]" src="/img/knx.png" alt="KNX" />
-        </button>
-      </SwiperSlide>
-      <SwiperSlide className="flex! justify-center items-center m-auto">
-        <button type="button" className="btn-movi" onClick={() => openModal("modal4")}>
-          <img className="max-h-[100px]" src="/img/mobotix.png" alt="Mobotix" />
-        </button>
-      </SwiperSlide>
-      <SwiperSlide className="flex! justify-center items-center m-auto">
-        <button type="button" className="btn-movi" onClick={() => openModal("modal5")}>
-          <img className="max-h-[100px]" src="/img/tis.png" alt="Mobotix" />
-        </button>
-      </SwiperSlide>
+    <>
+      <Swiper
+        className="z-1 flex justify-center h-[150px] min-w-[10vw] max-w-[90vw]" slidesPerView={4} modules={[Autoplay, Pagination]} spaceBetween={3} loop={true} freeMode={true} autoplay={{ delay: 4000, disableOnInteraction: false, }} pagination={{ clickable: true, }} speed={1000} grabCursor={false}
+      >
+        <SwiperSlide className="flex! justify-center items-center m-auto">
+          <button type="button" className="btn-movi" onClick={() => openModal("modal1")}>
+            <img className="max-h-[100px]" src="/img/zennio logo.png" alt="Akuvox" />
+          </button>
+        </SwiperSlide>
+        <SwiperSlide className="flex! justify-center items-center m-auto">
+          <button type="button" className="btn-movi" onClick={() => openModal("modal2")}>
+            <img className="max-h-[100px]" src="/img/logicmachie.png" alt="logicmachie" />
+          </button>
+        </SwiperSlide>
+        <SwiperSlide className="flex! justify-center items-center m-auto">
+          <button type="button" className="btn-movi" onClick={() => openModal("modal3")}>
+            <img className="max-h-[100px]" src="/img/knx.png" alt="KNX" />
+          </button>
+        </SwiperSlide>
+        <SwiperSlide className="flex! justify-center items-center m-auto">
+          <button type="button" className="btn-movi" onClick={() => openModal("modal4")}>
+            <img className="max-h-[100px]" src="/img/mobotix.png" alt="Mobotix" />
+          </button>
+        </SwiperSlide>
+        <SwiperSlide className="flex! justify-center items-center m-auto">
+          <button type="button" className="btn-movi" onClick={() => openModal("modal5")}>
+            <img className="max-h-[100px]" src="/img/tis.png" alt="Mobotix" />
+          </button>
+        </SwiperSlide>
+      </Swiper>
 
       <div className="socios">
         <div id="modal1" className="modal">
@@ -250,6 +238,6 @@ export default function SliderSwiper() {
           </div>
         </div>
       </div>
-    </Swiper>
+    </>
   );
 }

@@ -4,6 +4,7 @@ import { useContext, useEffect, useMemo, useRef } from "react";
 import { GlobalContext } from "../../../singleton/globalContext";
 import { useTranslation } from "react-i18next";
 import BtnChangeLang from "../../global/btnChangeLang";
+import Modal, { type ModalHandle } from "../Modal/Modal";
 
 export function Header() {
   const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware, lang } = useContext(GlobalContext);
@@ -11,34 +12,34 @@ export function Header() {
   const mapProducts = useRef(new Map<string, HTMLAnchorElement>());
   const hardwareProducts = useMemo(() => [
     {
-      url: "https://es.aliexpress.com/item/4000232174472.html?...",
+      url: "",
       img: "/img/Lector QR.png",
       name: "TK-Lector",
       description:
         t("products_lee"),
     },
     {
-      url: "https://es.aliexpress.com/item/4000999069820.html?...",
+      url: "",
       img: "/img/Modulo DT-R004.png",
       name: "Modulo TK-IO44W",
       description:
         t("products_reles"),
     },
     {
-      url: "https://es.aliexpress.com/item/4000999069820.html?...",
+      url: "",
       img: "/img/Modulo TK-IO22W.webp",
       name: "Modulo TK-IO22W",
       description:
         t("products_reles"),
     },
     {
-      url: "https://es.aliexpress.com/item/4000999069820.html?...",
+      url: "",
       img: "/img/Modulo TK-IO88W.webp",
       name: "Modulo TK-IO88W",
       description:
         t("products_reles"),
     },
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   ], [t, lang]);
   useEffect(() => {
     mapProducts.current.forEach((value, key) => {
@@ -47,7 +48,7 @@ export function Header() {
         footerText.textContent = hardwareProducts.find((item) => item.img === key)?.description ?? ""
       }
     })
-   
+
   }, [hardwareProducts])
   useEffect(() => {
     const selectCategory =
@@ -159,9 +160,9 @@ export function Header() {
         "No se encontró estos dos elementos 'dropdown', 'dropdownContent'"
       );
 
-    dropdown.addEventListener("pointerover", () => {
-      dropdownContent.classList.add("show");
-    });
+    // dropdown.addEventListener("pointerover", () => {
+    //   dropdownContent.classList.add("show");
+    // });
     dropdown.addEventListener("click", () => {
       dropdownContent.classList.toggle("show");
     });
@@ -211,7 +212,7 @@ export function Header() {
   }, [focusSoftware, focusHardware, setFocusSoftware, setFocusHardware]);
 
   const dropdownContent = useRef<HTMLDivElement>(null);
-
+  const modalRef = useRef<ModalHandle>(null);
 
   return (
     <header className="sticky top-0 z-10">
@@ -232,22 +233,25 @@ export function Header() {
 
           <BtnChangeLang></BtnChangeLang>
 
-          <div className="hamburger btnHamburgesa">
-            <div className="_layer -top"></div>
-            <div className="_layer -mid"></div>
-            <div className="_layer -bottom"></div>
-          </div>
-          <nav className="menuppal">
+          <button type="button" title="Abrir modal" className="flex" onClick={() => modalRef.current?.showModal()}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="text-white size-[28px]">
+              <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
+        </div>
+        <Modal ref={modalRef}>
+          <nav className="">
             <ul>
               <li>
-                <a data-i18n="nav_inicio" href="/index.html">
-                  Inicio
-                </a>
+                <NavLink data-i18n="nav_inicio" to="/">
+                  {t("nav_inicio")}
+                </NavLink>
               </li>
               <li>
                 <div className="accordion">
                   <button type="button" className="accordion-toggle">
-                    Productos
+                    {t("nav_productos")}
                   </button>
                   <ul className="productsList accordion-content">
                     <li className="productListItem">
@@ -317,7 +321,7 @@ export function Header() {
               <li><NavLink to={""} id="myBtn">{t("nav_soporte")}</NavLink></li>
             </ul>
           </nav>
-        </div>
+        </Modal>
 
         {/* <div id="myModal" className="modal">
           <div className="modal-content">
@@ -327,7 +331,7 @@ export function Header() {
         </div> */}
 
         <div className="header-primario">
-          <NavLink to="colmotica">
+          <NavLink to="colmotica" onClick={() => scroll({ top: 0, left: 0 })}>
             <img
               src="/img/Loho tekneo horizontal.png"
               alt="Logo Tekneo"
@@ -335,7 +339,7 @@ export function Header() {
             />
           </NavLink>
           <nav className="btn-header" id="nav-menu">
-            <NavLink className="btn-header__btn" to="/">
+            <NavLink className="btn-header__btn" to="/" onClick={() => scroll({ top: 0, left: 0 })}>
               <p>{t("nav_inicio")}</p>
             </NavLink>
             <a className="btn-header__btn dropdown">
@@ -345,7 +349,7 @@ export function Header() {
               <p>{t("nav_soporte")}</p>
             </a>
 
-            <NavLink className="btn-header__btn" to="socios">
+            <NavLink className="btn-header__btn" to="socios" onClick={() => scroll({ top: 0, left: 0 })}>
               <p>{t("nav_socios")}</p>
             </NavLink>
           </nav>
@@ -364,9 +368,10 @@ export function Header() {
             <section className="selectProduct">
               <NavLink
                 to="controlDeAcceso"
-                onClick={() =>
+                onClick={() => {
                   dropdownContent.current?.classList.remove("show")
-                }
+                  scroll({ top: 0, left: 0 })
+                }}
               >
                 <div className="headerProductItem">
                   <img src="/img/logo Tgate-05.png" alt="Imagen del producto" />
@@ -378,8 +383,10 @@ export function Header() {
               </NavLink>
               <NavLink
                 to="tshow"
-                onClick={() =>
+                onClick={() => {
                   dropdownContent.current?.classList.remove("show")
+                  scroll({ top: 0, left: 0 })
+                }
                 }
               >
                 <div className="headerProductItem">
@@ -393,8 +400,10 @@ export function Header() {
               </NavLink>
               <NavLink
                 to="nodemaker"
-                onClick={() =>
+                onClick={() => {
                   dropdownContent.current?.classList.remove("show")
+                  scroll({ top: 0, left: 0 })
+                }
                 }
               >
                 <div className="headerProductItem">
@@ -412,8 +421,10 @@ export function Header() {
               <NavLink
                 to="ldm"
                 className="relative"
-                onClick={() =>
+                onClick={() => {
                   dropdownContent.current?.classList.remove("show")
+                  scroll({ top: 0, left: 0 })
+                }
                 }
               >
                 <div className="headerProductItem w-[200px] flex justify-center">

@@ -10,19 +10,19 @@ export default function Header() {
         <div className="header-primario">
           <img src="/img/colmotica/Logo-colmotica.png" alt="imagen" width={"auto"} className="w-[180px] mb-[20px]!" />
           <nav className="btn-header" id="nav-menu">
-            <NavLink className="btn-header__btn" to="/colmotica">
+            <NavLink onClick={() => scroll({top: 0, left: 0})} className="btn-header__btn" to="/colmotica">
               <p>{t("nav_inicio") }</p>
             </NavLink>
             {/* <NavLink className="btn-header__btn" to="products">
               <p>Productos</p>
             </NavLink> */}
-            <NavLink className="btn-header__btn" to="soluciones">
+            <NavLink onClick={() => scroll({top: 0, left: 0})} className="btn-header__btn" to="soluciones">
               <p>{t("nav_soluciones") }</p>
             </NavLink>
-            <NavLink className="btn-header__btn" to="academy">
+            <NavLink onClick={() => scroll({top: 0, left: 0})} className="btn-header__btn" to="academy">
               <p>{t("home_academia") }</p>
             </NavLink>
-            <NavLink className="btn-header__btn" to="consultorias">
+            <NavLink onClick={() => scroll({top: 0, left: 0})} className="btn-header__btn" to="consultorias">
               <p>{t("nav_consultorias") }</p>
             </NavLink>
             <BtnChangeLang></BtnChangeLang>
