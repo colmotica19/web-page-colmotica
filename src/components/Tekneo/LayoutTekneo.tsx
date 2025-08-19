@@ -25,7 +25,9 @@ export default function LayoutTekneo() {
           rel="stylesheet" />
       </Helmet>
       <Header />
+      <div className="min-h-[52vh]">
       <Outlet></Outlet>
+      </div>
       <FooterComponent></FooterComponent>
     </>
   )

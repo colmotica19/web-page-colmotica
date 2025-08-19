@@ -1,25 +1,28 @@
+import { useTranslation } from "react-i18next"
+
 export default function PoliticaDePrivacidad() {
+  const {t} = useTranslation()
   return (
     <>
       <div className="p-8 max-w-[800px] m-auto flex flex-col gap-[20px]">
-        <h1 className="text-4xl">Política de Privacidad</h1>
+        <h1 className="text-4xl">{t("legal_privacidad_titulo") }</h1>
         <p>
-          Esta es una política de privacidad de ejemplo. El contenido aquí es solo para fines de prueba y demostración.
+          {t("legal_privacidad_p1")}
         </p>
-        <h2 className="text-3xl">1. Información que recopilamos</h2>
+        <h2 className="text-3xl">{t("legal_privacidad_h2_1") }</h2>
         <p>
-          Actualmente, este sitio no recopila información personal de los usuarios. En futuras versiones, se detallará qué datos se recopilan y cómo se utilizan.
+          {t("legal_privacidad_p2") }
         </p>
-        <h2 className="text-3xl">2. Uso de la información</h2>
+        <h2 className="text-3xl">{t("legal_privacidad_h2_2") }</h2>
         <p>
-          La información recopilada será utilizada únicamente para mejorar la experiencia del usuario y los servicios ofrecidos por Tekneo.
+          {t("legal_privacidad_p3") }
         </p>
-        <h2 className="text-3xl">3. Cambios en la política</h2>
+        <h2 className="text-3xl">{t("legal_privacidad_h2_3") }</h2>
         <p>
-          Esta política de privacidad puede ser modificada en cualquier momento. Se recomienda revisarla periódicamente.
+          {t("legal_privacidad_p4") }
         </p>
         <p>
-          Si tienes dudas, puedes contactarnos a través de los canales oficiales de Tekneo.
+          {t("legal_privacidad_p5") }
         </p>
       </div>
     </>

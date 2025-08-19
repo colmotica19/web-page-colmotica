@@ -15,7 +15,9 @@ import { BsTwitterX } from "react-icons/bs";
 import { FaInstagram } from "react-icons/fa";
 import { NavLink } from "react-router";
 import Modal, { type ModalHandle } from "../Modal/Modal";
+import { useTranslation } from "react-i18next";
 export function FooterComponent() {
+  const {t} = useTranslation()
   const { setFocusHardware, setFocusSoftware } = useContext(GlobalContext);
   const modalRef = useRef<ModalHandle>(null);
   const formHandler: FormEventHandler = (event: FormEvent) => {
@@ -41,31 +43,35 @@ export function FooterComponent() {
     <>
       <footer>
         <Modal ref={modalRef}>
-          <div className="flex flex-col gap-[16px]">
-            <h1 className="text-3xl">Enviar Comentarios</h1>
-            <form onSubmit={formHandler} className="flex flex-col gap-[16px]">
-              <label htmlFor="comentarios">Opina sobre Tekneo:</label>
+          <div className="flex flex-col gap-[12px]">
+            <h1 className="text-3xl">{t("footer_enviar_comentarios") }</h1>
+            <form onSubmit={formHandler} className="flex flex-col gap-[8px]">
+              <label className="text-[14px] text-gray-700" htmlFor="name">{t("footer_nombre_completo") }</label>
+              <input type="text" name="name" id="name" className="border-[1px] p-[4px] border-gray-300 rounded-[4px] focus:outline-gray-400" />
+              <label className="text-[14px] text-gray-700" htmlFor="email">{t("footer_correo") }</label>
+              <input type="email" name="email" id="email" className="border-[1px] p-[4px] border-gray-300 rounded-[4px] focus:outline-gray-400" />
+              <label className="text-[14px] text-gray-700" htmlFor="comentarios">{t("footer_opina") }</label>
               <textarea
                 name="comentarios"
                 id="comentarios"
                 className="border-[1px] border-gray-300 rounded-[4px] p-[8px] focus:outline-gray-400"
               ></textarea>
-              <button type="submit" title="Envia tus comentarios">
-                Enviar
+              <button type="submit" title="Envia tus comentarios" className="p-[4px] text-white bg-blue-400 rounded-[4px] hover:bg-blue-500 transition-[color,_transform,_background-color]!">
+                {t("footer_enviar")}
               </button>
             </form>
           </div>
         </Modal>
         <div className="footer-container ">
-          <div className="footer-column flex flex-col gap-2.5 text-left justify-start">
-            <h4>Empresa</h4>
-            <a href="#">Inicio</a>
-            <a href="#">Productos</a>
-            <a href="#">Soporte</a>
-            <a href="#">Socios</a>
+          <div className="footer-column flex flex-col gap-[8px] text-left justify-start">
+            <h4>{t("footer_empresa") }</h4>
+            <a href="#">{t("footer_inicio") }</a>
+            <a href="#">{t("footer_productos") }</a>
+            <a href="#">{t("footer_soporte") }</a>
+            <a href="#">{t("footer_socios") }</a>
           </div>
-          <div className="footer-column flex flex-col gap-2.5 text-left justify-start">
-            <h4>Productos</h4>
+          <div className="footer-column flex flex-col gap-[8px] text-left justify-start">
+            <h4>{t("footer_productos_titulo") }</h4>
             <button
               className="flex justify-start text-left"
               type="button"
@@ -74,7 +80,7 @@ export function FooterComponent() {
                 setFocusHardware(false);
               }}
             >
-              Software
+              {t("footer_software") }
             </button>
             <button
               className="flex justify-start text-left"
@@ -84,54 +90,54 @@ export function FooterComponent() {
                 setFocusSoftware(false);
               }}
             >
-              Hardware
+              {t("footer_hardware") }
             </button>
           </div>
-          <div className="footer-column flex flex-col gap-2.5 text-left justify-start">
-            <h4>Soporte</h4>
+          <div className="footer-column flex flex-col gap-[8px] text-left justify-start">
+            <h4>{t("footer_soporte_titulo") }</h4>
             <button
               className="text-left flex justify-start"
               type="button"
               title="Puedes enviar comentarios sobre Tekneo"
               onClick={() => modalRef.current?.showModal()}
             >
-              Centro de ayuda
+              {t("footer_centro_ayuda") }
             </button>
             <NavLink
               to="preguntasFrecuentes"
               onClick={() => scroll({ top: 0, left: 0 })}
             >
-              FAQs
+              {t("footer_faqs") }
             </NavLink>
             <NavLink
               to="politicaDePrivacidad"
               onClick={() => scroll({ top: 0, left: 0 })}
             >
-              Política de privacidad
+              {t("footer_politica_privacidad") }
             </NavLink>
-            <NavLink to="terminosYCondiciones">Términos y condiciones</NavLink>
+            <NavLink to="terminosYCondiciones">{t("footer_terminos_condiciones") }</NavLink>
           </div>
-          <div className="footer-column flex flex-col gap-2.5 text-left justify-start">
-            <h4>Contacto</h4>
+          <div className="footer-column flex flex-col gap-[8px] text-left justify-start">
+            <h4>{t("footer_contacto") }</h4>
             <a href="https://maps.app.goo.gl/LzEZQtpqqvK2yZY89" target="_blank">
-              Cra 53 #68B-125, Local 225
+              {t("footer_direccion1")}
             </a>
             <a href="https://maps.app.goo.gl/LzEZQtpqqvK2yZY89" target="_blank">
-              Nte. Centro Historico, Barranquilla, Atlántico
+              {t("footer_direccion2") }
             </a>
             <button
               type="button"
               onClick={() => handleCopy("+57 3015678899", setTelephoneCopied)}
               className="text-left"
             >
-              {telephoneCopied ? "Copiado" : "+57 3015678899"}
+              {telephoneCopied ? t("footer_copiado") : t("footer_telefono")}
             </button>
             <button
               type="button"
               className="text-left"
               onClick={() => handleCopy("info@tekeno.es", setIsEmailCopied)}
             >
-              {isEmailCopied ? "Copiado" : "info@tekeno.es"}
+              {isEmailCopied ? t("footer_copiado") : t("footer_email")}
             </button>
             <div className="flex flex-row gap-[30px] justify-start mt-[10px]">
               <a
@@ -165,10 +171,10 @@ export function FooterComponent() {
       <div className="ftr-back">
         <img src="/img/Loho tekneo horizontal.png" alt="logo teckneo" />
         <p className="ftr-back-t1">
-          Copyright © 2024 Tekneo Todos los derechos reservados.
+          {t("footer_derechos") }
         </p>
         <p className="ftr-back-t2">
-          Términos de servicio | Aviso de política de privacidad
+          {t("footer_legal") }
         </p>
       </div>
     </>

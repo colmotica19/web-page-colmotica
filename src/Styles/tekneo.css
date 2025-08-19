@@ -12,7 +12,7 @@ body[data-page="tekneo"] {
     background-image: url(/img/imagen-ingeniero-computador.jpg);
     background-color: var(--color-grey-primario);
     background-size: cover;
-    height: auto;
+    height: calc(25vw + 125px);
     background-repeat: no-repeat;
     background-position: center;
     padding: 120px 400px 200px 200px;

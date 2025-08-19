@@ -484,12 +484,6 @@ body[data-page="tekneo"] {
     text-decoration: none;
   }
 
-  button {
-    background-color: transparent;
-    outline: none;
-    border-style: none;
-  }
-
   button:hover {
     cursor: pointer;
   }

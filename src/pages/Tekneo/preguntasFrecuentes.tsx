@@ -1,42 +1,45 @@
+import { useTranslation } from "react-i18next"
+
 export default function PreguntasFrecuentes() {
+  const { t } = useTranslation()
   return (
     <>
       <div className="p-8 max-w-[800px] m-auto flex flex-col gap-[20px]">
-        <h1 className="text-4xl">Preguntas Frecuentes</h1>
+        <h1 className="text-4xl">{t("faq_titulo")}</h1>
 
-        <h2 className="text-3xl">¿Qué es Tekneo?</h2>
+        <h2 className="text-3xl">{t("faq_q1") }</h2>
         <p>
-          Tekneo es una marca dedicada al desarrollo de software especializado para proyectos de automatización, seguridad y control inteligente en edificios e instalaciones técnicas. Nos enfocamos en ofrecer soluciones robustas, escalables y fáciles de usar para integradores y empresas.
+          {t("faq_a1") }
         </p>
 
-        <h2 className="text-3xl">¿Qué tipo de productos ofrece Tekneo?</h2>
+        <h2 className="text-3xl">{t("faq_q2") }</h2>
         <p>
-          Tekneo desarrolla principalmente software para la gestión de accesos, administración multimedia, integración de protocolos (KNX, Modbus, MQTT, HTTP, etc.) y herramientas para integradores. Algunos de nuestros productos son TGate, Tshow, Nodemaker y LDM.
+          {t("faq_a2") }
         </p>
 
-        <h2 className="text-3xl">¿Tekneo vende hardware?</h2>
+        <h2 className="text-3xl">{t("faq_q3") }</h2>
         <p>
-          No, Tekneo se especializa en soluciones de software. Sin embargo, nuestros productos pueden integrarse con hardware de terceros y dispositivos compatibles con los principales protocolos del sector.
+          {t("faq_a3") }
         </p>
 
-        <h2 className="text-3xl">¿Qué ventajas tiene usar el software de Tekneo?</h2>
+        <h2 className="text-3xl">{t("faq_q4") }</h2>
         <p>
-          Nuestras soluciones permiten una integración sencilla entre tecnologías, gestión centralizada, escalabilidad, interoperabilidad y control total sobre las instalaciones. Además, están diseñadas para ser intuitivas y adaptarse a proyectos de cualquier tamaño.
+          {t("faq_a4") }
         </p>
 
-        <h2 className="text-3xl">¿En qué sectores se pueden usar los productos de Tekneo?</h2>
+        <h2 className="text-3xl">{t("faq_q5") }</h2>
         <p>
-          Los productos de Tekneo son ideales para edificios corporativos, hospitales, hoteles, centros comerciales, instituciones educativas y cualquier entorno que requiera automatización, seguridad y control inteligente.
+          {t("faq_a5") }
         </p>
 
-        <h2 className="text-3xl">¿Qué protocolos soportan las soluciones de Tekneo?</h2>
+        <h2 className="text-3xl">{t("faq_q6") }</h2>
         <p>
-          Nuestros productos soportan protocolos como KNX, Modbus, MQTT, HTTP, TIS BUS, entre otros, facilitando la integración con una amplia variedad de dispositivos y sistemas.
+          {t("faq_a6") }
         </p>
 
-        <h2 className="text-3xl">¿Cómo puedo obtener soporte técnico?</h2>
+        <h2 className="text-3xl">{t("faq_q7") }</h2>
         <p>
-          Puedes acceder a nuestro centro de ayuda, consultar los manuales y recursos disponibles en la web, o contactarnos a través de los canales oficiales de Tekneo para recibir asistencia personalizada.
+          {t("faq_a7") }
         </p>
       </div>
     </>
