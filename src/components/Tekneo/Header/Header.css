@@ -19,15 +19,13 @@
   cursor: pointer;
 }
 
-.selectCategory[data-current-category="Software"]
-  > .category[data-value="Software"] {
+.selectCategory[data-current-category="Software"] > .category[data-value="Software"] {
   border-left-color: var(--color-blue-secundary);
   background-color: var(--color-grey-secundary);
   color: black;
 }
 
-.selectCategory[data-current-category="Hardware"]
-  > .category[data-value="Hardware"] {
+.selectCategory[data-current-category="Hardware"] > .category[data-value="Hardware"] {
   border-left-color: var(--color-blue-secundary);
   background-color: var(--color-grey-secundary);
   color: black;
@@ -101,4 +99,69 @@
 
 .footerProductItem {
   max-width: 200px;
+}
+
+.accordion .accordion-toggle {
+  background: none;
+  border: none;
+  color: var(--color-white-primario);
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+}
+
+.accordion-content {
+  display: none;
+  flex-direction: column;
+  background: transparent;
+  padding: 0;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.accordion.open .accordion-content {
+  display: flex;
+}
+
+.accordion.open .accordion-toggle svg {
+  rotate: 90deg;
+}
+
+.accordion .productListItem a {
+  color: var(--color-white-primario);
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0.5em 0;
+  display: block;
+}
+
+.accordion .productListItem a:hover {
+  color: var(--color-blue-secundary);
+}
+
+.navModal ul li {
+  width: max-content;
+}
+
+.categoryList[data-product="Software"] button[title="Software"] {
+  background-color: var(--color-blue-600);
+}
+
+.categoryList[data-product="Hardware"] button[title="Hardware"] {
+  background-color: var(--color-blue-600);
+}
+
+.accordion .categoryList {
+  display: none;
+}
+
+.accordion.open .categoryList {
+  display: inherit;
 }

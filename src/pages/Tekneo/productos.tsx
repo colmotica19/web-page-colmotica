@@ -162,9 +162,9 @@ export default function Productos() {
           Hardware
         </span>
       </section>
-      <section className="selectProduct gap-[15px]" ref={selectProduct}>
+      <section className="selectProduct gap-[50px] max-w-[500px]" ref={selectProduct}>
         <NavLink
-          to="controlDeAcceso"
+          to="/controlDeAcceso"
           onClick={() => {
             scroll({ top: 0, left: 0 })
           }}
@@ -178,7 +178,7 @@ export default function Productos() {
           </div>
         </NavLink>
         <NavLink
-          to="tshow"
+          to="/tshow"
           onClick={() => {
             scroll({ top: 0, left: 0 })
           }
@@ -194,7 +194,7 @@ export default function Productos() {
           </div>
         </NavLink>
         <NavLink
-          to="nodemaker"
+          to="/nodemaker"
           onClick={() => {
             scroll({ top: 0, left: 0 })
           }
@@ -212,7 +212,7 @@ export default function Productos() {
           </div>
         </NavLink>
         <NavLink
-          to="ldm"
+          to="/node_modulesldm"
           className="relative"
           onClick={() => {
             scroll({ top: 0, left: 0 })

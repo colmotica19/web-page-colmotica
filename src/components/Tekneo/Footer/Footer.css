@@ -33,8 +33,10 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .footer-column {
-    flex: 1 1 100%;
-    margin: 10px 0;
+  .footer-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: max-content max-content;
+    row-gap: 30px;
   }
 }

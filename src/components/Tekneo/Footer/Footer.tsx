@@ -139,7 +139,7 @@ export function FooterComponent() {
             >
               {isEmailCopied ? t("footer_copiado") : t("footer_email")}
             </button>
-            <div className="flex flex-row gap-[30px] justify-start mt-[10px]">
+            <div className="flex flex-row gap-[15px] justify-start mt-[10px]">
               <a
                 href="https://www.facebook.com/?locale=es_LA"
                 title="Facebook"
