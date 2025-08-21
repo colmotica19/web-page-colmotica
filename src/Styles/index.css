@@ -746,7 +746,7 @@ body[data-page="tekneo"] {
     }
 
     footer {
-      padding: 10%;
+      padding: 26px;
     }
   }
 
@@ -804,7 +804,7 @@ body[data-page="tekneo"] {
     }
 
     footer {
-      padding: 10%;
+      padding: 26px;
     }
 
     .seccion-encabezado {
@@ -887,7 +887,7 @@ body[data-page="tekneo"] {
     }
 
     footer {
-      padding: 10%;
+      padding: 26px;
       flex-direction: column;
     }
 
@@ -985,7 +985,7 @@ body[data-page="tekneo"] {
     }
 
     .txt-conten {
-      padding: 0px 100px 0px 0px;
+      padding: 0px 100px 0px 0px !important;
     }
 
     .txt-conten-center {

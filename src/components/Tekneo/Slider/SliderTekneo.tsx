@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 
 import "swiper/swiper-bundle.css";
+import { useTranslation } from "react-i18next";
 
 function openModal(id: string) {
   const modal = document.getElementById(id);
@@ -19,35 +20,37 @@ function closeModal(id: string) {
   }
 }
 
+
 export default function SliderSwiper() {
+  const { t } = useTranslation()
   return (
     <>
       <Swiper
-        className="z-1 flex justify-center h-[150px] min-w-[10vw] max-w-[90vw]" slidesPerView={4} modules={[Autoplay, Pagination]} spaceBetween={3} loop={true} freeMode={true} autoplay={{ delay: 4000, disableOnInteraction: false, }} pagination={{ clickable: true, }} speed={1000} grabCursor={false}
+        className="z-1 flex justify-center h-[150px] min-w-[10vw] max-w-[80vw] *:gap-[30px]" slidesPerView={4} modules={[Autoplay, Pagination]} spaceBetween={3} loop={true} freeMode={true} autoplay={{ delay: 4000, disableOnInteraction: false, }} pagination={{ clickable: true, }} speed={1000} grabCursor={false}
       >
-        <SwiperSlide className="flex! justify-center items-center m-auto">
+        <SwiperSlide className="flex! justify-center items-center">
           <button type="button" className="btn-movi" onClick={() => openModal("modal1")}>
-            <img className="max-h-[100px]" src="/img/zennio logo.png" alt="Akuvox" />
+            <img className="max-h-[180px]" width={"auto"} src="/img/zennio logo.png" alt="Akuvox" />
           </button>
         </SwiperSlide>
-        <SwiperSlide className="flex! justify-center items-center m-auto">
+        <SwiperSlide className="flex! justify-center items-center">
           <button type="button" className="btn-movi" onClick={() => openModal("modal2")}>
-            <img className="max-h-[100px]" src="/img/logicmachie.png" alt="logicmachie" />
+            <img className="max-h-[180px]" width={"auto"} src="/img/logicmachie.png" alt="logicmachie" />
           </button>
         </SwiperSlide>
-        <SwiperSlide className="flex! justify-center items-center m-auto">
+        <SwiperSlide className="flex! justify-center items-center">
           <button type="button" className="btn-movi" onClick={() => openModal("modal3")}>
-            <img className="max-h-[100px]" src="/img/knx.png" alt="KNX" />
+            <img className="max-h-[180px]" width={"auto"} src="/img/knx.png" alt="KNX" />
           </button>
         </SwiperSlide>
-        <SwiperSlide className="flex! justify-center items-center m-auto">
+        <SwiperSlide className="flex! justify-center items-center">
           <button type="button" className="btn-movi" onClick={() => openModal("modal4")}>
-            <img className="max-h-[100px]" src="/img/mobotix.png" alt="Mobotix" />
+            <img className="max-h-[180px]" width={"auto"} src="/img/mobotix.png" alt="Mobotix" />
           </button>
         </SwiperSlide>
-        <SwiperSlide className="flex! justify-center items-center m-auto">
+        <SwiperSlide className="flex! justify-center items-center">
           <button type="button" className="btn-movi" onClick={() => openModal("modal5")}>
-            <img className="max-h-[100px]" src="/img/tis.png" alt="Mobotix" />
+            <img className="max-h-[180px]" width={"auto"} src="/img/tis.png" alt="Mobotix" />
           </button>
         </SwiperSlide>
       </Swiper>
@@ -61,30 +64,23 @@ export default function SliderSwiper() {
             <div className="modal-content-descipcion">
               <img src="/img/zennio logo.png" alt="Akuvox" />
               <p className="desciption-txt">
-                MOBOTIX ofrece sistemas de videovigilancia de alta calidad que
-                aseguran una protección integral en un entorno moderno y
-                conectado. Como parte de este compromiso, Tekneo se suma como
-                socio estratégico, integrando soluciones innovadoras que
-                optimizan la seguridad y la gestión de datos. Juntos, MOBOTIX y
-                Tekneo crean un ecosistema robusto que permite a las
-                organizaciones abordar los desafíos de seguridad contemporáneos
-                de manera efectiva y eficiente.
+                {t("socios_descripcion")}
               </p>
 
               <p className="desciption-title mg-0">
                 {" "}
-                <b>Funcionalidades</b>
+                <b>{t("socios_funcionalidades")}</b>
               </p>
               <p className="desciption-txt mg-top-0">
-                Sistemas de videovigilancia , operaciones de seguridad
+                {t("socios_sistemas")}
               </p>
 
               <p className="desciption-title mg-0">
                 {" "}
-                <b>Versión</b>
+                <b>{t("socios_version") }</b>
               </p>
               <p className="desciption-txt mg-top-0">
-                Ultima Actualización 3,2
+                {t("socios_actualizacion")}
               </p>
             </div>
           </div>
@@ -98,30 +94,23 @@ export default function SliderSwiper() {
             <div className="modal-content-descipcion">
               <img src="/img/logicmachie.png" alt="logicmachie" />
               <p className="desciption-txt">
-                MOBOTIX ofrece sistemas de videovigilancia de alta calidad que
-                aseguran una protección integral en un entorno moderno y
-                conectado. Como parte de este compromiso, Tekneo se suma como
-                socio estratégico, integrando soluciones innovadoras que
-                optimizan la seguridad y la gestión de datos. Juntos, MOBOTIX y
-                Tekneo crean un ecosistema robusto que permite a las
-                organizaciones abordar los desafíos de seguridad contemporáneos
-                de manera efectiva y eficiente.
+                {t("socios_descripcion")}
               </p>
 
               <p className="desciption-title mg-0">
                 {" "}
-                <b>Funcionalidades</b>
+                <b>{t("socios_funcionalidades")}</b>
               </p>
               <p className="desciption-txt mg-top-0">
-                Sistemas de videovigilancia , operaciones de seguridad
+                {t("socios_sistemas")}
               </p>
 
               <p className="desciption-title mg-0">
                 {" "}
-                <b>Versión</b>
+                <b>{t("socios_version") }</b>
               </p>
               <p className="desciption-txt mg-top-0">
-                Ultima Actualización 3,2
+                {t("socios_actualizacion")}
               </p>
             </div>
           </div>
@@ -135,30 +124,23 @@ export default function SliderSwiper() {
             <div className="modal-content-descipcion">
               <img src="/img/knx.png" alt="KNX" />
               <p className="desciption-txt">
-                MOBOTIX ofrece sistemas de videovigilancia de alta calidad que
-                aseguran una protección integral en un entorno moderno y
-                conectado. Como parte de este compromiso, Tekneo se suma como
-                socio estratégico, integrando soluciones innovadoras que
-                optimizan la seguridad y la gestión de datos. Juntos, MOBOTIX y
-                Tekneo crean un ecosistema robusto que permite a las
-                organizaciones abordar los desafíos de seguridad contemporáneos
-                de manera efectiva y eficiente.
+                {t("socios_descripcion")}
               </p>
 
               <p className="desciption-title mg-0">
                 {" "}
-                <b>Funcionalidades</b>
+                <b>{t("socios_funcionalidades")}</b>
               </p>
               <p className="desciption-txt mg-top-0">
-                Sistemas de videovigilancia , operaciones de seguridad
+                {t("socios_sistemas")}
               </p>
 
               <p className="desciption-title mg-0">
                 {" "}
-                <b>Versión</b>
+                <b>{t("socios_version") }</b>
               </p>
               <p className="desciption-txt mg-top-0">
-                Ultima Actualización 3,2
+                {t("socios_actualizacion")}
               </p>
             </div>
           </div>
@@ -172,30 +154,23 @@ export default function SliderSwiper() {
             <div className="modal-content-descipcion">
               <img src="/img/mobotix.png" alt="Mobotix" />
               <p className="desciption-txt">
-                MOBOTIX ofrece sistemas de videovigilancia de alta calidad que
-                aseguran una protección integral en un entorno moderno y
-                conectado. Como parte de este compromiso, Tekneo se suma como
-                socio estratégico, integrando soluciones innovadoras que
-                optimizan la seguridad y la gestión de datos. Juntos, MOBOTIX y
-                Tekneo crean un ecosistema robusto que permite a las
-                organizaciones abordar los desafíos de seguridad contemporáneos
-                de manera efectiva y eficiente.
+                {t("socios_descripcion")}
               </p>
 
               <p className="desciption-title mg-0">
                 {" "}
-                <b>Funcionalidades</b>
+                <b>{t("socios_funcionalidades") }</b>
               </p>
               <p className="desciption-txt mg-top-0">
-                Sistemas de videovigilancia , operaciones de seguridad
+                {t("socios_sistemas")}
               </p>
 
               <p className="desciption-title mg-0">
                 {" "}
-                <b>Versión</b>
+                <b>{t("socios_version") }</b>
               </p>
               <p className="desciption-txt mg-top-0">
-                Ultima Actualización 3,2
+                {t("socios_actualizacion")}
               </p>
             </div>
           </div>
@@ -209,30 +184,23 @@ export default function SliderSwiper() {
             <div className="modal-content-descipcion">
               <img src="/img/tis.png" alt="Mobotix" />
               <p className="desciption-txt">
-                MOBOTIX ofrece sistemas de videovigilancia de alta calidad que
-                aseguran una protección integral en un entorno moderno y
-                conectado. Como parte de este compromiso, Tekneo se suma como
-                socio estratégico, integrando soluciones innovadoras que
-                optimizan la seguridad y la gestión de datos. Juntos, MOBOTIX y
-                Tekneo crean un ecosistema robusto que permite a las
-                organizaciones abordar los desafíos de seguridad contemporáneos
-                de manera efectiva y eficiente.
+                {t("socios_descripcion")}
               </p>
 
               <p className="desciption-title mg-0">
                 {" "}
-                <b>Funcionalidades</b>
+                <b>{t("socios_funcionalidades") }</b>
               </p>
               <p className="desciption-txt mg-top-0">
-                Sistemas de videovigilancia , operaciones de seguridad
+                {t("socios_sistemas")}
               </p>
 
               <p className="desciption-title mg-0">
                 {" "}
-                <b>Versión</b>
+                <b>{t("socios_version") }</b>
               </p>
               <p className="desciption-txt mg-top-0">
-                Ultima Actualización 3,2
+                {t("socios_actualizacion")}
               </p>
             </div>
           </div>

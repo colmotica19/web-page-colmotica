@@ -62,6 +62,7 @@
 
 .headerProductItem img {
   margin: 0px;
+  margin-bottom: 15px;
   min-width: 64px;
   min-height: 64px;
   max-width: 200px;
@@ -71,10 +72,12 @@
 .containerBodyAndFooterProduct {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   --padding-left: 13px;
   font-size: 12px;
   font-weight: bold;
+  justify-content: center;
+  align-items: stretch;
 }
 
 .bodyProductItem {
@@ -117,7 +120,24 @@
   display: none;
   flex-direction: column;
   background: transparent;
+  justify-content: center;
+  align-items: center;
   padding: 0;
+}
+
+.accordion-content a {
+  animation: appearAnchor 0.5s ease forwards;
+}
+
+@keyframes appearAnchor {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .accordion {
@@ -128,6 +148,18 @@
 
 .accordion.open .accordion-content {
   display: flex;
+  animation: appearContent 0.8s ease forwards;
+}
+
+@keyframes appearContent {
+  0% {
+    opacity: 0;
+    max-height: 0px;
+  }
+  100% {
+    opacity: 1;
+    max-height: 2000px;
+  }
 }
 
 .accordion.open .accordion-toggle svg {
@@ -135,7 +167,7 @@
 }
 
 .accordion .productListItem a {
-  color: var(--color-white-primario);
+  color: black;
   text-decoration: none;
   font-size: 1.2rem;
   padding: 0.5em 0;
@@ -151,11 +183,11 @@
 }
 
 .categoryList[data-product="Software"] button[title="Software"] {
-  background-color: var(--color-blue-600);
+  background-color: var(--color-blue-500);
 }
 
 .categoryList[data-product="Hardware"] button[title="Hardware"] {
-  background-color: var(--color-blue-600);
+  background-color: var(--color-blue-500);
 }
 
 .accordion .categoryList {

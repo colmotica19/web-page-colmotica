@@ -32,13 +32,6 @@ export function Header() {
       description:
         t("products_reles"),
     },
-    {
-      url: "",
-      img: "/img/Modulo TK-IO88W.webp",
-      name: "Modulo TK-IO88W",
-      description:
-        t("products_reles"),
-    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
   ], [t, lang]);
   // Crea un nodo <a> de producto
@@ -78,7 +71,6 @@ export function Header() {
       mapProducts.current.set(imgSrc, anchor);
       return anchor;
     } else {
-      console.log(mapProducts)
       return mapProducts.current.get(imgSrc) as HTMLAnchorElement;
     }
   }
@@ -167,7 +159,7 @@ export function Header() {
     dropdown.addEventListener("click", () => {
       dropdownContent.classList.toggle("show");
     });
-    dropdownContent.addEventListener("pointerleave", () => {
+    dropdownContent.addEventListener("mouseleave", () => {
       dropdownContent.classList.remove("show");
     });
     // Acordeón menú lateral
@@ -239,7 +231,7 @@ export function Header() {
 
           <BtnChangeLang></BtnChangeLang>
 
-          <button type="button" title="Abrir modal" className="flex" onClick={() => modalRef.current?.showModal()}>
+          <button type="button" title="Abrir modal" className="flex md:hidden" onClick={() => modalRef.current?.showModal()}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="text-white size-[28px]">
               <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -262,9 +254,9 @@ export function Header() {
                       <path d="M16.1795 3.26875C15.7889 2.87823 15.1558 2.87823 14.7652 3.26875L8.12078 9.91322C6.94952 11.0845 6.94916 12.9833 8.11996 14.155L14.6903 20.7304C15.0808 21.121 15.714 21.121 16.1045 20.7304C16.495 20.3399 16.495 19.7067 16.1045 19.3162L9.53246 12.7442C9.14194 12.3536 9.14194 11.7205 9.53246 11.33L16.1795 4.68297C16.57 4.29244 16.57 3.65928 16.1795 3.26875Z" fill="inherit" />
                     </svg>
                   </button>
-                  <ul className="categoryList flex flex-col justify-center items-center gap-[10px] text-[18px] font-medium m-[15px_0px]" data-product="Software" ref={categoryList}>
+                  <ul className="categoryList flex flex-raw justify-center items-center gap-[-1px] text-[16px] font-medium m-[15px_0px]" data-product="Software" ref={categoryList}>
                     <li>
-                      <button className="bg-blue-500 text-white rounded-[6px] p-[5px_10px] flex gap-[5px] justify-center items-center" type="button" title="Software" onClick={() => {
+                      <button className="bg-blue-400 text-white p-[5px_10px] flex gap-[5px] justify-center items-center" type="button" title="Software" onClick={() => {
                         productList.current?.querySelectorAll<HTMLLIElement>(".productListItem").forEach((item) => item.style.display === "none" ? item.style.display = "" : null)
                         productList.current?.querySelectorAll(":is(a):not(li > a)").forEach((item) => item.remove())
                         if (categoryList.current) {
@@ -283,7 +275,7 @@ export function Header() {
                       </button>
                     </li>
                     <li>
-                      <button className="bg-blue-500 text-white rounded-[6px] p-[5px_10px] flex gap-[5px] justify-center items-center" type="button" title="Hardware" onClick={() => {
+                      <button className="bg-blue-400 text-white p-[5px_10px] flex gap-[5px] justify-center items-center" type="button" title="Hardware" onClick={() => {
                         productList.current?.querySelectorAll<HTMLLIElement>(".productListItem").forEach((item) => item.style.display = "none")
                         hardwareProducts.forEach((item) => {
                           const anchor = createProduct(item.url, item.img, item.name, item.description)
@@ -352,7 +344,7 @@ export function Header() {
                     </li>
                     <li className="productListItem">
                       <NavLink to="ldm" className="relative" onClick={closeModalForGoToLink}>
-                        <div className="headerProductItem w-[200px] flex justify-center">
+                        <div className="headerProductItem w-[200px] flex justify-center items-center">
                           <img
                             src="/img/Loho tekneo vertical.png"
                             alt="Imagen del producto"
@@ -492,7 +484,10 @@ export function Header() {
               </NavLink>
             </section>
             <section>
-              <NavLink to={"productos"} title="Ir a lista de productos" className="text-white! bg-blue-400 p-[2px_15px]! rounded-2xl flex flex-row gap-[5px] justify-center items-center size-max hover:bg-blue-500 transition-[background,_transform]!">
+              <NavLink onClick={() => {
+                scroll({ top: 0, left: 0 })
+                dropdownContent.current?.classList.remove("show")
+              }} to={"productos"} title="Ir a lista de productos" className="text-white! bg-blue-400 p-[2px_15px]! rounded-2xl flex flex-row gap-[5px] justify-center items-center size-max hover:bg-blue-500 transition-[background,_transform]!">
                 <span>Ir a productos</span>
                 <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" version="1.1" className="size-[36px] fill-gray-800">
                   <g id="Product-Icons" stroke="none" strokeWidth="1" fill="inherit" fill-rule="evenodd">

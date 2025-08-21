@@ -1,4 +1,5 @@
-import SliderSwiper from "../../components/Tekneo/SliderTekneo";
+import { useTranslation } from 'react-i18next';
+import SliderSwiper from '../../components/Tekneo/Slider/SliderTekneo';
 import './../../Styles/socios.css';
 
 export function Partners() {
@@ -52,24 +53,20 @@ export function Partners() {
 
   // event
   menu?.addEventListener("click", toggleMenu, false);
+  const {t} = useTranslation()
 
   return (
     <>
       <section className="encabezado-frace">
-        <p>Socios (Ecosistema Tecnológico)</p>
+        <p>{t("socios_titulo") }</p>
         <p className="sub-title">
-          Algunas de las tecnologías con las que trabajamos incluyen:
+          {t("socios_algunas")}
         </p>
       </section>
 
       <section className="group-partner">
         <p>
-          En Tekneo desarrollamos soluciones compatibles con una amplia variedad
-          de protocolos y dispositivos del sector, lo que nos permite
-          integrarnos fácilmente con plataformas reconocidas y tecnologías de
-          terceros utilizadas en proyectos reales. Nuestro ecosistema está en
-          constante expansión, permitiendo a integradores trabajar con marcas
-          confiables dentro de sus instalaciones sin complicaciones.
+          {t("socios_tekneo")}
         </p>
         <SliderSwiper />
       </section>

@@ -44,8 +44,8 @@
   overflow: hidden;
 } */
 
-.closeModal:hover svg {
-  fill: var(--color-gray-400);
+.closeModal:is(:hover, :active) svg {
+  fill: var(--color-gray-300);
 }
 
 .closeModal svg {

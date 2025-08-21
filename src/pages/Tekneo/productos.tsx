@@ -149,7 +149,7 @@ export default function Productos() {
   })
 
   return (
-    <article className="flex justify-center gap-[50px] mt-[50px]">
+    <article className="flex justify-center gap-[50px] mt-[50px] pb-[50px]">
       <section
         className="selectCategory"
         data-current-category="Software"

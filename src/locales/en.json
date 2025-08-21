@@ -116,5 +116,13 @@
   "footer_nombre_completo": "Full Name:",
   "footer_correo": "Email",
   "footer_opina": "Your opinion about Tekneo:",
-  "footer_enviar": "Send"
+  "footer_enviar": "Send",
+  "socios_descripcion": "MOBOTIX offers high-quality video surveillance systems that ensure comprehensive protection in a modern, connected environment. As part of this commitment, Tekneo joins the company as a strategic partner, integrating innovative solutions that optimize security and data management. Together, MOBOTIX and Tekneo create a robust ecosystem that enables organizations to address contemporary security challenges effectively and efficiently.MOBOTIX offers high-quality video surveillance systems that ensure comprehensive protection in a modern, connected environment. As part of this commitment, Tekneo joins the company as a strategic partner, integrating innovative solutions that optimize security and data management. Together, MOBOTIX and Tekneo create a robust ecosystem that enables organizations to address contemporary security challenges effectively and efficiently.",
+  "socios_funcionalidades": "Features",
+  "socios_sistemas": "Video surveillance systems, security operations",
+  "socios_actualizacion": "Last Update 3.2",
+  "socios_version": "Version",
+  "socios_tekneo": "At Tekneo, we develop solutions compatible with a wide variety of industry protocols and devices, allowing us to easily integrate with recognized platforms and third-party technologies used in real-world projects. Our ecosystem is constantly expanding, allowing integrators to work with trusted brands within their facilities without complications.",
+  "socios_algunas": "Some of the technologies we work with include:",
+  "socios_titulo": "Partners (Technological Ecosystem)"
 }
