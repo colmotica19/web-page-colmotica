@@ -48,6 +48,33 @@ export function FooterComponent() {
             <form onSubmit={formHandler} className="flex flex-col gap-[8px]">
               <label className="text-[14px] text-gray-700" htmlFor="name">{t("footer_nombre_completo") }</label>
               <input type="text" name="name" id="name" className="border-[1px] p-[4px] border-gray-300 rounded-[4px] focus:outline-gray-400" />
+              <label className="text-[14px] text-gray-700" htmlFor="country">{t("footer_pais") }</label>
+              <select name="country" title="Selecciona un pais" id="country" className="border-[1px] p-[4px] border-gray-300 rounded-[4px] focus:outline-gray-400">
+                <option value="">{t("footer_selecciona_pais")}</option>
+                <option value="Colombia">Colombia</option>
+                <option value="España">España</option>
+                <option value="México">México</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Chile">Chile</option>
+                <option value="Perú">Perú</option>
+                <option value="Estados Unidos">Estados Unidos</option>
+                <option value="Ecuador">Ecuador</option>
+                <option value="Venezuela">Venezuela</option>
+                <option value="Uruguay">Uruguay</option>
+                <option value="Paraguay">Paraguay</option>
+                <option value="Bolivia">Bolivia</option>
+                <option value="Brasil">Brasil</option>
+                <option value="Costa Rica">Costa Rica</option>
+                <option value="Panamá">Panamá</option>
+                <option value="Guatemala">Guatemala</option>
+                <option value="El Salvador">El Salvador</option>
+                <option value="Honduras">Honduras</option>
+                <option value="Nicaragua">Nicaragua</option>
+                <option value="Puerto Rico">Puerto Rico</option>
+                <option value="Otro">{t("footer_otro_pais")}</option>
+              </select>
+              <label className="text-[14px] text-gray-700" htmlFor="tel">{t("footer_tel") }</label>
+              <input type="tel" maxLength={13} name="tel" id="tel" className="border-[1px] p-[4px] border-gray-300 rounded-[4px] focus:outline-gray-400" />
               <label className="text-[14px] text-gray-700" htmlFor="email">{t("footer_correo") }</label>
               <input type="email" name="email" id="email" className="border-[1px] p-[4px] border-gray-300 rounded-[4px] focus:outline-gray-400" />
               <label className="text-[14px] text-gray-700" htmlFor="comentarios">{t("footer_opina") }</label>

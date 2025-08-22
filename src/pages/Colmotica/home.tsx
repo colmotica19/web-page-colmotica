@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router";
 import { Fragment } from "react/jsx-runtime";
 // import './../../Styles/mainColmotica.css'
 export default function Home() {
@@ -33,7 +34,7 @@ export default function Home() {
           <p className="title-all">{t("home_academia")}</p>
           <p className="subtitle-all">{t("colmotica_descubre")}</p>
           <img src="/img/colmotica/mujer pc.png" alt="imgproduct" />
-          <button className="btn-general">{t("home_saber")}</button>
+          <NavLink to="/colmotica/academy" className="btn-general" onClick={() => scroll({top: 0, left: 0})}>{t("home_saber")}</NavLink>
         </section>
 
         <div className="dflex pd-g">
@@ -60,12 +61,13 @@ export default function Home() {
             <img src="/img/colmotica/home 3.png" alt="imgproduct" width={"auto"} className="w80" />
           </div>
         </section>
+        <NavLink onClick={() => scroll({top: 0, left: 0})} to="/colmotica/soluciones" className="btn-general">{t("home_saber") }</NavLink>
 
         <section className="pd-g dflex setre">
           <p className="title-all">{t("nav_consultorias")}</p>
           <p className="subtitle-all">{t("colmotica_encol") }</p>
           <img src="/img/colmotica/consultorias.png" alt="imgproduct" />
-          <button type="button" className="btn-general">{t("home_saber")}</button>
+          <NavLink onClick={() => scroll({top: 0, left: 0})} to={"/colmotica/consultorias"} type="button" className="btn-general">{t("home_saber")}</NavLink>
         </section>
       </div >
     </Fragment >
