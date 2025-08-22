@@ -20,8 +20,9 @@
   "descripción_ldm": "Description",
   "home_inteligencia": "Intelligence that <br />transforms spaces",
   "home_domotica": "Advanced home automation for homes, <br />hotels and commercial buildings",
-  "home_somos": "Colmotica is the brand that redefines the way we interact with our spaces. Through smart technological solutions, we provide comfort, efficiency, and total security in homes, hotels, and commercial buildings.",
-  "home_academia": "Academy",
+  "home_somos": "At Colmotica, we bring intelligence to every corner. We design and implement automation solutions for the building, hospitality, and residential sectors, combining comfort, efficiency, and security in a single experience. From energy measurement to comprehensive management with BMS, we integrate multiple technologies and protocols to achieve flexible systems tailored to each project. Our team supports every stage, from design to commissioning, whether for a specific environment or an entire property.",
+  "home_academia": "Training (Academy)",
+  "home_academia_2": "Academy",
   "home_saber": "FIND OUT MORE",
   "sobre_tekneo": "About Tekneo",
   "home_tekneo": "At <b>Tekneo</b> we design software solutions for automation, security and intelligent control of facilities. <br /> <br /> We specialize in connecting technologies through powerful and accessible tools, which allow integrators to build efficient, secure systems that are fully adapted to the client's needs. Our mission is to simplify interoperability and raise the level of automation in each project.",
@@ -124,5 +125,12 @@
   "socios_version": "Version",
   "socios_tekneo": "At Tekneo, we develop solutions compatible with a wide variety of industry protocols and devices, allowing us to easily integrate with recognized platforms and third-party technologies used in real-world projects. Our ecosystem is constantly expanding, allowing integrators to work with trusted brands within their facilities without complications.",
   "socios_algunas": "Some of the technologies we work with include:",
-  "socios_titulo": "Partners (Technological Ecosystem)"
+  "socios_titulo": "Partners (Technological Ecosystem)",
+  "colmotica_descubre": "Discover, learn, and master the technology that transforms spaces. At the Colmotica Academy, we guide you step-by-step through the use of Tekneo products—TGate, TShow, LDM, and Node-Maker—and the application of our automation, control, and efficiency solutions and protocols. A meeting point for those who want to take their projects to the next level with innovation and real results.",
+  "colmotica_sectores": "Application Sectors",
+  "colmotica_encol": "At Colmotica, we don't just implement technology; we also advise you so that every decision counts. Our consulting services help you plan, design, and optimize automation, energy efficiency, and security projects, ensuring that each solution fits your objectives and budget. From the selection of protocols and equipment to the integration of complex systems, we guide you to ensure your project is efficient, scalable, and successful.",
+  "colmotica_desarrolla": "At Colmotica, we develop intelligent solutions for energy efficiency, lighting control, HVAC, security, video surveillance, and access management. We integrate systems with BMS, PMS, and multi-protocol software platforms to achieve connected and efficient spaces. We offer the entire Tekneo product line, guaranteeing innovation, quality, and compatibility in every project",
+  "colmotica_viviendas": "Smart Homes",
+  "colmotica_edificios": "Smart Buildings",
+  "colmotica_hoteles": "Smart Hotels"
 }

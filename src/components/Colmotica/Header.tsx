@@ -20,7 +20,7 @@ export default function Header() {
               <p>{t("nav_soluciones") }</p>
             </NavLink>
             <NavLink onClick={() => scroll({top: 0, left: 0})} className="btn-header__btn" to="academy">
-              <p>{t("home_academia") }</p>
+              <p>{t("home_academia_2") }</p>
             </NavLink>
             <NavLink onClick={() => scroll({top: 0, left: 0})} className="btn-header__btn" to="consultorias">
               <p>{t("nav_consultorias") }</p>
