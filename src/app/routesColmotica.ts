@@ -6,6 +6,9 @@ import Home from "../pages/Colmotica/home";
 import Edificios from "../pages/Colmotica/edificios";
 import Residencial from "../pages/Colmotica/residencial";
 import Hoteles from "../pages/Colmotica/hoteles";
+import PoliticaDePrivacidad from "../pages/Tekneo/politicaDePrivacidad";
+import PreguntasFrecuentes from "../pages/Tekneo/preguntasFrecuentes";
+import TerminosYCondiciones from "../pages/Tekneo/terminosYCondiciones";
 
 export const routesColmotica = [
   {
@@ -39,5 +42,17 @@ export const routesColmotica = [
   {
     path: 'hoteles',
     Component: Hoteles
-  }
+  },
+  {
+    path: "preguntasFrecuentes",
+    Component: PreguntasFrecuentes,
+  },
+  {
+    path: "politicaDePrivacidad",
+    Component: PoliticaDePrivacidad,
+  },
+  {
+    path: "terminosYCondiciones",
+    Component: TerminosYCondiciones,
+  },
 ]

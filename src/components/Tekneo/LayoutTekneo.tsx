@@ -1,10 +1,10 @@
 import { Outlet } from "react-router";
 import { Helmet } from "react-helmet-async";
 import { Header } from "./Header/Header";
-import { FooterComponent } from "./Footer/Footer";
 import './../../Styles/index.css'
 import './../../Styles/tekneo.css'
 import { useEffect } from "react";
+import { FooterComponent } from "../global/Footer/Footer";
 export default function LayoutTekneo() {
   useEffect(() => {
       document.body.dataset.page = "tekneo"
@@ -28,7 +28,7 @@ export default function LayoutTekneo() {
       <div className="min-h-[52vh]">
       <Outlet></Outlet>
       </div>
-      <FooterComponent></FooterComponent>
+      <FooterComponent page="tekneo"></FooterComponent>
     </>
   )
 }

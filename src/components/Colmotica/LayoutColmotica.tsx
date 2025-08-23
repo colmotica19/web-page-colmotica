@@ -2,9 +2,9 @@
 import { Fragment, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Header from "../../components/Colmotica/Header";
-import Footer from "../../components/Colmotica/Footer";
 import { Outlet } from "react-router-dom";
 import './../../Styles/mainColmotica.css'
+import { FooterComponent } from "../global/Footer/Footer";
 export default function LayoutColmotica() {
   useEffect(() => {
     document.body.dataset.page = "colmotica"
@@ -26,7 +26,7 @@ export default function LayoutColmotica() {
       </Helmet>
       <Header />
       <Outlet />
-      <Footer />
+      <FooterComponent page="colmotica" />
     </Fragment>
   );
 }

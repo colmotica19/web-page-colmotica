@@ -14,9 +14,9 @@ import { SiWhatsapp } from "react-icons/si";
 import { BsTwitterX } from "react-icons/bs";
 import { FaInstagram } from "react-icons/fa";
 import { NavLink } from "react-router";
-import Modal, { type ModalHandle } from "../Modal/Modal";
 import { useTranslation } from "react-i18next";
-export function FooterComponent() {
+import Modal, { type ModalHandle } from "../../Tekneo/Modal/Modal";
+export function FooterComponent({page}: {page: "tekneo" | "colmotica"}) {
   const {t} = useTranslation()
   const { setFocusHardware, setFocusSoftware } = useContext(GlobalContext);
   const modalRef = useRef<ModalHandle>(null);
@@ -131,18 +131,18 @@ export function FooterComponent() {
               {t("footer_centro_ayuda") }
             </button>
             <NavLink
-              to="preguntasFrecuentes"
+              to={`${page === "colmotica" ? "/colmotica/" : "/"}preguntasFrecuentes`}
               onClick={() => scroll({ top: 0, left: 0 })}
             >
               {t("footer_faqs") }
             </NavLink>
             <NavLink
-              to="politicaDePrivacidad"
+              to={`${page === "colmotica" ? "/colmotica/" : "/"}politicaDePrivacidad`}
               onClick={() => scroll({ top: 0, left: 0 })}
             >
               {t("footer_politica_privacidad") }
             </NavLink>
-            <NavLink to="terminosYCondiciones">{t("footer_terminos_condiciones") }</NavLink>
+            <NavLink to={`${page === "colmotica" ? "/colmotica/" : "/"}terminosYCondiciones`}>{t("footer_terminos_condiciones") }</NavLink>
           </div>
           <div className="footer-column flex flex-col gap-[8px] text-left justify-start">
             <h4>{t("footer_contacto") }</h4>

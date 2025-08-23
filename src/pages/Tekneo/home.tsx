@@ -50,7 +50,7 @@ export function HomePage() {
                 <div className="container-card">
                     <div className="container-card__cards holographic-card">
                         <img src="/img/Dowload App.png" alt="Dowload" />
-                        <p className="title-app">{t("home_academia") }</p>
+                        <p className="title-app">{t("home_academia_2") }</p>
                     </div>
 
                     <button type="button" className="container-card__cards holographic-card" onClick={() => {

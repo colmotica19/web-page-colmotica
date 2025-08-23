@@ -1,32 +1,34 @@
+import { useTranslation } from 'react-i18next'
 import './../../Styles/residencial.css'
 
 export default function Residencial() {
+  const { t } = useTranslation();
   return (
     <>
       <section className="pd-g dflex encabezado-frace-2">
         <div className="dflex flex-initial">
-          <p>Residencial</p>
-          <p className="sub">Confort, seguridad y control en un solo toque.</p>
+          <p>{ t("residencial")}</p>
+          <p className="sub">{t("residencial_1") }</p>
         </div>
       </section>
 
       <div className="pd-g dflex acad">
         <div className="center">
           <section className="secone-acad">
-            <p className="title-all">Imagina un hogar que se adapta a ti</p>
-            <p className="subtitle-all">que responde a tu voz, sigue tus rutinas y se anticipa a tus necesidades. Con nuestras soluciones domóticas, tu espacio residencial se transforma en un ecosistema inteligente, eficiente y seguro. Disfruta de control total de iluminación con escenas programables, automatización de persianas, climatización inteligente por zonas, y ahorro energético mediante sensores y monitoreo en tiempo real. Todo pensado para maximizar el confort, la eficiencia y la sostenibilidad del hogar.</p>
+            <p className="title-all">{t("residencial_2")}</p>
+            <p className="subtitle-all">{t("residencial_3")}</p>
           </section>
 
           <div className="dflex line"></div>
 
           <section className="secone-acad">
-            <p className="title-all">Además, la seguridad y el entretenimiento</p>
-            <p className="subtitle-all">Están garantizados con sistemas de videovigilancia, alarmas integradas, acceso controlado, sonido multiambiente y compatibilidad con asistentes virtuales como Alexa, Google Home o Apple HomeKit. También podrás centralizar el manejo de sistemas técnicos como riego, piscinas y bombas, todo desde tu móvil o por comando de voz. La automatización residencial no solo mejora tu calidad de vida, sino que convierte tu hogar en un espacio verdaderamente inteligente.</p>
+            <p className="title-all">{t("residencial_4")}</p>
+            <p className="subtitle-all">{t("residencial_5")}</p>
           </section>
         </div>
 
         <div className="secone-acad">
-          <img className="img-acad" src="/img/colmotica/res.png" alt=""/>
+          <img className="img-acad !max-w-none" src="/img/colmotica/res.png" alt="imagen" width={"auto"}/>
         </div>
       </div>
     </>

@@ -13,15 +13,12 @@
 
 body[data-page="colmotica"] {
     > * {
-        margin: 0px;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
     * {
-        padding: 0px;
-        margin: 0px;
         font-family: "DM Sans", sans-serif;
         transition: all 500ms;
         box-sizing: content-box;
@@ -123,14 +120,15 @@ body[data-page="colmotica"] {
     }
 
     .header-primario {
-        z-index: 99;
-        background-color: transparent;
-
+        background-color: white;
         display: flex;
-        padding: 20px 200px 0px 200px;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
         flex-direction: row;
+        --padding: 15px;
+        padding: var(--padding);
+        padding-bottom: 0px;
+        height: calc(73px - var(--padding));
     }
 
     /* .header-primario img {
@@ -199,9 +197,6 @@ body[data-page="colmotica"] {
         margin-top: 100px;
         margin-bottom: 130px;
     }
-
-    /* seccion productos */
-    .setwo {}
 
     .c-produc {
         background-color: #F6F6F6;
@@ -357,10 +352,6 @@ body[data-page="colmotica"] {
     /* @media Celular */
     @media only screen and (max-width: 600px) {
 
-        .header-primario {
-            display: none;
-        }
-
         .pd-g {
             padding-right: 10%;
             padding-left: 10%;
@@ -378,7 +369,6 @@ body[data-page="colmotica"] {
         }
 
         .header-primario {
-            padding: 20px 50px 0px 50px !important;
             flex-direction: column;
         }
 
@@ -477,9 +467,6 @@ body[data-page="colmotica"] {
 
     /* @media Laptop */
     @media only screen and (max-width: 1024px) {
-        .header-primario {
-            padding: 20px 50px 0px 50px !important;
-        }
 
         .pd-g {
             padding-right: 100px;
@@ -490,14 +477,6 @@ body[data-page="colmotica"] {
             margin-bottom: 20px;
             padding: 0 20px;
         }
-    }
-
-    /* @media Computador */
-    @media only screen and (max-width: 1440px) {
-        .header-primario {
-            padding: 20px 200px 0px 200px;
-        }
-
     }
 }
 

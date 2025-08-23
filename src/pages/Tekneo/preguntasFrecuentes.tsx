@@ -4,7 +4,7 @@ export default function PreguntasFrecuentes() {
   const { t } = useTranslation()
   return (
     <>
-      <div className="p-8 max-w-[800px] m-auto flex flex-col gap-[20px]">
+      <div className="p-8 max-w-[800px] m-[30px_auto] flex flex-col gap-[20px]">
         <h1 className="text-4xl">{t("faq_titulo")}</h1>
 
         <h2 className="text-3xl">{t("faq_q1") }</h2>

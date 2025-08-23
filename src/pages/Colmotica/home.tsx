@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
 import { Fragment } from "react/jsx-runtime";
+import ProductSlider from "../../components/Colmotica/ProductSlider/ProductSlider";
 // import './../../Styles/mainColmotica.css'
 export default function Home() {
   const { t } = useTranslation()
@@ -31,7 +32,7 @@ export default function Home() {
 
 
         <section className="pd-g dflex setre max-w-max">
-          <p className="title-all">{t("home_academia")}</p>
+          <p className="title-all">{t("home_academia_2")}</p>
           <p className="subtitle-all">{t("colmotica_descubre")}</p>
           <img src="/img/colmotica/mujer pc.png" alt="imgproduct" />
           <NavLink to="/colmotica/academy" className="btn-general" onClick={() => scroll({top: 0, left: 0})}>{t("home_saber")}</NavLink>
@@ -41,7 +42,7 @@ export default function Home() {
           <p className="title-all mg-top-100">{t("colmotica_sectores") }</p>
         </div>
 
-        <section className="pd-g dflex sefor">
+        {/* <section className="pd-g dflex sefor">
           <div className="c-produc dflex mw400">
             <div>
               <p className="title-all fall25">{ t("colmotica_viviendas")}</p>
@@ -60,7 +61,8 @@ export default function Home() {
             </div>
             <img src="/img/colmotica/home 3.png" alt="imgproduct" width={"auto"} className="w80" />
           </div>
-        </section>
+        </section> */}
+        <ProductSlider></ProductSlider>
         <NavLink onClick={() => scroll({top: 0, left: 0})} to="/colmotica/soluciones" className="btn-general">{t("home_saber") }</NavLink>
 
         <section className="pd-g dflex setre">
