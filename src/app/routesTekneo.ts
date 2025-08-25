@@ -12,6 +12,7 @@ import Tshow from "../pages/Tekneo/TShow/TShow";
 import Ldm from "../pages/Tekneo/LDM/LDM";
 import Nodemaker from "../pages/Tekneo/Nodemaker/Nodemaker";
 import Productos from "../pages/Tekneo/productos";
+import Documentacion from "../pages/Tekneo/documentacion";
 
 export const routerTekneo = createHashRouter([
   {
@@ -61,6 +62,10 @@ export const routerTekneo = createHashRouter([
       {
         path: "productos",
         Component: Productos
+      },
+      {
+        path: "documentacion",
+        Component: Documentacion
       }
     ],
   },

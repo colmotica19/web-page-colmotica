@@ -388,6 +388,7 @@ export function Header() {
             <a className="btn-header__btn dropdown">
               <p>{t("nav_productos")}</p>
             </a>
+            <NavLink to="/documentacion">{t("nav_documentacion") }</NavLink>
             <a id="myBtn" className="btn-header__btn">
               <p>{t("nav_soporte")}</p>
             </a>
@@ -396,7 +397,7 @@ export function Header() {
               <p>{t("nav_socios")}</p>
             </NavLink>
           </nav>
-          <div className="dropdown-content" ref={dropdownContent}>
+          <div className="dropdown-content lg:max-h-[400px] lg:overflow-auto" ref={dropdownContent}>
             <section
               className="selectCategory"
               data-current-category="Software"
