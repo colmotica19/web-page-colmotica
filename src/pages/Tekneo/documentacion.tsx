@@ -48,32 +48,32 @@ export default function Documentacion() {
     return (
       <>
         <h1 className="title font-bold text-[32px] !text-center mb-[5px] text-blue-500">{data.title}</h1>
-        <h3 className="description font-medium text-[24px] text-blue-500">Descripción general</h3>
+        <h3 className="description font-medium text-[24px] text-blue-500">{t("descripcion_general")}</h3>
         <p className="descriptionContent">{data.descriptionContent}</p>
         <ul className="listOfFeatures flex flex-col gap-[0.5lh]">
           {Object.values(data.listOfFeatures).map((feature, i) => (
-            <li className="list-disc ml-[36px]" key={i}>{feature}</li>
+            <li className="list-disc pl-[1lh] ml-[10px] mb-[10px]" key={i}>{feature}</li>
           ))}
         </ul>
-        <h1>Aplicaciones</h1>
+        <h1 className="font-bold text-[24px] text-blue-500">{t("aplicaciones")}</h1>
         <p className="applicationDescription">{data.applicationDescription}</p>
         <ul className="listOfApplications">
           {Object.values(data.listOfApplications).map((app, i) => (
-            <li className="list-disc" key={i} dangerouslySetInnerHTML={{ __html: app }}></li>
+            <li className="list-disc pl-[1lh] ml-[10px] mb-[10px]" key={i} dangerouslySetInnerHTML={{ __html: app }}></li>
           ))}
         </ul>
-        <h1>Diagrama y componentes</h1>
+        <h1></h1>
         <img src={data.diagramSrc} alt="Diagrama" className="diagram" />
         <table>
           <thead>
-            <tr>
-              <th>Componente</th>
-              <th>Descripción</th>
+            <tr className="*:border-[1px] *:border-gray-400 *:p-[5px_10px] bg-blue-100">
+              <th>{t("Componente") }</th>
+              <th>{t("Descripcion") }</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="*:even:bg-gray-200">
             {data.tableItems.map(([comp, desc], i) => (
-              <tr key={i}>
+              <tr key={i} className="*:border-[1px] *:border-gray-300 *:p-[5px_10px]">
                 <td>{comp}</td>
                 <td>{desc}</td>
               </tr>

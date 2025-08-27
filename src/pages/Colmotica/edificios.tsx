@@ -24,6 +24,37 @@ export default function Edificios() {
                         <p className="title-all">{ t("edificios_desc_4")}</p>
                         <p className="subtitle-all">{t("edificios_desc_5") }</p>
                     </section>
+                    <div className="dflex line"></div>
+
+                    <section className="secone-acad">
+                        <p className="title-all">{ t("edificios_desc_4")}</p>
+                        <p className="subtitle-all">{t("edificios_desc_5") }</p>
+                    </section>
+                    <div className="dflex line"></div>
+
+                    <section className="secone-acad">
+                        <p className="title-all">{ t("edificios_desc_4")}</p>
+                        <p className="subtitle-all">{t("edificios_desc_5") }</p>
+                    </section>
+                    <div className="dflex line"></div>
+
+                    <section className="secone-acad">
+                        <p className="title-all">{ t("edificios_desc_4")}</p>
+                        <p className="subtitle-all">{t("edificios_desc_5") }</p>
+                    </section>
+                    <div className="dflex line"></div>
+
+                    <section className="secone-acad">
+                        <p className="title-all">{ t("edificios_desc_4")}</p>
+                        <p className="subtitle-all">{t("edificios_desc_5") }</p>
+                    </section>
+                    <div className="dflex line"></div>
+
+                    <section className="secone-acad">
+                        <p className="title-all">{ t("edificios_desc_4")}</p>
+                        <p className="subtitle-all">{t("edificios_desc_5") }</p>
+                    </section>
+                    
                 </div>
 
                 <div className="secone-acad">

@@ -99,13 +99,13 @@ body[data-page="colmotica"] {
 
     .title-all {
         font-size: 30px;
-        font-weight: 200;
-        margin-bottom: 40px;
+        font-weight: 300;
+        margin-bottom: 30px;
     }
 
     .subtitle-all {
         font-size: 16px;
-        font-weight: 200;
+        font-weight: 300;
         margin-bottom: 10px;
     }
 
@@ -409,7 +409,7 @@ body[data-page="colmotica"] {
 
         .subtitle-all {
             font-size: 13px;
-            font-weight: 150;
+            font-weight: normal;
             margin-bottom: 10px;
         }
 
