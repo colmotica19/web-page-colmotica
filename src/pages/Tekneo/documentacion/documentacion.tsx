@@ -1,5 +1,6 @@
 import { useRef, useState, useMemo } from "react"
 import { useTranslation } from "react-i18next";
+import "./documentacion.css";
 
 export default function Documentacion() {
   const { t } = useTranslation()
@@ -47,15 +48,15 @@ export default function Documentacion() {
 
     return (
       <>
-        <h1 className="title font-bold text-[32px] !text-center mb-[5px] text-blue-500">{data.title}</h1>
-        <h3 className="description font-medium text-[24px] text-blue-500">{t("descripcion_general")}</h3>
+        <h1 className="title font-bold text-[32px] !text-center mb-[5px] text-black">{data.title}</h1>
+        <h3 className="description font-medium text-[24px] text-black">{t("descripcion_general")}</h3>
         <p className="descriptionContent">{data.descriptionContent}</p>
         <ul className="listOfFeatures flex flex-col gap-[0.5lh]">
           {Object.values(data.listOfFeatures).map((feature, i) => (
             <li className="list-disc pl-[1lh] ml-[10px] mb-[10px]" key={i}>{feature}</li>
           ))}
         </ul>
-        <h1 className="font-bold text-[24px] text-blue-500">{t("aplicaciones")}</h1>
+        <h1 className="font-bold text-[24px] text-black">{t("aplicaciones")}</h1>
         <p className="applicationDescription">{data.applicationDescription}</p>
         <ul className="listOfApplications">
           {Object.values(data.listOfApplications).map((app, i) => (
@@ -67,8 +68,8 @@ export default function Documentacion() {
         <table>
           <thead>
             <tr className="*:border-[1px] *:border-gray-400 *:p-[5px_10px] bg-blue-100">
-              <th>{t("Componente") }</th>
-              <th>{t("Descripcion") }</th>
+              <th>{t("Componente")}</th>
+              <th>{t("Descripcion")}</th>
             </tr>
           </thead>
           <tbody className="*:even:bg-gray-200">
@@ -84,24 +85,47 @@ export default function Documentacion() {
     );
   }
 
+  const btnModule22w = useRef<HTMLButtonElement>(null)
+  const btnModule44w = useRef<HTMLButtonElement>(null)
+
   return (
     <article className="grid grid-cols-[200px_minmax(500px,45vw)] gap-x-[8%] justify-center m-[50px_0px]">
       <aside className="relative flex flex-col gap-[30px] items-center after:w-[2px] after:h-[30%] after:absolute after:top-[10px] after:left-[calc(100%_+_15px)] after:bg-gray-300">
         <div className="w-full">
-          <h1 className="text-blue-500 font-bold text-[32px]">Hardware</h1>
+          <h1 className="text-black font-bold text-[32px]">Hardware</h1>
           <hr className="w-full border-t-gray-400" />
         </div>
         <ul className="flex flex-col gap-[5px]">
           <li>
-            <button className={`p-[5px_15px] bg-blue-300 rounded-[8px] border-[1px] border-transparent hover:border-black !transition-[border-color,_transform,_color] hover:text-black duration-300 text-gray-700 ${viewProduct === "Modulo TK-IO22W" ? "!text-black !border-black" : ""}`} onClick={() => setViewProduct("Modulo TK-IO22W")} title="Abrir producto" type="button">Modulo TK-IO22W</button>
+            <button ref={btnModule22w} data-active="true" className={`p-[5px_15px] btnSection rounded-[8px] border-[1px] border-transparent hover:border-black hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""}`} onClick={() => {
+              setViewProduct("Modulo TK-IO22W")
+              if (btnModule22w.current && btnModule44w.current) {
+                btnModule22w.current.dataset.active = "true"
+                btnModule44w.current.dataset.active = "false"
+              } else {
+                throw new Error("La referencia 'btnModule22w' o 'btnModule44w' es null o undefined")
+              }
+            }} title="Abrir producto" type="button">
+              <span className="">Modulo TK-IO22W</span>
+            </button>
           </li>
           <li>
-            <button className={`p-[5px_15px] bg-blue-300 rounded-[8px] border-[1px] border-transparent hover:border-black !transition-[border-color,_transform,_color] hover:text-black duration-300 text-gray-700 ${viewProduct === "Modulo TK-IO44W" ? "!text-black !border-black" : ""}`} onClick={() => setViewProduct("Modulo TK-IO44W")} type="button" title="Abrir Producto">Modulo TK-IO44W</button>
+            <button ref={btnModule44w} className={`p-[5px_15px] btnSection rounded-[8px] border-[1px] border-transparent hover:border-black hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO44W" ? "!text-white !border-black" : ""}`} onClick={() => {
+              setViewProduct("Modulo TK-IO44W")
+              if (btnModule44w.current && btnModule22w.current) {
+                btnModule22w.current.dataset.active = "false"
+                btnModule44w.current.dataset.active = "true"
+              } else {
+                throw new Error("La referencia 'btnModule22w' o 'btnModule44w' es null o undefined")
+              }
+            }} type="button" title="Abrir Producto">
+              <span className="">Modulo TK-IO44W</span>
+            </button>
           </li>
         </ul>
         <div className="w-full">
-          <h1 className="text-blue-500 font-bold text-[32px]">Software</h1>
-          <hr className="w-full border-t-gray-400"/>
+          <h1 className="text-black font-bold text-[32px]">Software</h1>
+          <hr className="w-full border-t-gray-400" />
         </div>
       </aside>
       <section ref={viewProductDescription} className="flex flex-col gap-[1lh]">

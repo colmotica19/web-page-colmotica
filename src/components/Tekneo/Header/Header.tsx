@@ -361,7 +361,7 @@ export function Header() {
                 </div>
               </li>
               <li><NavLink to="socios" onClick={closeModalForGoToLink}>{t("nav_socios")}</NavLink></li>
-              <li><NavLink to={""} id="myBtn" onClick={closeModalForGoToLink}>{t("nav_soporte")}</NavLink></li>
+              {/* <li><NavLink to={""} id="myBtn" onClick={closeModalForGoToLink}>{t("nav_soporte")}</NavLink></li> */}
             </ul>
           </nav>
         </Modal>
