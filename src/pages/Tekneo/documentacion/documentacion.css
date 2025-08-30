@@ -1,17 +1,24 @@
-@property --porcentaje {
-  syntax: "<percentage>";
-  initial-value: 50%;
-  inherits: false;
-}
-
 .btnSection {
-  background-image: linear-gradient(135deg, var(--color-gray-950), var(--color-gray-300) var(--porcentaje));
-  transition-property: color, transform, background-image, border !important;
-  transition-timing-function: ease !important;
-  transition-duration: 0.3s !important;
-  transition-behavior: allow-discrete !important;
+  background: linear-gradient(135deg, var(--color-gray-950) 0%, var(--color-gray-500) 75%);
+  background-size: 200% 100%;
+  background-position: 100% 50%;
+  transition-property: color, transform, background-image, border, background-position !important;
+  transition-timing-function: linear !important;
+  transition-duration: 0.5s !important;
+  border: 1px solid transparent;
 }
 
 .btnSection[data-active="true"] {
-  --porcentaje: 100%;
+  background-position: 0% 50%;
+  border-color: black;
+}
+
+@keyframes aniBg {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
 }
