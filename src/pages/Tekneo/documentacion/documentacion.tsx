@@ -38,34 +38,34 @@ export default function Documentacion() {
         ["Reset button ", t("Modulo TK-IO22W_tableItem_7")],
       ]
     },
-    "Modulo TK-IO44W": {
-      title: t("Modulo TK-IO44W_title"),
-      descriptionContent: t("Modulo TK-IO44W_descriptionContent"),
+    "Modulo TK-IO24W2": {
+      title: t("Modulo TK-IO24W2_title"),
+      descriptionContent: t("Modulo TK-IO24W2_descriptionContent"),
       listOfFeatures: {
-        1: t("Modulo TK-IO44W_listOfFeatures_1"),
-        2: t("Modulo TK-IO44W_listOfFeatures_2"),
-        3: t("Modulo TK-IO44W_listOfFeatures_3"),
-        4: t("Modulo TK-IO44W_listOfFeatures_4"),
-        5: t("Modulo TK-IO44W_listOfFeatures_5"),
-        6: t("Modulo TK-IO44W_listOfFeatures_6"),
-        7: t("Modulo TK-IO44W_listOfFeatures_7"),
+        1: t("Modulo TK-IO24W2_listOfFeatures_1"),
+        2: t("Modulo TK-IO24W2_listOfFeatures_2"),
+        3: t("Modulo TK-IO24W2_listOfFeatures_3"),
+        4: t("Modulo TK-IO24W2_listOfFeatures_4"),
+        5: t("Modulo TK-IO24W2_listOfFeatures_5"),
+        6: t("Modulo TK-IO24W2_listOfFeatures_6"),
+        7: t("Modulo TK-IO24W2_listOfFeatures_7"),
       },
       applicationDescription: t("Modulo TK-IO22W_applicationDescription"),
       listOfApplications: {
-        1: t("Modulo TK-IO44W_listOfApplications_1"),
-        2: t("Modulo TK-IO44W_listOfApplications_2"),
-        3: t("Modulo TK-IO44W_listOfApplications_3"),
-        4: t("Modulo TK-IO44W_listOfApplications_4"),
+        1: t("Modulo TK-IO24W2_listOfApplications_1"),
+        2: t("Modulo TK-IO24W2_listOfApplications_2"),
+        3: t("Modulo TK-IO24W2_listOfApplications_3"),
+        4: t("Modulo TK-IO24W2_listOfApplications_4"),
       },
       diagramSrc: ["/img/Modulo TK-IO44W.png", "/img/Modulo TK-IO44W 2.png"],
       tableItems: [
-        ["ESP32", t("Modulo TK-IO22W_tableItem_1")],
-        ["Inputs Digital (2X)", t("Modulo TK-IO22W_tableItem_2")],
-        ["Relay Outputs", t("Modulo TK-IO22W_tableItem_3")],
-        ["Power supply", t("Modulo TK-IO22W_tableItem_4")],
-        ["Inputs Wiegand", t("Modulo TK-IO22W_tableItem_5")],
-        ["Ethernet RJ45", t("Modulo TK-IO22W_tableItem_6")],
-        ["Reset button ", t("Modulo TK-IO22W_tableItem_7")],
+        ["ESP32", t("Modulo TK-IO24W2_tableItem_1")],
+        ["Inputs Digital (2X)", t("Modulo TK-IO24W2_tableItem_2")],
+        ["Relay Outputs", t("Modulo TK-IO24W2_tableItem_3")],
+        ["Power supply", t("Modulo TK-IO24W2_tableItem_4")],
+        ["Inputs Wiegand", t("Modulo TK-IO24W2_tableItem_5")],
+        ["Ethernet RJ45", t("Modulo TK-IO24W2_tableItem_6")],
+        ["Reset button ", t("Modulo TK-IO24W2_tableItem_7")],
       ]
     }
     // Puedes agregar más productos aquí...
@@ -79,7 +79,7 @@ export default function Documentacion() {
     return (
       <>
         <h1 className="title font-bold text-[32px] !text-center mb-[5px] text-black">{data.title}</h1>
-        <h3 className="description font-medium text-[24px] text-black">{t("descripcion_general")}</h3>
+        <h3 className="description font-bold text-[24px] text-black">{t("descripcion_general")}</h3>
         <p className="descriptionContent">{data.descriptionContent}</p>
         <ul className="listOfFeatures flex flex-col gap-[0.5lh]">
           {Object.values(data.listOfFeatures).map((feature, i) => (
@@ -95,7 +95,7 @@ export default function Documentacion() {
         </ul>
         <h1></h1>
         {data.diagramSrc.map((item, index) => (
-          <img src={item} alt="Diagrama" className="diagram" key={index} />
+          <img src={item} alt="Diagrama" className="diagram max-w-none w-[440px] max-h-none h-auto self-center" key={index} width={"auto"} />
         ))}
         <table>
           <thead>
@@ -129,7 +129,7 @@ export default function Documentacion() {
         </div>
         <ul className="flex flex-col gap-[5px]">
           <li>
-            <button ref={btnModule22w} data-active="true" className={`flex gap-[5px] items-center justify-center p-[5px_15px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""}`} onClick={() => {
+            <button ref={btnModule22w} data-active="true" className={`flex gap-[5px] min-w-[200px] items-center justify-center p-[5px_15px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""}`} onClick={() => {
               setViewProduct("Modulo TK-IO22W")
               if (btnModule22w.current && btnModule44w.current) {
                 btnModule22w.current.dataset.active = "true"
@@ -152,8 +152,8 @@ export default function Documentacion() {
             </button>
           </li>
           <li>
-            <button ref={btnModule44w} className={`flex gap-[5px] items-center justify-center p-[5px_15px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO44W" ? "!text-white !border-black" : ""}`} onClick={() => {
-              setViewProduct("Modulo TK-IO44W")
+            <button ref={btnModule44w} className={`flex gap-[5px] min-w-[200px] items-center justify-center p-[5px_15px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO44W" ? "!text-white !border-black" : ""}`} onClick={() => {
+              setViewProduct("Modulo TK-IO24W2")
               if (btnModule44w.current && btnModule22w.current) {
                 btnModule22w.current.dataset.active = "false"
                 btnModule44w.current.dataset.active = "true"
@@ -161,7 +161,7 @@ export default function Documentacion() {
                 throw new Error("La referencia 'btnModule22w' o 'btnModule44w' es null o undefined")
               }
             }} type="button" title="Abrir Producto">
-              <span className="">Modulo TK-IO44W</span>
+              <span className="">Modulo TK-IO24W2</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="fill-white size-[16px] rotate-90" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 -4.5 20 20" version="1.1">
                 <g id="Page-1" stroke="none" strokeWidth="1" fill="inherit" fillRule="evenodd">
                   <g id="Dribbble-Light-Preview" transform="translate(-260.000000, -6684.000000)" fill="inherit">

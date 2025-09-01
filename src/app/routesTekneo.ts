@@ -60,10 +60,6 @@ export const routerTekneo = createHashRouter([
         Component: TerminosYCondiciones,
       },
       {
-        path: "productos",
-        Component: Productos
-      },
-      {
         path: "documentacion",
         Component: Documentacion
       }
