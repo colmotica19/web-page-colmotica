@@ -152,7 +152,7 @@ export default function Documentacion() {
             </button>
           </li>
           <li>
-            <button ref={btnModule44w} className={`flex gap-[5px] min-w-[200px] items-center justify-center p-[5px_15px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO44W" ? "!text-white !border-black" : ""}`} onClick={() => {
+            <button ref={btnModule44w} className={`flex gap-[5px] min-w-[200px] items-center justify-center p-[5px_15px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO24W2" ? "!text-white !border-black" : ""}`} onClick={() => {
               setViewProduct("Modulo TK-IO24W2")
               if (btnModule44w.current && btnModule22w.current) {
                 btnModule22w.current.dataset.active = "false"
