@@ -21,7 +21,7 @@ export function Header() {
     {
       url: "",
       img: "/img/Modulo DT-R004.png",
-      name: "Modulo TK-IO44W",
+      name: "Modulo TK-IO24W2",
       description:
         t("products_reles"),
     },

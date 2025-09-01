@@ -1,0 +1,53 @@
+.Popover {
+  min-width: 200px;
+  min-height: 150px;
+  border-radius: 8px;
+  padding: 16px;
+  filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.2));
+  border: 1px solid black;
+  animation-fill-mode: both;
+}
+
+.Popover:focus {
+  outline: none;
+}
+
+.Popover:is(:popover-open.aniReverse) {
+  animation: dissapearPopover 0.3s ease;
+}
+
+.Popover:popover-open {
+  animation: appearPopover 0.3s ease;
+}
+
+@keyframes appearPopover {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes dissapearPopover {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+}
+
+.Popover::backdrop {
+  background-color: transparent;
+}
+
+.Popover .closeModal:focus {
+  outline: none;
+}
