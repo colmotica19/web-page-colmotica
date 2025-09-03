@@ -8,7 +8,6 @@ export default function Documentacion() {
   const [viewProduct, setViewProduct] = useState<keyof typeof infoHardware>("Modulo TK-IO22W");
   const viewProductDescription = useRef<HTMLElement>(null);
   const [anchors, setAnchors] = useState<Record<string, JSX.Element[]>>();
-  const [viewPageProduct, setViewPageProduct] = useState("");
 
   const infoHardware = useMemo(() => ({
     "Modulo TK-IO22W": {
@@ -72,6 +71,24 @@ export default function Documentacion() {
       ]
     }
     // Puedes agregar más productos aquí...
+  }), [t])
+
+  const infoSoftware = useMemo(() => ({
+    "Access Control": {
+      title: "Access Control",
+      subtitles: {
+        1: {
+          name: t("access_control_1"),
+          imgSrc: ["/img/access_control_1.jpg", "/img/access_control_2.png", "/img/access_control_3.png"],
+          description: {
+            1: t("access_control_1_2"),
+            2: t("access_control_1_3"),
+            3: t("access_control_1_4"),
+            4: t("access_control_1_5")
+          }
+        }
+      }
+    }
   }), [t])
 
   // Esta función inserta la info en el HTML
@@ -172,8 +189,7 @@ export default function Documentacion() {
       <li key={item.id} className="size-full">
         <a className="flex p-[5px_15px] size-full anchorSection rounded-[10px] w-full" href={`#${item.id}`} onClick={(event) => {
           event.preventDefault()
-          const element = document.getElementById(item.id) as HTMLElement
-          element.style.display = "";
+          scroll({ top: item.offsetTop + 40, left: 0, behavior: "smooth" })
 
         }}>{item.dataset.titleAnchor ?? ((item.textContent.length < 12 && item.textContent !== "") ? item.textContent : item.id)}</a>
       </li>
@@ -185,6 +201,35 @@ export default function Documentacion() {
   }
   useEffect(() => {
     generateAnchorsBasedInTheContent()
+    if (!viewProductDescription.current) return;
+
+    const sections = Array.from(viewProductDescription.current.querySelectorAll<HTMLElement>("[id]"));
+    let refPrevAnchor: HTMLAnchorElement | null = null
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const link = document.querySelector<HTMLAnchorElement>(`.listOfNav a[href="#${entry.target.id}"]`);
+          if (link) {
+            if (entry.isIntersecting) {
+              if (refPrevAnchor instanceof HTMLAnchorElement) refPrevAnchor.classList.remove("active");
+              link.classList.add("active");
+              refPrevAnchor = link;
+            }
+          }
+        });
+      },
+      {
+        root: null, // viewport
+        rootMargin: "0px 0px -70% 0px", // se activa cuando entra un poco antes
+        threshold: 0.1,
+      }
+    );
+
+    sections.forEach((sec) => observer.observe(sec));
+
+    return () => {
+      sections.forEach((sec) => observer.unobserve(sec));
+    };
   }, [viewProduct])
 
   return (
@@ -196,7 +241,7 @@ export default function Documentacion() {
         </div>
         <ul className="flex flex-col gap-[5px]">
           <li>
-            <button ref={btnModule22w} data-active="true" className={`flex gap-[5px] min-w-[200px] items-center justify-center p-[5px_15px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""}`} onClick={() => {
+            <button ref={btnModule22w} data-active="true" className={`flex gap-[10px] min-w-[200px] items-center justify-end p-[5px_15px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""}`} onClick={() => {
               setViewProduct("Modulo TK-IO22W")
               if (btnModule22w.current && btnModule44w.current) {
                 btnModule22w.current.dataset.active = "true"
@@ -224,7 +269,7 @@ export default function Documentacion() {
             </Popover>
           </li>
           <li>
-            <button ref={btnModule44w} className={`flex gap-[5px] min-w-[200px] items-center justify-center p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO24W2" ? "!text-white !border-black" : ""}`} onClick={() => {
+            <button ref={btnModule44w} className={`flex gap-[10px] min-w-[200px] items-center justify-end p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO24W2" ? "!text-white !border-black" : ""}`} onClick={() => {
               setViewProduct("Modulo TK-IO24W2")
               if (btnModule44w.current && btnModule22w.current) {
                 btnModule22w.current.dataset.active = "false"
@@ -257,11 +302,28 @@ export default function Documentacion() {
           <h1 className="text-black font-bold text-[32px]">Software</h1>
           <hr className="w-full border-t-gray-400" />
         </div>
+          <ul className="flex flex-col gap-[5px]">
+            <li>
+              <button type="button" className={`flex gap-[10px] min-w-[200px] items-center justify-center p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO24W2" ? "!text-white !border-black" : ""}`}>
+                <span>Access Control</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="fill-white size-[16px] rotate-90" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 -4.5 20 20" version="1.1">
+                  <g id="Page-1" stroke="none" strokeWidth="1" fill="inherit" fillRule="evenodd">
+                    <g id="Dribbble-Light-Preview" transform="translate(-260.000000, -6684.000000)" fill="inherit">
+                      <g id="icons" transform="translate(56.000000, 160.000000)">
+                        <path d="M223.707692,6534.63378 L223.707692,6534.63378 C224.097436,6534.22888 224.097436,6533.57338 223.707692,6533.16951 L215.444127,6524.60657 C214.66364,6523.79781 213.397472,6523.79781 212.616986,6524.60657 L204.29246,6533.23165 C203.906714,6533.6324 203.901717,6534.27962 204.282467,6534.68555 C204.671211,6535.10081 205.31179,6535.10495 205.70653,6534.69695 L213.323521,6526.80297 C213.714264,6526.39807 214.346848,6526.39807 214.737591,6526.80297 L222.294621,6534.63378 C222.684365,6535.03868 223.317949,6535.03868 223.707692,6534.63378" id="arrow_up-[#337]">
+                        </path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </button>
+            </li>
+          </ul>
       </aside>
       <section ref={viewProductDescription} className="flex flex-col gap-[1lh]">
         {renderProductInfo()}
       </section>
-      <aside className="fixed top-[150px] right-[100px]">
+      <aside className="sticky top-[150px] self-start">
         <h1 className="text-[18px]">{viewProduct}</h1>
         <ul className={`listOfNav mt-[10px] flex-col items-start gap-[5px]`} ref={listOfNav}>
           {anchors ? anchors[viewProduct] : ""}

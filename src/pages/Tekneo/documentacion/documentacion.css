@@ -24,7 +24,8 @@
 }
 
 .anchorSection {
-  background: linear-gradient(135deg, var(--color-gray-200) 0%, var(--color-gray-500) 100%);
+  background: linear-gradient(135deg, var(--color-gray-300) 0%, var(--color-gray-600) 100%);
+  background-size: 200%;
 }
 
 .listOfNav {
@@ -44,8 +45,41 @@
     opacity: 0;
     transform: scale(0.9);
   }
+
   100% {
     opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.listOfNav a.active {
+  animation: highligthAnchor 0.5s ease forwards;
+  color: white;
+}
+
+.listOfNav a:not(.active) {
+  animation: discardAnchor 0.5s ease forwards;
+  color: white;
+}
+
+@keyframes highligthAnchor {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 100% 0%;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes discardAnchor {
+  0% {
+    background-position: 100% 0%;
+    transform: scale(1.05);
+  }
+  100% {
+    background-position: 0% 0%;
     transform: scale(1);
   }
 }
