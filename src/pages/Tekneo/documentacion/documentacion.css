@@ -24,7 +24,7 @@
 }
 
 .anchorSection {
-  background: linear-gradient(135deg, var(--color-gray-300) 0%, var(--color-gray-600) 100%);
+  background: linear-gradient(135deg, var(--color-gray-600) 0%, var(--color-gray-300) 100%);
   background-size: 200%;
 }
 
@@ -82,4 +82,10 @@
     background-position: 0% 0%;
     transform: scale(1);
   }
+}
+
+.btnDownload {
+  color: white;
+  background: linear-gradient(135deg, var(--color-gray-800) 0%, var(--color-gray-950) 100%);
+  background-size: 100%;
 }
