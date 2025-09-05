@@ -7,7 +7,7 @@ import Popover, {
 
 export default function Documentacion() {
   const { t } = useTranslation()
-  const [viewProduct, setViewProduct] = useState<keyof typeof infoHardware | keyof typeof infoSoftware | typeof infoTkLector.title>("Modulo TK-IO22W");
+  const [viewProduct, setViewProduct] = useState<keyof typeof infoHardware | keyof typeof infoSoftware | keyof typeof infoTkLector>("Modulo TK-IO22W");
   const viewProductDescription = useRef<HTMLElement>(null);
   const [anchors, setAnchors] = useState<Record<string, JSX.Element[]>>();
 
@@ -109,48 +109,51 @@ export default function Documentacion() {
   } as const), [t])
 
   const infoTkLector = useMemo(() => ({
-    title: "TK-Lector",
-    content: {
-      1: t("lector_tk_1"),
-      2: t("lector_tk_2"),
-      3: t("lector_tk_3"),
-      4: t("lector_tk_4"),
-      5: t("lector_tk_5"),
-      6: t("lector_tk_6"),
-      7: t("lector_tk_7"),
-      8: t("lector_tk_8"),
-      9: t("lector_tk_9"),
-      10: t("lector_tk_10"),
-      11: t("lector_tk_11"),
-      12: t("lector_tk_12")
-    },
-    list: {
-      1: t("lecktor_tk_12_1"),
-      2: t("lecktor_tk_12_2"),
-      3: t("lecktor_tk_12_3"),
-      4: t("lecktor_tk_12_4"),
-      5: t("lecktor_tk_12_5"),
-      6: t("lecktor_tk_12_6"),
-      7: t("lecktor_tk_12_7"),
-      8: t("lecktor_tk_12_8"),
-      9: t("lecktor_tk_12_9"),
-      10: t("lecktor_tk_12_10"),
-      11: t("lecktor_tk_12_11"),
-      12: t("lecktor_tk_12_12"),
-      13: t("lecktor_tk_12_13"),
-      14: t("lecktor_tk_12_14"),
-    },
-    applicationList: {
-      1: t("lecktor_tk_13"),
-      2: t("lecktor_tk_13_1"),
-      3: t("lecktor_tk_13_2"),
-      4: t("lecktor_tk_13_3"),
-    },
-    recomendation: {
-      1: t("lecktor_tk_14"),
-      2: t("lecktor_tk_14_1"),
-      3: t("lecktor_tk_14_2"),
-      4: t("lecktor_tk_14_3"),
+    "TK-Lector": {
+
+      title: "TK-Lector",
+      content: {
+        1: t("lector_tk_1"),
+        2: t("lector_tk_2"),
+        3: t("lector_tk_3"),
+        4: t("lector_tk_4"),
+        5: t("lector_tk_5"),
+        6: t("lector_tk_6"),
+        7: t("lector_tk_7"),
+        8: t("lector_tk_8"),
+        9: t("lector_tk_9"),
+        10: t("lector_tk_10"),
+        11: t("lector_tk_11"),
+        12: t("lector_tk_12")
+      },
+      list: {
+        1: t("lecktor_tk_12_1"),
+        2: t("lecktor_tk_12_2"),
+        3: t("lecktor_tk_12_3"),
+        4: t("lecktor_tk_12_4"),
+        5: t("lecktor_tk_12_5"),
+        6: t("lecktor_tk_12_6"),
+        7: t("lecktor_tk_12_7"),
+        8: t("lecktor_tk_12_8"),
+        9: t("lecktor_tk_12_9"),
+        10: t("lecktor_tk_12_10"),
+        11: t("lecktor_tk_12_11"),
+        12: t("lecktor_tk_12_12"),
+        13: t("lecktor_tk_12_13"),
+        14: t("lecktor_tk_12_14"),
+      },
+      applicationList: {
+        1: t("lecktor_tk_13"),
+        2: t("lecktor_tk_13_1"),
+        3: t("lecktor_tk_13_2"),
+        4: t("lecktor_tk_13_3"),
+      },
+      recomendation: {
+        1: t("lecktor_tk_14"),
+        2: t("lecktor_tk_14_1"),
+        3: t("lecktor_tk_14_2"),
+        4: t("lecktor_tk_14_3"),
+      }
     }
   }) as const, [t])
 
@@ -278,8 +281,14 @@ export default function Documentacion() {
   }
 
   function renderLectorTk() {
-    const data = infoTkLector[viewProduct as typeof infoTkLector.title];
+    const data = infoTkLector[viewProduct as keyof typeof infoTkLector];
     if (!data) return null;
+
+    return (
+      <>
+        <h1>{data.title}</h1>
+      </>
+    )
   }
 
   function renderPreviewProductInfo(productName: keyof typeof infoHardware | keyof typeof infoSoftware) {
@@ -308,6 +317,7 @@ export default function Documentacion() {
   const btnModule22w = useRef<HTMLButtonElement>(null)
   const btnModule44w = useRef<HTMLButtonElement>(null)
   const btnTgate = useRef<HTMLButtonElement>(null);
+  const btnLectorTk = useRef<HTMLButtonElement>(null)
   const popoverHandle = useRef<PopoverHandle>(null)
   const popoverHandle2 = useRef<PopoverHandle>(null)
   const popoverAccessControlHandle = useRef<PopoverHandle>(null)
@@ -428,10 +438,13 @@ export default function Documentacion() {
   }, [viewProduct]);
 
   function renderBtnDownload() {
-    const fileForDownload: Record<keyof typeof infoSoftware, string> = {
-      "Tgate": "/docs/Manual - Tekneo Software.pdf"
+    const fileForDownload: Partial<Record<typeof viewProduct, string>> = {
+      "Tgate": "/docs/Manual - Tekneo Software.pdf",
+      "TK-Lector": "/docs/DataSheet QR-Lector.pdf",
+      "Modulo TK-IO22W": "/docs/TK-IO22W Datasheet 1.pdf",
+      "Modulo TK-IO24W2": "/docs/TK-IO24W2 Datasheet 2.pdf"
     }
-    if (Object.keys(infoSoftware).some((item) => item === viewProduct)) {
+    if (viewProduct in fileForDownload) {
       return (
         <a href={fileForDownload[viewProduct as keyof typeof infoSoftware]} className="flex p-[5px_15px] justify-center gap-[20px] size-full btnDownload rounded-[10px] w-full" download={true} type="button">
           <span>{t("manual")}</span>
@@ -443,7 +456,7 @@ export default function Documentacion() {
         </a>
       )
     } else {
-      return null
+      return null;
     }
   }
 
@@ -509,10 +522,12 @@ export default function Documentacion() {
           <li>
             <button ref={btnModule44w} className={`flex gap-[10px] min-w-[200px] items-center justify-end p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO24W2" ? "!text-white !border-black" : ""}`} onClick={() => {
               setViewProduct("Modulo TK-IO24W2")
-              if (btnModule44w.current && btnModule22w.current && btnTgate.current) {
+              if (btnModule44w.current && btnModule22w.current && btnTgate.current && btnLectorTk.current) {
                 btnModule22w.current.dataset.active = "false"
                 btnModule44w.current.dataset.active = "true"
                 btnTgate.current.dataset.active = "false"
+                btnLectorTk.current.dataset.active = "false"
+
               } else {
                 throw new Error("La referencia 'btnModule22w' o 'btnModule44w' es null o undefined")
               }
@@ -558,7 +573,33 @@ export default function Documentacion() {
               </div>
             </Popover>
           </li>
+          <li>
+            <button onClick={() => {
+              setViewProduct("TK-Lector")
+              if (btnModule44w.current && btnModule22w.current && btnTgate.current && btnLectorTk.current) {
+                btnModule22w.current.dataset.active = "false"
+                btnModule44w.current.dataset.active = "false"
+                btnTgate.current.dataset.active = "false"
+                btnLectorTk.current.dataset.active = "true"
+              } else {
+                throw new Error("La referencia 'btnModule22w' o 'btnModule44w' es null o undefined")
+              }
+            }} ref={btnLectorTk} type="button" className={`flex gap-[10px] min-w-[200px] items-center justify-center p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO24W2" ? "!text-white !border-black" : ""}`}>
+              <span>Lector TK</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="fill-white size-[16px] rotate-90" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 -4.5 20 20" version="1.1">
+                <g id="Page-1" stroke="none" strokeWidth="1" fill="inherit" fillRule="evenodd">
+                  <g id="Dribbble-Light-Preview" transform="translate(-260.000000, -6684.000000)" fill="inherit">
+                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                      <path d="M223.707692,6534.63378 L223.707692,6534.63378 C224.097436,6534.22888 224.097436,6533.57338 223.707692,6533.16951 L215.444127,6524.60657 C214.66364,6523.79781 213.397472,6523.79781 212.616986,6524.60657 L204.29246,6533.23165 C203.906714,6533.6324 203.901717,6534.27962 204.282467,6534.68555 C204.671211,6535.10081 205.31179,6535.10495 205.70653,6534.69695 L213.323521,6526.80297 C213.714264,6526.39807 214.346848,6526.39807 214.737591,6526.80297 L222.294621,6534.63378 C222.684365,6535.03868 223.317949,6535.03868 223.707692,6534.63378" id="arrow_up-[#337]">
+                      </path>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </button>
+          </li>
         </ul>
+
         <div className="w-full">
           <h1 className="text-black font-bold text-[32px]">Software</h1>
           <hr className="w-full border-t-gray-400" />
@@ -567,10 +608,11 @@ export default function Documentacion() {
           <li>
             <button onClick={() => {
               setViewProduct("Tgate")
-              if (btnModule44w.current && btnModule22w.current && btnTgate.current) {
+              if (btnModule44w.current && btnModule22w.current && btnTgate.current && btnLectorTk.current) {
                 btnModule22w.current.dataset.active = "false"
                 btnModule44w.current.dataset.active = "false"
                 btnTgate.current.dataset.active = "true"
+                btnLectorTk.current.dataset.active = "false"
               } else {
                 throw new Error("La referencia 'btnModule22w' o 'btnModule44w' es null o undefined")
               }
@@ -594,9 +636,10 @@ export default function Documentacion() {
             </Popover>
           </li>
         </ul>
+
       </aside>
       <section ref={viewProductDescription} className="flex flex-col gap-[1lh]">
-        {renderModuleTk() ?? renderAccessControl()}
+        {renderModuleTk() ?? renderAccessControl() ?? renderLectorTk()}
       </section>
       <aside className="sticky top-[125px] self-start flex flex-col items-center gap-[20px]">
         <div>
