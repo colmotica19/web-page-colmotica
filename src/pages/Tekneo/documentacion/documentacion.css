@@ -3,7 +3,7 @@
   background-size: 200% 100%;
   background-position: 100% 50%;
   transition-property: color, transform, background-image, border, background-position !important;
-  transition-timing-function: linear !important;
+  transition-timing-function: ease !important;
   transition-duration: 0.5s !important;
   border: 1px solid transparent;
 }
@@ -11,6 +11,7 @@
 .btnSection[data-active="true"] {
   background-position: 0% 50%;
   border-color: black;
+  transform: scale(1.05);
 }
 
 @keyframes aniBg {
@@ -24,7 +25,7 @@
 }
 
 .anchorSection {
-  background: linear-gradient(135deg, var(--color-gray-600) 0%, var(--color-gray-300) 100%);
+  background: linear-gradient(135deg, var(--color-gray-950) 0%, var(--color-gray-500) 75%);
   background-size: 200%;
 }
 
@@ -64,22 +65,22 @@
 
 @keyframes highligthAnchor {
   0% {
-    background-position: 0% 0%;
+    background-position: 100% 0%;
   }
 
   100% {
-    background-position: 100% 0%;
+    background-position: 0% 0%;
     transform: scale(1.05);
   }
 }
 
 @keyframes discardAnchor {
   0% {
-    background-position: 100% 0%;
+    background-position: 0% 0%;
     transform: scale(1.05);
   }
   100% {
-    background-position: 0% 0%;
+    background-position: 100% 0%;
     transform: scale(1);
   }
 }

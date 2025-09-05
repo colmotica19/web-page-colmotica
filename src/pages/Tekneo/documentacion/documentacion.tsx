@@ -134,13 +134,13 @@ export default function Documentacion() {
         <img src={data.imgSrc[2]} alt="" width={"auto"} className="self-center w-auto h-auto" />
         <p>{data.content[12]}</p>
         <img src={data.imgSrc[3]} alt="" width={"auto"} className="self-center w-auto h-auto" />
-        <h1 className="font-bold text-[24px]">{data.content[13]}</h1>
+        <h1 className="font-bold text-[24px]" id="horarios" data-title-anchor="Horarios">{data.content[13]}</h1>
         <img src={data.imgSrc[1]} alt="" width={"auto"} className="self-center w-auto h-auto" />
         <p>{data.content[14]}</p>
-        <h1 className="font-bold text-[24px]">{data.content[15]}</h1>
+        <h1 className="font-bold text-[24px]" id="knx" data-title-anchor="KNX">{data.content[15]}</h1>
         <img src={data.imgSrc[4]} alt="" width={"auto"} className="self-center w-auto h-auto" />
         <p>{data.content[16]}</p>
-        <h1 className="font-bold text-[24px]">{data.content[17]}</h1>
+        <h1 className="font-bold text-[24px]" id="excel" data-title-anchor="Excel">{data.content[17]}</h1>
         <p>{data.content[18]}</p>
         <p>{data.content[19]}</p>
       </div>
@@ -324,8 +324,8 @@ export default function Documentacion() {
             >
               {item.dataset.titleAnchor ??
                 (item.textContent &&
-                item.textContent.length < 12 &&
-                item.textContent !== ""
+                  item.textContent.length < 12 &&
+                  item.textContent !== ""
                   ? item.textContent
                   : item.id)}
             </a>
@@ -374,6 +374,26 @@ export default function Documentacion() {
       sections.forEach((sec) => observer.unobserve(sec));
     };
   }, [viewProduct]);
+
+  function renderBtnDownload() {
+    const fileForDownload: Record<keyof typeof infoSoftware, string> = {
+      "Tgate": "/docs/Manual - Tekneo Software.pdf"
+    }
+    if (Object.keys(infoSoftware).some((item) => item === viewProduct)) {
+      return (
+        <a href={fileForDownload[viewProduct as keyof typeof infoSoftware]} className="flex p-[5px_15px] justify-center gap-[20px] size-full btnDownload rounded-[10px] w-full" download={true} type="button">
+          <span>{t("manual")}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="inherit" className="size-[24px]">
+            <g id="Interface / Download">
+              <path id="Vector" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+          </svg>
+        </a>
+      )
+    } else {
+      return null
+    }
+  }
 
   return (
     <article className="grid grid-cols-[200px_minmax(500px,50vw)_200px] gap-x-[8%] justify-center m-[50px_0px] relative">
@@ -534,14 +554,7 @@ export default function Documentacion() {
           </ul>
         </div>
         <hr className="border-t-gray-400 w-full" />
-        <a href="/docs/Manual - Tekneo Software.pdf" className="flex p-[5px_15px] justify-center gap-[20px] size-full btnDownload rounded-[10px] w-full" download={true} type="button">
-          <span>{t("manual")}</span>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="inherit" className="size-[24px]">
-            <g id="Interface / Download">
-              <path id="Vector" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </g>
-          </svg>
-        </a>
+        {renderBtnDownload()}
       </aside>
     </article>
   );

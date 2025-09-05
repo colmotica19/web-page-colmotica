@@ -30,24 +30,24 @@ const Popover = forwardRef<
     dialog.style.top = `${rect.bottom + gapTop}px`;
     dialog.style.left = `${rect.left + gapLeft}px`;
 
-    // --- Caja de referencia ---
-    const refTop = Math.min(Math.max(dialogRef.current.offsetHeight, 100), window.innerHeight * 0.15);
-    const refLeft = Math.min(Math.max(dialogRef.current.offsetWidth, 100), window.innerWidth * 0.15);
-    const refRight = window.innerWidth;
-    const refBottom = window.innerHeight;
+    // // --- Caja de referencia ---
+    // const refTop = Math.min(Math.max(dialogRef.current.offsetHeight, 100), window.innerHeight * 0.15);
+    // const refLeft = Math.min(Math.max(dialogRef.current.offsetWidth, 100), window.innerWidth * 0.15);
+    // const refRight = window.innerWidth;
+    // const refBottom = window.innerHeight;
 
-    // --- Cálculo de visibilidad ---
-    const popRect = dialog.getBoundingClientRect();
-    const visibleHeight =
-      Math.max(0, Math.min(popRect.bottom, refBottom) - Math.max(popRect.top, refTop));
-    const visibleWidth =
-      Math.max(0, Math.min(popRect.right, refRight) - Math.max(popRect.left, refLeft));
+    // // --- Cálculo de visibilidad ---
+    // const popRect = dialog.getBoundingClientRect();
+    // const visibleHeight =
+    //   Math.max(0, Math.min(popRect.bottom, refBottom) - Math.max(popRect.top, refTop));
+    // const visibleWidth =
+    //   Math.max(0, Math.min(popRect.right, refRight) - Math.max(popRect.left, refLeft));
 
-    const visibleArea = visibleHeight * visibleWidth;
-    const totalArea = popRect.width * popRect.height;
-    const ratio = totalArea > 0 ? visibleArea / totalArea : 1;
+    // const visibleArea = visibleHeight * visibleWidth;
+    // const totalArea = popRect.width * popRect.height;
+    // const ratio = totalArea > 0 ? visibleArea / totalArea : 1;
 
-    dialog.style.opacity = `${ratio}`;
+    // dialog.style.opacity = `${ratio}`;
   };
 
   let isActive = false
