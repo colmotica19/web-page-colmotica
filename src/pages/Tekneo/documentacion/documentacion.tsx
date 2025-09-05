@@ -7,7 +7,7 @@ import Popover, {
 
 export default function Documentacion() {
   const { t } = useTranslation()
-  const [viewProduct, setViewProduct] = useState<keyof typeof infoHardware | keyof typeof infoSoftware>("Modulo TK-IO22W");
+  const [viewProduct, setViewProduct] = useState<keyof typeof infoHardware | keyof typeof infoSoftware | typeof infoTkLector.title>("Modulo TK-IO22W");
   const viewProductDescription = useRef<HTMLElement>(null);
   const [anchors, setAnchors] = useState<Record<string, JSX.Element[]>>();
 
@@ -108,6 +108,52 @@ export default function Documentacion() {
     }
   } as const), [t])
 
+  const infoTkLector = useMemo(() => ({
+    title: "TK-Lector",
+    content: {
+      1: t("lector_tk_1"),
+      2: t("lector_tk_2"),
+      3: t("lector_tk_3"),
+      4: t("lector_tk_4"),
+      5: t("lector_tk_5"),
+      6: t("lector_tk_6"),
+      7: t("lector_tk_7"),
+      8: t("lector_tk_8"),
+      9: t("lector_tk_9"),
+      10: t("lector_tk_10"),
+      11: t("lector_tk_11"),
+      12: t("lector_tk_12")
+    },
+    list: {
+      1: t("lecktor_tk_12_1"),
+      2: t("lecktor_tk_12_2"),
+      3: t("lecktor_tk_12_3"),
+      4: t("lecktor_tk_12_4"),
+      5: t("lecktor_tk_12_5"),
+      6: t("lecktor_tk_12_6"),
+      7: t("lecktor_tk_12_7"),
+      8: t("lecktor_tk_12_8"),
+      9: t("lecktor_tk_12_9"),
+      10: t("lecktor_tk_12_10"),
+      11: t("lecktor_tk_12_11"),
+      12: t("lecktor_tk_12_12"),
+      13: t("lecktor_tk_12_13"),
+      14: t("lecktor_tk_12_14"),
+    },
+    applicationList: {
+      1: t("lecktor_tk_13"),
+      2: t("lecktor_tk_13_1"),
+      3: t("lecktor_tk_13_2"),
+      4: t("lecktor_tk_13_3"),
+    },
+    recomendation: {
+      1: t("lecktor_tk_14"),
+      2: t("lecktor_tk_14_1"),
+      3: t("lecktor_tk_14_2"),
+      4: t("lecktor_tk_14_3"),
+    }
+  }) as const, [t])
+
   function renderAccessControl() {
     const data = infoSoftware[viewProduct as keyof typeof infoSoftware];
     if (!data) return null;
@@ -149,7 +195,7 @@ export default function Documentacion() {
 
   // Esta función inserta la info en el HTML
 
-  function renderProductInfo() {
+  function renderModuleTk() {
     const data = infoHardware[viewProduct as keyof typeof infoHardware];
     if (!data) return null;
 
@@ -230,6 +276,12 @@ export default function Documentacion() {
       </>
     );
   }
+
+  function renderLectorTk() {
+    const data = infoTkLector[viewProduct as typeof infoTkLector.title];
+    if (!data) return null;
+  }
+
   function renderPreviewProductInfo(productName: keyof typeof infoHardware | keyof typeof infoSoftware) {
     if (Object.keys(infoHardware).some((item) => item === productName)) {
       const data = infoHardware[productName as keyof typeof infoHardware]
@@ -544,7 +596,7 @@ export default function Documentacion() {
         </ul>
       </aside>
       <section ref={viewProductDescription} className="flex flex-col gap-[1lh]">
-        {renderProductInfo() ?? renderAccessControl()}
+        {renderModuleTk() ?? renderAccessControl()}
       </section>
       <aside className="sticky top-[125px] self-start flex flex-col items-center gap-[20px]">
         <div>
