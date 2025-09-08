@@ -1,4 +1,4 @@
-import { useRef, useState, useMemo, type JSX, useEffect } from "react";
+import { useRef, useState, useMemo, type JSX, useEffect, type RefObject } from "react";
 import { useTranslation } from "react-i18next";
 import "./documentacion.css";
 import Popover, {
@@ -124,7 +124,10 @@ export default function Documentacion() {
         9: t("lector_tk_9"),
         10: t("lector_tk_10"),
         11: t("lector_tk_11"),
-        12: t("lector_tk_12")
+        12: t("lecktor_tk_12"),
+        13: t("lecktor_tk_15"),
+        14: t("lecktor_tk_16"),
+        15: t("lecktor_tk_17")
       },
       list: {
         1: t("lecktor_tk_12_1"),
@@ -153,7 +156,10 @@ export default function Documentacion() {
         2: t("lecktor_tk_14_1"),
         3: t("lecktor_tk_14_2"),
         4: t("lecktor_tk_14_3"),
-      }
+      },
+      imgSrc: [
+        "/img/Lector QR 2.png"
+      ]
     }
   }) as const, [t])
 
@@ -162,7 +168,7 @@ export default function Documentacion() {
     if (!data) return null;
 
     return (
-      <div className="flex flex-col gap-[20px] justify-center items-start">
+      <div className="flex flex-col gap-[20px] justify-center items-start" ref={containerRef}>
         <h1 className="self-center text-[32px] text-center mb-[5px] font-bold title">{data.title}</h1>
         <h2 className="font-bold text-[24px]" id="description" data-title-anchor="Introducción">{data.content[1]}</h2>
         <img src={data.imgSrc[0]} alt="" width={"auto"} className="self-center w-auto h-auto" />
@@ -198,12 +204,13 @@ export default function Documentacion() {
 
   // Esta función inserta la info en el HTML
 
+  const containerRef = useRef<HTMLDivElement>(null)
   function renderModuleTk() {
     const data = infoHardware[viewProduct as keyof typeof infoHardware];
     if (!data) return null;
 
     return (
-      <>
+      <div ref={containerRef}>
         <div className="aplicaciones descripcion">
           <h1 className="title font-bold text-[32px] !text-center mb-[5px] text-black">
             {data.title}
@@ -276,7 +283,7 @@ export default function Documentacion() {
             </tbody>
           </table>
         </div>
-      </>
+      </div>
     );
   }
 
@@ -286,12 +293,63 @@ export default function Documentacion() {
 
     return (
       <>
-        <h1>{data.title}</h1>
+        <div className="aplicaciones">
+
+          <h1 className="font-bold text-[32px] text-center fade-in">{data.title}</h1>
+          <p dangerouslySetInnerHTML={{ __html: data.content[1] }} className="fade-in"></p>
+          <h2 className="font-bold text-[24px] fade-in" dangerouslySetInnerHTML={{ __html: data.content[2] }} id="title2" data-title-anchor="Caracteristicas destacadas"></h2>
+          <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh] fade-in">
+            <li className="fade-in">{data.content[3]}</li>
+            <li className="fade-in">{data.content[4]}</li>
+            <li className="fade-in">{data.content[5]}</li>
+            <li className="fade-in">{data.content[6]}</li>
+            <li className="fade-in">{data.content[7]}</li>
+          </ul>
+          <h2 className="font-bold text-[24px] fade-in" dangerouslySetInnerHTML={{ __html: data.content[8] }} id="title3" data-title-anchor="Aplicaciones principales"></h2>
+          <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh] fade-in">
+            <li className="fade-in">{data.content[9]}</li>
+            <li className="fade-in">{data.content[10]}</li>
+            <li className="fade-in">{data.content[11]}</li>
+          </ul>
+          <h2 className="font-bold text-[24px] fade-in" id="title4" data-title-anchor="Caracteristicas">{data.content[12]}</h2>
+          <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh] fade-in">
+            <li className="fade-in">{data.list[1]}</li>
+            <li className="fade-in">{data.list[2]}</li>
+            <li className="fade-in">{data.list[3]}</li>
+            <li className="fade-in">{data.list[4]}</li>
+            <li className="fade-in">{data.list[5]}</li>
+            <li className="fade-in">{data.list[6]}</li>
+            <li className="fade-in">{data.list[7]}</li>
+            <li className="fade-in">{data.list[8]}</li>
+            <li className="fade-in">{data.list[9]}</li>
+            <li className="fade-in">{data.list[10]}</li>
+            <li className="fade-in">{data.list[11]}</li>
+            <li className="fade-in">{data.list[12]}</li>
+            <li className="fade-in">{data.list[13]}</li>
+            <li className="fade-in">{data.list[14]}</li>
+          </ul>
+          <h2 className="font-bold text-[24px] fade-in" id="title5" data-title-anchor="Aplicaciones">{data.applicationList[1]}</h2>
+          <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh] fade-in">
+            <li className="fade-in">{data.applicationList[2]}</li>
+            <li className="fade-in">{data.applicationList[3]}</li>
+            <li className="fade-in">{data.applicationList[4]}</li>
+          </ul>
+          <h2 className="font-bold text-[24px] fade-in" id="title6" data-title-anchor="Recomendaciones">{data.recomendation[1]}</h2>
+          <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh] fade-in">
+            <li className="fade-in">{data.recomendation[2]}</li>
+            <li className="fade-in">{data.recomendation[3]}</li>
+            <li className="fade-in">{data.recomendation[4]}</li>
+          </ul>
+          <h2 className="font-bold text-[24px] fade-in" id="title6" data-title-anchor="Vista Lector">{data.content[13]}</h2>
+          <p className="fade-in">{data.content[14]}</p>
+          <img src={data.imgSrc[0]} alt="imagen" width={"auto"} height={"auto"} className="w-[400px] self-center fade-in" />
+          <p className="fade-in">{data.content[15]}</p>
+        </div>
       </>
     )
   }
 
-  function renderPreviewProductInfo(productName: keyof typeof infoHardware | keyof typeof infoSoftware) {
+  function renderPreviewProductInfo(productName: typeof viewProduct) {
     if (Object.keys(infoHardware).some((item) => item === productName)) {
       const data = infoHardware[productName as keyof typeof infoHardware]
       return (
@@ -311,6 +369,14 @@ export default function Documentacion() {
           <img src={data.imgSrc[0]} alt="" className="w-[500px] h-auto" width={"auto"} height={"auto"} />
         </>
       )
+    } else if (Object.keys(infoTkLector).some((item) => item === productName)) {
+      const data = infoTkLector[productName as keyof typeof infoTkLector];
+      return (
+        <>
+          <h1>{data.title}</h1>
+          <img src={data.imgSrc[0]} alt="" className="w-[400px] h-auto" width={"auto"} height={"auto"} />
+        </>
+      )
     }
   }
 
@@ -318,14 +384,22 @@ export default function Documentacion() {
   const btnModule44w = useRef<HTMLButtonElement>(null)
   const btnTgate = useRef<HTMLButtonElement>(null);
   const btnLectorTk = useRef<HTMLButtonElement>(null)
+  const listOfBtns: Record<typeof viewProduct, RefObject<HTMLButtonElement | null>> = {
+    "TK-Lector": btnLectorTk,
+    "Tgate": btnTgate,
+    "Modulo TK-IO22W": btnModule22w,
+    "Modulo TK-IO24W2": btnModule44w
+  };
   const popoverHandle = useRef<PopoverHandle>(null)
   const popoverHandle2 = useRef<PopoverHandle>(null)
   const popoverAccessControlHandle = useRef<PopoverHandle>(null)
+  const popoverTkLector = useRef<PopoverHandle>(null)
   btnModule22w.current?.addEventListener("mouseover", () => {
     if (btnModule22w.current) {
       popoverHandle.current?.showPopover(btnModule22w.current)
       popoverHandle2.current?.forceClose()
       popoverAccessControlHandle.current?.forceClose()
+      popoverTkLector.current?.forceClose()
     }
   });
   btnModule22w.current?.addEventListener("mouseleave", () => {
@@ -338,6 +412,7 @@ export default function Documentacion() {
       popoverHandle2.current?.showPopover(btnModule44w.current)
       popoverHandle.current?.forceClose()
       popoverAccessControlHandle.current?.forceClose()
+      popoverTkLector.current?.forceClose()
     }
   });
   btnModule44w.current?.addEventListener("mouseleave", () => {
@@ -350,11 +425,25 @@ export default function Documentacion() {
       popoverAccessControlHandle.current?.showPopover(btnTgate.current)
       popoverHandle2.current?.forceClose()
       popoverHandle.current?.forceClose()
+      popoverTkLector.current?.forceClose()
     }
   })
   btnTgate.current?.addEventListener("mouseleave", () => {
     if (btnTgate.current) {
       popoverAccessControlHandle.current?.close()
+    }
+  })
+  btnLectorTk.current?.addEventListener("mouseover", () => {
+    if (btnLectorTk.current) {
+      popoverAccessControlHandle.current?.forceClose()
+      popoverHandle2.current?.forceClose()
+      popoverHandle.current?.forceClose()
+      popoverTkLector.current?.showPopover(btnLectorTk.current)
+    }
+  })
+  btnLectorTk.current?.addEventListener("mouseleave", () => {
+    if (btnLectorTk.current) {
+      popoverTkLector.current?.close()
     }
   })
   const listOfNav = useRef<HTMLUListElement>(null)
@@ -431,11 +520,38 @@ export default function Documentacion() {
     );
 
     sections.forEach((sec) => observer.observe(sec));
+    verifyTheCorrectViewProduct()
 
     return () => {
       sections.forEach((sec) => observer.unobserve(sec));
+
     };
   }, [viewProduct]);
+
+  useEffect(() => {
+    containerRef.current?.querySelectorAll("*").forEach((item) => {
+      item.classList.add("fade-in")
+    })
+    const elements = document.querySelectorAll<HTMLElement>(".fade-in");
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            obs.unobserve(entry.target); // 👈 evita que se repita
+          }
+        });
+      },
+      { threshold: 0.2 } // cuando un 20% del elemento es visible
+    );
+
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, [viewProduct]); // 👈 se recalcula cuando cambias de producto
+
 
   function renderBtnDownload() {
     const fileForDownload: Partial<Record<typeof viewProduct, string>> = {
@@ -460,6 +576,22 @@ export default function Documentacion() {
     }
   }
 
+  function verifyTheCorrectViewProduct() {
+    if (Object.values(listOfBtns).every((item) => item.current)) {
+      Object.entries(listOfBtns).forEach(([key, value]) => {
+        const target = value.current as HTMLButtonElement
+        if (viewProduct === key) {
+          target.dataset.active = "true"
+        } else {
+          target.dataset.active = "false"
+        }
+        console.log(viewProduct)
+      })
+    } else {
+      throw new Error("La referencia " + viewProduct + " es null o undefined")
+    }
+  }
+
   return (
     <article className="grid grid-cols-[200px_minmax(500px,50vw)_200px] gap-x-[8%] justify-center m-[50px_0px] relative">
       <aside className="relative flex flex-col gap-[30px] items-center after:w-[2px] after:h-[30%] after:absolute after:top-[10px] after:left-[calc(100%_+_15px)] after:bg-gray-300">
@@ -471,13 +603,6 @@ export default function Documentacion() {
           <li>
             <button ref={btnModule22w} data-active="true" className={`flex gap-[10px] min-w-[200px] items-center justify-end p-[5px_15px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""}`} onClick={() => {
               setViewProduct("Modulo TK-IO22W")
-              if (btnModule22w.current && btnModule44w.current && btnTgate.current) {
-                btnModule22w.current.dataset.active = "true"
-                btnModule44w.current.dataset.active = "false"
-                btnTgate.current.dataset.active = "false"
-              } else {
-                throw new Error("La referencia 'btnModule22w' o 'btnModule44w' es null o undefined")
-              }
             }} title="Abrir producto" type="button">
               <span className="">Modulo TK-IO22W</span>
               <svg
@@ -522,15 +647,6 @@ export default function Documentacion() {
           <li>
             <button ref={btnModule44w} className={`flex gap-[10px] min-w-[200px] items-center justify-end p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO24W2" ? "!text-white !border-black" : ""}`} onClick={() => {
               setViewProduct("Modulo TK-IO24W2")
-              if (btnModule44w.current && btnModule22w.current && btnTgate.current && btnLectorTk.current) {
-                btnModule22w.current.dataset.active = "false"
-                btnModule44w.current.dataset.active = "true"
-                btnTgate.current.dataset.active = "false"
-                btnLectorTk.current.dataset.active = "false"
-
-              } else {
-                throw new Error("La referencia 'btnModule22w' o 'btnModule44w' es null o undefined")
-              }
             }} type="button" title="Abrir Producto">
               <span className="">Modulo TK-IO24W2</span>
               <svg
@@ -576,14 +692,6 @@ export default function Documentacion() {
           <li>
             <button onClick={() => {
               setViewProduct("TK-Lector")
-              if (btnModule44w.current && btnModule22w.current && btnTgate.current && btnLectorTk.current) {
-                btnModule22w.current.dataset.active = "false"
-                btnModule44w.current.dataset.active = "false"
-                btnTgate.current.dataset.active = "false"
-                btnLectorTk.current.dataset.active = "true"
-              } else {
-                throw new Error("La referencia 'btnModule22w' o 'btnModule44w' es null o undefined")
-              }
             }} ref={btnLectorTk} type="button" className={`flex gap-[10px] min-w-[200px] items-center justify-center p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO24W2" ? "!text-white !border-black" : ""}`}>
               <span>Lector TK</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="fill-white size-[16px] rotate-90" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 -4.5 20 20" version="1.1">
@@ -599,7 +707,15 @@ export default function Documentacion() {
             </button>
           </li>
         </ul>
-
+        <Popover
+          ref={popoverTkLector}
+          gapTop={-(btnModule44w.current?.offsetHeight ?? 100)}
+          gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}
+        >
+          <div className="flex flex-col gap-[10px] items-center">
+            {renderPreviewProductInfo("TK-Lector")}
+          </div>
+        </Popover>
         <div className="w-full">
           <h1 className="text-black font-bold text-[32px]">Software</h1>
           <hr className="w-full border-t-gray-400" />
@@ -608,14 +724,7 @@ export default function Documentacion() {
           <li>
             <button onClick={() => {
               setViewProduct("Tgate")
-              if (btnModule44w.current && btnModule22w.current && btnTgate.current && btnLectorTk.current) {
-                btnModule22w.current.dataset.active = "false"
-                btnModule44w.current.dataset.active = "false"
-                btnTgate.current.dataset.active = "true"
-                btnLectorTk.current.dataset.active = "false"
-              } else {
-                throw new Error("La referencia 'btnModule22w' o 'btnModule44w' es null o undefined")
-              }
+              verifyTheCorrectViewProduct()
             }} ref={btnTgate} type="button" className={`flex gap-[10px] min-w-[200px] items-center justify-center p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO24W2" ? "!text-white !border-black" : ""}`}>
               <span>TGate</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="fill-white size-[16px] rotate-90" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 -4.5 20 20" version="1.1">
