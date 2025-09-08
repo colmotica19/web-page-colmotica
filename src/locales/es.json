@@ -278,6 +278,7 @@
   "Modulo TK-IO24W2_tableItem_7": "Botón incorporado para el reinicio del sistema.",
   "tabla_de_contenido": "Tabla de contenido",
   "manual": "Manual",
+  "tgate_title": "TGate",
   "tgate_1": "Introducción",
   "tgate_1_1": "<b>Tekneo</b> es un software especializado en <b> gestión y control de accesos </b>, diseñado para reforzar la seguridad en instalaciones de cualquier tamaño. Su infraestructura flexible permite supervisar y administrar los puntos de acceso de forma centralizada, adaptándose a las necesidades específicas de cada sitio de implementación.",
   "tgate_1_2": "Con Tekneo, los usuarios pueden:",
@@ -297,6 +298,7 @@
   "tgate_5": "Exporta Excel",
   "tgate_5_1": "En la mayoría de las vistas que muestran listas de elementos del sistema, como áreas, permisos o personas, hay un botón que permite descargar un archivo Excel con la información actualmente visible. Incluso si aplicas filtros para buscar elementos específicos",
   "tgate_end": "Esta flexibilidad convierte a Tekneo en una solución escalable, ideal para empresas grandes, medianas o pequeñas, que necesitan un sistema de control de accesos robusto y adaptable.",
+  "lector_tk_title": "TK-Lector",
   "lector_tk_1": "El lector QR + RFID es un dispositivo multifuncional para control de acceso, capaz de leer credenciales RFID (125 kHz / 13,56 MHz) y códigos QR en formato HEX. <br><br> Ofrece comunicación mediante Wiegand o HTTP para integrarse con sistemas de control de acceso y servidores como Tgate.",
   "lector_tk_2": "<b>Características destacadas</b>",
   "lector_tk_3": "Lectura de tarjetas RFID y códigos QR (HEX).",
@@ -333,5 +335,7 @@
   "lecktor_tk_14_3": "Realizar pruebas de lectura, alimentación y conexión de red, guiándose a través de los Leds indicadores.",
   "lecktor_tk_15": "Vista Lector",
   "lecktor_tk_16": "El TK-Lector cuenta con un vidrio templado para proteger el lector. Además, el lector cuenta con 3 Leds indicadores capaces de representar la alimentación y detección como se muestra en la siguiente imagen.",
-  "lecktor_tk_17": "Este lector también cuenta con una salida Ethernet y USB en uno de sus lados. La salida Ethernet permite establecer una conexión física con servidores mediante el protocolo de comunicación HTTP, puede ser el servidor de TGate o un servidor externo."
+  "lecktor_tk_17": "Este lector también cuenta con una salida Ethernet y USB en uno de sus lados. La salida Ethernet permite establecer una conexión física con servidores mediante el protocolo de comunicación HTTP, puede ser el servidor de TGate o un servidor externo.",
+  "tablaDeEspecificaciones": "Tabla de especificaciones",
+  "Diagrama": "Diagrama"
 }

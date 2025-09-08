@@ -1,4 +1,4 @@
-import { useRef, useState, useMemo, type JSX, useEffect, type RefObject } from "react";
+import { useRef, useState, useMemo, type JSX, useEffect, type RefObject, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import "./documentacion.css";
 import Popover, {
@@ -80,7 +80,7 @@ export default function Documentacion() {
 
   const infoSoftware = useMemo(() => ({
     "Tgate": {
-      title: "TGate",
+      title: t("tgate_title"),
       content: {
         1: t("tgate_1"),
         2: t("tgate_1_1"),
@@ -218,7 +218,7 @@ export default function Documentacion() {
           <h3
             className="description font-bold text-[24px] text-black"
             id="descripcion"
-            data-title-anchor="Descripción"
+            data-title-anchor={t("Descripcion")}
           >
             {t("descripcion_general")}
           </h3>
@@ -231,7 +231,7 @@ export default function Documentacion() {
           <h1
             className="font-bold text-[24px] text-black"
             id="aplicaciones"
-            data-title-anchor="Aplicaciones"
+            data-title-anchor={t("aplicaciones")}
           >
             {t("aplicaciones")}
           </h1>
@@ -257,12 +257,12 @@ export default function Documentacion() {
               key={index}
               width={"auto"}
               id={index === 0 ? "diagrama" : ""}
-              data-title-anchor="Diagrama"
+              data-title-anchor={t("Diagrama")}
             />
           ))}
           <table
             id="tablaDeCaracteristicas"
-            data-title-anchor="Tabla de especificaciones"
+            data-title-anchor={t("tablaDeEspecificaciones")}
           >
             <thead>
               <tr className="*:border-[1px] *:border-gray-400 *:p-[5px_10px] bg-blue-100">
@@ -384,12 +384,14 @@ export default function Documentacion() {
   const btnModule44w = useRef<HTMLButtonElement>(null)
   const btnTgate = useRef<HTMLButtonElement>(null);
   const btnLectorTk = useRef<HTMLButtonElement>(null)
-  const listOfBtns: Record<typeof viewProduct, RefObject<HTMLButtonElement | null>> = {
-    "TK-Lector": btnLectorTk,
-    "Tgate": btnTgate,
-    "Modulo TK-IO22W": btnModule22w,
-    "Modulo TK-IO24W2": btnModule44w
-  };
+  const listOfBtns: Record<typeof viewProduct, RefObject<HTMLButtonElement | null>> = useMemo(() => (
+    {
+      "TK-Lector": btnLectorTk,
+      "Tgate": btnTgate,
+      "Modulo TK-IO22W": btnModule22w,
+      "Modulo TK-IO24W2": btnModule44w
+    }
+  ), []);
   const popoverHandle = useRef<PopoverHandle>(null)
   const popoverHandle2 = useRef<PopoverHandle>(null)
   const popoverAccessControlHandle = useRef<PopoverHandle>(null)
@@ -448,7 +450,7 @@ export default function Documentacion() {
   })
   const listOfNav = useRef<HTMLUListElement>(null)
 
-  function generateAnchorsBasedInTheContent() {
+  const generateAnchorsBasedInTheContent = useCallback(() => {
     if (!viewProductDescription.current)
       throw new Error("viewProductDescription es null");
 
@@ -460,17 +462,26 @@ export default function Documentacion() {
     const anchorsJsx = allItemsWithId.map(
       (item) =>
         item.id !== "" && (
-          <li key={item.id} className="size-full">
+          <li key={item.id + Math.random()} className="size-full">
             <a
               className="flex p-[5px_15px] size-full anchorSection rounded-[10px] w-full"
               href={`#${item.id}`}
               onClick={(event) => {
                 event.preventDefault();
+                let top = item.offsetTop
+                let left = item.offsetLeft
+                if (item instanceof HTMLImageElement) {
+                  item.onload = () => {
+                    top = item.offsetTop
+                    left = item.offsetLeft
+                  }
+                }
                 scroll({
-                  top: item.offsetTop + 40,
-                  left: 0,
+                  top: top + 40,
+                  left: left,
                   behavior: "smooth",
                 });
+                console.log("offsetTop", top, "offsetLeft", left)
               }}
             >
               {item.dataset.titleAnchor ??
@@ -487,7 +498,24 @@ export default function Documentacion() {
     setAnchors({
       [viewProduct]: anchorsJsx.filter((item) => item !== false),
     });
-  }
+  }, [viewProduct, t]);
+
+  const verifyTheCorrectViewProduct = useCallback(() => {
+    if (Object.values(listOfBtns).every((item) => item.current)) {
+      Object.entries(listOfBtns).forEach(([key, value]) => {
+        const target = value.current as HTMLButtonElement
+        if (viewProduct === key) {
+          target.dataset.active = "true"
+        } else {
+          target.dataset.active = "false"
+        }
+      })
+    } else {
+      throw new Error("La referencia " + viewProduct + " es null o undefined")
+    }
+  }, [listOfBtns, viewProduct])
+
+
   useEffect(() => {
     generateAnchorsBasedInTheContent();
     if (!viewProductDescription.current) return;
@@ -526,7 +554,7 @@ export default function Documentacion() {
       sections.forEach((sec) => observer.unobserve(sec));
 
     };
-  }, [viewProduct]);
+  }, [viewProduct, generateAnchorsBasedInTheContent, verifyTheCorrectViewProduct]);
 
   useEffect(() => {
     containerRef.current?.querySelectorAll("*").forEach((item) => {
@@ -566,7 +594,7 @@ export default function Documentacion() {
           <span>{t("manual")}</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="inherit" className="size-[24px]">
             <g id="Interface / Download">
-              <path id="Vector" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path id="Vector" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </g>
           </svg>
         </a>
@@ -576,21 +604,7 @@ export default function Documentacion() {
     }
   }
 
-  function verifyTheCorrectViewProduct() {
-    if (Object.values(listOfBtns).every((item) => item.current)) {
-      Object.entries(listOfBtns).forEach(([key, value]) => {
-        const target = value.current as HTMLButtonElement
-        if (viewProduct === key) {
-          target.dataset.active = "true"
-        } else {
-          target.dataset.active = "false"
-        }
-        console.log(viewProduct)
-      })
-    } else {
-      throw new Error("La referencia " + viewProduct + " es null o undefined")
-    }
-  }
+
 
   return (
     <article className="grid grid-cols-[200px_minmax(500px,50vw)_200px] gap-x-[8%] justify-center m-[50px_0px] relative">
