@@ -12,6 +12,8 @@ import Tshow from "../pages/Tekneo/TShow/TShow";
 import Ldm from "../pages/Tekneo/LDM/LDM";
 import Nodemaker from "../pages/Tekneo/Nodemaker/Nodemaker";
 import Documentacion from "../pages/Tekneo/documentacion/documentacion";
+import Login from "../components/login/Login";
+import Registrar from "../components/login/Registrar";
 
 export const routerTekneo = createHashRouter([
   {
@@ -69,4 +71,12 @@ export const routerTekneo = createHashRouter([
     Component: LayoutColmotica,
     children: routesColmotica,
   },
+  {
+    path: "/login",
+    Component: Login
+  },
+  {
+    path: "/registrar",
+    Component: Registrar
+  }
 ]);
