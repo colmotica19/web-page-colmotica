@@ -7,7 +7,7 @@ import BtnChangeLang from "../../global/btnChangeLang";
 import Modal, { type ModalHandle } from "../Modal/Modal";
 
 export function Header() {
-  const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware, lang } = useContext(GlobalContext);
+  const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware, lang, user } = useContext(GlobalContext);
   const { t } = useTranslation()
   const mapProducts = useRef(new Map<string, HTMLAnchorElement>());
   const hardwareProducts = useMemo(() => [
@@ -486,6 +486,7 @@ export function Header() {
             <section>
             </section>
           </div>
+          <div className="rounded-[36px] size-[50px]">{ }</div>
         </div>
       </section>
     </header>
