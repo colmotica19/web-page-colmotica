@@ -11,6 +11,7 @@ export interface PopoverHandle {
   showPopover: (anchor: HTMLElement) => void;
   close: () => void;
   forceClose: () => void;
+  this: HTMLDialogElement | null;
 }
 
 const Popover = forwardRef<
@@ -87,7 +88,8 @@ const Popover = forwardRef<
   useImperativeHandle(ref, () => ({
     showPopover,
     close,
-    forceClose
+    forceClose,
+    this: dialogRef.current
   }));
 
   // Recalcular en scroll y resize
