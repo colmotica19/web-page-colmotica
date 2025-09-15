@@ -391,7 +391,7 @@ export function Header() {
             <a className="btn-header__btn dropdown">
               <p>{t("nav_productos")}</p>
             </a>
-            <NavLink className={"btn-header__btn font-medium"} to="/documentacion">{t("nav_documentacion")}</NavLink>
+            <NavLink onClick={() => scroll({ top: 0, left: 0 })} className={"btn-header__btn font-medium"} to="/documentacion">{t("nav_documentacion")}</NavLink>
             {/* <a id="myBtn" className="btn-header__btn">
               <p>{t("nav_soporte")}</p>
             </a> */}

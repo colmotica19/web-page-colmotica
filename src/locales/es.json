@@ -339,7 +339,7 @@
   "tablaDeEspecificaciones": "Tabla de especificaciones",
   "Diagrama": "Diagrama",
   "nodemaker_title": "NodeMaker",
-  "nodemaker_1": "NodeMaker es una plataforma de servidor para gestionar fuentes de datos, monitorear tráfico y transformar mensajes entre sistemas de automatización (especialmente KNX) y mensajería IoT (MQTT). <br> <br> Permite crear y administrar las conexiones (fuentes), definir direcciones de grupo KNX, enrutar telegramas, montar bridges entre KNX↔MQTT y ver todo en monitores en tiempo real. <br> Todo desde una interfaz web con gestión de usuarios, roles y licencia",
+  "nodemaker_1": "NodeMaker es una plataforma de servidor para gestionar fuentes de datos, monitorear tráfico y transformar mensajes entre sistemas de automatización (especialmente KNX) y mensajería IoT (MQTT). <br> <br> Permite crear y administrar las conexiones (fuentes), definir direcciones de grupo KNX, enrutar telegramas, montar bridges entre KNX↔MQTT y ver todo en monitores en tiempo real. <br> <br> Todo desde una interfaz web con gestión de usuarios, roles y licencia",
   "nodemaker_list_title": "Principales funciones",
   "nodemaker_list_1": "<b>Fuentes (Sources):</b> administra conexiones a dispositivos KNX y brokers MQTT (IP, puerto, credenciales, topics). Permite activar/desactivar, editar y eliminar fuentes.",
   "nodemaker_list_2": "<b>Group Address (Direcciones de grupo):</b> crea o importa las direcciones KNX necesarias para operar; se pueden filtrar, editar masivamente, subir vía .esf/.csv y marcar tipos DPT. Importantísimo: algunos DPT pueden quedar como Uncertain y requieren corrección manual.",

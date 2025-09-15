@@ -157,7 +157,7 @@ export default function Documentacion(): JSX.Element {
         2: t("nodemaker_list3_2"),
         3: t("nodemaker_list3_3"),
       },
-      imgSrc: ["/img/Logo de nodemaker.png"]
+      imgSrc: ["/img/Logo de nodemaker.png", "/img/img2 de nodemaker.png"]
     }
   } as const), [t]);
 
@@ -490,10 +490,12 @@ export default function Documentacion(): JSX.Element {
     const data = infoSoftware[viewProduct as "Nodemaker"];
     if (!data && viewProduct !== "Nodemaker") return null;
     return (
-      <div className="aplicaciones">
+      <div className="aplicaciones" ref={containerRef}>
         <h1 className="font-bold text-[32px] text-center" dangerouslySetInnerHTML={{ __html: data.title }}></h1>
         <p dangerouslySetInnerHTML={{ __html: data.content[1] }}></p>
-        <h1 className="font-bold text-[32px] text-center" dangerouslySetInnerHTML={{ __html: data.list.title }}></h1>
+        <img src={data.imgSrc[0] } alt="" width={"auto"} height={"auto"} className="w-[550px] self-center" />
+        <img src={data.imgSrc[1] } alt="" width={"auto"} height={"auto"} className="w-[550px] self-center" />
+        <h2 className="font-bold text-[24px] text-left" dangerouslySetInnerHTML={{ __html: data.list.title }} id="principal" data-title-anchor={data.list.title }></h2>
         <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh]">
           <li dangerouslySetInnerHTML={{ __html: data.list[1] }}></li>
           <li dangerouslySetInnerHTML={{ __html: data.list[2] }}></li>
@@ -505,14 +507,14 @@ export default function Documentacion(): JSX.Element {
           <li dangerouslySetInnerHTML={{ __html: data.list[8] }}></li>
           <li dangerouslySetInnerHTML={{ __html: data.list[9] }}></li>
         </ul>
-        <h1 className="font-bold text-[32px] text-center" dangerouslySetInnerHTML={{ __html: data.list2.title }}></h1>
+        <h2 className="font-bold text-[24px] text-left" dangerouslySetInnerHTML={{ __html: data.list2.title }} id="secundario" data-title-anchor={data.list2.title}></h2>
         <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh]">
           <li dangerouslySetInnerHTML={{ __html: data.list2[1] }}></li>
           <li dangerouslySetInnerHTML={{ __html: data.list2[2] }}></li>
           <li dangerouslySetInnerHTML={{ __html: data.list2[3] }}></li>
           <li dangerouslySetInnerHTML={{ __html: data.list2[4] }}></li>
         </ul>
-        <h1 className="font-bold text-[32px] text-center" dangerouslySetInnerHTML={{ __html: data.list3.title }}></h1>
+        <h2 className="font-bold text-[24px] text-left" dangerouslySetInnerHTML={{ __html: data.list3.title }} id="terceario" data-title-anchor={data.list3.title }></h2>
         <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh]">
           <li dangerouslySetInnerHTML={{ __html: data.list3[1] }}></li>
           <li dangerouslySetInnerHTML={{ __html: data.list3[2] }}></li>
@@ -529,6 +531,7 @@ export default function Documentacion(): JSX.Element {
       "TK-Lector": "/docs/DataSheet QR-Lector.pdf",
       "Modulo TK-IO22W": "/docs/TK-IO22W Datasheet 1.pdf",
       "Modulo TK-IO24W2": "/docs/TK-IO24W2 Datasheet 2.pdf",
+      "Nodemaker": "/docs/Manual NodeMaker.docx"
     };
 
     const file = fileForDownload[viewProduct];
