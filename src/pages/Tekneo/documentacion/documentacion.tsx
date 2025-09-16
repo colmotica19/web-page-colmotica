@@ -6,7 +6,7 @@ import Popover, { type PopoverHandle } from "../../../components/Popover/Popover
 // Refactor: componente más legible y modular. Mantengo la lógica original
 // pero evito listeners fuera del flujo React y simplifico generación de anchors.
 
-type ProductKey = "Modulo TK-IO22W" | "Modulo TK-IO24W2" | "Tgate" | "TK-Lector" | "Nodemaker";
+type ProductKey = "Modulo TK-IO22W" | "Modulo TK-IO24W2" | "Tgate" | "TK-Lector" | "Nodemaker" | "Access Control";
 
 export default function Documentacion(): JSX.Element {
   const { t } = useTranslation();
@@ -14,6 +14,8 @@ export default function Documentacion(): JSX.Element {
 
   // refs para popovers y botones
   const btnModule22w = useRef<HTMLButtonElement | null>(null);
+  const btnAccessControl = useRef<HTMLButtonElement>(null)
+  const btnAccessControl2 = useRef<HTMLButtonElement>(null)
   const btnModule44w = useRef<HTMLButtonElement | null>(null);
   const btnTgate = useRef<HTMLButtonElement | null>(null);
   const btnNodemaker = useRef<HTMLButtonElement | null>(null);
@@ -24,6 +26,8 @@ export default function Documentacion(): JSX.Element {
   const popoverTgate = useRef<PopoverHandle | null>(null);
   const popoverLector = useRef<PopoverHandle | null>(null);
   const popoverNodemaker = useRef<PopoverHandle | null>(null);
+  const popoverAccessControl1 = useRef<PopoverHandle | null>(null);
+  const popoverAccessControl2 = useRef<PopoverHandle | null>(null);
 
   const viewProductDescription = useRef<HTMLElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -60,6 +64,40 @@ export default function Documentacion(): JSX.Element {
         ["Ethernet RJ45", t("Modulo TK-IO22W_tableItem_6")],
         ["Reset button", t("Modulo TK-IO22W_tableItem_7")],
       ],
+      "Access Control": {
+        title: t("access_control_title"),
+        content: {
+          1: t("acess_control_1"),
+          2: t("acess_control_2"),
+          3: t("acess_control_3"),
+          4: t("acess_control_4"),
+          5: t("acess_control_5"),
+          6: t("acess_control_6"),
+          7: t("acess_control_7"),
+          8: t("acess_control_2_1"),
+          9: t("acess_control_2_2"),
+          10: t("acess_control_3_1"),
+          11: t("acess_control_3_2"),
+          12: t("acess_control_4_1"),
+          13: t("acess_control_4_2"),
+          14: t("access_control_5_1"),
+          15: t("access_control_5_2"),
+          16: t("access_control_5_3"),
+          17: t("access_control_5_4"),
+          18: t("access_control_5_5"),
+          19: t("access_control_5_6"),
+          20: t("access_control_5_7"),
+          21: t("access_control_5_8"),
+        },
+        list: {
+          1: t("access_control_4_list_1"),
+          2: t("access_control_4_list_2"),
+          3: t("access_control_4_list_3"),
+          4: t("access_control_4_list_4"),
+          5: t("access_control_4_list_5"),
+        },
+        imgSrc: ["/img/access_control_1.jpg", "/img/access_control_2.png", "/img/access_control_3.png", "/img/access_control_4.png", "/img/access_control_5.png", "/img/access_control_6.jpg", "/img/access_control_7.jpg", "/img/access_control_8.jpg", "/img/access_control_9.jpg", "/img/access_control_10.jpg", "/img/access_control_11.jpg", "/img/access_control_12.png", "/img/access_control_13.png", "/img/access_control_14.png", "/img/access_control_15.png"]
+      }
     },
     "Modulo TK-IO24W2": {
       title: t("Modulo TK-IO24W2_title"),
@@ -89,7 +127,7 @@ export default function Documentacion(): JSX.Element {
         ["Inputs Wiegand", t("Modulo TK-IO24W2_tableItem_5")],
         ["Ethernet RJ45", t("Modulo TK-IO24W2_tableItem_6")],
         ["Reset button", t("Modulo TK-IO24W2_tableItem_7")],
-      ],
+      ]
     },
   } as const), [t]);
 
@@ -206,17 +244,28 @@ export default function Documentacion(): JSX.Element {
 
   const previewFor = useCallback(
     (name: ProductKey) => {
-      if (name in infoHardware) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const data = (infoHardware as any)[name];
-        return (
-          <>
-            <h1>{data.title}</h1>
-            {data.diagramSrc.map((src: string, i: number) => (
-              <img key={i} src={src} alt="img" className="h-auto w-[220px]" />
-            ))}
-          </>
-        );
+      if (name in infoHardware || name === "Access Control") {
+        if (name !== "Access Control") {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const data = (infoHardware as any)[name];
+          return (
+            <>
+              <h1>{data.title}</h1>
+              {data.diagramSrc.map((src: string, i: number) => (
+                <img key={i} src={src} alt="img" className="h-auto w-[220px]" />
+              ))}
+            </>
+          );
+        } else {
+          const data = infoHardware["Modulo TK-IO22W"]["Access Control"];
+          console.log(data)
+          return (
+            <>
+              <h1>{data.title}</h1>
+              <img src={data.imgSrc[0]} alt="" width={"auto"} height={"auto"} />
+            </>
+          );
+        }
       }
       if (name in infoSoftware) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -280,6 +329,7 @@ export default function Documentacion(): JSX.Element {
       "TK-Lector": btnLectorTk,
       Tgate: btnTgate,
       "Modulo TK-IO22W": btnModule22w,
+      "Access Control": btnAccessControl,
       "Modulo TK-IO24W2": btnModule44w,
       "Nodemaker": btnNodemaker
     };
@@ -493,9 +543,9 @@ export default function Documentacion(): JSX.Element {
       <div className="aplicaciones" ref={containerRef}>
         <h1 className="font-bold text-[32px] text-center" dangerouslySetInnerHTML={{ __html: data.title }}></h1>
         <p dangerouslySetInnerHTML={{ __html: data.content[1] }}></p>
-        <img src={data.imgSrc[0] } alt="" width={"auto"} height={"auto"} className="w-[550px] self-center" />
-        <img src={data.imgSrc[1] } alt="" width={"auto"} height={"auto"} className="w-[550px] self-center" />
-        <h2 className="font-bold text-[24px] text-left" dangerouslySetInnerHTML={{ __html: data.list.title }} id="principal" data-title-anchor={data.list.title }></h2>
+        <img src={data.imgSrc[0]} alt="" width={"auto"} height={"auto"} className="w-[550px] self-center" />
+        <img src={data.imgSrc[1]} alt="" width={"auto"} height={"auto"} className="w-[550px] self-center" />
+        <h2 className="font-bold text-[24px] text-left" dangerouslySetInnerHTML={{ __html: data.list.title }} id="principal" data-title-anchor={data.list.title}></h2>
         <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh]">
           <li dangerouslySetInnerHTML={{ __html: data.list[1] }}></li>
           <li dangerouslySetInnerHTML={{ __html: data.list[2] }}></li>
@@ -514,7 +564,7 @@ export default function Documentacion(): JSX.Element {
           <li dangerouslySetInnerHTML={{ __html: data.list2[3] }}></li>
           <li dangerouslySetInnerHTML={{ __html: data.list2[4] }}></li>
         </ul>
-        <h2 className="font-bold text-[24px] text-left" dangerouslySetInnerHTML={{ __html: data.list3.title }} id="terceario" data-title-anchor={data.list3.title }></h2>
+        <h2 className="font-bold text-[24px] text-left" dangerouslySetInnerHTML={{ __html: data.list3.title }} id="terceario" data-title-anchor={data.list3.title}></h2>
         <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh]">
           <li dangerouslySetInnerHTML={{ __html: data.list3[1] }}></li>
           <li dangerouslySetInnerHTML={{ __html: data.list3[2] }}></li>
@@ -523,6 +573,61 @@ export default function Documentacion(): JSX.Element {
       </div>
     )
   }, [infoSoftware, viewProduct])
+
+  const renderAccessControl = useCallback(() => {
+    const data = infoHardware["Modulo TK-IO22W"]["Access Control"];
+    if (!data && viewProduct !== "Access Control") return null;
+    return (
+      <div className="aplicaciones" ref={containerRef}>
+        <h1 className="text-[32px] text-center font-bold">{data.title}</h1>
+        <h2 className="text-[24px] font-bold" id={"access_control_1"} data-title-anchor={data.content[1]}>{data.content[1]}</h2>
+        <img src={data.imgSrc[0]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <p dangerouslySetInnerHTML={{ __html: data.content[2] }}></p>
+        <img src={data.imgSrc[1]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <p>{data.content[3]}</p>
+        <img src={data.imgSrc[2]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <p>{data.content[4]}</p>
+        <img src={data.imgSrc[3]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <p>{data.content[5]}</p>
+        <img src={data.imgSrc[4]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <p>{data.content[6]}</p>
+        <p>{data.content[7]}</p>
+        <img src={data.imgSrc[5]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <h2 className="text-[24px] font-bold" id={"access_control_2"} data-title-anchor={data.content[8]}>{data.content[8]}</h2>
+        <p>{data.content[9]}</p>
+        <img src={data.imgSrc[6]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <h2 className="text-[24px] font-bold" id={"access_control_3"} data-title-anchor={data.content[10]}>{data.content[10]}</h2>
+        <p>{data.content[11]}</p>
+        <section className="grid grid-cols-2 gap-[10px]">
+          <img src={data.imgSrc[7]} alt="" width={"auto"} height={"auto"} className="self-center" />
+          <img src={data.imgSrc[8]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        </section>
+        <h2 className="text-[24px] font-bold" id={"access_control_4"} data-title-anchor={data.content[12]}>{data.content[12]}</h2>
+        <p>{data.content[13]}</p>
+        <img src={data.imgSrc[9]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh]">
+          <li dangerouslySetInnerHTML={{ __html: data.list[1] }}></li>
+          <li dangerouslySetInnerHTML={{ __html: data.list[2] }}></li>
+          <li dangerouslySetInnerHTML={{ __html: data.list[3] }}></li>
+          <li dangerouslySetInnerHTML={{ __html: data.list[4] }}></li>
+          <img src={data.imgSrc[10]} alt="" width={"auto"} height={"auto"} className="self-center pl-[0px]" />
+          <li dangerouslySetInnerHTML={{ __html: data.list[5] }}></li>
+        </ul>
+        <h2 className="text-[24px] font-bold" id={"access_control_5"} data-title-anchor={data.content[14]}>{data.content[14]}</h2>
+        <p>{data.content[15]}</p>
+        <img src={data.imgSrc[10]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <p>{data.content[16]}</p>
+        <img src={data.imgSrc[11]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <p>{data.content[17]}</p>
+        <p>{data.content[18]}</p>
+        <img src={data.imgSrc[12]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <h2 className="text-[24px] font-bold" id={"access_control_6"} data-title-anchor={data.content[19]}>{data.content[19]}</h2>
+        <img src={data.imgSrc[13]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <p>{data.content[20]}</p>
+        <p>{data.content[21]}</p>
+      </div>
+    );
+  }, [viewProduct, infoHardware])
 
   // archivo para descarga según producto
   const renderBtnDownload = useCallback(() => {
@@ -558,6 +663,7 @@ export default function Documentacion(): JSX.Element {
         popoverTgate.current?.forceClose?.();
         popoverLector.current?.forceClose?.();
         popoverNodemaker.current?.forceClose()
+        popoverAccessControl1.current?.forceClose?.()
         break;
       case "Modulo TK-IO24W2":
         popoverModule44.current?.showPopover(btnModule44w.current as HTMLButtonElement);
@@ -565,6 +671,7 @@ export default function Documentacion(): JSX.Element {
         popoverTgate.current?.forceClose?.();
         popoverLector.current?.forceClose?.();
         popoverNodemaker.current?.forceClose()
+        popoverAccessControl1.current?.forceClose?.()
         break;
       case "Tgate":
         popoverTgate.current?.showPopover(btnTgate.current as HTMLButtonElement);
@@ -572,6 +679,7 @@ export default function Documentacion(): JSX.Element {
         popoverModule44.current?.forceClose?.();
         popoverLector.current?.forceClose?.();
         popoverNodemaker.current?.forceClose()
+        popoverAccessControl1.current?.forceClose?.()
         break;
       case "TK-Lector":
         popoverLector.current?.showPopover(btnLectorTk.current as HTMLButtonElement);
@@ -579,9 +687,17 @@ export default function Documentacion(): JSX.Element {
         popoverModule44.current?.forceClose?.();
         popoverTgate.current?.forceClose?.();
         popoverNodemaker.current?.forceClose()
+        popoverAccessControl1.current?.forceClose?.()
         break;
       case "Nodemaker":
         popoverNodemaker.current?.showPopover(btnNodemaker.current as HTMLButtonElement)
+        popoverModule22.current?.forceClose?.();
+        popoverModule44.current?.forceClose?.();
+        popoverTgate.current?.forceClose?.();
+        popoverAccessControl1.current?.forceClose?.()
+        break;
+      case "Access Control":
+        popoverNodemaker.current?.forceClose?.()
         popoverModule22.current?.forceClose?.();
         popoverModule44.current?.forceClose?.();
         popoverTgate.current?.forceClose?.();
@@ -622,10 +738,11 @@ export default function Documentacion(): JSX.Element {
         </div>
 
         <ul className="flex flex-col gap-[5px]">
-          <li>
+          <li className="mainListItem">
             <button
               ref={btnModule22w}
               data-active={viewProduct === "Modulo TK-IO22W"}
+              data-active-sub-list-item={viewProduct === "Modulo TK-IO22W" || viewProduct === "Access Control"}
               className={`flex gap-[10px] min-w-[200px] items-center justify-end p-[5px_15px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""}`}
               onClick={() => setViewProduct("Modulo TK-IO22W")}
               onMouseEnter={() => handleMouseEnter("Modulo TK-IO22W")}
@@ -636,16 +753,37 @@ export default function Documentacion(): JSX.Element {
               <span>Modulo TK-IO22W</span>
               <ArrowIcon />
             </button>
+            <ul className="subListItem">
+              <li>
+                <button
+                  ref={btnAccessControl}
+                  data-active={viewProduct === "Access Control"}
+                  className={`flex gap-[10px] min-w-[100px] items-center justify-end p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""}`}
+                  onClick={() => setViewProduct("Access Control")}
+                  onMouseEnter={() => popoverAccessControl1.current?.showPopover(btnAccessControl.current as HTMLButtonElement)}
+                  onMouseLeave={() => popoverAccessControl1.current?.close()}
+                  title="Abrir producto"
+                  type="button"
+                >
+                  <span>Access Control</span>
+                  <ArrowIcon />
+                </button>
+              </li>
+            </ul>
 
             <Popover ref={popoverModule22} gapTop={-(btnModule44w.current?.offsetHeight ?? 100)} gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}>
               <div className="flex flex-col gap-[10px] items-center">{previewFor("Modulo TK-IO22W")}</div>
             </Popover>
+            <Popover ref={popoverAccessControl1} gapTop={-(btnAccessControl.current?.offsetHeight ?? 100)} gapLeft={(btnAccessControl.current?.offsetWidth ?? 100) + 15}>
+              <div className="flex flex-col gap-[10px] items-center">{previewFor("Access Control")}</div>
+            </Popover>
           </li>
 
-          <li>
+          <li className="mainListItem">
             <button
               ref={btnModule44w}
               data-active={viewProduct === "Modulo TK-IO24W2"}
+              data-active-sub-list-item={viewProduct === "Modulo TK-IO24W2" || viewProduct === "Access Control"}
               className={`flex gap-[10px] min-w-[200px] items-center justify-end p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO24W2" ? "!text-white !border-black" : ""}`}
               onClick={() => setViewProduct("Modulo TK-IO24W2")}
               onMouseEnter={() => handleMouseEnter("Modulo TK-IO24W2")}
@@ -656,9 +794,29 @@ export default function Documentacion(): JSX.Element {
               <span>Modulo TK-IO24W2</span>
               <ArrowIcon />
             </button>
+            <ul className="subListItem">
+              <li>
+                <button
+                  ref={btnAccessControl2}
+                  data-active={viewProduct === "Access Control"}
+                  className={`flex gap-[10px] min-w-[100px] items-center justify-end p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""}`}
+                  onClick={() => setViewProduct("Access Control")}
+                  onMouseEnter={() => popoverAccessControl2.current?.showPopover(btnAccessControl2.current as HTMLButtonElement)}
+                  onMouseLeave={() => popoverAccessControl2.current?.close()}
+                  title="Abrir producto"
+                  type="button"
+                >
+                  <span>Access Control</span>
+                  <ArrowIcon />
+                </button>
+              </li>
+            </ul>
 
             <Popover ref={popoverModule44} gapTop={-(btnModule44w.current?.offsetHeight ?? 100)} gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}>
               <div className="flex flex-col gap-[10px] items-center">{previewFor("Modulo TK-IO24W2")}</div>
+            </Popover>
+            <Popover ref={popoverAccessControl2} gapTop={-(btnAccessControl2.current?.offsetHeight ?? 100)} gapLeft={(btnAccessControl2.current?.offsetWidth ?? 100) + 15}>
+              <div className="flex flex-col gap-[10px] items-center">{previewFor("Access Control")}</div>
             </Popover>
           </li>
 
@@ -734,7 +892,7 @@ export default function Documentacion(): JSX.Element {
               ? renderLectorTk()
               : viewProduct === "Nodemaker"
                 ? renderNodeMaker()
-                : null}
+                : viewProduct === "Access Control" ? renderAccessControl() : null}
       </section>
 
       <aside className="sticky top-[125px] self-start flex flex-col items-center gap-[20px]">
