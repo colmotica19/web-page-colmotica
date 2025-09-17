@@ -10,6 +10,7 @@
   "nav_soluciones": "Soluciones",
   "nav_consultorias": "Consultorías",
   "nav_documentacion": "Documentación",
+  "nav_administracion": "Administración",
   "frase_principal": "Soluciones inteligentes en Building Automation, adaptables y avanzadas para satisfacer las necesidades de cualquier proyecto.",
   "btn_contactanos": "Contáctanos",
   "section_quienes_somos": "Quiénes somos",
@@ -385,5 +386,7 @@
   "access_control_5_5": "Al seleccionar otro en el modo del servidor visualizamos la configuración de los parámetros para enlazar al servidor como solo la dirección IP, la ruta, el puerto, el modo de autenticación, el prefijo de la carta el modo de la carta, el prefijo del mac y el modo del mac.",
   "access_control_5_6": "Integración Placa TKIO - Tekneo",
   "access_control_5_7": "La lectura del código Qr se conecta al servidor mediante la placa IOTK utilizando esta como pasarela de red.",
-  "access_control_5_8": "Para completar la integración de la placa TK con el software T-Gate se debe introducir el numero serial del wiegand del que se quiere asignar al acceso. El número de serie del Wiegand 1 será el mismo número del mac y del Wiegand 2 será este mismo número separado por la mitad poniendo la segunda mitad primero."
+  "access_control_5_8": "Para completar la integración de la placa TK con el software T-Gate se debe introducir el numero serial del wiegand del que se quiere asignar al acceso. El número de serie del Wiegand 1 será el mismo número del mac y del Wiegand 2 será este mismo número separado por la mitad poniendo la segunda mitad primero.",
+  "nombre": "Nombre",
+  "usuarios": "Usuarios"
 }

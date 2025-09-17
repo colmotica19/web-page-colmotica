@@ -391,13 +391,17 @@ export function Header() {
             <a className="btn-header__btn dropdown">
               <p>{t("nav_productos")}</p>
             </a>
-            <NavLink onClick={() => scroll({ top: 0, left: 0 })} className={"btn-header__btn font-medium"} to="/documentacion">{t("nav_documentacion")}</NavLink>
+            <NavLink onClick={() => scroll({ top: 0, left: 0 })}
+              className={"btn-header__btn font-medium"} to="/documentacion">{t("nav_documentacion")}</NavLink>
             {/* <a id="myBtn" className="btn-header__btn">
               <p>{t("nav_soporte")}</p>
             </a> */}
 
             <NavLink className="btn-header__btn" to="socios" onClick={() => scroll({ top: 0, left: 0 })}>
               <p>{t("nav_socios")}</p>
+            </NavLink>
+            <NavLink className="btn-header__btn" to="administracion" onClick={() => scroll({ top: 0, left: 0 })}>
+              <p>{t("nav_administracion")}</p>
             </NavLink>
           </nav>
           <div className="dropdown-content max-[1440px]:max-h-[400px] lg:overflow-auto" ref={dropdownContent}>

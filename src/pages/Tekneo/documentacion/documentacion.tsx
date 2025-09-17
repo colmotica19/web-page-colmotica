@@ -321,7 +321,7 @@ export default function Documentacion(): JSX.Element {
     ));
 
     setAnchors({ [viewProduct]: anchorsJsx });
-  }, [viewProduct]);
+  }, [viewProduct, t]);
 
   // Marca en los botones cuál está activo
   const verifyTheCorrectViewProduct = useCallback(() => {

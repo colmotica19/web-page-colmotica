@@ -15,6 +15,7 @@ import Login from "../components/login/Login";
 import Registrar from "../components/login/Registrar";
 import { Navigate } from "react-router";
 import { HomePage } from "../pages/Tekneo/home";
+import Administracion from "../pages/Tekneo/administracion/administracion";
 
 export const routerTekneo = createHashRouter([
   {
@@ -76,6 +77,10 @@ export const routerTekneo = createHashRouter([
       {
         path: "documentacion",
         Component: Documentacion
+      },
+      {
+        path: "administracion",
+        Component: Administracion
       }
     ],
   },
