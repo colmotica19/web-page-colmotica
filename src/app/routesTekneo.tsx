@@ -32,7 +32,7 @@ export const routerTekneo = createHashRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/login" replace />,
+        Component: HomePage,
       },
       // {
       //   path: "/support",

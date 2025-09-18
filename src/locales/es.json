@@ -388,5 +388,7 @@
   "access_control_5_7": "La lectura del código Qr se conecta al servidor mediante la placa IOTK utilizando esta como pasarela de red.",
   "access_control_5_8": "Para completar la integración de la placa TK con el software T-Gate se debe introducir el numero serial del wiegand del que se quiere asignar al acceso. El número de serie del Wiegand 1 será el mismo número del mac y del Wiegand 2 será este mismo número separado por la mitad poniendo la segunda mitad primero.",
   "nombre": "Nombre",
-  "usuarios": "Usuarios"
+  "usuarios": "Usuarios",
+  "usuario": "Usuario",
+  "administrador": "Administrador"
 }

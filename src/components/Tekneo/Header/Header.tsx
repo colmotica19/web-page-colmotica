@@ -5,10 +5,13 @@ import { GlobalContext } from "../../../singleton/globalContext";
 import { useTranslation } from "react-i18next";
 import BtnChangeLang from "../../global/btnChangeLang";
 import Modal, { type ModalHandle } from "../Modal/Modal";
-import Popover, { type PopoverHandle } from "../../Popover/Popover";
+import BtnProfile from "../../BtnProfile";
 
 export function Header() {
   const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware, lang, user } = useContext(GlobalContext);
+  console.log(user
+    
+  )
   const { t } = useTranslation()
   const mapProducts = useRef(new Map<string, HTMLAnchorElement>());
   const hardwareProducts = useMemo(() => [
@@ -213,8 +216,7 @@ export function Header() {
   }
   const productList = useRef<HTMLUListElement>(null)
   const categoryList = useRef<HTMLUListElement>(null)
-  const popoverProfile = useRef<PopoverHandle>(null)
-  const btnProfile = useRef<HTMLButtonElement>(null);
+
   return (
     <header className="sticky top-0 z-10">
       <section className="section-header">
@@ -400,9 +402,13 @@ export function Header() {
             <NavLink className="btn-header__btn" to="socios" onClick={() => scroll({ top: 0, left: 0 })}>
               <p>{t("nav_socios")}</p>
             </NavLink>
-            <NavLink className="btn-header__btn" to="administracion" onClick={() => scroll({ top: 0, left: 0 })}>
-              <p>{t("nav_administracion")}</p>
-            </NavLink>
+            {user?.admin ?
+              <NavLink className="btn-header__btn" to="administracion" onClick={() => scroll({ top: 0, left: 0 })}>
+                <p>{t("nav_administracion")}</p>
+              </NavLink>
+              :
+              null
+            }
           </nav>
           <div className="dropdown-content max-[1440px]:max-h-[400px] lg:overflow-auto" ref={dropdownContent}>
             <section
@@ -493,20 +499,7 @@ export function Header() {
             <section>
             </section>
           </div>
-          <button onClick={(event) => {
-            popoverProfile.current?.showPopover(event.currentTarget ?? event.target)
-          }} ref={btnProfile} className="rounded-[36px] size-[40px] bg-black flex flex-col justify-center items-center text-center mt-[-15px] capitalize font-bold text-white border-[2px] border-gray-200 select-none cursor-pointer">
-            <span>{user?.name[0]}</span>
-          </button>
-
-          <Popover btnClose gapLeft={(popoverProfile.current?.this?.offsetWidth ? (popoverProfile.current.this.offsetWidth / 2) - 20 : 150 / 2) * -1} gapTop={5} ref={popoverProfile}>
-            <div className="flex flex-col gap-[10px] justify-center items-center p-[16px]">
-              <div className="rounded-[36px] size-[50px] bg-black flex flex-col justify-center items-center text-center mt-[-15px] capitalize font-bold text-white border-[2px] border-gray-200 select-none">
-                <span>{user?.name[0]}</span>
-              </div>
-              <span>{user?.name}</span>
-            </div>
-          </Popover>
+          <BtnProfile></BtnProfile>
         </div>
       </section>
     </header>

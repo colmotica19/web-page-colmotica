@@ -7,12 +7,14 @@ export default function SingletonProvider({ children }: { children: ReactNode })
   const [focusHardware, setFocusHardware] = useState(false)
   const [lang, setLang] = useState("es")
   const users = [
-    { email: "colmotica@hotmail.com", password: "1234", name: "Colmotica" }
+    { email: "colmotica@hotmail.com", password: "1234", name: "Colmotica", admin: true },
+    { email: "zarache@hotmail.com", password: "1234", name: "zarache", admin: false }
   ];
   const [user, setUser] = useState<{
     email: string;
     password: string;
     name: string;
+    admin: boolean;
 } | null>(null);
   const context = {
     focusSoftware,

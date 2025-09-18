@@ -388,5 +388,7 @@
   "access_control_5_7": "The QR code reading connects to the server through the IOTK board, using it as a network gateway.",
   "access_control_5_8": "To complete the integration of the TK board with the T-Gate software, you must enter the serial number of the Wiegand that you want to assign to access. The serial number of Wiegand 1 will be the same number as the MAC, and that of Wiegand 2 will be this same number separated by the half putting the second half first.",
   "nombre": "Name",
-  "usuarios": "Users"
+  "usuarios": "Users",
+  "usuario": "User",
+  "administrador": "Admin"
 }

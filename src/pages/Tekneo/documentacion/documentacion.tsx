@@ -15,7 +15,7 @@ export default function Documentacion(): JSX.Element {
   // refs para popovers y botones
   const btnModule22w = useRef<HTMLButtonElement | null>(null);
   const btnAccessControl = useRef<HTMLButtonElement>(null)
-  const btnAccessControl2 = useRef<HTMLButtonElement>(null)
+  // const btnAccessControl2 = useRef<HTMLButtonElement>(null)
   const btnModule44w = useRef<HTMLButtonElement | null>(null);
   const btnTgate = useRef<HTMLButtonElement | null>(null);
   const btnNodemaker = useRef<HTMLButtonElement | null>(null);
@@ -27,7 +27,7 @@ export default function Documentacion(): JSX.Element {
   const popoverLector = useRef<PopoverHandle | null>(null);
   const popoverNodemaker = useRef<PopoverHandle | null>(null);
   const popoverAccessControl1 = useRef<PopoverHandle | null>(null);
-  const popoverAccessControl2 = useRef<PopoverHandle | null>(null);
+  // const popoverAccessControl2 = useRef<PopoverHandle | null>(null);
 
   const viewProductDescription = useRef<HTMLElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -258,7 +258,6 @@ export default function Documentacion(): JSX.Element {
           );
         } else {
           const data = infoHardware["Modulo TK-IO22W"]["Access Control"];
-          console.log(data)
           return (
             <>
               <h1>{data.title}</h1>
@@ -443,6 +442,12 @@ export default function Documentacion(): JSX.Element {
               ))}
             </tbody>
           </table>
+          <button type="button" className="p-[5px_15px] bg-blue-500 text-white rounded-[8px] mt-[20px]" onClick={() => {
+            setViewProduct("Access Control")
+            scroll({top: 0, left: 0})
+          }}>
+            {t("acess_control_1") + " (Access Control)"}
+          </button>
         </div>
       </div>
     );
@@ -730,8 +735,8 @@ export default function Documentacion(): JSX.Element {
 
   // ---------- renderizado final ----------
   return (
-    <article className="grid grid-cols-[200px_minmax(500px,50vw)_200px] gap-x-[8%] justify-center m-[50px_0px] relative">
-      <aside className="relative flex flex-col gap-[30px] items-center after:w-[2px] after:h-[30%] after:absolute after:top-[10px] after:left-[calc(100%_+_15px)] after:bg-gray-300">
+    <article className="grid grid-cols-[200px_minmax(500px,50vw)_200px] gap-x-[8%] justify-center m-[50px_0px]">
+      <aside className="flex h-max flex-col gap-[30px] items-center after:w-[2px] after:h-[30%] after:absolute after:top-[10px] after:left-[calc(100%_+_15px)] after:bg-gray-300 sticky top-[100px]">
         <div className="w-full">
           <h1 className="text-black font-bold text-[32px]">Hardware</h1>
           <hr className="w-full border-t-gray-400" />
@@ -742,9 +747,15 @@ export default function Documentacion(): JSX.Element {
             <button
               ref={btnModule22w}
               data-active={viewProduct === "Modulo TK-IO22W"}
-              data-active-sub-list-item={viewProduct === "Modulo TK-IO22W" || viewProduct === "Access Control"}
+              // data-active-sub-list-item={viewProduct === "Modulo TK-IO22W" || viewProduct === "Access Control"}
               className={`flex gap-[10px] min-w-[200px] items-center justify-end p-[5px_15px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""}`}
-              onClick={() => setViewProduct("Modulo TK-IO22W")}
+              onClick={() => {
+                setViewProduct("Modulo TK-IO22W")
+                scroll({
+                  top: 0,
+                  left: 0
+                })
+              }}
               onMouseEnter={() => handleMouseEnter("Modulo TK-IO22W")}
               onMouseLeave={() => handleMouseLeave("Modulo TK-IO22W")}
               title="Abrir producto"
@@ -753,7 +764,7 @@ export default function Documentacion(): JSX.Element {
               <span>Modulo TK-IO22W</span>
               <ArrowIcon />
             </button>
-            <ul className="subListItem">
+            {/* <ul className="subListItem">
               <li>
                 <button
                   ref={btnAccessControl}
@@ -769,13 +780,10 @@ export default function Documentacion(): JSX.Element {
                   <ArrowIcon />
                 </button>
               </li>
-            </ul>
+            </ul> */}
 
             <Popover ref={popoverModule22} gapTop={-(btnModule44w.current?.offsetHeight ?? 100)} gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}>
               <div className="flex flex-col gap-[10px] items-center">{previewFor("Modulo TK-IO22W")}</div>
-            </Popover>
-            <Popover ref={popoverAccessControl1} gapTop={-(btnAccessControl.current?.offsetHeight ?? 100)} gapLeft={(btnAccessControl.current?.offsetWidth ?? 100) + 15}>
-              <div className="flex flex-col gap-[10px] items-center">{previewFor("Access Control")}</div>
             </Popover>
           </li>
 
@@ -783,9 +791,15 @@ export default function Documentacion(): JSX.Element {
             <button
               ref={btnModule44w}
               data-active={viewProduct === "Modulo TK-IO24W2"}
-              data-active-sub-list-item={viewProduct === "Modulo TK-IO24W2" || viewProduct === "Access Control"}
+              // data-active-sub-list-item={viewProduct === "Modulo TK-IO24W2" || viewProduct === "Access Control"}
               className={`flex gap-[10px] min-w-[200px] items-center justify-end p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO24W2" ? "!text-white !border-black" : ""}`}
-              onClick={() => setViewProduct("Modulo TK-IO24W2")}
+              onClick={() => {
+                setViewProduct("Modulo TK-IO24W2")
+                scroll({
+                  top: 0,
+                  left: 0
+                })
+              }}
               onMouseEnter={() => handleMouseEnter("Modulo TK-IO24W2")}
               onMouseLeave={() => handleMouseLeave("Modulo TK-IO24W2")}
               type="button"
@@ -794,29 +808,9 @@ export default function Documentacion(): JSX.Element {
               <span>Modulo TK-IO24W2</span>
               <ArrowIcon />
             </button>
-            <ul className="subListItem">
-              <li>
-                <button
-                  ref={btnAccessControl2}
-                  data-active={viewProduct === "Access Control"}
-                  className={`flex gap-[10px] min-w-[100px] items-center justify-end p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""}`}
-                  onClick={() => setViewProduct("Access Control")}
-                  onMouseEnter={() => popoverAccessControl2.current?.showPopover(btnAccessControl2.current as HTMLButtonElement)}
-                  onMouseLeave={() => popoverAccessControl2.current?.close()}
-                  title="Abrir producto"
-                  type="button"
-                >
-                  <span>Access Control</span>
-                  <ArrowIcon />
-                </button>
-              </li>
-            </ul>
 
             <Popover ref={popoverModule44} gapTop={-(btnModule44w.current?.offsetHeight ?? 100)} gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}>
               <div className="flex flex-col gap-[10px] items-center">{previewFor("Modulo TK-IO24W2")}</div>
-            </Popover>
-            <Popover ref={popoverAccessControl2} gapTop={-(btnAccessControl2.current?.offsetHeight ?? 100)} gapLeft={(btnAccessControl2.current?.offsetWidth ?? 100) + 15}>
-              <div className="flex flex-col gap-[10px] items-center">{previewFor("Access Control")}</div>
             </Popover>
           </li>
 
@@ -824,7 +818,13 @@ export default function Documentacion(): JSX.Element {
             <button
               ref={btnLectorTk}
               data-active={viewProduct === "TK-Lector"}
-              onClick={() => setViewProduct("TK-Lector")}
+              onClick={() => {
+                setViewProduct("TK-Lector")
+                scroll({
+                  top: 0,
+                  left: 0
+                })
+              }}
               onMouseEnter={() => handleMouseEnter("TK-Lector")}
               onMouseLeave={() => handleMouseLeave("TK-Lector")}
               type="button"
@@ -849,7 +849,13 @@ export default function Documentacion(): JSX.Element {
           <li>
             <button
               ref={btnTgate}
-              onClick={() => setViewProduct("Tgate")}
+              onClick={() => {
+                setViewProduct("Tgate")
+                scroll({
+                  top: 0,
+                  left: 0
+                })
+              }}
               onMouseEnter={() => handleMouseEnter("Tgate")}
               onMouseLeave={() => handleMouseLeave("Tgate")}
               type="button"
@@ -866,7 +872,10 @@ export default function Documentacion(): JSX.Element {
           <li>
             <button
               ref={btnNodemaker}
-              onClick={() => setViewProduct("Nodemaker")}
+              onClick={() => {
+                setViewProduct("Nodemaker")
+                scroll({top: 0, left: 0})
+              }}
               onMouseEnter={() => handleMouseEnter("Nodemaker")}
               onMouseLeave={() => handleMouseLeave("Nodemaker")}
               type="button"
@@ -900,6 +909,34 @@ export default function Documentacion(): JSX.Element {
           <h1 className="text-[18px]">{t("tabla_de_contenido")}</h1>
           <ul className={`listOfNav mt-[10px] flex-col items-start gap-[5px] min-h-[150px]`} ref={listOfNav}>
             {(anchors[viewProduct] ?? []).map((el) => el)}
+            {viewProduct === "Modulo TK-IO22W" || viewProduct === "Modulo TK-IO24W2" ?
+              <>
+                <li>
+                  <button
+                    ref={btnAccessControl}
+                    className={`flex gap-[10px] min-w-[100px] items-center justify-end p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""}`}
+                    onClick={() => {
+                      setViewProduct("Access Control")
+                      scroll({
+                        top: 0,
+                        left: 0
+                      })
+                    }}
+                    onMouseEnter={() => popoverAccessControl1.current?.showPopover(btnAccessControl.current as HTMLButtonElement)}
+                    onMouseLeave={() => popoverAccessControl1.current?.close()}
+                    title="Abrir producto"
+                    type="button"
+                  >
+                    <ArrowIcon className="rotate-[270deg]" />
+                    <span>Access Control</span>
+                  </button>
+                </li>
+                <Popover ref={popoverAccessControl1} gapTop={-(btnAccessControl.current?.offsetHeight ?? 100) - 150} gapLeft={-(btnAccessControl.current?.offsetWidth ?? 100) - 80}>
+                  <div className="flex flex-col gap-[10px] items-center">{previewFor("Access Control")}</div>
+                </Popover>
+              </>
+              :
+              null}
           </ul>
         </div>
         <hr className="border-t-gray-400 w-full" />
@@ -910,9 +947,9 @@ export default function Documentacion(): JSX.Element {
 }
 
 // Icona reutilizable
-function ArrowIcon() {
+function ArrowIcon({className}: {className?: string}) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" className="fill-white size-[16px] rotate-90" viewBox="0 -4.5 20 20" version="1.1">
+    <svg xmlns="http://www.w3.org/2000/svg" className={`fill-white size-[16px] rotate-90 ${className}`} viewBox="0 -4.5 20 20" version="1.1">
       <g id="Page-1" stroke="none" strokeWidth="1" fill="inherit" fillRule="evenodd">
         <g id="Dribbble-Light-Preview" transform="translate(-260.000000, -6684.000000)" fill="inherit">
           <g id="icons" transform="translate(56.000000, 160.000000)">

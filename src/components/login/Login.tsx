@@ -20,7 +20,7 @@ export default function Login() {
             const findUser = users.find((item) => item.email === email && item.password === password);
             if (findUser) {
               setUser(findUser)
-              navigate("/home");
+              navigate("/documentacion");
             } else {
               if (refSpan.current) {
                 refSpan.current.textContent = "El email o la contraseña no corresponden a una cuenta registrada"
