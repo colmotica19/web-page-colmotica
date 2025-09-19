@@ -1,6 +1,7 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { GlobalContext } from "./globalContext";
 import i18n from "../i18n";
+import type { ModalHandle } from "../components/Tekneo/Modal/Modal";
 
 export default function SingletonProvider({ children }: { children: ReactNode }) {
   const [focusSoftware, setFocusSoftware] = useState(false)
@@ -15,7 +16,8 @@ export default function SingletonProvider({ children }: { children: ReactNode })
     password: string;
     name: string;
     admin: boolean;
-} | null>(null);
+  } | null>(null);
+  const modalLoginRef = useRef<ModalHandle>(null);
   const context = {
     focusSoftware,
     setFocusSoftware,
@@ -25,7 +27,8 @@ export default function SingletonProvider({ children }: { children: ReactNode })
     setLang,
     users,
     user,
-    setUser
+    setUser,
+    modalLoginRef
   }
 
   useEffect(() => {

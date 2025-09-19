@@ -9,9 +9,6 @@ import BtnProfile from "../../BtnProfile";
 
 export function Header() {
   const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware, lang, user } = useContext(GlobalContext);
-  console.log(user
-    
-  )
   const { t } = useTranslation()
   const mapProducts = useRef(new Map<string, HTMLAnchorElement>());
   const hardwareProducts = useMemo(() => [

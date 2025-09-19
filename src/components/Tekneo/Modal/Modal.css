@@ -5,19 +5,17 @@
   color: black;
   padding: 16px;
   padding-top: 24px;
-  transition: transform 0.5s ease, display 0.5s ease, opacity 0.5s ease;
-  transition-behavior: allow-discrete;
   transform: translateY(-100px);
   opacity: 0;
   margin: auto;
 }
 
-.Modal::backdrop {
-  animation: appearBackdrop 0.3s ease reverse forwards;
+.Modal.disappear:not(.blurBackground):backdrop {
+  animation: disappearBackdrop 0.5s ease forwards;
 }
 
-.Modal[open]::backdrop {
-  animation: appearBackdrop 0.3s ease forwards;
+.Modal:not(.blurBackground)[open]::backdrop {
+  animation: appearBackdrop 0.5s ease forwards;
 }
 
 @keyframes appearBackdrop {
@@ -30,11 +28,43 @@
   }
 }
 
-.Modal[open] {
-  transform: translateY(0px);
-  opacity: 1;
+@keyframes disappearBackdrop {
+  0% {
+    background-color: transparent;
+  }
 
-  @starting-style {
+  100% {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.Modal[open] {
+  animation: appearModal 0.5s ease forwards;
+}
+
+.Modal.disappear[open] {
+  animation: disappearModal 0.5s ease forwards;
+}
+
+@keyframes appearModal {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes disappearModal {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  100% {
     transform: translateY(-100px);
     opacity: 0;
   }
@@ -50,4 +80,40 @@
 
 .closeModal svg {
   transition: fill 0.3s ease;
+}
+
+.Modal.blurBackground::backdrop {
+  animation: appearBLur 0.5s ease forwards;
+}
+
+.Modal.disappear[open].blurBackground::backdrop {
+  animation: disappearBlur 0.5s ease forwards;
+}
+
+@keyframes appearBLur {
+  0% {
+    -webkit-backdrop-filter: blur(0px);
+    backdrop-filter: blur(0px);
+    background-color: transparent;
+  }
+
+  100% {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes disappearBlur {
+  0% {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  100% {
+    -webkit-backdrop-filter: blur(0px);
+    backdrop-filter: blur(0px);
+    background-color: transparent;
+  }
 }

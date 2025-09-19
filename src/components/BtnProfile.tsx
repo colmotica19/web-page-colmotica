@@ -2,10 +2,13 @@ import { useContext, useRef } from "react";
 import Popover from "./Popover/Popover";
 import type { PopoverHandle } from "./Popover/Popover";
 import { GlobalContext } from "../singleton/globalContext";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import Modal from "./Tekneo/Modal/Modal";
+import Login from "./login/Login";
+import { useNavigate } from "react-router";
 export default function BtnProfile() {
-  const { user, setUser } = useContext(GlobalContext);
+  const { user, setUser, modalLoginRef } = useContext(GlobalContext);
   const {t} = useTranslation()
   const popoverProfile = useRef<PopoverHandle>(null)
   const btnProfile = useRef<HTMLButtonElement>(null);
@@ -19,7 +22,7 @@ export default function BtnProfile() {
         <span>{user?.name[0]}</span>
         </button>
         :
-        <button className="p-[5px_15px] bg-blue-500 rounded-[8px] mt-[-15px] text-white" onClick={() => navigate("/login")}>
+        <button className="p-[5px_15px] bg-blue-500 rounded-[8px] mt-[-15px] text-white" onClick={() => modalLoginRef.current?.showModal()}>
           <span>Iniciar sesión</span>
         </button>
       }
@@ -39,6 +42,12 @@ export default function BtnProfile() {
           </button>
         </div>
       </Popover>
+      <Modal ref={modalLoginRef} blur onClose={() => {
+        console.log(true)
+        navigate("/home")
+      }}>
+        <Login></Login>
+      </Modal>
     </>
   )
 }

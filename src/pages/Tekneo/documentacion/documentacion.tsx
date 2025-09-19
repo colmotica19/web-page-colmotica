@@ -1,16 +1,18 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState, type JSX } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState, type JSX } from "react";
 import { useTranslation } from "react-i18next";
 import "./documentacion.css";
 import Popover, { type PopoverHandle } from "../../../components/Popover/Popover";
+import { GlobalContext } from "../../../singleton/globalContext";
 
 // Refactor: componente más legible y modular. Mantengo la lógica original
 // pero evito listeners fuera del flujo React y simplifico generación de anchors.
 
-type ProductKey = "Modulo TK-IO22W" | "Modulo TK-IO24W2" | "Tgate" | "TK-Lector" | "Nodemaker" | "Access Control";
+type ProductKey = "Modulo TK-IO22W" | "Modulo TK-IO24W2" | "Tgate" | "TK-Lector" | "Nodemaker" | "Access Control" | "TShow" | "LDM";
 
 export default function Documentacion(): JSX.Element {
   const { t } = useTranslation();
   const [viewProduct, setViewProduct] = useState<ProductKey>("Modulo TK-IO22W");
+  const { user, modalLoginRef } = useContext(GlobalContext)
 
   // refs para popovers y botones
   const btnModule22w = useRef<HTMLButtonElement | null>(null);
@@ -20,6 +22,8 @@ export default function Documentacion(): JSX.Element {
   const btnTgate = useRef<HTMLButtonElement | null>(null);
   const btnNodemaker = useRef<HTMLButtonElement | null>(null);
   const btnLectorTk = useRef<HTMLButtonElement | null>(null);
+  const btnTShow = useRef<HTMLButtonElement>(null);
+  const btnLDM = useRef<HTMLButtonElement>(null)
 
   const popoverModule22 = useRef<PopoverHandle | null>(null);
   const popoverModule44 = useRef<PopoverHandle | null>(null);
@@ -330,7 +334,9 @@ export default function Documentacion(): JSX.Element {
       "Modulo TK-IO22W": btnModule22w,
       "Access Control": btnAccessControl,
       "Modulo TK-IO24W2": btnModule44w,
-      "Nodemaker": btnNodemaker
+      "Nodemaker": btnNodemaker,
+      "TShow": btnTShow,
+      "LDM": btnLDM
     };
 
     Object.entries(map).forEach(([key, ref]) => {
@@ -444,7 +450,7 @@ export default function Documentacion(): JSX.Element {
           </table>
           <button type="button" className="p-[5px_15px] bg-blue-500 text-white rounded-[8px] mt-[20px]" onClick={() => {
             setViewProduct("Access Control")
-            scroll({top: 0, left: 0})
+            scroll({ top: 0, left: 0 })
           }}>
             {t("acess_control_1") + " (Access Control)"}
           </button>
@@ -733,6 +739,15 @@ export default function Documentacion(): JSX.Element {
   // actualizo atributos dataset de botones cuando cambie viewProduct
   useEffect(() => verifyTheCorrectViewProduct(), [viewProduct, verifyTheCorrectViewProduct]);
 
+  if (!user) {
+    modalLoginRef.current?.showModal()
+    return (
+      <section className="min-h-[80vh] flex flex-col justify-center items-center">
+        <h1 className="text-center text-[32px] font-bold">Debe iniciar sesión</h1>
+      </section>
+    )
+  }
+
   // ---------- renderizado final ----------
   return (
     <article className="grid grid-cols-[200px_minmax(500px,50vw)_200px] gap-x-[8%] justify-center m-[50px_0px]">
@@ -874,7 +889,7 @@ export default function Documentacion(): JSX.Element {
               ref={btnNodemaker}
               onClick={() => {
                 setViewProduct("Nodemaker")
-                scroll({top: 0, left: 0})
+                scroll({ top: 0, left: 0 })
               }}
               onMouseEnter={() => handleMouseEnter("Nodemaker")}
               onMouseLeave={() => handleMouseLeave("Nodemaker")}
@@ -888,6 +903,46 @@ export default function Documentacion(): JSX.Element {
             <Popover ref={popoverNodemaker} gapTop={-(btnModule44w.current?.offsetHeight ?? 100)} gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}>
               <div className="flex flex-col gap-[10px] items-center">{previewFor("Nodemaker")}</div>
             </Popover>
+          </li>
+          <li>
+            <button
+              ref={btnTShow}
+              onClick={() => {
+                setViewProduct("TShow")
+                scroll({ top: 0, left: 0 })
+              }}
+              onMouseEnter={() => handleMouseEnter("TShow")}
+              onMouseLeave={() => handleMouseLeave("TShow")}
+              type="button"
+              className={`flex gap-[10px] min-w-[200px] items-center justify-center p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Tgate" ? "!text-white !border-black" : ""}`}
+            >
+              <span>TShow</span>
+              <ArrowIcon />
+            </button>
+
+            {/* <Popover ref={popoverNodemaker} gapTop={-(btnModule44w.current?.offsetHeight ?? 100)} gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}>
+              <div className="flex flex-col gap-[10px] items-center">{previewFor("Nodemaker")}</div>
+            </Popover> */}
+          </li>
+          <li>
+            <button
+              ref={btnLDM}
+              onClick={() => {
+                setViewProduct("LDM")
+                scroll({ top: 0, left: 0 })
+              }}
+              onMouseEnter={() => handleMouseEnter("LDM")}
+              onMouseLeave={() => handleMouseLeave("LDM")}
+              type="button"
+              className={`flex gap-[10px] min-w-[200px] items-center justify-center p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${viewProduct === "Tgate" ? "!text-white !border-black" : ""}`}
+            >
+              <span>LDM</span>
+              <ArrowIcon />
+            </button>
+
+            {/* <Popover ref={popoverNodemaker} gapTop={-(btnModule44w.current?.offsetHeight ?? 100)} gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}>
+              <div className="flex flex-col gap-[10px] items-center">{previewFor("Nodemaker")}</div>
+            </Popover> */}
           </li>
         </ul>
       </aside>
@@ -947,7 +1002,7 @@ export default function Documentacion(): JSX.Element {
 }
 
 // Icona reutilizable
-function ArrowIcon({className}: {className?: string}) {
+function ArrowIcon({ className }: { className?: string }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" className={`fill-white size-[16px] rotate-90 ${className}`} viewBox="0 -4.5 20 20" version="1.1">
       <g id="Page-1" stroke="none" strokeWidth="1" fill="inherit" fillRule="evenodd">

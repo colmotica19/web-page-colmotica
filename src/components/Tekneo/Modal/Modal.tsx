@@ -11,13 +11,28 @@ export interface ModalHandle {
   close: () => void;
 }
 
-const Modal = forwardRef<ModalHandle, { children: ReactNode, className?: string }>(
-  ({ children, className }, ref) => {
+const Modal = forwardRef<ModalHandle, { children: ReactNode, className?: string, blur?: boolean, onClose?: () => void }>(
+  ({ children, className, blur, onClose }, ref) => {
     const dialogRef = useRef<HTMLDialogElement>(null);
 
     const showModal = () => dialogRef.current?.showModal();
-    const close = () => dialogRef.current?.close();
-
+    const close = () => {
+      // animate disappearance and call provided onClose prop after animation
+      dialogRef.current?.classList.add("disappear");
+      if (typeof onClose === "function") {
+        try {
+          onClose();
+        } catch (err) {
+          // swallow any errors from onClose to avoid breaking the UI
+          // but log for debugging
+          console.error("Modal onClose handler error:", err);
+        }
+      }
+      setTimeout(() => {
+        dialogRef.current?.close();
+        dialogRef.current?.classList.remove("disappear");
+      }, 500);
+    };
     // Exponemos los métodos al padre
     useImperativeHandle(ref, () => ({
       showModal,
@@ -29,7 +44,7 @@ const Modal = forwardRef<ModalHandle, { children: ReactNode, className?: string 
     };
 
     return (
-      <dialog ref={dialogRef} className={"Modal " + className} onClick={handleBackdropClick}>
+      <dialog ref={dialogRef} className={`Modal ${className} ${blur ? " blurBackground" : ""}`} onClick={handleBackdropClick}>
         <button type="button" title="Cerrar ventana" onClick={close} className="absolute top-[10px] right-[10px] closeModal">
           <svg className="fill-gray-400 size-[16px]" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 25" version="1.1">
             <g id="Page-1" stroke="none" strokeWidth="1" fill="inherit" fillRule="evenodd">

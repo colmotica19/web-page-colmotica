@@ -1,4 +1,5 @@
-import { createContext, type Dispatch, type SetStateAction } from "react";
+import { createContext, type Dispatch, type RefObject, type SetStateAction } from "react";
+import type { ModalHandle } from "../components/Tekneo/Modal/Modal";
 
 type UserInfo = { ["email"]: string, ["password"]: string, ["name"]: string, ["admin"]: boolean }
 
@@ -12,6 +13,7 @@ interface GlobalContext {
   users: UserInfo[];
   user: UserInfo | null;
   setUser: Dispatch<SetStateAction<UserInfo | null>>;
+  modalLoginRef: RefObject<ModalHandle | null>;
 }
 
 export const GlobalContext = createContext({} as GlobalContext);

@@ -11,21 +11,20 @@ import Tshow from "../pages/Tekneo/TShow/TShow";
 import Ldm from "../pages/Tekneo/LDM/LDM";
 import Nodemaker from "../pages/Tekneo/Nodemaker/Nodemaker";
 import Documentacion from "../pages/Tekneo/documentacion/documentacion";
-import Login from "../components/login/Login";
-import Registrar from "../components/login/Registrar";
-import { Navigate } from "react-router";
+// import Login from "../components/login/Login";
+// import Registrar from "../components/login/Registrar";
 import { HomePage } from "../pages/Tekneo/home";
 import Administracion from "../pages/Tekneo/administracion/administracion";
 
 export const routerTekneo = createHashRouter([
-  {
-    path: "/login",
-    Component: Login
-  },
-  {
-    path: "/registrar",
-    Component: Registrar
-  },
+  // {
+  //   path: "/login",
+  //   Component: Login
+  // },
+  // {
+  //   path: "/registrar",
+  //   Component: Registrar
+  // },
   {
     path: "/",
     Component: LayoutTekneo,
