@@ -739,13 +739,41 @@ export default function Documentacion(): JSX.Element {
   // actualizo atributos dataset de botones cuando cambie viewProduct
   useEffect(() => verifyTheCorrectViewProduct(), [viewProduct, verifyTheCorrectViewProduct]);
 
+  // Si el usuario no está logueado, intentamos mostrar el modal cuando la ref esté disponible.
+  // Antes la llamada se hacía en el render y a veces la ref aún no existía (Modal montado en otro componente).
+  useEffect(() => {
+    if (user) return;
+    let mounted = true;
+    let timer: number | undefined;
+
+    const tryOpen = () => {
+      if (!mounted) return;
+      try {
+        if (modalLoginRef?.current?.showModal) {
+          modalLoginRef.current.showModal();
+        } else {
+          // reintentar en breve hasta que el componente que asigna la ref se monte
+          timer = window.setTimeout(tryOpen, 50);
+        }
+      } catch (err) {
+        // si hay error no queremos romper el flujo, pero lo logueamos para depuración
+        console.error("Error mostrando modal de login:", err);
+      }
+    };
+
+    tryOpen();
+    return () => {
+      mounted = false;
+      if (timer) clearTimeout(timer);
+    };
+  }, [user, modalLoginRef]);
+
   if (!user) {
-    modalLoginRef.current?.showModal()
     return (
       <section className="min-h-[80vh] flex flex-col justify-center items-center">
         <h1 className="text-center text-[32px] font-bold">Debe iniciar sesión</h1>
       </section>
-    )
+    );
   }
 
   // ---------- renderizado final ----------
