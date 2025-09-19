@@ -18,20 +18,25 @@ export default function Administracion() {
     ["Laura Fernández", "laura.fernandez@email.com"],
     ["David Romero", "david.romero@email.com"]
   ];
+  const [pageSize, setPageSize] = useState(5)
 
   const [selectedUser, setSelectedUser] = useState<{ name: string; email: string } | null>(null);
   return (
     
-    <section className="grid grid-cols-[4fr_1fr] gap-x-[50px] m-[20px_50px]">
+    <section className="grid grid-cols-[4fr_1fr] gap-x-[50px] m-[50px_50px] min-h-[70vh] place-content-start items-start">
       <EditableTable
         title={t("usuarios")}
         headers={headers}
         data={data}
-         
+        showPagination={true}
+        pageSize={pageSize}
+        pageSizeOptions={[5, 10, 20]}
+        onPageChange={(_page, pageSize) => {
+          setPageSize(pageSize);
+        }}
         onClick={(_rowIdx, _colIdx, _value) => {
-           
-          console.log(_rowIdx, _colIdx, _value)
-          if (_rowIdx >= 0) {
+          // _rowIdx is the global index across pagination
+          if (_rowIdx >= 0 && _rowIdx < data.length) {
             setSelectedUser({ name: data[_rowIdx][0], email: data[_rowIdx][1] });
           }
         }}

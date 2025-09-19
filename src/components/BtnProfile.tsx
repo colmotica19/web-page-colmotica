@@ -23,7 +23,7 @@ export default function BtnProfile() {
         </button>
         :
         <button className="p-[5px_15px] bg-blue-500 rounded-[8px] mt-[-15px] text-white" onClick={() => modalLoginRef.current?.showModal()}>
-          <span>Iniciar sesión</span>
+          <span>{t("inicio_de_sesion") }</span>
         </button>
       }
 
@@ -38,7 +38,7 @@ export default function BtnProfile() {
             setUser(null)
             popoverProfile.current?.forceClose()
           }}>
-            <span>Cerrar sesión</span>
+            <span>{t("cerrar_sesion")}</span>
           </button>
         </div>
       </Popover>

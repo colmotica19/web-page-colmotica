@@ -390,5 +390,8 @@
   "nombre": "Name",
   "usuarios": "Users",
   "usuario": "User",
-  "administrador": "Admin"
+  "administrador": "Admin",
+  "filas": "Rows per page",
+  "inicio_de_sesion": "Log in",
+  "cerrar_sesion": "Log out"
 }

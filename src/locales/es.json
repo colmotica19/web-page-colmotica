@@ -390,5 +390,8 @@
   "nombre": "Nombre",
   "usuarios": "Usuarios",
   "usuario": "Usuario",
-  "administrador": "Administrador"
+  "administrador": "Administrador",
+  "filas": "Filas por página",
+  "inicio_de_sesion": "Iniciar sesión",
+  "cerrar_sesion": "Cerrar sesión"
 }
