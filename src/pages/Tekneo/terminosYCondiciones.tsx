@@ -1,34 +1,70 @@
 import { useTranslation } from "react-i18next"
+import { LeftAside, type NavButton } from "../../components/Tekneo/Documentation/LeftAside"
+import { RightAside } from "../../components/Tekneo/Documentation/RightAside"
+import { useCallback, useEffect, useRef, useState, type JSX } from "react"
 
 export default function TerminosYCondiciones() {
-    const {t} = useTranslation()
+  const { t } = useTranslation()
+  const [anchors, setAnchors] = useState<Record<string, JSX.Element[]>>()
+  const [viewProduct, setViewProduct] = useState<typeof buttonsToRender[number]["key"]>("Términos y Condiciones")
+  const viewSection = useRef<HTMLElement>(null)
+  const listOfNavRef = useRef<HTMLUListElement>(null)
+
+  const buttonsToRender = [
+    {
+      key: "Términos y Condiciones",
+      childrenPopover: <span>Términos</span>,
+      ariaLabel: "Abrir términos",
+      onClick() {
+        setViewProduct("Términos y Condiciones")
+      },
+    },
+  ] as const
+
+  const generateAnchorsBasedInTheContent = useCallback(() => {
+    const target = viewSection.current;
+    if (!target) return;
+    const allItemsWithId = Array.from(target.querySelectorAll<HTMLElement>("[id]"));
+    const anchorsJsx = allItemsWithId.map((item) => (
+      <li key={item.id} className="size-full">
+        <a
+          className="flex p-[5px_15px] size-full anchorSection rounded-[10px] w-full"
+          href={`#${item.id}`}
+          onClick={(e) => {
+            e.preventDefault();
+            const rectTop = item.getBoundingClientRect().top + window.scrollY - 100;
+            window.scrollTo({ top: rectTop, behavior: "smooth" });
+          }}
+        >
+          {item.dataset.titleAnchor ?? (item.textContent && item.textContent.length < 12 ? item.textContent : item.id)}
+        </a>
+      </li>
+    ));
+
+    setAnchors({ [viewProduct]: anchorsJsx });
+  }, [viewProduct]);
+
+  useEffect(() => {
+    generateAnchorsBasedInTheContent();
+  }, [viewProduct, generateAnchorsBasedInTheContent]);
+
   return (
-    <>
-      <div className="p-8 max-w-[800px] m-auto flex flex-col gap-[20px]">
-        <h1 className="text-4xl">{t("legal_terminos_titulo") }</h1>
-        <p>
-          {t("legal_terminos_p1") }
-        </p>
-        <h2 className="text-3xl">{t("legal_terminos_h2_1") }</h2>
-        <p>
-          {t("legal_terminos_p2") }
-        </p>
-        <h2 className="text-3xl">{t("legal_terminos_h2_2") }</h2>
-        <p>
-          {t("legal_terminos_p3") }
-        </p>
-        <h2 className="text-3xl">{t("legal_terminos_h2_3") }</h2>
-        <p>
-          {t("legal_terminos_p4") }
-        </p>
-        <h2 className="text-3xl">{t("legal_terminos_h2_4") }</h2>
-        <p>
-          {t("legal_terminos_p5") }
-        </p>
-        <p>
-          {t("legal_terminos_p6") }
-        </p>
-      </div>
-    </>
+    <section className="grid grid-cols-[200px_50vw_200px] place-content-center m-[50px_0px]">
+      <LeftAside title="Legal" buttons={buttonsToRender as unknown as NavButton[]} activeKey={viewProduct}></LeftAside>
+      <section ref={viewSection} className="p-8 max-w-[800px] m-auto flex flex-col gap-[1lh]">
+        <h1 className="text-4xl">{t("legal_terminos_titulo")}</h1>
+        <p>{t("legal_terminos_p1")}</p>
+        <h2 className="text-3xl" id="h1" data-title-anchor={t("legal_terminos_h2_1")}>{t("legal_terminos_h2_1")}</h2>
+        <p>{t("legal_terminos_p2")}</p>
+        <h2 className="text-3xl" id="h2" data-title-anchor={t("legal_terminos_h2_2")}>{t("legal_terminos_h2_2")}</h2>
+        <p>{t("legal_terminos_p3")}</p>
+        <h2 className="text-3xl" id="h3" data-title-anchor={t("legal_terminos_h2_3")}>{t("legal_terminos_h2_3")}</h2>
+        <p>{t("legal_terminos_p4")}</p>
+        <h2 className="text-3xl" id="h4" data-title-anchor={t("legal_terminos_h2_4")}>{t("legal_terminos_h2_4")}</h2>
+        <p>{t("legal_terminos_p5")}</p>
+        <p>{t("legal_terminos_p6")}</p>
+      </section>
+      <RightAside anchors={anchors} viewProduct={viewProduct} listOfNavRef={listOfNavRef} viewSection={viewSection}></RightAside>
+    </section>
   )
 }
