@@ -30,7 +30,6 @@ export const LeftAside: React.FC<LeftAsideProps> = ({ title, activeKey, buttons 
 
   useEffect(() => {
     verifyTheCorrectViewProduct()
-    console.log(activeKey)
   }, [activeKey, verifyTheCorrectViewProduct])
 
   return (

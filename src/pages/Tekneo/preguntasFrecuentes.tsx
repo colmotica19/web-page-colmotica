@@ -62,8 +62,8 @@ export default function PreguntasFrecuentes() {
 
   const renderCommonFaq = useCallback(() => {
     return (
-      <div className="p-8 max-w-[800px] m-[30px_auto] flex flex-col gap-[20px]">
-        <h1 className="text-4xl" id="1" data-title-anchor={t("faq_titulo")}>{t("faq_titulo")}</h1>
+      <>
+        <h1 className="text-4xl">{t("faq_titulo")}</h1>
 
         <h2 className="text-3xl" id="2" data-title-anchor={t("faq_q1")}>{t("faq_q1")}</h2>
         <p>
@@ -99,7 +99,7 @@ export default function PreguntasFrecuentes() {
         <p>
           {t("faq_a7")}
         </p>
-      </div>
+      </>
     )
   }, [t])
 
@@ -116,10 +116,10 @@ export default function PreguntasFrecuentes() {
   }, [viewProduct])
 
   return (
-    <section className="grid grid-cols-[200px_50vw_200px] place-content-center">
+    <section className="grid grid-cols-[200px_50vw_200px] place-content-center mt-[50px] mb-[150px]">
       <LeftAside title="Preguntas" buttons={buttonsToRender as unknown as NavButton[]} activeKey={viewProduct}>
       </LeftAside>
-      <section ref={viewSection}>
+      <section className={`p-8 max-w-[800px] m-auto flex flex-col gap-[${Object.keys(anchors ?? {}).length > 5 ? "1.5lh" : "2lh"}]`} ref={viewSection}>
         {renderSection()}
       </section>
       <RightAside anchors={anchors} viewProduct={viewProduct} listOfNavRef={listOfNavRef} viewSection={viewSection}></RightAside>

@@ -95,7 +95,7 @@
 .aplicaciones {
   display: flex;
   flex-direction: column;
-  gap: 1lh;
+  gap: 1.5lh;
 }
 
 .fade-in {

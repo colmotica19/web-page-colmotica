@@ -26,7 +26,7 @@ export default function SliderSwiper() {
   return (
     <>
       <Swiper
-        className="z-1 flex justify-center h-[150px] min-w-[10vw] max-w-[80vw] *:gap-[30px]" slidesPerView={4} modules={[Autoplay, Pagination]} spaceBetween={3} loop={true} freeMode={true} autoplay={{ delay: 4000, disableOnInteraction: false, }} pagination={{ clickable: true, }} speed={1000} grabCursor={false}
+        className="z-1 flex justify-center h-[150px] min-w-[10vw] max-w-[80vw] *:gap-[30px]" slidesPerView={4} modules={[Autoplay, Pagination]} spaceBetween={3} loop={true} freeMode={true} autoplay={{ delay: 3000, disableOnInteraction: false, }} pagination={{ clickable: true, }} speed={1000} grabCursor={false}
       >
         <SwiperSlide className="flex! justify-center items-center">
           <button type="button" className="btn-movi" onClick={() => openModal("modal1")}>

@@ -33,7 +33,6 @@ export const RightAside: React.FC<RightAsideProps> = ({ anchors, viewProduct, li
       rootMargin: "0px 0px -70% 0px",
       threshold: 0.1,
     });
-
     sections.forEach((s) => observer.observe(s));
     return () => sections.forEach((s) => observer.unobserve(s));
   });

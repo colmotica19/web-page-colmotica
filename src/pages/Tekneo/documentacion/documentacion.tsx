@@ -462,7 +462,6 @@ export default function Documentacion(): JSX.Element {
   const renderTGate = useCallback(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const data = (infoSoftware as any)[viewProduct];
-    console.log(data)
     if (!data && viewProduct !== "Tgate") return null;
 
     return (
@@ -778,7 +777,7 @@ export default function Documentacion(): JSX.Element {
 
   // ---------- renderizado final ----------
   return (
-    <article className="grid grid-cols-[200px_minmax(500px,50vw)_200px] gap-x-[8%] justify-center m-[50px_0px]">
+    <article className="grid grid-cols-[200px_minmax(500px,50vw)_200px] gap-x-[8%] justify-center mt-[50px] mb-[150px]">
       <aside className="flex h-max flex-col gap-[30px] items-center after:w-[2px] after:h-[30%] after:absolute after:top-[10px] after:left-[calc(100%_+_15px)] after:bg-gray-300 sticky top-[100px]">
         <div className="w-full">
           <h1 className="text-black font-bold text-[32px]">Hardware</h1>
@@ -975,7 +974,7 @@ export default function Documentacion(): JSX.Element {
         </ul>
       </aside>
 
-      <section ref={viewProductDescription} className="flex flex-col gap-[1lh]">
+      <section ref={viewProductDescription} className="flex flex-col gap-[1.5lh]">
         {viewProduct === "Modulo TK-IO22W" || viewProduct === "Modulo TK-IO24W2"
           ? renderModuleTk()
           : viewProduct === "Tgate"

@@ -40,3 +40,15 @@ footer {
     row-gap: 30px;
   }
 }
+
+.btnSubmitHelpCenter {
+  background-color: black;
+  transition-property: transform, background-color !important;
+  color: white;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.btnSubmitHelpCenter:hover {
+  background-color: var(--color-neutral-800);
+}

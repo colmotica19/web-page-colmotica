@@ -43,7 +43,6 @@ export default function BtnProfile() {
         </div>
       </Popover>
       <Modal ref={modalLoginRef} blur onClose={() => {
-        console.log(true)
         navigate("/home")
       }}>
         <Login></Login>

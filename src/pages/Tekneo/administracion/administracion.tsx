@@ -1,10 +1,12 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import EditableTable from "../../../components/global/EditableTable";
 import { GlobalContext } from "../../../singleton/globalContext";
+import { useNavigate } from "react-router";
 export default function Administracion() {
   const { t } = useTranslation();
   const { user } = useContext(GlobalContext);
+  const navigate = useNavigate()
   const headers = useMemo(() => [t("nombre"), "Email"], [t])
   const data = [
     ["Juan Pérez", "juan.perez@email.com"],
@@ -21,8 +23,11 @@ export default function Administracion() {
   const [pageSize, setPageSize] = useState(5)
 
   const [selectedUser, setSelectedUser] = useState<{ name: string; email: string } | null>(null);
+  useEffect(() => {
+    if (!user || !user.admin) navigate("/home");
+  }, [navigate, user])
   return (
-    
+
     <section className="grid grid-cols-[4fr_1fr] gap-x-[50px] m-[50px_50px] min-h-[70vh] place-content-start items-start">
       <EditableTable
         title={t("usuarios")}
@@ -34,6 +39,7 @@ export default function Administracion() {
         onPageChange={(_page, pageSize) => {
           setPageSize(pageSize);
         }}
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         onClick={(_rowIdx, _colIdx, _value) => {
           // _rowIdx is the global index across pagination
           if (_rowIdx >= 0 && _rowIdx < data.length) {

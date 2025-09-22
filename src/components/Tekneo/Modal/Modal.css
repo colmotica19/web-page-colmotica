@@ -10,7 +10,7 @@
   margin: auto;
 }
 
-.Modal.disappear:not(.blurBackground):backdrop {
+.Modal.disappear:not(.blurBackground)[open]::backdrop {
   animation: disappearBackdrop 0.5s ease forwards;
 }
 
@@ -30,11 +30,11 @@
 
 @keyframes disappearBackdrop {
   0% {
-    background-color: transparent;
-  }
-
-  100% {
     background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  100% {
+    background-color: transparent;
   }
 }
 
