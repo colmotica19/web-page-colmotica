@@ -156,10 +156,10 @@ export function FooterComponent({ page }: { page: "tekneo" | "colmotica" }) {
           </div>
           <div className="footer-column flex flex-col gap-[8px] text-left justify-start">
             <h4>{t("footer_contacto")}</h4>
-            <a href="https://maps.app.goo.gl/LzEZQtpqqvK2yZY89" target="_blank">
+            <a href="https://maps.app.goo.gl/LzEZQtpqqvK2yZY89" target="_blank" rel="noopener">
               {t("footer_direccion1")}
             </a>
-            <a href="https://maps.app.goo.gl/LzEZQtpqqvK2yZY89" target="_blank">
+            <a href="https://maps.app.goo.gl/LzEZQtpqqvK2yZY89" target="_blank" rel="noopener">
               {t("footer_direccion2")}
             </a>
             <button
@@ -181,6 +181,7 @@ export function FooterComponent({ page }: { page: "tekneo" | "colmotica" }) {
                 href="https://www.facebook.com/?locale=es_LA"
                 title="Facebook"
                 target="_blank"
+                rel="noopener"
               >
                 <FaFacebookF size={26} />
               </a>
@@ -188,16 +189,18 @@ export function FooterComponent({ page }: { page: "tekneo" | "colmotica" }) {
                 href="https://web.whatsapp.com/"
                 title="Whatsapp"
                 target="_blank"
+                rel="noopener"
               >
                 <SiWhatsapp size={26} />
               </a>
-              <a href="https://x.com/" title="X" target="_blank">
+              <a href="https://x.com/" title="X" target="_blank" rel="noopener">
                 <BsTwitterX size={26} />
               </a>
               <a
                 href="https://www.instagram.com/"
                 title="Instagram"
                 target="_blank"
+                rel="noopener"
               >
                 <FaInstagram size={26}></FaInstagram>
               </a>
