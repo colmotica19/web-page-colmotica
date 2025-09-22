@@ -1,7 +1,7 @@
 import './../../Styles/productos.css'
 export default function Products() {
   return (
-    <>
+    <article className='mb-[150px]'>
       <section className="pd-g dflex encabezado-frace-2">
         <div className="dflex flex-initial">
           <p>Catálogo de productos</p>
@@ -39,6 +39,6 @@ export default function Products() {
         <p className="title-all">Conoce nuestros sistemas</p>
         <p className="subtitle-all">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) </p>
       </section>
-    </>
+    </article>
   )
 }

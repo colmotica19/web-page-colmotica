@@ -3,7 +3,7 @@ import './../../Styles/hoteles.css';
 export default function Hoteles() {
   const { t } = useTranslation()
   return (
-    <>
+    <article className='mb-[150px]'>
       <section className="pd-g dflex encabezado-frace-2">
         <div className="dflex flex-initial">
           <p>{t("hoteles")}</p>
@@ -91,6 +91,6 @@ export default function Hoteles() {
           <img className="img-acad !max-w-none" src="/img/colmotica/hotell.png" alt="imagen" width={"auto"} />
         </div>
       </div>
-    </>
+    </article>
   )
 }

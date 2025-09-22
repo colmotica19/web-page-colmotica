@@ -119,7 +119,7 @@ export default function PreguntasFrecuentes() {
     <section className="grid grid-cols-[200px_50vw_200px] place-content-center mt-[50px] mb-[150px]">
       <LeftAside title="Preguntas" buttons={buttonsToRender as unknown as NavButton[]} activeKey={viewProduct}>
       </LeftAside>
-      <section className={`p-8 max-w-[800px] m-auto flex flex-col gap-[${Object.keys(anchors ?? {}).length > 5 ? "1.5lh" : "2lh"}]`} ref={viewSection}>
+      <section className={`p-8 max-w-[800px] m-auto flex flex-col gap-[1.5lh]`} ref={viewSection}>
         {renderSection()}
       </section>
       <RightAside anchors={anchors} viewProduct={viewProduct} listOfNavRef={listOfNavRef} viewSection={viewSection}></RightAside>

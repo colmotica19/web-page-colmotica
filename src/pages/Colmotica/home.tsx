@@ -7,7 +7,7 @@ export default function Home() {
   const { t } = useTranslation()
   return (
     <Fragment>
-      <div className="flex justify-center items-center flex-col">
+      <div className="flex justify-center items-center flex-col mb-[150px]">
         <section className="pd-g dflex encabezado-frace">
           <div className="dflex flex-initial">
             <p dangerouslySetInnerHTML={{ __html: t("home_inteligencia") }}></p>

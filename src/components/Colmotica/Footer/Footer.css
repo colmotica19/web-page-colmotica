@@ -1,0 +1,54 @@
+footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 20px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-column {
+  margin: 0px;
+}
+
+.footer-column h4 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: var(--color-blue-secundary);
+}
+
+.footer-column :is(a, button) {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-column :is(a, button):hover {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: max-content max-content;
+    row-gap: 30px;
+  }
+}
+
+.btnSubmitHelpCenter {
+  background-color: black;
+  transition-property: transform, background-color !important;
+  color: white;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.btnSubmitHelpCenter:hover {
+  background-color: var(--color-neutral-800);
+}

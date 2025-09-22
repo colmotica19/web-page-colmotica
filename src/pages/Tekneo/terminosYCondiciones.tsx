@@ -51,7 +51,7 @@ export default function TerminosYCondiciones() {
   return (
     <section className="grid grid-cols-[200px_50vw_200px] place-content-center mt-[50px] mb-[150px] gap-[8%]">
       <LeftAside title="Legal" buttons={buttonsToRender as unknown as NavButton[]} activeKey={viewProduct}></LeftAside>
-      <section ref={viewSection} className={`p-8 max-w-[800px] m-auto flex flex-col gap-[${Object.keys(anchors ?? {}).length > 5 ? "1.5lh" : "2lh"}]`}>
+      <section ref={viewSection} className={`p-8 max-w-[800px] m-auto flex flex-col gap-[1.5lh]`}>
         <h1 className="text-4xl">{t("legal_terminos_titulo")}</h1>
         <p>{t("legal_terminos_p1")}</p>
         <h2 className="text-3xl" id="h1" data-title-anchor={t("legal_terminos_h2_1")}>{t("legal_terminos_h2_1")}</h2>
