@@ -39,12 +39,12 @@ const Modal = forwardRef<ModalHandle, { children: ReactNode, className?: string,
       close,
     }));
 
-    const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
-      if (e.target === e.currentTarget) close();
-    };
+    // const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+    //   if (e.target === e.currentTarget) close();
+    // };
 
     return (
-      <dialog ref={dialogRef} className={`Modal ${className} ${blur ? " blurBackground" : ""}`} onClick={handleBackdropClick}>
+      <dialog ref={dialogRef} className={`Modal ${className} ${blur ? " blurBackground" : ""}`}>
         <button type="button" title="Cerrar ventana" onClick={close} className="absolute top-[10px] right-[10px] closeModal">
           <svg className="fill-gray-400 size-[16px]" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 25" version="1.1">
             <g id="Page-1" stroke="none" strokeWidth="1" fill="inherit" fillRule="evenodd">

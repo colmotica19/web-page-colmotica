@@ -39,8 +39,18 @@ export default function SliderSwiper() {
           </button>
         </SwiperSlide>
         <SwiperSlide className="flex! justify-center items-center">
+          <button type="button" title="hikvision" className="btn-movi">
+            <img className="max-h-[180px]" width={"auto"} src="/img/2560px-Hikvision_logo.svg.png" alt="" />
+          </button>
+        </SwiperSlide>
+        <SwiperSlide className="flex! justify-center items-center">
           <button type="button" className="btn-movi" onClick={() => openModal("modal3")}>
             <img className="max-h-[180px]" width={"auto"} src="/img/knx.png" alt="KNX" />
+          </button>
+        </SwiperSlide>
+        <SwiperSlide className="flex! justify-center items-center">
+          <button type="button" className="btn-movi">
+            <img className="max-h-[180px]" width={"auto"} src="/img/Dahua_Technology_logo.jpg" alt="KNX" />
           </button>
         </SwiperSlide>
         <SwiperSlide className="flex! justify-center items-center">
