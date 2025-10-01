@@ -28,6 +28,7 @@ export default function Documentacion(): JSX.Element {
   const popoverModule22 = useRef<PopoverHandle | null>(null);
   const popoverModule44 = useRef<PopoverHandle | null>(null);
   const popoverTgate = useRef<PopoverHandle | null>(null);
+  const popoverTShow = useRef<PopoverHandle | null>(null);
   const popoverLector = useRef<PopoverHandle | null>(null);
   const popoverNodemaker = useRef<PopoverHandle | null>(null);
   const popoverAccessControl1 = useRef<PopoverHandle | null>(null);
@@ -200,6 +201,33 @@ export default function Documentacion(): JSX.Element {
         3: t("nodemaker_list3_3"),
       },
       imgSrc: ["/img/Logo de nodemaker.png", "/img/img2 de nodemaker.png"]
+    },
+    TShow: {
+      title: t("t_show_title"),
+      content: {
+        1: t("t_show_1"),
+        2: t("t_show_1_1"),
+        3: t("t_show_1_2"),
+        4: t("t_show_1_3"),
+        5: t("t_show_1_4"),
+        6: t("t_show_2"),
+        7: t("t_show_2_1"),
+        8: t("t_show_3_1"),
+        9: t("t_show_3_2"),
+        10: t("t_show_4_1"),
+        11: t("t_show_4_2"),
+        12: t("t_show_5_1"),
+        13: t("t_show_5_2"),
+        14: t("t_show_6_1"),
+        15: t("t_show_6_2"),
+      },
+      list: {
+        1: t("t_show_1_list_1"),
+        2: t("t_show_1_list_2"),
+        3: t("t_show_1_list_3"),
+        4: t("t_show_1_list_4"),
+      },
+      imgSrc: ["/img/tshow.png", "/img/tshow 2.png"]
     }
   } as const), [t]);
 
@@ -247,11 +275,13 @@ export default function Documentacion(): JSX.Element {
   // );
 
   const previewFor = useCallback(
-    (name: ProductKey) => {
-      if (name in infoHardware || name === "Access Control") {
-        if (name !== "Access Control") {
+    (name: keyof typeof infoSoftware | keyof typeof infoHardware | ProductKey) => {
+      let data;
+      switch (name) {
+        case "Modulo TK-IO22W":
+        case "Modulo TK-IO24W2":
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const data = (infoHardware as any)[name];
+          data = (infoHardware as any)[name];
           return (
             <>
               <h1>{data.title}</h1>
@@ -260,37 +290,33 @@ export default function Documentacion(): JSX.Element {
               ))}
             </>
           );
-        } else {
-          const data = infoHardware["Modulo TK-IO22W"]["Access Control"];
+        case "Access Control":
+          data = infoHardware["Modulo TK-IO22W"]["Access Control"];
           return (
             <>
               <h1>{data.title}</h1>
               <img src={data.imgSrc[0]} alt="" width={"auto"} height={"auto"} />
             </>
           );
-        }
+        case "Nodemaker":
+        case "TShow":
+        case 'Tgate':
+          data = infoSoftware[name];
+          return (
+            <>
+              <h1>{data.title}</h1>
+              <img src={data.imgSrc[0]} alt="" className="w-[500px] h-auto" />
+            </>
+          );
+        case "TK-Lector":
+          data = infoTkLector[name];
+          return (
+            <>
+              <h1>{data.title}</h1>
+              <img src={data.imgSrc[0]} alt="" className="w-[400px] h-auto" />
+            </>
+          );
       }
-      if (name in infoSoftware) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const data = (infoSoftware as any)[name];
-        return (
-          <>
-            <h1>{data.title}</h1>
-            <img src={data.imgSrc[0]} alt="" className="w-[500px] h-auto" />
-          </>
-        );
-      }
-      if (name in infoTkLector) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const data = (infoTkLector as any)[name];
-        return (
-          <>
-            <h1>{data.title}</h1>
-            <img src={data.imgSrc[0]} alt="" className="w-[400px] h-auto" />
-          </>
-        );
-      }
-
       return null;
     },
     [infoHardware, infoSoftware, infoTkLector]
@@ -639,6 +665,34 @@ export default function Documentacion(): JSX.Element {
     );
   }, [viewProduct, infoHardware])
 
+  const renderTshow = useCallback(() => {
+    const data = infoSoftware["TShow"];
+    if (!data && viewProduct !== "Access Control") return null;
+    return (
+      <div className="aplicaciones">
+        <h1 className="text-[32px] font-bold text-center">{data.title}</h1>
+        <h2 className="text-[24px] font-bold">{data.content[1]}</h2>
+        <p>{data.content[2]}</p>
+        <p>{data.content[3]}</p>
+        <p>{data.content[4]}</p>
+        <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh]">
+          <li>{data.list[1]}</li>
+          <li>{data.list[2]}</li>
+          <li>{data.list[3]}</li>
+          <li>{data.list[4]}</li>
+        </ul>
+        <p>{data.content[5]}</p>
+        <h2 className="text-[24px] font-bold">{data.content[6]}</h2>
+        <p>{data.content[7]}</p>
+        <h2 className="text-[24px] font-bold">{data.content[8]}</h2>
+        <p>{data.content[9]}</p>
+        <h2 className="text-[24px] font-bold">{data.content[10] }</h2>
+        <img src={data.imgSrc[0]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <img src={data.imgSrc[1]} alt="" width={"auto"} height={"auto"} className="self-center" />
+      </div>
+    )
+  }, [infoSoftware, viewProduct])
+
   // archivo para descarga según producto
   const renderBtnDownload = useCallback(() => {
     const fileForDownload: Partial<Record<ProductKey, string>> = {
@@ -689,6 +743,7 @@ export default function Documentacion(): JSX.Element {
         popoverModule44.current?.forceClose?.();
         popoverLector.current?.forceClose?.();
         popoverNodemaker.current?.forceClose()
+        popoverTShow.current?.forceClose?.();
         popoverAccessControl1.current?.forceClose?.()
         break;
       case "TK-Lector":
@@ -696,6 +751,7 @@ export default function Documentacion(): JSX.Element {
         popoverModule22.current?.forceClose?.();
         popoverModule44.current?.forceClose?.();
         popoverTgate.current?.forceClose?.();
+        popoverTShow.current?.forceClose?.();
         popoverNodemaker.current?.forceClose()
         popoverAccessControl1.current?.forceClose?.()
         break;
@@ -704,6 +760,7 @@ export default function Documentacion(): JSX.Element {
         popoverModule22.current?.forceClose?.();
         popoverModule44.current?.forceClose?.();
         popoverTgate.current?.forceClose?.();
+        popoverTShow.current?.forceClose?.();
         popoverAccessControl1.current?.forceClose?.()
         break;
       case "Access Control":
@@ -712,6 +769,14 @@ export default function Documentacion(): JSX.Element {
         popoverModule44.current?.forceClose?.();
         popoverTgate.current?.forceClose?.();
         break;
+      case "TShow":
+        popoverTShow.current?.showPopover(btnTShow.current as HTMLButtonElement);
+        popoverModule22.current?.forceClose?.();
+        popoverModule44.current?.forceClose?.();
+        popoverLector.current?.forceClose?.();
+        popoverNodemaker.current?.forceClose()
+        popoverAccessControl1.current?.forceClose?.()
+        popoverTgate.current?.forceClose()
     }
   }, []);
 
@@ -731,6 +796,9 @@ export default function Documentacion(): JSX.Element {
         break;
       case "Nodemaker":
         popoverNodemaker.current?.close?.()
+        break;
+      case 'TShow':
+        popoverTShow.current?.close()
         break;
     }
   }, []);
@@ -947,9 +1015,9 @@ export default function Documentacion(): JSX.Element {
               <ArrowIcon />
             </button>
 
-            {/* <Popover ref={popoverNodemaker} gapTop={-(btnModule44w.current?.offsetHeight ?? 100)} gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}>
-              <div className="flex flex-col gap-[10px] items-center">{previewFor("Nodemaker")}</div>
-            </Popover> */}
+            <Popover ref={popoverTShow} gapTop={-(btnModule44w.current?.offsetHeight ?? 100)} gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}>
+              <div className="flex flex-col gap-[10px] items-center">{previewFor("TShow")}</div>
+            </Popover>
           </li>
           <li>
             <button
@@ -983,7 +1051,8 @@ export default function Documentacion(): JSX.Element {
               ? renderLectorTk()
               : viewProduct === "Nodemaker"
                 ? renderNodeMaker()
-                : viewProduct === "Access Control" ? renderAccessControl() : null}
+                : viewProduct === "Access Control" ? renderAccessControl()
+                  : viewProduct === "TShow" ? renderTshow() : null}
       </section>
 
       <aside className="sticky top-[125px] self-start flex flex-col items-center gap-[20px]">

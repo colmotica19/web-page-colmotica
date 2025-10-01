@@ -20,6 +20,7 @@ export default function LayoutTekneo() {
         {/* <link rel="stylesheet" href="/src/Styles/tekneo.css" /> */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="icon" type="image/png" href="/img/favicon.png"/>
         <link
           href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
           rel="stylesheet" />

@@ -9,6 +9,8 @@ export default function SingletonProvider({ children }: { children: ReactNode })
   const [lang, setLang] = useState("es")
   const users = [
     { email: "colmotica@hotmail.com", password: "1234", name: "Colmotica", admin: true },
+    { email: "admin@admin.com", password: "1234", name: "Admin", admin: true },
+    { email: "juan@hotmail.com", password: "1234", name: "Juan", admin: false },
     { email: "zarache@hotmail.com", password: "1234", name: "zarache", admin: false }
   ];
   const [user, setUser] = useState<{
