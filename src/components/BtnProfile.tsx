@@ -5,7 +5,7 @@ import { GlobalContext } from "../singleton/globalContext";
 // import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import Modal from "./Tekneo/Modal/Modal";
-import Login from "./login/Login";
+import Login from "./Tekneo/login/Login";
 import { useNavigate } from "react-router";
 export default function BtnProfile() {
   const { user, setUser, modalLoginRef } = useContext(GlobalContext);

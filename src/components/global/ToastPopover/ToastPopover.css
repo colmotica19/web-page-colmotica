@@ -1,0 +1,28 @@
+.ToastPopover .info {
+  background-color: white;
+}
+
+.ToastPopover .success {
+  background-color: var(--color-blue-200);
+}
+
+.ToastPopover .error {
+  background-color: var(--color-red-200);
+}
+
+.ToastPopover {
+  background-color: transparent;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  top: 90%;
+  left: 0%;
+  width: 100%;
+  max-height: 250px;
+}
+
+.ToastPopover:popover-open {
+  display: flex;
+}

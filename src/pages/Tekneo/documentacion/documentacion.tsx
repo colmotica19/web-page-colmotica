@@ -686,7 +686,12 @@ export default function Documentacion(): JSX.Element {
         <p>{data.content[7]}</p>
         <h2 className="text-[24px] font-bold">{data.content[8]}</h2>
         <p>{data.content[9]}</p>
-        <h2 className="text-[24px] font-bold">{data.content[10] }</h2>
+        <h2 className="text-[24px] font-bold">{data.content[10]}</h2>
+        <p>{data.content[11]}</p>
+        <h2 className="text-[24px] font-bold">{data.content[12]}</h2>
+        <p>{data.content[12]}</p>
+        <h2 className="text-[24px] font-bold">{data.content[13]}</h2>
+        <p>{data.content[14]}</p>
         <img src={data.imgSrc[0]} alt="" width={"auto"} height={"auto"} className="self-center" />
         <img src={data.imgSrc[1]} alt="" width={"auto"} height={"auto"} className="self-center" />
       </div>
@@ -776,7 +781,8 @@ export default function Documentacion(): JSX.Element {
         popoverLector.current?.forceClose?.();
         popoverNodemaker.current?.forceClose()
         popoverAccessControl1.current?.forceClose?.()
-        popoverTgate.current?.forceClose()
+        popoverTgate.current?.forceClose();
+        break;
     }
   }, []);
 

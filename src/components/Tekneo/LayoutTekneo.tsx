@@ -4,7 +4,7 @@ import { Header } from "./Header/Header";
 import './../../Styles/index.css'
 import './../../Styles/tekneo.css'
 import { useEffect } from "react";
-import { FooterComponent } from "../global/Footer/Footer";
+import { FooterComponent } from "./Footer/Footer";
 export default function LayoutTekneo() {
   useEffect(() => {
       document.body.dataset.page = "tekneo"

@@ -15,7 +15,7 @@ import { BsTwitterX } from "react-icons/bs";
 import { FaInstagram } from "react-icons/fa";
 import { NavLink } from "react-router";
 import { useTranslation } from "react-i18next";
-import Modal, { type ModalHandle } from "../../Tekneo/Modal/Modal";
+import Modal, { type ModalHandle } from "../Modal/Modal";
 export function FooterComponent({ page }: { page: "tekneo" | "colmotica" }) {
   const { t } = useTranslation()
   const { setFocusHardware, setFocusSoftware } = useContext(GlobalContext);
