@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useRef, useState, useEffect } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 import './ToastPopover.css'
 export type ToastType = "success" | "error" | "info";
 
