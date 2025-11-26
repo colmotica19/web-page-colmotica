@@ -1,3 +1,5 @@
+//routesTekneo.tsx
+
 import { createHashRouter } from "react-router";
 import { Partners } from "../pages/Tekneo/partners";
 import { routesColmotica } from "./routesColmotica";
@@ -15,6 +17,10 @@ import Documentacion from "../pages/Tekneo/documentacion/documentacion";
 // import Registrar from "../components/login/Registrar";
 import { HomePage } from "../pages/Tekneo/home";
 import Administracion from "../pages/Tekneo/administracion/administracion";
+import ProtectedRoute from "../components/Tekneo/ProtectedRoute";
+import VerificarUsuarioPass from "../components/Tekneo/login/VerificarUsuarioPass";
+import CambiarPassword from "../components/Tekneo/login/CambiarPassword";
+import Login from "../components/Tekneo/login/Login";
 
 export const routerTekneo = createHashRouter([
   // {
@@ -38,8 +44,12 @@ export const routerTekneo = createHashRouter([
       //   Component: Support,
       // },
       {
+        index: true,
+        Component: Login,
+      },
+      {
         path: "/home",
-        Component: HomePage
+        Component: HomePage,
       },
       {
         path: "socios",
@@ -73,19 +83,33 @@ export const routerTekneo = createHashRouter([
         path: "terminosYCondiciones",
         Component: TerminosYCondiciones,
       },
-      {
+      /*{
         path: "documentacion",
         Component: Documentacion
+      },*/
+      {
+        path: "documentacion",
+        Component: ProtectedRoute,
+        children: [{ index: true, Component: Documentacion }],
       },
       {
         path: "administracion",
-        Component: Administracion
-      }
+        Component: Administracion,
+      },
+      {
+        path: "verificar-codigo-pass",
+        Component: VerificarUsuarioPass,
+      },
+
+      {
+        path: "cambiarPassword",
+        Component: CambiarPassword,
+      },
     ],
   },
   {
     path: "/colmotica",
     Component: LayoutColmotica,
     children: routesColmotica,
-  }
+  },
 ]);

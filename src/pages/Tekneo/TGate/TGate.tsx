@@ -1,4 +1,4 @@
-import "./TGate.css";
+import "./tgate.css";
 
 export default function TGate() {
   return (

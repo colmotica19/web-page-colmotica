@@ -1,25 +1,44 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { GlobalContext } from "./globalContext";
-import i18n from "../i18n";
-import type { ModalHandle } from "../components/Tekneo/Modal/Modal";
+// singlentonProvider.tsx
 
-export default function SingletonProvider({ children }: { children: ReactNode }) {
-  const [focusSoftware, setFocusSoftware] = useState(false)
-  const [focusHardware, setFocusHardware] = useState(false)
-  const [lang, setLang] = useState("es")
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { GlobalContext, type UserInfo, type UserLogin } from "./globalContext";
+//import i18n from "../i18n";
+import type { ModalHandle } from "../components/Tekneo/Modal/Modal";
+import { getSession } from "../requests/user";
+
+export default function SingletonProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const [focusSoftware, setFocusSoftware] = useState(false);
+  const [focusHardware, setFocusHardware] = useState(false);
+  const [lang, setLang] = useState("es");
+
   const users = [
-    { email: "colmotica@hotmail.com", password: "1234", name: "Colmotica", admin: true },
+    {
+      email: "colmotica@hotmail.com",
+      password: "1234",
+      name: "Colmotica",
+      admin: true,
+    },
     { email: "admin@admin.com", password: "1234", name: "Admin", admin: true },
     { email: "juan@hotmail.com", password: "1234", name: "Juan", admin: false },
-    { email: "zarache@hotmail.com", password: "1234", name: "zarache", admin: false }
+    {
+      email: "zarache@hotmail.com",
+      password: "1234",
+      name: "zarache",
+      admin: false,
+    },
   ];
-  const [user, setUser] = useState<{
-    email: string;
-    password: string;
-    name: string;
-    admin: boolean;
-  } | null>(null);
+
+  const [user, setUser] = useState<UserInfo | null>(null);
+
+  // ✅ Estado para el login
+  const [userLogin, setUserLogin] = useState<UserLogin | null>(null);
+
   const modalLoginRef = useRef<ModalHandle>(null);
+
   const context = {
     focusSoftware,
     setFocusSoftware,
@@ -30,19 +49,40 @@ export default function SingletonProvider({ children }: { children: ReactNode })
     users,
     user,
     setUser,
-    modalLoginRef
-  }
+    userLogin,
+    setUserLogin,
+    modalLoginRef,
+  };
 
   useEffect(() => {
-    const changeLanguage = (lng: string) => {
-      i18n.changeLanguage(lng);
-    };
-    changeLanguage(lang)
-  }, [lang])
+    getSession()
+      .then((res) => {
+        if (res.success && res.user) {
+          setUserLogin({
+            EMAIL: res.user.EMAIL,
+            PASS_HASH: res.user.PASS_HASH,
+          });
+          
+          // Setear user completo
+          setUser({
+            EMAIL: res.user.EMAIL,
+            PASS_HASH: res.user.PASS_HASH,
+            ID_USERS: res.user.ID_USERS,
+            ID_ROL: res.user.ID_ROL,
+            NAME: res.user.NAME,
+            PAIS: res.user.PAIS,
+            TEL: res.user.TEL,
+            VERIFIED: res.user.VERIFIED,
+          });
+        }
+      })
+      .catch(() => {
+        setUserLogin(null); // no hay sesión
+        setUser(null);
+      });
+  }, []);
 
   return (
-    <GlobalContext.Provider value={context}>
-      {children}
-    </GlobalContext.Provider>
+    <GlobalContext.Provider value={context}>{children}</GlobalContext.Provider>
   );
 }

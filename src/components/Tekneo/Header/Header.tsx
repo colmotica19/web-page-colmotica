@@ -1,3 +1,5 @@
+// header.tsx
+
 import { NavLink } from "react-router";
 import "./Header.css";
 import { useContext, useEffect, useMemo, useRef } from "react";
@@ -8,33 +10,40 @@ import Modal, { type ModalHandle } from "../Modal/Modal";
 import BtnProfile from "../../BtnProfile";
 
 export function Header() {
-  const { focusSoftware, focusHardware, setFocusSoftware, setFocusHardware, lang, user } = useContext(GlobalContext);
-  const { t } = useTranslation()
+  const {
+    focusSoftware,
+    focusHardware,
+    setFocusSoftware,
+    setFocusHardware,
+    lang,
+    user,
+  } = useContext(GlobalContext);
+  const { t } = useTranslation();
   const mapProducts = useRef(new Map<string, HTMLAnchorElement>());
-  const hardwareProducts = useMemo(() => [
-    {
-      url: "",
-      img: "/img/Lector QR.png",
-      name: "TK-Lector",
-      description:
-        t("products_lee"),
-    },
-    {
-      url: "",
-      img: "/img/Modulo DT-R004.png",
-      name: "Modulo TK-IO24W2",
-      description:
-        t("products_reles"),
-    },
-    {
-      url: "",
-      img: "/img/Modulo TK-IO22W.webp",
-      name: "Modulo TK-IO22W",
-      description:
-        t("products_reles"),
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  ], [t, lang]);
+  const hardwareProducts = useMemo(
+    () => [
+      {
+        url: "",
+        img: "/img/Lector QR.png",
+        name: "TK-Lector",
+        description: t("products_lee"),
+      },
+      {
+        url: "",
+        img: "/img/Modulo DT-R004.png",
+        name: "Modulo TK-IO24W2",
+        description: t("products_reles"),
+      },
+      {
+        url: "",
+        img: "/img/Modulo TK-IO22W.webp",
+        name: "Modulo TK-IO22W",
+        description: t("products_reles"),
+      },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    ],
+    [t, lang]
+  );
   // Crea un nodo <a> de producto
   function createProduct(
     anchorSrc: string,
@@ -77,13 +86,13 @@ export function Header() {
   }
   useEffect(() => {
     mapProducts.current.forEach((value, key) => {
-      const footerText = value.querySelector(".footerProductItem")
+      const footerText = value.querySelector(".footerProductItem");
       if (footerText) {
-        footerText.textContent = hardwareProducts.find((item) => item.img === key)?.description ?? ""
+        footerText.textContent =
+          hardwareProducts.find((item) => item.img === key)?.description ?? "";
       }
-    })
-
-  }, [hardwareProducts])
+    });
+  }, [hardwareProducts]);
   useEffect(() => {
     const selectCategory =
       document.querySelector<HTMLElement>(".selectCategory");
@@ -120,8 +129,6 @@ export function Header() {
         selectProduct.appendChild(element);
       });
     }
-
-
 
     // Cambia la categoría seleccionada
     function handleCategorySelection(category: HTMLSpanElement) {
@@ -208,11 +215,11 @@ export function Header() {
   const dropdownContent = useRef<HTMLDivElement>(null);
   const modalRef = useRef<ModalHandle>(null);
   const closeModalForGoToLink = () => {
-    modalRef.current?.close()
-    scroll({ top: 0, left: 0 })
-  }
-  const productList = useRef<HTMLUListElement>(null)
-  const categoryList = useRef<HTMLUListElement>(null)
+    modalRef.current?.close();
+    scroll({ top: 0, left: 0 });
+  };
+  const productList = useRef<HTMLUListElement>(null);
+  const categoryList = useRef<HTMLUListElement>(null);
 
   return (
     <header className="sticky top-0 z-10">
@@ -233,42 +240,100 @@ export function Header() {
 
           <BtnChangeLang></BtnChangeLang>
 
-          <button type="button" title="Abrir modal" className="flex md:hidden" onClick={() => modalRef.current?.showModal()}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="text-white size-[28px]">
-              <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <button
+            type="button"
+            title="Abrir modal"
+            className="flex md:hidden"
+            onClick={() => modalRef.current?.showModal()}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="text-white size-[28px]"
+            >
+              <path
+                d="M4 6H20M4 12H20M4 18H20"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </button>
-
         </div>
         <Modal ref={modalRef} className="w-full">
           <nav className="navModal">
             <ul className="flex flex-col justify-center items-center gap-[15px] font-bold text-2xl text-center">
               <li>
-                <NavLink data-i18n="nav_inicio" to="/" onClick={closeModalForGoToLink}>
+                <NavLink
+                  data-i18n="nav_inicio"
+                  to="/"
+                  onClick={closeModalForGoToLink}
+                >
                   {t("nav_inicio")}
                 </NavLink>
               </li>
               <li>
                 <div className="accordion">
-                  <button type="button" className="accordion-toggle text-black! flex justify-center items-center gap-[10px]">
+                  <button
+                    type="button"
+                    className="accordion-toggle text-black! flex justify-center items-center gap-[10px]"
+                  >
                     {t("nav_productos")}
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="inherit" className="size-[24px] rotate-270 transition-transform duration-300">
-                      <path d="M16.1795 3.26875C15.7889 2.87823 15.1558 2.87823 14.7652 3.26875L8.12078 9.91322C6.94952 11.0845 6.94916 12.9833 8.11996 14.155L14.6903 20.7304C15.0808 21.121 15.714 21.121 16.1045 20.7304C16.495 20.3399 16.495 19.7067 16.1045 19.3162L9.53246 12.7442C9.14194 12.3536 9.14194 11.7205 9.53246 11.33L16.1795 4.68297C16.57 4.29244 16.57 3.65928 16.1795 3.26875Z" fill="inherit" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="inherit"
+                      className="size-[24px] rotate-270 transition-transform duration-300"
+                    >
+                      <path
+                        d="M16.1795 3.26875C15.7889 2.87823 15.1558 2.87823 14.7652 3.26875L8.12078 9.91322C6.94952 11.0845 6.94916 12.9833 8.11996 14.155L14.6903 20.7304C15.0808 21.121 15.714 21.121 16.1045 20.7304C16.495 20.3399 16.495 19.7067 16.1045 19.3162L9.53246 12.7442C9.14194 12.3536 9.14194 11.7205 9.53246 11.33L16.1795 4.68297C16.57 4.29244 16.57 3.65928 16.1795 3.26875Z"
+                        fill="inherit"
+                      />
                     </svg>
                   </button>
-                  <ul className="categoryList flex flex-raw justify-center items-center gap-[-1px] text-[16px] font-medium m-[15px_0px]" data-product="Software" ref={categoryList}>
+                  <ul
+                    className="categoryList flex flex-raw justify-center items-center gap-[-1px] text-[16px] font-medium m-[15px_0px]"
+                    data-product="Software"
+                    ref={categoryList}
+                  >
                     <li>
-                      <button className="bg-blue-400 text-white p-[5px_10px] flex gap-[5px] justify-center items-center" type="button" title="Software" onClick={() => {
-                        productList.current?.querySelectorAll<HTMLLIElement>(".productListItem").forEach((item) => item.style.display === "none" ? item.style.display = "" : null)
-                        productList.current?.querySelectorAll(":is(a):not(li > a)").forEach((item) => item.remove())
-                        if (categoryList.current) {
-                          categoryList.current.dataset.product = "Software"
-                        } else {
-                          throw new Error("La referencia categoryList es null o undefined")
-                        }
-                      }}>
+                      <button
+                        className="bg-blue-400 text-white p-[5px_10px] flex gap-[5px] justify-center items-center"
+                        type="button"
+                        title="Software"
+                        onClick={() => {
+                          productList.current
+                            ?.querySelectorAll<HTMLLIElement>(
+                              ".productListItem"
+                            )
+                            .forEach((item) =>
+                              item.style.display === "none"
+                                ? (item.style.display = "")
+                                : null
+                            );
+                          productList.current
+                            ?.querySelectorAll(":is(a):not(li > a)")
+                            .forEach((item) => item.remove());
+                          if (categoryList.current) {
+                            categoryList.current.dataset.product = "Software";
+                          } else {
+                            throw new Error(
+                              "La referencia categoryList es null o undefined"
+                            );
+                          }
+                        }}
+                      >
                         <span>Software</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="inherit" viewBox="0 0 52 52" enableBackground="new 0 0 52 52" xmlSpace="preserve" className="size-[24px] fill-white">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="inherit"
+                          viewBox="0 0 52 52"
+                          enableBackground="new 0 0 52 52"
+                          xmlSpace="preserve"
+                          className="size-[24px] fill-white"
+                        >
                           <path d="M20,37.5c0-0.8-0.7-1.5-1.5-1.5h-15C2.7,36,2,36.7,2,37.5v11C2,49.3,2.7,50,3.5,50h15c0.8,0,1.5-0.7,1.5-1.5  V37.5z" />
                           <path d="M8.1,22H3.2c-1,0-1.5,0.9-0.9,1.4l8,8.3c0.4,0.3,1,0.3,1.4,0l8-8.3c0.6-0.6,0.1-1.4-0.9-1.4h-4.7  c0-5,4.9-10,9.9-10V6C15,6,8.1,13,8.1,22z" />
                           <path d="M41.8,20.3c-0.4-0.3-1-0.3-1.4,0l-8,8.3c-0.6,0.6-0.1,1.4,0.9,1.4h4.8c0,6-4.1,10-10.1,10v6  c9,0,16.1-7,16.1-16H49c1,0,1.5-0.9,0.9-1.4L41.8,20.3z" />
@@ -277,20 +342,43 @@ export function Header() {
                       </button>
                     </li>
                     <li>
-                      <button className="bg-blue-400 text-white p-[5px_10px] flex gap-[5px] justify-center items-center" type="button" title="Hardware" onClick={() => {
-                        productList.current?.querySelectorAll<HTMLLIElement>(".productListItem").forEach((item) => item.style.display = "none")
-                        hardwareProducts.forEach((item) => {
-                          const anchor = createProduct(item.url, item.img, item.name, item.description)
-                          productList.current?.appendChild(anchor)
-                        })
-                        if (categoryList.current) {
-                          categoryList.current.dataset.product = "Hardware"
-                        } else {
-                          throw new Error("La referencia categoryList es null o undefined")
-                        }
-                      }}>
+                      <button
+                        className="bg-blue-400 text-white p-[5px_10px] flex gap-[5px] justify-center items-center"
+                        type="button"
+                        title="Hardware"
+                        onClick={() => {
+                          productList.current
+                            ?.querySelectorAll<HTMLLIElement>(
+                              ".productListItem"
+                            )
+                            .forEach((item) => (item.style.display = "none"));
+                          hardwareProducts.forEach((item) => {
+                            const anchor = createProduct(
+                              item.url,
+                              item.img,
+                              item.name,
+                              item.description
+                            );
+                            productList.current?.appendChild(anchor);
+                          });
+                          if (categoryList.current) {
+                            categoryList.current.dataset.product = "Hardware";
+                          } else {
+                            throw new Error(
+                              "La referencia categoryList es null o undefined"
+                            );
+                          }
+                        }}
+                      >
                         <span>Hardware</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="inherit" viewBox="0 0 52 52" enableBackground="new 0 0 52 52" xmlSpace="preserve" className="size-[24px] fill-white">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="inherit"
+                          viewBox="0 0 52 52"
+                          enableBackground="new 0 0 52 52"
+                          xmlSpace="preserve"
+                          className="size-[24px] fill-white"
+                        >
                           <path d="M20,37.5c0-0.8-0.7-1.5-1.5-1.5h-15C2.7,36,2,36.7,2,37.5v11C2,49.3,2.7,50,3.5,50h15c0.8,0,1.5-0.7,1.5-1.5  V37.5z" />
                           <path d="M8.1,22H3.2c-1,0-1.5,0.9-0.9,1.4l8,8.3c0.4,0.3,1,0.3,1.4,0l8-8.3c0.6-0.6,0.1-1.4-0.9-1.4h-4.7  c0-5,4.9-10,9.9-10V6C15,6,8.1,13,8.1,22z" />
                           <path d="M41.8,20.3c-0.4-0.3-1-0.3-1.4,0l-8,8.3c-0.6,0.6-0.1,1.4,0.9,1.4h4.8c0,6-4.1,10-10.1,10v6  c9,0,16.1-7,16.1-16H49c1,0,1.5-0.9,0.9-1.4L41.8,20.3z" />
@@ -299,9 +387,15 @@ export function Header() {
                       </button>
                     </li>
                   </ul>
-                  <ul className="productsList accordion-content" ref={productList}>
+                  <ul
+                    className="productsList accordion-content"
+                    ref={productList}
+                  >
                     <li className="productListItem">
-                      <NavLink to="controlDeAcceso" onClick={closeModalForGoToLink}>
+                      <NavLink
+                        to="controlDeAcceso"
+                        onClick={closeModalForGoToLink}
+                      >
                         <div className="headerProductItem">
                           <img
                             src="/img/logo Tgate-05.png"
@@ -310,7 +404,8 @@ export function Header() {
                         </div>
                         <div className="containerBodyAndFooterProduct">
                           <span className="bodyProductItem">TGate</span>
-                          <span className="footerProductItem">{t("descripción_tgate")}
+                          <span className="footerProductItem">
+                            {t("descripción_tgate")}
                           </span>
                         </div>
                       </NavLink>
@@ -325,7 +420,8 @@ export function Header() {
                         </div>
                         <div className="containerBodyAndFooterProduct">
                           <span className="bodyProductItem">Tshow</span>
-                          <span className="footerProductItem">{t("descripción_tshow")}
+                          <span className="footerProductItem">
+                            {t("descripción_tshow")}
                           </span>
                         </div>
                       </NavLink>
@@ -340,12 +436,18 @@ export function Header() {
                         </div>
                         <div className="containerBodyAndFooterProduct">
                           <span className="bodyProductItem">Nodemaker</span>
-                          <span className="footerProductItem">{t("descripción_nodemaker")}</span>
+                          <span className="footerProductItem">
+                            {t("descripción_nodemaker")}
+                          </span>
                         </div>
                       </NavLink>
                     </li>
                     <li className="productListItem">
-                      <NavLink to="ldm" className="relative" onClick={closeModalForGoToLink}>
+                      <NavLink
+                        to="ldm"
+                        className="relative"
+                        onClick={closeModalForGoToLink}
+                      >
                         <div className="headerProductItem w-[200px] flex justify-center items-center">
                           <img
                             src="/img/Loho tekneo vertical.png"
@@ -355,14 +457,20 @@ export function Header() {
                         </div>
                         <div className="containerBodyAndFooterProduct">
                           <span className="bodyProductItem">LDM</span>
-                          <span className="footerProductItem">{t("descripción_ldm")}</span>
+                          <span className="footerProductItem">
+                            {t("descripción_ldm")}
+                          </span>
                         </div>
                       </NavLink>
                     </li>
                   </ul>
                 </div>
               </li>
-              <li><NavLink to="socios" onClick={closeModalForGoToLink}>{t("nav_socios")}</NavLink></li>
+              <li>
+                <NavLink to="socios" onClick={closeModalForGoToLink}>
+                  {t("nav_socios")}
+                </NavLink>
+              </li>
               {/* <li><NavLink to={""} id="myBtn" onClick={closeModalForGoToLink}>{t("nav_soporte")}</NavLink></li> */}
             </ul>
           </nav>
@@ -384,30 +492,48 @@ export function Header() {
             />
           </NavLink>
           <nav className="btn-header" id="nav-menu">
-            <NavLink className="btn-header__btn" to="/home" onClick={() => scroll({ top: 0, left: 0 })}>
+            <NavLink
+              className="btn-header__btn"
+              to="/home"
+              onClick={() => scroll({ top: 0, left: 0 })}
+            >
               <p>{t("nav_inicio")}</p>
             </NavLink>
             <a className="btn-header__btn dropdown">
               <p>{t("nav_productos")}</p>
             </a>
-            <NavLink onClick={() => scroll({ top: 0, left: 0 })}
-              className={"btn-header__btn font-medium"} to="/documentacion">{t("nav_documentacion")}</NavLink>
+            <NavLink
+              onClick={() => scroll({ top: 0, left: 0 })}
+              className={"btn-header__btn font-medium"}
+              to="/documentacion"
+            >
+              {t("nav_documentacion")}
+            </NavLink>
             {/* <a id="myBtn" className="btn-header__btn">
               <p>{t("nav_soporte")}</p>
             </a> */}
 
-            <NavLink className="btn-header__btn" to="socios" onClick={() => scroll({ top: 0, left: 0 })}>
+            <NavLink
+              className="btn-header__btn"
+              to="socios"
+              onClick={() => scroll({ top: 0, left: 0 })}
+            >
               <p>{t("nav_socios")}</p>
             </NavLink>
-            {user?.admin ?
-              <NavLink className="btn-header__btn" to="administracion" onClick={() => scroll({ top: 0, left: 0 })}>
+            {user?.ID_ROL ? (
+              <NavLink
+                className="btn-header__btn"
+                to="administracion"
+                onClick={() => scroll({ top: 0, left: 0 })}
+              >
                 <p>{t("nav_administracion")}</p>
               </NavLink>
-              :
-              null
-            }
+            ) : null}
           </nav>
-          <div className="dropdown-content max-[1440px]:max-h-[400px] lg:overflow-auto" ref={dropdownContent}>
+          <div
+            className="dropdown-content max-[1440px]:max-h-[400px] lg:overflow-auto"
+            ref={dropdownContent}
+          >
             <section
               className="selectCategory"
               data-current-category="Software"
@@ -423,8 +549,8 @@ export function Header() {
               <NavLink
                 to="controlDeAcceso"
                 onClick={() => {
-                  dropdownContent.current?.classList.remove("show")
-                  scroll({ top: 0, left: 0 })
+                  dropdownContent.current?.classList.remove("show");
+                  scroll({ top: 0, left: 0 });
                 }}
               >
                 <div className="headerProductItem">
@@ -432,14 +558,16 @@ export function Header() {
                 </div>
                 <div className="containerBodyAndFooterProduct">
                   <span className="bodyProductItem">TGate</span>
-                  <span className="footerProductItem">{t("descripción_tgate")}</span>
+                  <span className="footerProductItem">
+                    {t("descripción_tgate")}
+                  </span>
                 </div>
               </NavLink>
               <NavLink
                 to="tshow"
                 onClick={() => {
-                  dropdownContent.current?.classList.remove("show")
-                  scroll({ top: 0, left: 0 })
+                  dropdownContent.current?.classList.remove("show");
+                  scroll({ top: 0, left: 0 });
                 }}
               >
                 <div className="headerProductItem">
@@ -447,17 +575,17 @@ export function Header() {
                 </div>
                 <div className="containerBodyAndFooterProduct">
                   <span className="bodyProductItem">Tshow</span>
-                  <span className="footerProductItem">{t("descripción_tshow")}
+                  <span className="footerProductItem">
+                    {t("descripción_tshow")}
                   </span>
                 </div>
               </NavLink>
               <NavLink
                 to="nodemaker"
                 onClick={() => {
-                  dropdownContent.current?.classList.remove("show")
-                  scroll({ top: 0, left: 0 })
-                }
-                }
+                  dropdownContent.current?.classList.remove("show");
+                  scroll({ top: 0, left: 0 });
+                }}
               >
                 <div className="headerProductItem">
                   <img
@@ -468,17 +596,18 @@ export function Header() {
                 </div>
                 <div className="containerBodyAndFooterProduct">
                   <span className="bodyProductItem">Nodemaker</span>
-                  <span className="footerProductItem">{t("descripción_nodemaker")}</span>
+                  <span className="footerProductItem">
+                    {t("descripción_nodemaker")}
+                  </span>
                 </div>
               </NavLink>
               <NavLink
                 to="ldm"
                 className="relative"
                 onClick={() => {
-                  dropdownContent.current?.classList.remove("show")
-                  scroll({ top: 0, left: 0 })
-                }
-                }
+                  dropdownContent.current?.classList.remove("show");
+                  scroll({ top: 0, left: 0 });
+                }}
               >
                 <div className="headerProductItem w-[200px] flex justify-center">
                   <img
@@ -489,12 +618,13 @@ export function Header() {
                 </div>
                 <div className="containerBodyAndFooterProduct">
                   <span className="bodyProductItem">LDM</span>
-                  <span className="footerProductItem">{t("descripción_ldm")}</span>
+                  <span className="footerProductItem">
+                    {t("descripción_ldm")}
+                  </span>
                 </div>
               </NavLink>
             </section>
-            <section>
-            </section>
+            <section></section>
           </div>
           <BtnProfile></BtnProfile>
         </div>
