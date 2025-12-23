@@ -17,6 +17,7 @@ export function Header() {
     setFocusHardware,
     lang,
     user,
+    userType,
   } = useContext(GlobalContext);
   const { t } = useTranslation();
   const mapProducts = useRef(new Map<string, HTMLAnchorElement>());
@@ -491,45 +492,49 @@ export function Header() {
               className="logo"
             />
           </NavLink>
-          <nav className="btn-header" id="nav-menu">
-            <NavLink
-              className="btn-header__btn"
-              to="/home"
-              onClick={() => scroll({ top: 0, left: 0 })}
-            >
-              <p>{t("nav_inicio")}</p>
-            </NavLink>
-            <a className="btn-header__btn dropdown">
-              <p>{t("nav_productos")}</p>
-            </a>
-            <NavLink
-              onClick={() => scroll({ top: 0, left: 0 })}
-              className={"btn-header__btn font-medium"}
-              to="/documentacion"
-            >
-              {t("nav_documentacion")}
-            </NavLink>
-            {/* <a id="myBtn" className="btn-header__btn">
+          {
+            <nav className="btn-header" id="nav-menu">
+              <NavLink
+                className="btn-header__btn"
+                to="/home"
+                onClick={() => scroll({ top: 0, left: 0 })}
+              >
+                <p>{t("nav_inicio")}</p>
+              </NavLink>
+              <a className="btn-header__btn dropdown">
+                <p>{t("nav_productos")}</p>
+              </a>
+              <NavLink
+                onClick={() => scroll({ top: 0, left: 0 })}
+                className={"btn-header__btn font-medium"}
+                to="/documentacion"
+              >
+                {t("nav_documentacion")}
+              </NavLink>
+              {/* <a id="myBtn" className="btn-header__btn">
               <p>{t("nav_soporte")}</p>
             </a> */}
 
-            <NavLink
-              className="btn-header__btn"
-              to="socios"
-              onClick={() => scroll({ top: 0, left: 0 })}
-            >
-              <p>{t("nav_socios")}</p>
-            </NavLink>
-            {user?.ID_ROL ? (
               <NavLink
                 className="btn-header__btn"
-                to="administracion"
+                to="socios"
                 onClick={() => scroll({ top: 0, left: 0 })}
               >
-                <p>{t("nav_administracion")}</p>
+                <p>{t("nav_socios")}</p>
               </NavLink>
-            ) : null}
-          </nav>
+              {/* Mostrar admin solo si ID_ROL es 10001 o 10002 */}
+              {userType?.message === "SUPER_ADMIN" ||
+              userType?.message === "ADMINISTRADOR" ? (
+                <NavLink to="/administracion">Administración</NavLink>
+              ) : null}
+
+              {/* Mostrar cosas para usuario normal */}
+              {userType?.message === "USUARIO" ? (
+                <NavLink to=""></NavLink>
+              ) : null}
+            </nav>
+          }
+
           <div
             className="dropdown-content max-[1440px]:max-h-[400px] lg:overflow-auto"
             ref={dropdownContent}

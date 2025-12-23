@@ -26,6 +26,7 @@ export interface UserLogin {
 
 export interface SessionResponse {
   success: boolean;
+
   user?: {
     ID_USERS?: string;
     ID_ROL?: number;
@@ -36,7 +37,18 @@ export interface SessionResponse {
     PASS_HASH: string;
     VERIFIED?: number;
   };
-  message?: string;
+
+  userType?: {
+    success: boolean;
+    message: string;
+  };
+}
+
+export interface CantRequestsResponse {
+  success: true;
+  result: {
+    total: number;
+  }[];
 }
 
 /**
@@ -55,6 +67,7 @@ export interface SuccessResponseBackend {
   success: true;
   message?: string;
   data?: unknown;
+  result?: User[];
   reqLogin?: {
     EMAIL: string;
     PASS_HASH: string;

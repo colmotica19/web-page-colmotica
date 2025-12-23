@@ -1,5 +1,6 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
-import './ToastPopover.css'
+import "./ToastPopover.css";
+
 export type ToastType = "success" | "error" | "info";
 
 export interface ToastHandle {
@@ -9,40 +10,32 @@ export interface ToastHandle {
   info: (message: string) => void;
 }
 
-// (anchor position handled via CSS)
-
-const ToastPopover = forwardRef<ToastHandle, unknown>((_props, ref) => {
-  const containerRef = useRef<HTMLElement | null>(null);
+const ToastPopover = forwardRef<ToastHandle>((_, ref) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useImperativeHandle(ref, () => ({
-    show: (message: string, type: ToastType = "info", time?: number) => showMessage(message, type, time),
-    success: (message: string) => showMessage(message, "success"),
-    error: (message: string) => showMessage(message, "error"),
-    info: (message: string) => showMessage(message, "info"),
+    show: (message, type = "info", time) => showMessage(message, type, time),
+    success: (message) => showMessage(message, "success"),
+    error: (message) => showMessage(message, "error"),
+    info: (message) => showMessage(message, "info"),
   }));
 
   function showMessage(message: string, type: ToastType, time = 3000) {
-    const containerMessage = document.createElement("div");
-    containerMessage.classList.add("containerMsg", type);
-    const text = document.createElement("span");
-    text.textContent = message
-    containerMessage.appendChild(text);
-    if (containerRef.current) {
-      containerRef.current.appendChild(containerMessage);
-      containerRef.current.showPopover()
-      setTimeout(() => {
-        containerMessage.remove()
-        if (!(containerRef.current as HTMLElement).querySelector(".containerMsg")) (containerRef.current as HTMLElement).hidePopover();
-      }, time)
-    } else {
-      throw new Error("No se encuentra la referencia 'containerRef'")
-    }
+    if (!containerRef.current) return;
+
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+
+    toast.textContent = message;
+    containerRef.current.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.add("hide");
+      setTimeout(() => toast.remove(), 200);
+    }, time);
   }
 
-  return (
-    <section ref={containerRef} popover="manual" className="ToastPopover">
-    </section>
-  );
+  return <div ref={containerRef} className="toast-root" />;
 });
 
 export default ToastPopover;

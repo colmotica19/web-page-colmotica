@@ -11,7 +11,13 @@ import { useNavigate } from "react-router";
 import { logoutUser } from "../requests/user";
 
 export default function BtnProfile() {
-  const { userLogin, setUserLogin, modalLoginRef } = useContext(GlobalContext);
+  const {
+    userLogin,
+    setUserLogin,
+    modalLoginRef,
+    loginOpenKey,
+    setLoginOpenKey,
+  } = useContext(GlobalContext);
   const { t } = useTranslation();
   const popoverProfile = useRef<PopoverHandle>(null);
   const btnProfile = useRef<HTMLButtonElement>(null);
@@ -35,7 +41,10 @@ export default function BtnProfile() {
       ) : (
         <button
           className="p-[5px_15px] bg-blue-500 rounded-[8px] mt-[-15px] text-white"
-          onClick={() => modalLoginRef.current?.showModal()}
+          onClick={() => {
+            setLoginOpenKey((prev) => prev + 1); // 🔥 Fuerza que Login resetee su estado
+            modalLoginRef.current?.showModal();
+          }}
         >
           <span>{t("inicio_de_sesion")}</span>
         </button>
@@ -51,9 +60,12 @@ export default function BtnProfile() {
             type="button"
             className="p-[5px_15px] bg-blue-500 text-white rounded-[8px]"
             onClick={async () => {
-              await logoutUser(); // <- borra cookie en backend
-              setUserLogin(null); // <- limpia estado en front
+              await logoutUser();
+              setUserLogin(null);
               popoverProfile.current?.forceClose();
+
+              navigate("/");
+              window.location.reload();
             }}
           >
             <span>{t("cerrar_sesion")}</span>
@@ -62,7 +74,7 @@ export default function BtnProfile() {
       </Popover>
 
       <Modal ref={modalLoginRef} blur onClose={() => navigate("/home")}>
-        <Login />
+        <Login key={loginOpenKey} />
       </Modal>
     </>
   );

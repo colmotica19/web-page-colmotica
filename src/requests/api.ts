@@ -2,11 +2,12 @@
 
 // api.ts
 
-import type { ResponseBackend } from "../interfaces/backend";
+//import type { ResponseBackend } from "../interfaces/backend";
 
+// api.ts
 const BASE = import.meta.env.VITE_API_URL ?? "";
 
-export async function apiFetch(path: string, opts: RequestInit = {}) {
+export async function apiFetch<T>(path: string, opts: RequestInit = {}): Promise<T> {
   const headers = {
     "Content-Type": "application/json",
     ...(opts.headers || {}),
@@ -27,23 +28,31 @@ export async function apiFetch(path: string, opts: RequestInit = {}) {
     json = text;
   }
 
-  // ❗ Manejo unificado de errores
+  // ❗ error backend
   if (!res.ok) {
     throw {
       success: false,
       message: json?.message || "Network error",
-    } as ResponseBackend;
+    };
   }
 
-  return json as ResponseBackend;
+  return json as T;
 }
 
-export function post(path: string, body: unknown) {
-  return apiFetch(path, { method: "POST", body: JSON.stringify(body) });
+export function post<T>(path: string, body: unknown) {
+  return apiFetch<T>(path, { method: "POST", body: JSON.stringify(body) });
 }
 
-export function get(path: string) {
-  return apiFetch(path, { method: "GET" });
+export function get<T>(path: string) {
+  return apiFetch<T>(path, { method: "GET" });
+}
+
+export function patch<T>(path: string, body: unknown) {
+  return apiFetch<T>(path, { method: "PATCH", body: JSON.stringify(body) });
+}
+
+export function del<T>(path: string) {
+  return apiFetch<T>(path, { method: "DELETE" });
 }
 
 //import type { ResponseBackend } from "../interfaces/backend";

@@ -1,18 +1,10 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type JSX,
-} from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState, type JSX } from "react";
 import { useTranslation } from "react-i18next";
+import toast from "react-hot-toast";
 import "./documentacion.css";
-import Popover, {
-  type PopoverHandle,
-} from "../../../components/Popover/Popover";
+import Popover, { type PopoverHandle } from "../../../components/Popover/Popover";
 import { GlobalContext } from "../../../singleton/globalContext";
+import { requestManual, cantRequests } from "../../../requests/user";
 
 // Refactor: componente más legible y modular. Mantengo la lógica original
 // pero evito listeners fuera del flujo React y simplifico generación de anchors.
@@ -27,11 +19,53 @@ type ProductKey =
   | "TShow"
   | "LDM";
 
+// manuals.constants.ts
+
+export const MANUALS = {
+  TK_IO22W_DATASHEET_1: {
+    id: "09954492-1ced-4f49-bbca-2a596f1abeec",
+    name: "TK-IO22W_Datasheet_1",
+  },
+  MANUAL_NODEMAKER: {
+    id: "2b76617e-a35c-43d9-853a-061503f57fe5",
+    name: "MANUAL_NODEMAKER",
+  },
+  QR_LECTOR: {
+    id: "32c5632f-c920-45d9-a39c-4a572b19094d",
+    name: "DataSheet_QR-Lector",
+  },
+  MANUAL_TEKNEO_SOFTWARE: {
+    id: "6b962d4c-6ead-4104-bc3c-52ca0b7fa2e1",
+    name: "MANUAL_TEKNEO_SOFTWARE",
+  },
+  TK_IO24W2_DATASHEET_2: {
+    id: "de6da310-3e6b-4ba6-a7f9-ec4e2d4bf23c",
+    name: "TK-IO24W2_Datasheet_2",
+  },
+} as const;
+
+const manualByProduct: Record<string, string | null> = {
+  "Modulo TK-IO22W": MANUALS.TK_IO22W_DATASHEET_1.id,
+  "Modulo TK-IO24W2": MANUALS.TK_IO24W2_DATASHEET_2.id,
+
+  Nodemaker: MANUALS.MANUAL_NODEMAKER.id,
+
+  "TK-Lector": MANUALS.QR_LECTOR.id,
+
+  TShow: null, // No tiene manual
+  Tgate: MANUALS.MANUAL_TEKNEO_SOFTWARE.id,
+  LDM: null, // No tiene manual
+
+  "Access Control": null, // No tiene manual
+};
+
 export default function Documentacion(): JSX.Element {
   const { t } = useTranslation();
   const [viewProduct, setViewProduct] = useState<ProductKey>("Modulo TK-IO22W");
   const { user, modalLoginRef } = useContext(GlobalContext);
-
+  const [alreadyRequested, setAlreadyRequested] = useState(false);
+  const [checkingRequest, setCheckingRequest] = useState(false);
+  const [loading, setLoading] = useState(false);
   // refs para popovers y botones
   const btnModule22w = useRef<HTMLButtonElement | null>(null);
   const btnAccessControl = useRef<HTMLButtonElement>(null);
@@ -152,19 +186,14 @@ export default function Documentacion(): JSX.Element {
             t("Modulo TK-IO24W2_listOfFeatures_6"),
             t("Modulo TK-IO24W2_listOfFeatures_7"),
           ],
-          applicationDescription: t(
-            "Modulo TK-IO24W2_applicationDescription_1"
-          ),
+          applicationDescription: t("Modulo TK-IO24W2_applicationDescription_1"),
           listOfApplications: [
             t("Modulo TK-IO24W2_listOfApplications_1"),
             t("Modulo TK-IO24W2_listOfApplications_2"),
             t("Modulo TK-IO24W2_listOfApplications_3"),
             t("Modulo TK-IO24W2_listOfApplications_4"),
           ],
-          diagramSrc: [
-            "/img/Modulo TK-IO44W.png",
-            "/img/Modulo TK-IO44W 2.png",
-          ],
+          diagramSrc: ["/img/Modulo TK-IO44W.png", "/img/Modulo TK-IO44W 2.png"],
           tableItems: [
             ["ESP32", t("Modulo TK-IO24W2_tableItem_1")],
             ["Inputs Digital (2X)", t("Modulo TK-IO24W2_tableItem_2")],
@@ -207,13 +236,7 @@ export default function Documentacion(): JSX.Element {
             9: t("tgate_1_list_2_4"),
             10: t("tgate_1_list_3"),
           },
-          imgSrc: [
-            "/img/tgate_1.jpg",
-            "/img/tgate_2.jpg",
-            "/img/tgate_3.jpg",
-            "/img/tgate_4.jpg",
-            "/img/tgate_5.jpg",
-          ],
+          imgSrc: ["/img/tgate_1.jpg", "/img/tgate_2.jpg", "/img/tgate_3.jpg", "/img/tgate_4.jpg", "/img/tgate_5.jpg"],
         },
         Nodemaker: {
           title: t("nodemaker_title"),
@@ -300,21 +323,9 @@ export default function Documentacion(): JSX.Element {
             14: t("lecktor_tk_16"),
             15: t("lecktor_tk_17"),
           },
-          list: Array.from({ length: 14 }, (_, i) =>
-            t(`lecktor_tk_12_${i + 1}`)
-          ),
-          applicationList: [
-            t("lecktor_tk_13"),
-            t("lecktor_tk_13_1"),
-            t("lecktor_tk_13_2"),
-            t("lecktor_tk_13_3"),
-          ],
-          recomendation: [
-            t("lecktor_tk_14"),
-            t("lecktor_tk_14_1"),
-            t("lecktor_tk_14_2"),
-            t("lecktor_tk_14_3"),
-          ],
+          list: Array.from({ length: 14 }, (_, i) => t(`lecktor_tk_12_${i + 1}`)),
+          applicationList: [t("lecktor_tk_13"), t("lecktor_tk_13_1"), t("lecktor_tk_13_2"), t("lecktor_tk_13_3")],
+          recomendation: [t("lecktor_tk_14"), t("lecktor_tk_14_1"), t("lecktor_tk_14_2"), t("lecktor_tk_14_3")],
           imgSrc: ["/img/Lector QR 2.png"],
         },
       } as const),
@@ -328,9 +339,7 @@ export default function Documentacion(): JSX.Element {
   // );
 
   const previewFor = useCallback(
-    (
-      name: keyof typeof infoSoftware | keyof typeof infoHardware | ProductKey
-    ) => {
+    (name: keyof typeof infoSoftware | keyof typeof infoHardware | ProductKey) => {
       let data;
       switch (name) {
         case "Modulo TK-IO22W":
@@ -384,9 +393,7 @@ export default function Documentacion(): JSX.Element {
     const target = viewProductDescription.current;
     if (!target) return;
 
-    const allItemsWithId = Array.from(
-      target.querySelectorAll<HTMLElement>("[id]")
-    ).filter((el) => el.id);
+    const allItemsWithId = Array.from(target.querySelectorAll<HTMLElement>("[id]")).filter((el) => el.id);
 
     const anchorsJsx = allItemsWithId.map((item) => (
       <li key={item.id} className="size-full">
@@ -395,15 +402,11 @@ export default function Documentacion(): JSX.Element {
           href={`#${item.id}`}
           onClick={(e) => {
             e.preventDefault();
-            const rectTop =
-              item.getBoundingClientRect().top + window.scrollY - 100;
+            const rectTop = item.getBoundingClientRect().top + window.scrollY - 100;
             window.scrollTo({ top: rectTop, behavior: "smooth" });
           }}
         >
-          {item.dataset.titleAnchor ??
-            (item.textContent && item.textContent.length < 12
-              ? item.textContent
-              : item.id)}
+          {item.dataset.titleAnchor ?? (item.textContent && item.textContent.length < 12 ? item.textContent : item.id)}
         </a>
       </li>
     ));
@@ -436,16 +439,12 @@ export default function Documentacion(): JSX.Element {
 
     if (!viewProductDescription.current) return;
 
-    const sections = Array.from(
-      viewProductDescription.current.querySelectorAll<HTMLElement>("[id]")
-    );
+    const sections = Array.from(viewProductDescription.current.querySelectorAll<HTMLElement>("[id]"));
     let prevLink: HTMLAnchorElement | null = null;
 
     const intersectionCb: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
-        const link = document.querySelector<HTMLAnchorElement>(
-          `.listOfNav a[href="#${entry.target.id}"]`
-        );
+        const link = document.querySelector<HTMLAnchorElement>(`.listOfNav a[href="#${entry.target.id}"]`);
         if (!link) return;
         if (entry.isIntersecting) {
           prevLink?.classList.remove("active");
@@ -465,21 +464,14 @@ export default function Documentacion(): JSX.Element {
     verifyTheCorrectViewProduct();
 
     return () => sections.forEach((s) => observer.unobserve(s));
-  }, [
-    viewProduct,
-    generateAnchorsBasedInTheContent,
-    verifyTheCorrectViewProduct,
-  ]);
+  }, [viewProduct, generateAnchorsBasedInTheContent, verifyTheCorrectViewProduct]);
 
   // Animaciones "fade-in"
   useEffect(() => {
     const el = containerRef.current;
-    if (el)
-      el.querySelectorAll("*").forEach((it) => it.classList.add("fade-in"));
+    if (el) el.querySelectorAll("*").forEach((it) => it.classList.add("fade-in"));
 
-    const elements = Array.from(
-      document.querySelectorAll<HTMLElement>(".fade-in")
-    );
+    const elements = Array.from(document.querySelectorAll<HTMLElement>(".fade-in"));
     const obs = new IntersectionObserver(
       (entries, o) => {
         entries.forEach((entry) => {
@@ -505,9 +497,7 @@ export default function Documentacion(): JSX.Element {
     return (
       <div ref={containerRef}>
         <div className="aplicaciones descripcion">
-          <h1 className="title font-bold text-[32px] !text-center mb-[5px] text-black">
-            {data.title}
-          </h1>
+          <h1 className="title font-bold text-[32px] !text-center mb-[5px] text-black">{data.title}</h1>
           <h3
             className="description font-bold text-[24px] text-black"
             id="descripcion"
@@ -525,16 +515,10 @@ export default function Documentacion(): JSX.Element {
             ))}
           </ul>
 
-          <h1
-            className="font-bold text-[24px] text-black"
-            id="aplicaciones"
-            data-title-anchor={t("aplicaciones")}
-          >
+          <h1 className="font-bold text-[24px] text-black" id="aplicaciones" data-title-anchor={t("aplicaciones")}>
             {t("aplicaciones")}
           </h1>
-          <p className="applicationDescription">
-            {data.applicationDescription}
-          </p>
+          <p className="applicationDescription">{data.applicationDescription}</p>
           <ul className="listOfApplications">
             {data.listOfApplications.map((app: string, i: number) => (
               <li
@@ -558,10 +542,7 @@ export default function Documentacion(): JSX.Element {
             />
           ))}
 
-          <table
-            id="tablaDeCaracteristicas"
-            data-title-anchor={t("tablaDeEspecificaciones")}
-          >
+          <table id="tablaDeCaracteristicas" data-title-anchor={t("tablaDeEspecificaciones")}>
             <thead>
               <tr className="*:border-[1px] *:border-gray-400 *:p-[5px_10px] bg-blue-100">
                 <th>{t("Componente")}</th>
@@ -569,17 +550,12 @@ export default function Documentacion(): JSX.Element {
               </tr>
             </thead>
             <tbody className="*:even:bg-gray-200">
-              {data.tableItems.map(
-                ([comp, desc]: [string, string], i: number) => (
-                  <tr
-                    key={i}
-                    className="*:border-[1px] *:border-gray-300 *:p-[5px_10px]"
-                  >
-                    <td>{comp}</td>
-                    <td>{desc}</td>
-                  </tr>
-                )
-              )}
+              {data.tableItems.map(([comp, desc]: [string, string], i: number) => (
+                <tr key={i} className="*:border-[1px] *:border-gray-300 *:p-[5px_10px]">
+                  <td>{comp}</td>
+                  <td>{desc}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <button
@@ -603,106 +579,47 @@ export default function Documentacion(): JSX.Element {
     if (!data && viewProduct !== "Tgate") return null;
 
     return (
-      <div
-        className="flex flex-col gap-[20px] justify-center items-start"
-        ref={containerRef}
-      >
-        <h1 className="self-center text-[32px] text-center mb-[5px] font-bold title">
-          {data.title}
-        </h1>
-        <h2
-          className="font-bold text-[24px]"
-          id="description"
-          data-title-anchor="Introducción"
-        >
+      <div className="flex flex-col gap-[20px] justify-center items-start" ref={containerRef}>
+        <h1 className="self-center text-[32px] text-center mb-[5px] font-bold title">{data.title}</h1>
+        <h2 className="font-bold text-[24px]" id="description" data-title-anchor="Introducción">
           {data.content[1]}
         </h2>
-        <img
-          src={data.imgSrc[0]}
-          alt=""
-          className="self-center w-auto h-auto"
-        />
+        <img src={data.imgSrc[0]} alt="" className="self-center w-auto h-auto" />
         <p dangerouslySetInnerHTML={{ __html: data.content[2] }} />
         <p>{data.content[3]}</p>
 
         <ul className="flex flex-col gap-[0.5lh]">
-          <li
-            dangerouslySetInnerHTML={{ __html: data.list[4] }}
-            className="list-disc pl-[20px] ml-[15px]"
-          />
-          <li
-            dangerouslySetInnerHTML={{ __html: data.list[5] }}
-            className="list-disc pl-[20px] ml-[15px]"
-          />
+          <li dangerouslySetInnerHTML={{ __html: data.list[4] }} className="list-disc pl-[20px] ml-[15px]" />
+          <li dangerouslySetInnerHTML={{ __html: data.list[5] }} className="list-disc pl-[20px] ml-[15px]" />
           <ul className="ml-[20px] flex flex-col gap-[0.5lh]">
-            <li
-              dangerouslySetInnerHTML={{ __html: data.list[6] }}
-              className="list-decimal pl-[20px] ml-[15px]"
-            />
-            <li
-              dangerouslySetInnerHTML={{ __html: data.list[7] }}
-              className="list-decimal pl-[20px] ml-[15px]"
-            />
-            <li
-              dangerouslySetInnerHTML={{ __html: data.list[8] }}
-              className="list-decimal pl-[20px] ml-[15px]"
-            />
-            <li
-              dangerouslySetInnerHTML={{ __html: data.list[9] }}
-              className="list-decimal pl-[20px] ml-[15px]"
-            />
+            <li dangerouslySetInnerHTML={{ __html: data.list[6] }} className="list-decimal pl-[20px] ml-[15px]" />
+            <li dangerouslySetInnerHTML={{ __html: data.list[7] }} className="list-decimal pl-[20px] ml-[15px]" />
+            <li dangerouslySetInnerHTML={{ __html: data.list[8] }} className="list-decimal pl-[20px] ml-[15px]" />
+            <li dangerouslySetInnerHTML={{ __html: data.list[9] }} className="list-decimal pl-[20px] ml-[15px]" />
           </ul>
         </ul>
 
-        <h1
-          className="font-bold text-[24px]"
-          data-title-anchor="Camara"
-          id="camara"
-        >
+        <h1 className="font-bold text-[24px]" data-title-anchor="Camara" id="camara">
           {data.content[11]}
         </h1>
-        <img
-          src={data.imgSrc[2]}
-          alt=""
-          className="self-center w-auto h-auto"
-        />
+        <img src={data.imgSrc[2]} alt="" className="self-center w-auto h-auto" />
         <p>{data.content[12]}</p>
 
-        <img
-          src={data.imgSrc[3]}
-          alt=""
-          className="self-center w-auto h-auto"
-        />
+        <img src={data.imgSrc[3]} alt="" className="self-center w-auto h-auto" />
 
-        <h1
-          className="font-bold text-[24px]"
-          id="horarios"
-          data-title-anchor="Horarios"
-        >
+        <h1 className="font-bold text-[24px]" id="horarios" data-title-anchor="Horarios">
           {data.content[13]}
         </h1>
-        <img
-          src={data.imgSrc[1]}
-          alt=""
-          className="self-center w-auto h-auto"
-        />
+        <img src={data.imgSrc[1]} alt="" className="self-center w-auto h-auto" />
         <p>{data.content[14]}</p>
 
         <h1 className="font-bold text-[24px]" id="knx" data-title-anchor="KNX">
           {data.content[15]}
         </h1>
-        <img
-          src={data.imgSrc[4]}
-          alt=""
-          className="self-center w-auto h-auto"
-        />
+        <img src={data.imgSrc[4]} alt="" className="self-center w-auto h-auto" />
         <p>{data.content[16]}</p>
 
-        <h1
-          className="font-bold text-[24px]"
-          id="excel"
-          data-title-anchor="Excel"
-        >
+        <h1 className="font-bold text-[24px]" id="excel" data-title-anchor="Excel">
           {data.content[17]}
         </h1>
         <p>{data.content[18]}</p>
@@ -717,13 +634,8 @@ export default function Documentacion(): JSX.Element {
     if (!data) return null;
     return (
       <div className="aplicaciones">
-        <h1 className="font-bold text-[32px] text-center fade-in">
-          {data.title}
-        </h1>
-        <p
-          dangerouslySetInnerHTML={{ __html: data.content[1] }}
-          className="fade-in"
-        />
+        <h1 className="font-bold text-[32px] text-center fade-in">{data.title}</h1>
+        <p dangerouslySetInnerHTML={{ __html: data.content[1] }} className="fade-in" />
         <h2
           className="font-bold text-[24px] fade-in"
           dangerouslySetInnerHTML={{ __html: data.content[2] }}
@@ -753,11 +665,7 @@ export default function Documentacion(): JSX.Element {
           ))}
         </ul>
 
-        <h2
-          className="font-bold text-[24px] fade-in"
-          id="title4"
-          data-title-anchor="Caracteristicas"
-        >
+        <h2 className="font-bold text-[24px] fade-in" id="title4" data-title-anchor="Caracteristicas">
           {data.content[12]}
         </h2>
         <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh] fade-in">
@@ -768,11 +676,7 @@ export default function Documentacion(): JSX.Element {
           ))}
         </ul>
 
-        <h2
-          className="font-bold text-[24px] fade-in"
-          id="title5"
-          data-title-anchor="Aplicaciones"
-        >
+        <h2 className="font-bold text-[24px] fade-in" id="title5" data-title-anchor="Aplicaciones">
           {data.applicationList[0]}
         </h2>
         <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh] fade-in">
@@ -783,11 +687,7 @@ export default function Documentacion(): JSX.Element {
           ))}
         </ul>
 
-        <h2
-          className="font-bold text-[24px] fade-in"
-          id="title6"
-          data-title-anchor="Recomendaciones"
-        >
+        <h2 className="font-bold text-[24px] fade-in" id="title6" data-title-anchor="Recomendaciones">
           {data.recomendation[0]}
         </h2>
         <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh] fade-in">
@@ -798,19 +698,11 @@ export default function Documentacion(): JSX.Element {
           ))}
         </ul>
 
-        <h2
-          className="font-bold text-[24px] fade-in"
-          id="title6"
-          data-title-anchor="Vista Lector"
-        >
+        <h2 className="font-bold text-[24px] fade-in" id="title6" data-title-anchor="Vista Lector">
           {data.content[13]}
         </h2>
         <p className="fade-in">{data.content[14]}</p>
-        <img
-          src={data.imgSrc[0]}
-          alt="imagen"
-          className="w-[400px] self-center fade-in"
-        />
+        <img src={data.imgSrc[0]} alt="imagen" className="w-[400px] self-center fade-in" />
         <p className="fade-in">{data.content[15]}</p>
       </div>
     );
@@ -821,25 +713,10 @@ export default function Documentacion(): JSX.Element {
     if (!data && viewProduct !== "Nodemaker") return null;
     return (
       <div className="aplicaciones" ref={containerRef}>
-        <h1
-          className="font-bold text-[32px] text-center"
-          dangerouslySetInnerHTML={{ __html: data.title }}
-        ></h1>
+        <h1 className="font-bold text-[32px] text-center" dangerouslySetInnerHTML={{ __html: data.title }}></h1>
         <p dangerouslySetInnerHTML={{ __html: data.content[1] }}></p>
-        <img
-          src={data.imgSrc[0]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="w-[550px] self-center"
-        />
-        <img
-          src={data.imgSrc[1]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="w-[550px] self-center"
-        />
+        <img src={data.imgSrc[0]} alt="" width={"auto"} height={"auto"} className="w-[550px] self-center" />
+        <img src={data.imgSrc[1]} alt="" width={"auto"} height={"auto"} className="w-[550px] self-center" />
         <h2
           className="font-bold text-[24px] text-left"
           dangerouslySetInnerHTML={{ __html: data.list.title }}
@@ -890,175 +767,61 @@ export default function Documentacion(): JSX.Element {
     return (
       <div className="aplicaciones" ref={containerRef}>
         <h1 className="text-[32px] text-center font-bold">{data.title}</h1>
-        <h2
-          className="text-[24px] font-bold"
-          id={"access_control_1"}
-          data-title-anchor={data.content[1]}
-        >
+        <h2 className="text-[24px] font-bold" id={"access_control_1"} data-title-anchor={data.content[1]}>
           {data.content[1]}
         </h2>
-        <img
-          src={data.imgSrc[0]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
+        <img src={data.imgSrc[0]} alt="" width={"auto"} height={"auto"} className="self-center" />
         <p dangerouslySetInnerHTML={{ __html: data.content[2] }}></p>
-        <img
-          src={data.imgSrc[1]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
+        <img src={data.imgSrc[1]} alt="" width={"auto"} height={"auto"} className="self-center" />
         <p>{data.content[3]}</p>
-        <img
-          src={data.imgSrc[2]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
+        <img src={data.imgSrc[2]} alt="" width={"auto"} height={"auto"} className="self-center" />
         <p>{data.content[4]}</p>
-        <img
-          src={data.imgSrc[3]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
+        <img src={data.imgSrc[3]} alt="" width={"auto"} height={"auto"} className="self-center" />
         <p>{data.content[5]}</p>
-        <img
-          src={data.imgSrc[4]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
+        <img src={data.imgSrc[4]} alt="" width={"auto"} height={"auto"} className="self-center" />
         <p>{data.content[6]}</p>
         <p>{data.content[7]}</p>
-        <img
-          src={data.imgSrc[5]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
-        <h2
-          className="text-[24px] font-bold"
-          id={"access_control_2"}
-          data-title-anchor={data.content[8]}
-        >
+        <img src={data.imgSrc[5]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <h2 className="text-[24px] font-bold" id={"access_control_2"} data-title-anchor={data.content[8]}>
           {data.content[8]}
         </h2>
         <p>{data.content[9]}</p>
-        <img
-          src={data.imgSrc[6]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
-        <h2
-          className="text-[24px] font-bold"
-          id={"access_control_3"}
-          data-title-anchor={data.content[10]}
-        >
+        <img src={data.imgSrc[6]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <h2 className="text-[24px] font-bold" id={"access_control_3"} data-title-anchor={data.content[10]}>
           {data.content[10]}
         </h2>
         <p>{data.content[11]}</p>
         <section className="grid grid-cols-2 gap-[10px]">
-          <img
-            src={data.imgSrc[7]}
-            alt=""
-            width={"auto"}
-            height={"auto"}
-            className="self-center"
-          />
-          <img
-            src={data.imgSrc[8]}
-            alt=""
-            width={"auto"}
-            height={"auto"}
-            className="self-center"
-          />
+          <img src={data.imgSrc[7]} alt="" width={"auto"} height={"auto"} className="self-center" />
+          <img src={data.imgSrc[8]} alt="" width={"auto"} height={"auto"} className="self-center" />
         </section>
-        <h2
-          className="text-[24px] font-bold"
-          id={"access_control_4"}
-          data-title-anchor={data.content[12]}
-        >
+        <h2 className="text-[24px] font-bold" id={"access_control_4"} data-title-anchor={data.content[12]}>
           {data.content[12]}
         </h2>
         <p>{data.content[13]}</p>
-        <img
-          src={data.imgSrc[9]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
+        <img src={data.imgSrc[9]} alt="" width={"auto"} height={"auto"} className="self-center" />
         <ul className="*:list-disc *:pl-[20px] ml-[20px] flex flex-col gap-[0.5lh]">
           <li dangerouslySetInnerHTML={{ __html: data.list[1] }}></li>
           <li dangerouslySetInnerHTML={{ __html: data.list[2] }}></li>
           <li dangerouslySetInnerHTML={{ __html: data.list[3] }}></li>
           <li dangerouslySetInnerHTML={{ __html: data.list[4] }}></li>
-          <img
-            src={data.imgSrc[10]}
-            alt=""
-            width={"auto"}
-            height={"auto"}
-            className="self-center pl-[0px]"
-          />
+          <img src={data.imgSrc[10]} alt="" width={"auto"} height={"auto"} className="self-center pl-[0px]" />
           <li dangerouslySetInnerHTML={{ __html: data.list[5] }}></li>
         </ul>
-        <h2
-          className="text-[24px] font-bold"
-          id={"access_control_5"}
-          data-title-anchor={data.content[14]}
-        >
+        <h2 className="text-[24px] font-bold" id={"access_control_5"} data-title-anchor={data.content[14]}>
           {data.content[14]}
         </h2>
         <p>{data.content[15]}</p>
-        <img
-          src={data.imgSrc[10]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
+        <img src={data.imgSrc[10]} alt="" width={"auto"} height={"auto"} className="self-center" />
         <p>{data.content[16]}</p>
-        <img
-          src={data.imgSrc[11]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
+        <img src={data.imgSrc[11]} alt="" width={"auto"} height={"auto"} className="self-center" />
         <p>{data.content[17]}</p>
         <p>{data.content[18]}</p>
-        <img
-          src={data.imgSrc[12]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
-        <h2
-          className="text-[24px] font-bold"
-          id={"access_control_6"}
-          data-title-anchor={data.content[19]}
-        >
+        <img src={data.imgSrc[12]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <h2 className="text-[24px] font-bold" id={"access_control_6"} data-title-anchor={data.content[19]}>
           {data.content[19]}
         </h2>
-        <img
-          src={data.imgSrc[13]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
+        <img src={data.imgSrc[13]} alt="" width={"auto"} height={"auto"} className="self-center" />
         <p>{data.content[20]}</p>
         <p>{data.content[21]}</p>
       </div>
@@ -1092,72 +855,160 @@ export default function Documentacion(): JSX.Element {
         <p>{data.content[12]}</p>
         <h2 className="text-[24px] font-bold">{data.content[13]}</h2>
         <p>{data.content[14]}</p>
-        <img
-          src={data.imgSrc[0]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
-        <img
-          src={data.imgSrc[1]}
-          alt=""
-          width={"auto"}
-          height={"auto"}
-          className="self-center"
-        />
+        <img src={data.imgSrc[0]} alt="" width={"auto"} height={"auto"} className="self-center" />
+        <img src={data.imgSrc[1]} alt="" width={"auto"} height={"auto"} className="self-center" />
       </div>
     );
   }, [infoSoftware, viewProduct]);
 
-  // archivo para descarga según producto
-  const renderBtnDownload = useCallback(() => {
-    const fileForDownload: Partial<Record<ProductKey, string>> = {
-      Tgate: "/docs/Manual - Tekneo Software.pdf",
-      "TK-Lector": "/docs/DataSheet QR-Lector.pdf",
-      "Modulo TK-IO22W": "/docs/TK-IO22W Datasheet 1.pdf",
-      "Modulo TK-IO24W2": "/docs/TK-IO24W2 Datasheet 2.pdf",
-      Nodemaker: "/docs/Manual NodeMaker.docx",
+  useEffect(() => {
+    const ID_MANUALS = manualByProduct[viewProduct];
+    const ID_USERS = user?.ID_USERS;
+
+    if (!ID_MANUALS || !ID_USERS) {
+      setAlreadyRequested(false);
+      return;
+    }
+
+    const checkRequest = async () => {
+      setCheckingRequest(true);
+      try {
+        const resp = await cantRequests({
+          ID_MANUALS,
+          ID_USERS, // ✅ ahora es string seguro
+        });
+        console.log(resp);
+
+      if (resp.result ) {
+        const total = resp.result[0]?.total ?? 0;
+        setAlreadyRequested(total > 0);
+      } else {
+        setAlreadyRequested(false);
+      }
+    } catch {
+      setAlreadyRequested(false);} finally {
+        setCheckingRequest(false);
+      }
     };
 
-    const file = fileForDownload[viewProduct];
-    if (!file) return null;
+    checkRequest();
+  }, [viewProduct, manualByProduct, user]);
+
+  // archivo para descarga según producto
+  const renderBtnDownload = useCallback(() => {
+    const ID_MANUALS = manualByProduct[viewProduct] ?? null;
+
+    // ❌ Manual no disponible
+    if (!ID_MANUALS) {
+      return (
+        <button disabled className="w-full px-4 py-2 bg-gray-400 text-white rounded-md opacity-50 cursor-not-allowed">
+          {t("Manual no disponible")}
+        </button>
+      );
+    }
+
+    // ❌ Solo USUARIOS
+    if (user?.ID_ROL !== 10003) {
+      return null;
+    }
+
+    // ⏳ Verificando solicitudes
+    if (checkingRequest) {
+      return (
+        <button disabled className="w-full px-4 py-2 bg-gray-300 rounded-md cursor-not-allowed">
+          {t("Verificando solicitud...")}
+        </button>
+      );
+    }
+
+    // 🔒 Ya solicitó el manual
+    if (alreadyRequested) {
+      return (
+        <button disabled className="w-full px-4 py-2 bg-gray-400 text-white rounded-md cursor-not-allowed">
+          {t("Solicitud ya enviada")}
+        </button>
+      );
+    }
+
+    // ✅ Enviar solicitud
+    const handleRequest = async () => {
+      if (!user?.ID_USERS) {
+        toast.error("Debes iniciar sesión.");
+        return;
+      }
+
+      if (alreadyRequested) {
+        toast.error("Ya solicitaste este manual.");
+        return;
+      }
+
+      setLoading(true);
+
+      try {
+        const resp = await requestManual({
+          ID_USERS: user.ID_USERS,
+          ID_MANUALS,
+        });
+
+        if (resp.message === "Solicitud enviada") {
+          toast.success("Solicitud enviada.");
+          setAlreadyRequested(true); // 🔒 Bloquea inmediatamente
+        } else {
+          toast.error(resp.message ?? "Error al enviar.");
+        }
+      } catch {
+        toast.error("Hubo un error.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
     return (
-      <a
-        href={file}
-        className="flex p-[5px_15px] justify-center gap-[20px] size-full btnDownload rounded-[10px] w-full"
-        download
+      <button
+        onClick={handleRequest}
+        disabled={loading}
+        className="
+        w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800
+        text-white font-medium rounded-md transition-colors duration-150
+        disabled:opacity-50 disabled:cursor-not-allowed
+        flex items-center justify-center gap-2
+        focus:outline-none focus:ring-2 focus:ring-blue-500
+      "
       >
-        <span>{t("manual")}</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="inherit"
-          className="size-[24px]"
-        >
-          <g id="Interface / Download">
-            <path
-              id="Vector"
-              d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </g>
-        </svg>
-      </a>
+        {loading ? (
+          <>
+            <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              />
+            </svg>
+            <span>{t("Enviando...")}</span>
+          </>
+        ) : (
+          <>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            <span>{t("Solicitar Manual")}</span>
+          </>
+        )}
+      </button>
     );
-  }, [t, viewProduct]);
+  }, [viewProduct, manualByProduct, user, t, loading, alreadyRequested, checkingRequest]);
 
   // ---------- handlers de hover: uso onMouseEnter/onMouseLeave (no addEventListener)
   const handleMouseEnter = useCallback((key: ProductKey) => {
     switch (key) {
       case "Modulo TK-IO22W":
-        popoverModule22.current?.showPopover(
-          btnModule22w.current as HTMLButtonElement
-        );
+        popoverModule22.current?.showPopover(btnModule22w.current as HTMLButtonElement);
         popoverModule44.current?.forceClose?.();
         popoverTgate.current?.forceClose?.();
         popoverLector.current?.forceClose?.();
@@ -1165,9 +1016,7 @@ export default function Documentacion(): JSX.Element {
         popoverAccessControl1.current?.forceClose?.();
         break;
       case "Modulo TK-IO24W2":
-        popoverModule44.current?.showPopover(
-          btnModule44w.current as HTMLButtonElement
-        );
+        popoverModule44.current?.showPopover(btnModule44w.current as HTMLButtonElement);
         popoverModule22.current?.forceClose?.();
         popoverTgate.current?.forceClose?.();
         popoverLector.current?.forceClose?.();
@@ -1175,9 +1024,7 @@ export default function Documentacion(): JSX.Element {
         popoverAccessControl1.current?.forceClose?.();
         break;
       case "Tgate":
-        popoverTgate.current?.showPopover(
-          btnTgate.current as HTMLButtonElement
-        );
+        popoverTgate.current?.showPopover(btnTgate.current as HTMLButtonElement);
         popoverModule22.current?.forceClose?.();
         popoverModule44.current?.forceClose?.();
         popoverLector.current?.forceClose?.();
@@ -1186,9 +1033,7 @@ export default function Documentacion(): JSX.Element {
         popoverAccessControl1.current?.forceClose?.();
         break;
       case "TK-Lector":
-        popoverLector.current?.showPopover(
-          btnLectorTk.current as HTMLButtonElement
-        );
+        popoverLector.current?.showPopover(btnLectorTk.current as HTMLButtonElement);
         popoverModule22.current?.forceClose?.();
         popoverModule44.current?.forceClose?.();
         popoverTgate.current?.forceClose?.();
@@ -1197,9 +1042,7 @@ export default function Documentacion(): JSX.Element {
         popoverAccessControl1.current?.forceClose?.();
         break;
       case "Nodemaker":
-        popoverNodemaker.current?.showPopover(
-          btnNodemaker.current as HTMLButtonElement
-        );
+        popoverNodemaker.current?.showPopover(btnNodemaker.current as HTMLButtonElement);
         popoverModule22.current?.forceClose?.();
         popoverModule44.current?.forceClose?.();
         popoverTgate.current?.forceClose?.();
@@ -1213,9 +1056,7 @@ export default function Documentacion(): JSX.Element {
         popoverTgate.current?.forceClose?.();
         break;
       case "TShow":
-        popoverTShow.current?.showPopover(
-          btnTShow.current as HTMLButtonElement
-        );
+        popoverTShow.current?.showPopover(btnTShow.current as HTMLButtonElement);
         popoverModule22.current?.forceClose?.();
         popoverModule44.current?.forceClose?.();
         popoverLector.current?.forceClose?.();
@@ -1250,10 +1091,7 @@ export default function Documentacion(): JSX.Element {
   }, []);
 
   // actualizo atributos dataset de botones cuando cambie viewProduct
-  useEffect(
-    () => verifyTheCorrectViewProduct(),
-    [viewProduct, verifyTheCorrectViewProduct]
-  );
+  useEffect(() => verifyTheCorrectViewProduct(), [viewProduct, verifyTheCorrectViewProduct]);
 
   // Si el usuario no está logueado, intentamos mostrar el modal cuando la ref esté disponible.
   // Antes la llamada se hacía en el render y a veces la ref aún no existía (Modal montado en otro componente).
@@ -1308,9 +1146,7 @@ export default function Documentacion(): JSX.Element {
               data-active={viewProduct === "Modulo TK-IO22W"}
               // data-active-sub-list-item={viewProduct === "Modulo TK-IO22W" || viewProduct === "Access Control"}
               className={`flex gap-[10px] min-w-[200px] items-center justify-end p-[5px_15px] btnSection rounded-[8px] hover:text-white text-gray-300 ${
-                viewProduct === "Modulo TK-IO22W"
-                  ? "!text-white !border-black"
-                  : ""
+                viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""
               }`}
               onClick={() => {
                 setViewProduct("Modulo TK-IO22W");
@@ -1350,9 +1186,7 @@ export default function Documentacion(): JSX.Element {
               gapTop={-(btnModule44w.current?.offsetHeight ?? 100)}
               gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}
             >
-              <div className="flex flex-col gap-[10px] items-center">
-                {previewFor("Modulo TK-IO22W")}
-              </div>
+              <div className="flex flex-col gap-[10px] items-center">{previewFor("Modulo TK-IO22W")}</div>
             </Popover>
           </li>
 
@@ -1362,9 +1196,7 @@ export default function Documentacion(): JSX.Element {
               data-active={viewProduct === "Modulo TK-IO24W2"}
               // data-active-sub-list-item={viewProduct === "Modulo TK-IO24W2" || viewProduct === "Access Control"}
               className={`flex gap-[10px] min-w-[200px] items-center justify-end p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${
-                viewProduct === "Modulo TK-IO24W2"
-                  ? "!text-white !border-black"
-                  : ""
+                viewProduct === "Modulo TK-IO24W2" ? "!text-white !border-black" : ""
               }`}
               onClick={() => {
                 setViewProduct("Modulo TK-IO24W2");
@@ -1387,9 +1219,7 @@ export default function Documentacion(): JSX.Element {
               gapTop={-(btnModule44w.current?.offsetHeight ?? 100)}
               gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}
             >
-              <div className="flex flex-col gap-[10px] items-center">
-                {previewFor("Modulo TK-IO24W2")}
-              </div>
+              <div className="flex flex-col gap-[10px] items-center">{previewFor("Modulo TK-IO24W2")}</div>
             </Popover>
           </li>
 
@@ -1420,9 +1250,7 @@ export default function Documentacion(): JSX.Element {
               gapTop={-(btnModule44w.current?.offsetHeight ?? 100)}
               gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}
             >
-              <div className="flex flex-col gap-[10px] items-center">
-                {previewFor("TK-Lector")}
-              </div>
+              <div className="flex flex-col gap-[10px] items-center">{previewFor("TK-Lector")}</div>
             </Popover>
           </li>
         </ul>
@@ -1459,9 +1287,7 @@ export default function Documentacion(): JSX.Element {
               gapTop={-(btnModule44w.current?.offsetHeight ?? 100)}
               gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}
             >
-              <div className="flex flex-col gap-[10px] items-center">
-                {previewFor("Tgate")}
-              </div>
+              <div className="flex flex-col gap-[10px] items-center">{previewFor("Tgate")}</div>
             </Popover>
           </li>
           <li>
@@ -1487,9 +1313,7 @@ export default function Documentacion(): JSX.Element {
               gapTop={-(btnModule44w.current?.offsetHeight ?? 100)}
               gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}
             >
-              <div className="flex flex-col gap-[10px] items-center">
-                {previewFor("Nodemaker")}
-              </div>
+              <div className="flex flex-col gap-[10px] items-center">{previewFor("Nodemaker")}</div>
             </Popover>
           </li>
           <li>
@@ -1515,9 +1339,7 @@ export default function Documentacion(): JSX.Element {
               gapTop={-(btnModule44w.current?.offsetHeight ?? 100)}
               gapLeft={(btnModule44w.current?.offsetWidth ?? 100) + 15}
             >
-              <div className="flex flex-col gap-[10px] items-center">
-                {previewFor("TShow")}
-              </div>
+              <div className="flex flex-col gap-[10px] items-center">{previewFor("TShow")}</div>
             </Popover>
           </li>
           <li>
@@ -1545,10 +1367,7 @@ export default function Documentacion(): JSX.Element {
         </ul>
       </aside>
 
-      <section
-        ref={viewProductDescription}
-        className="flex flex-col gap-[1.5lh]"
-      >
+      <section ref={viewProductDescription} className="flex flex-col gap-[1.5lh]">
         {viewProduct === "Modulo TK-IO22W" || viewProduct === "Modulo TK-IO24W2"
           ? renderModuleTk()
           : viewProduct === "Tgate"
@@ -1567,21 +1386,15 @@ export default function Documentacion(): JSX.Element {
       <aside className="sticky top-[125px] self-start flex flex-col items-center gap-[20px]">
         <div>
           <h1 className="text-[18px]">{t("tabla_de_contenido")}</h1>
-          <ul
-            className={`listOfNav mt-[10px] flex-col items-start gap-[5px] min-h-[150px]`}
-            ref={listOfNav}
-          >
+          <ul className={`listOfNav mt-[10px] flex-col items-start gap-[5px] min-h-[150px]`} ref={listOfNav}>
             {(anchors[viewProduct] ?? []).map((el) => el)}
-            {viewProduct === "Modulo TK-IO22W" ||
-            viewProduct === "Modulo TK-IO24W2" ? (
+            {viewProduct === "Modulo TK-IO22W" || viewProduct === "Modulo TK-IO24W2" ? (
               <>
                 <li>
                   <button
                     ref={btnAccessControl}
                     className={`flex gap-[10px] min-w-[100px] items-center justify-end p-[5px_10px] btnSection rounded-[8px] hover:text-white text-gray-300 ${
-                      viewProduct === "Modulo TK-IO22W"
-                        ? "!text-white !border-black"
-                        : ""
+                      viewProduct === "Modulo TK-IO22W" ? "!text-white !border-black" : ""
                     }`}
                     onClick={() => {
                       setViewProduct("Access Control");
@@ -1591,9 +1404,7 @@ export default function Documentacion(): JSX.Element {
                       });
                     }}
                     onMouseEnter={() =>
-                      popoverAccessControl1.current?.showPopover(
-                        btnAccessControl.current as HTMLButtonElement
-                      )
+                      popoverAccessControl1.current?.showPopover(btnAccessControl.current as HTMLButtonElement)
                     }
                     onMouseLeave={() => popoverAccessControl1.current?.close()}
                     title="Abrir producto"
@@ -1605,14 +1416,10 @@ export default function Documentacion(): JSX.Element {
                 </li>
                 <Popover
                   ref={popoverAccessControl1}
-                  gapTop={
-                    -(btnAccessControl.current?.offsetHeight ?? 100) - 150
-                  }
+                  gapTop={-(btnAccessControl.current?.offsetHeight ?? 100) - 150}
                   gapLeft={-(btnAccessControl.current?.offsetWidth ?? 100) - 80}
                 >
-                  <div className="flex flex-col gap-[10px] items-center">
-                    {previewFor("Access Control")}
-                  </div>
+                  <div className="flex flex-col gap-[10px] items-center">{previewFor("Access Control")}</div>
                 </Popover>
               </>
             ) : null}
@@ -1634,18 +1441,8 @@ function ArrowIcon({ className }: { className?: string }) {
       viewBox="0 -4.5 20 20"
       version="1.1"
     >
-      <g
-        id="Page-1"
-        stroke="none"
-        strokeWidth="1"
-        fill="inherit"
-        fillRule="evenodd"
-      >
-        <g
-          id="Dribbble-Light-Preview"
-          transform="translate(-260.000000, -6684.000000)"
-          fill="inherit"
-        >
+      <g id="Page-1" stroke="none" strokeWidth="1" fill="inherit" fillRule="evenodd">
+        <g id="Dribbble-Light-Preview" transform="translate(-260.000000, -6684.000000)" fill="inherit">
           <g id="icons" transform="translate(56.000000, 160.000000)">
             <path d="M223.707692,6534.63378 L223.707692,6534.63378 C224.097436,6534.22888 224.097436,6533.57338 223.707692,6533.16951 L215.444127,6524.60657 C214.66364,6523.79781 213.397472,6523.79781 212.616986,6524.60657 L204.29246,6533.23165 C203.906714,6533.6324 203.901717,6534.27962 204.282467,6534.68555 C204.671211,6535.10081 205.31179,6535.10495 205.70653,6534.69695 L213.323521,6526.80297 C213.714264,6526.39807 214.346848,6526.39807 214.737591,6526.80297 L222.294621,6534.63378 C222.684365,6535.03868 223.317949,6535.03868 223.707692,6534.63378" />
           </g>

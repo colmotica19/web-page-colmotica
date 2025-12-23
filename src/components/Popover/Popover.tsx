@@ -5,7 +5,7 @@ import {
   useEffect,
   type ReactNode,
 } from "react";
-import './Popover.css'
+import "./Popover.css";
 
 export interface PopoverHandle {
   showPopover: (anchor: HTMLElement) => void;
@@ -16,7 +16,13 @@ export interface PopoverHandle {
 
 const Popover = forwardRef<
   PopoverHandle,
-  { children: ReactNode; className?: string, btnClose?: boolean, gapTop: number, gapLeft: number }
+  {
+    children: ReactNode;
+    className?: string;
+    btnClose?: boolean;
+    gapTop: number;
+    gapLeft: number;
+  }
 >(({ children, className, btnClose, gapTop, gapLeft }, ref) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const anchorRef = useRef<HTMLElement | null>(null);
@@ -30,29 +36,10 @@ const Popover = forwardRef<
     dialog.style.position = "fixed";
     dialog.style.top = `${rect.bottom + gapTop}px`;
     dialog.style.left = `${rect.left + gapLeft}px`;
-
-    // // --- Caja de referencia ---
-    // const refTop = Math.min(Math.max(dialogRef.current.offsetHeight, 100), window.innerHeight * 0.15);
-    // const refLeft = Math.min(Math.max(dialogRef.current.offsetWidth, 100), window.innerWidth * 0.15);
-    // const refRight = window.innerWidth;
-    // const refBottom = window.innerHeight;
-
-    // // --- Cálculo de visibilidad ---
-    // const popRect = dialog.getBoundingClientRect();
-    // const visibleHeight =
-    //   Math.max(0, Math.min(popRect.bottom, refBottom) - Math.max(popRect.top, refTop));
-    // const visibleWidth =
-    //   Math.max(0, Math.min(popRect.right, refRight) - Math.max(popRect.left, refLeft));
-
-    // const visibleArea = visibleHeight * visibleWidth;
-    // const totalArea = popRect.width * popRect.height;
-    // const ratio = totalArea > 0 ? visibleArea / totalArea : 1;
-
-    // dialog.style.opacity = `${ratio}`;
   };
 
-  let isActive = false
-  let idTime: NodeJS.Timeout
+  let isActive = false;
+  let idTime: NodeJS.Timeout;
 
   const showPopover = (anchor: HTMLElement) => {
     if (!isActive) {
@@ -63,36 +50,36 @@ const Popover = forwardRef<
   };
 
   const close = () => {
-    dialogRef.current?.classList.add("aniReverse")
-    isActive = true
-    clearTimeout(idTime)
+    dialogRef.current?.classList.add("aniReverse");
+    isActive = true;
+    clearTimeout(idTime);
     idTime = setTimeout(() => {
       dialogRef.current?.hidePopover();
       anchorRef.current = null;
-      dialogRef.current?.classList.remove("aniReverse")
-      isActive = false
-    }, 250)
+      dialogRef.current?.classList.remove("aniReverse");
+      isActive = false;
+    }, 250);
   };
 
   const forceClose = () => {
-    dialogRef.current?.classList.add("aniReverse")
-    isActive = true
-    clearTimeout(idTime)
+    dialogRef.current?.classList.add("aniReverse");
+    isActive = true;
+    clearTimeout(idTime);
     dialogRef.current?.hidePopover();
     anchorRef.current = null;
-    dialogRef.current?.classList.remove("aniReverse")
-    isActive = false
+    dialogRef.current?.classList.remove("aniReverse");
+    isActive = false;
   };
 
-  // Exponemos métodos
+  // Exponer métodos al padre
   useImperativeHandle(ref, () => ({
     showPopover,
     close,
     forceClose,
-    this: dialogRef.current
+    this: dialogRef.current,
   }));
 
-  // Recalcular en scroll y resize
+  // Recalcular pos en scroll y resize
   useEffect(() => {
     const handle = () => updatePosition();
     window.addEventListener("scroll", handle, true);
@@ -103,16 +90,42 @@ const Popover = forwardRef<
     };
   }, []);
 
+  // 🔥 CERRAR CUANDO SE CLICKEA FUERA DEL POPOVER
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const handleClick = (event: MouseEvent) => {
+      if (!dialog.open) return;
+
+      // Si se clickea dentro del popover → ignorar
+      if (dialog.contains(event.target as Node)) return;
+
+      // Si se clickea dentro del elemento que lo abre → ignorar
+      if (anchorRef.current?.contains(event.target as Node)) return;
+
+      // Cerrar normalmente
+      close();
+    };
+
+    window.addEventListener("mousedown", handleClick);
+
+    return () => window.removeEventListener("mousedown", handleClick);
+  }, []);
+
   return (
     <dialog ref={dialogRef} className={"Popover " + className} popover="manual">
       <button
         type="button"
         title="Cerrar ventana"
         onClick={close}
-        className={`absolute top-[10px] right-[10px] closeModal ${btnClose ? "" : "hidden"}`}
+        className={`absolute top-[10px] right-[10px] closeModal ${
+          btnClose ? "" : "hidden"
+        }`}
       >
         ✕
       </button>
+
       {children}
     </dialog>
   );

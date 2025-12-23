@@ -41,11 +41,11 @@ export default function Recuperar({ setViewRecovery }: RecuperarProps) {
             <div className="flex flex-col gap-[20px] bg-white p-[30px] rounded-[10px] w-[400px] relative shadow-md">
               {/* ← Botón volver */}
               <button
-                className="absolute top-[10px] left-[10px] text-sm text-blue-600"
+                className="absolute top-[10px] left-[10px] text-sm text-black"
                 type="button"
                 onClick={() => setViewRecovery(false)}
               >
-                ← Volver
+                ←
               </button>
 
               <h1 className="text-[28px] font-bold text-center text-gray-800">

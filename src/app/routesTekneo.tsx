@@ -44,6 +44,11 @@ export const routerTekneo = createHashRouter([
       //   Component: Support,
       // },
       {
+        path: "login",
+        Component: Login,
+      },
+
+      {
         index: true,
         Component: Login,
       },

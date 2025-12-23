@@ -1,7 +1,12 @@
 // singlentonProvider.tsx
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { GlobalContext, type UserInfo, type UserLogin } from "./globalContext";
+import {
+  GlobalContext,
+  type UserInfo,
+  type UserLogin,
+  type UserTypeInfo,
+} from "./globalContext";
 //import i18n from "../i18n";
 import type { ModalHandle } from "../components/Tekneo/Modal/Modal";
 import { getSession } from "../requests/user";
@@ -37,6 +42,11 @@ export default function SingletonProvider({
   // ✅ Estado para el login
   const [userLogin, setUserLogin] = useState<UserLogin | null>(null);
 
+  const [userType, setUserType] = useState<UserTypeInfo | null>(null);
+  const [loginOpenKey, setLoginOpenKey] = useState(0);
+
+  const modalTypeRef = useRef<ModalHandle>(null);
+
   const modalLoginRef = useRef<ModalHandle>(null);
 
   const context = {
@@ -52,6 +62,11 @@ export default function SingletonProvider({
     userLogin,
     setUserLogin,
     modalLoginRef,
+    userType,
+    setUserType,
+    modalTypeRef,
+    loginOpenKey,
+    setLoginOpenKey,
   };
 
   useEffect(() => {
@@ -61,9 +76,9 @@ export default function SingletonProvider({
           setUserLogin({
             EMAIL: res.user.EMAIL,
             PASS_HASH: res.user.PASS_HASH,
+            ID_ROL: res.user.ID_ROL,
           });
-          
-          // Setear user completo
+
           setUser({
             EMAIL: res.user.EMAIL,
             PASS_HASH: res.user.PASS_HASH,
@@ -74,11 +89,19 @@ export default function SingletonProvider({
             TEL: res.user.TEL,
             VERIFIED: res.user.VERIFIED,
           });
+
+          if (res.userType) {
+            setUserType({
+              success: true,
+              message: res.userType.message,
+            });
+          }
         }
       })
       .catch(() => {
-        setUserLogin(null); // no hay sesión
+        setUserLogin(null);
         setUser(null);
+        setUserType(null);
       });
   }, []);
 

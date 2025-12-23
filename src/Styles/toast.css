@@ -10,6 +10,13 @@
   pointer-events: none;
 }
 
+/* Para que los toasts tengan la capa más alta posible */
+#react-hot-toast,
+.react-hot-toast,
+.toaster {
+  z-index: 999999 !important;
+}
+
 .toast {
   min-width: 240px;
   max-width: 320px;

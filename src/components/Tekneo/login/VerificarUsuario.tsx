@@ -1,16 +1,16 @@
 // VerificarUsuario.tsx
 
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import { verifyUserCode } from "../../../requests/user";
 import type { ToastHandle } from "../../global/ToastPopover/ToastPopover";
-import ToastPopover from "../../global/ToastPopover/ToastPopover";
+//import ToastPopover from "../../global/ToastPopover/ToastPopover";
 import Login from "./Login";
 
 export default function VerificarUsuario() {
   const refForm = useRef<HTMLFormElement>(null);
   const refToastPopover = useRef<ToastHandle>(null);
-  const navigate = useNavigate();
+  //  const navigate = useNavigate();
 
   const [viewChangeLogin, setViewChangeLogin] = useState(false);
 
@@ -21,13 +21,11 @@ export default function VerificarUsuario() {
   return (
     <section className="flex justify-center items-center min-h-[10vh]">
       <div className="flex flex-col gap-[20px] bg-white p-[30px] rounded-[10px] w-[400px] shadow-md">
-        <h1 className="text-[28px] font-bold text-center text-gray-800">
-          Verificar correo
-        </h1>
+        <h1 className="text-[28px] font-bold text-center text-gray-800">Verificar correo</h1>
 
         <p className="text-gray-600 text-[14px] text-center leading-relaxed">
-          Ingrese el correo con el que se registró y el código que recibió por
-          correo electrónico para verificar su cuenta.
+          Ingrese el correo con el que se registró y el código que recibió por correo electrónico para verificar su
+          cuenta.
         </p>
 
         <form
@@ -42,9 +40,7 @@ export default function VerificarUsuario() {
               const code = formData.get("code") as string;
 
               if (!email || !code) {
-                refToastPopover.current?.error(
-                  "Debe ingresar el correo y el código de verificación"
-                );
+                refToastPopover.current?.error("Debe ingresar el correo y el código de verificación");
                 return;
               }
 
@@ -53,9 +49,7 @@ export default function VerificarUsuario() {
                 code: parseInt(code),
               }).then((value) => {
                 if ("error" in value) {
-                  refToastPopover.current?.error(
-                    value.error ?? value.message ?? "Ocurrió un error"
-                  );
+                  refToastPopover.current?.error(value.error ?? value.message ?? "Ocurrió un error");
                 } else {
                   refToastPopover.current?.show(
                     typeof value.message === "string"
@@ -78,10 +72,7 @@ export default function VerificarUsuario() {
           }}
         >
           <div className="flex flex-col gap-[5px]">
-            <label
-              htmlFor="email"
-              className="text-[14px] text-gray-700 font-medium"
-            >
+            <label htmlFor="email" className="text-[14px] text-gray-700 font-medium">
               Correo electrónico
             </label>
             <input
@@ -94,10 +85,7 @@ export default function VerificarUsuario() {
           </div>
 
           <div className="flex flex-col gap-[5px]">
-            <label
-              htmlFor="code"
-              className="text-[14px] text-gray-700 font-medium"
-            >
+            <label htmlFor="code" className="text-[14px] text-gray-700 font-medium">
               Código de verificación
             </label>
             <input
@@ -117,7 +105,7 @@ export default function VerificarUsuario() {
           </button>
         </form>
 
-        <ToastPopover ref={refToastPopover} />
+        {/*<ToastPopover ref={refToastPopover} */}
       </div>
     </section>
   );

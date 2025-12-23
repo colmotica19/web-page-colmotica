@@ -11,6 +11,14 @@ import type { ModalHandle } from "../components/Tekneo/Modal/Modal";
 export type UserLogin = {
   EMAIL: string;
   PASS_HASH: string;
+  ID_ROL?: number;
+};
+
+export type manuals = {
+  ID_MANUALS?: string;
+  ID_ROL: number;
+  NAME: string;
+  CREATE_AT?: Date;
 };
 
 export type UserInfo = {
@@ -22,6 +30,11 @@ export type UserInfo = {
   NAME?: string;
   PASS_HASH: string;
   VERIFIED?: number;
+};
+
+export type UserTypeInfo = {
+  success: boolean;
+  message: string;
 };
 
 interface GlobalContext {
@@ -36,6 +49,12 @@ interface GlobalContext {
   userLogin: UserLogin | null;
   setUserLogin: Dispatch<SetStateAction<UserLogin | null>>;
   modalLoginRef: RefObject<ModalHandle | null>;
+  userType: UserTypeInfo | null;
+  setUserType: Dispatch<SetStateAction<UserTypeInfo | null>>;
+  modalTypeRef: RefObject<ModalHandle | null>;
+  setManuals: Dispatch<SetStateAction<manuals | null>>;
+  loginOpenKey: number;
+  setLoginOpenKey: Dispatch<SetStateAction<number>>;
 }
 
 export const GlobalContext = createContext({} as GlobalContext);
