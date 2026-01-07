@@ -333,7 +333,7 @@ export default function Administracion() {
                 email: item.EMAIL,
                 name: item.NAME,
                 state: item.STATE,
-                date_req: item.DATE_REQ,
+                date_req: item.DATE_REQ ? new Date(item.DATE_REQ).toLocaleString("es-CO") : "—",
                 actions: (
                   <div className="flex gap-2">
                     <button
@@ -434,8 +434,8 @@ export default function Administracion() {
               onClick={async () => {
                 if (!userToEdit) return;
 
-                const newName = (document.getElementById("edit-name") as HTMLInputElement).value.trim();
-                const newPass = (document.getElementById("edit-pass") as HTMLInputElement).value.trim();
+                const newName = editName.trim();
+                const newPass = editPass.trim();
 
                 // Nada para editar?
                 if (!newName && !newPass) {
